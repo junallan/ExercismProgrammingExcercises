@@ -1,18 +1,18 @@
-let colorMap = new Map();
-
-colorMap.set('black',0);
-colorMap.set('brown',1);
-colorMap.set('red',2);
-colorMap.set('orange',3);
-colorMap.set('yellow',4);
-colorMap.set('green',5);
-colorMap.set('blue',6);
-colorMap.set('violet',7);
-colorMap.set('grey',8);
-colorMap.set('white',9);
-
-export const colorCode = (color) => {
-  return colorMap.get(color);
+let colorMap = {
+	black: 0,
+	brown: 1,
+	red: 2,
+	orange: 3,
+	yellow: 4,
+	green: 5,
+	blue: 6,
+	violet: 7,
+	grey: 8,
+	white: 9
 };
 
-export const COLORS = Array.from(colorMap.keys());
+export const colorCode = (color) => {
+  return colorMap[color];
+};
+
+export const COLORS = Object.keys(colorMap);
