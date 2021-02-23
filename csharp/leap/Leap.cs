@@ -7,8 +7,6 @@ public static class Leap
         return (year % n) == 0;
     }
 
-    public static bool IsLeapYear(int year)
-    {
-        return IsDivisibleBy(year, 4) && (!IsDivisibleBy(year, 100) || IsDivisibleBy(year, 400));
-    }
+    public static bool IsLeapYear(int year) => IsDivisibleBy(year, 4) && (!IsDivisibleBy(year, 100) || IsDivisibleBy(year, 400));
+    
 }
