@@ -33,27 +33,20 @@ export class Triangle {
     }
 
     get isEquilateral() {
-        return this.isSidesEqual([this.side1, this.side2, this.side3]) && this.isValidTriangle([this.side1, this.side2, this.side3]);
+        return this.isValidTriangle([this.side1, this.side2, this.side3]) && this.isSidesEqual([this.side1, this.side2, this.side3]);
     }
 
     get isIsosceles() {
-        let side1AndSide2 = [this.side1, this.side2];
-        let side1AndSide3 = [this.side1, this.side3];
-        let side2AndSide3 = [this.side2, this.side3];
-
-        return (this.isEquilateral ||
-                    (this.isValidTriangle([this.side1, this.side2, this.side3]) && (
-                        (this.isSidesEqual(side1AndSide2) && !this.isSidesEqual(side2AndSide3))
-                        || (this.isSidesEqual(side1AndSide3) && !this.isSidesEqual(side2AndSide3))
-                        || (this.isSidesEqual(side2AndSide3) && !this.isSidesEqual(side1AndSide3)))));
+        return (this.isValidTriangle([this.side1, this.side2, this.side3]) &&
+                        (this.isSidesEqual([this.side1, this.side2])
+                        || this.isSidesEqual([this.side1, this.side3])
+                        || this.isSidesEqual([this.side2, this.side3])));
     }
 
     get isScalene() {
-        let side1AndSide2 = [this.side1, this.side2];
-        let side1AndSide3 = [this.side1, this.side3];
-        let side2AndSide3 = [this.side2, this.side3];
-
         return this.isValidTriangle([this.side1, this.side2, this.side3]) &&
-                                        !this.isSidesEqual(side1AndSide2) && !this.isSidesEqual(side2AndSide3) && !this.isSidesEqual(side1AndSide3);
+            !this.isSidesEqual([this.side1, this.side2])
+            && !this.isSidesEqual([this.side2, this.side3])
+            && !this.isSidesEqual([this.side1, this.side3]);
     }
 }
