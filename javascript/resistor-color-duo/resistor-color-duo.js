@@ -16,5 +16,5 @@ const colorCode = (color) => {
 };
 
 export const decodedValue = (colors) => {
-	return parseInt(`${colorCode(colors[0])}${colorCode(colors[1])}`);
+	return (colorCode(colors[0]) * 10) + colorCode(colors[1]);
 };
