@@ -3,16 +3,20 @@ using System.Collections.Generic;
 
 public class SpaceAge
 {
-    private int _seconds;
-    private static Dictionary<Planets, double> _orbitalPeriodsRelativeToEarthYears= new Dictionary<Planets, double>{ 
-                                                        {Planets.Earth, 1}, 
-                                                        {Planets.Mercury, 0.2408467}, 
-                                                        {Planets.Venus, 0.61519726}, 
-                                                        {Planets.Mars, 1.8808158}, 
-                                                        {Planets.Jupiter, 11.862615}, 
-                                                        {Planets.Saturn, 29.447498}, 
-                                                        {Planets.Uranus, 84.016846}, 
-                                                        {Planets.Neptue, 164.79132}};
+    private readonly int _seconds;
+    private static Dictionary<Planets, double> _orbitalPeriodsRelativeToEarthYears
+        = new Dictionary<Planets, double>
+        { 
+            {Planets.Earth, 1}, 
+            {Planets.Mercury, 0.2408467}, 
+            {Planets.Venus, 0.61519726}, 
+            {Planets.Mars, 1.8808158}, 
+            {Planets.Jupiter, 11.862615}, 
+            {Planets.Saturn, 29.447498}, 
+            {Planets.Uranus, 84.016846}, 
+            {Planets.Neptue, 164.79132}
+        };
+
     private const double EarthOrbitalPeriod = 31_557_660d;
 
     public SpaceAge(int seconds)
