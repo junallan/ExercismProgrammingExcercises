@@ -23,7 +23,7 @@ public class HighScores
 
     public int PersonalBest()
     {
-        return _list.OrderByDescending(x => x).First();
+        return _list.Max();
     }
 
     public List<int> PersonalTopThree()
