@@ -28,6 +28,6 @@ public class HighScores
 
     public List<int> PersonalTopThree()
     {
-        return _list.Count > 3 ? _list.OrderByDescending(x => x).ToList().GetRange(0,3) : _list.OrderByDescending(x => x).ToList().GetRange(0,_list.Count);
+        return _list.Count > 3 ? _list.OrderBy(x => x).TakeLast(3).OrderByDescending(x => x).ToList() : _list.OrderBy(x => x).TakeLast(_list.Count).OrderByDescending(x => x).ToList();
     }
 }
