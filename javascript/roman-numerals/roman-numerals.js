@@ -15,15 +15,13 @@ let symbolMappings = [
 ];
 
 export const toRoman = (number) => {
-	let romanNumeral = '';
-
 	let mappedSymbol = symbolMappings.find(x => x.value <= number);
 
 	if (mappedSymbol !== undefined) {
 		return mappedSymbol.value === number ? mappedSymbol.numeral : `${mappedSymbol.numeral}${toRoman(number - mappedSymbol.value)}`;	 
 	}
 
-	return romanNumeral;
+	return '';
 };
 
 
