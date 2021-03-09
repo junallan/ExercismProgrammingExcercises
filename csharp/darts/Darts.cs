@@ -2,28 +2,17 @@
 
 public static class Darts
 {
+    static (int RadiusSquared, int Score) InnerRegion => (1, 10);
+    static (int RadiusSquared, int Score) MiddleRegion => (25, 5);
+    static (int RadiusSquared, int Score) OuterRegion => (100, 1);
+
     public static int Score(double x, double y)
     {
         var radiusSquaredOfThrow = Math.Pow(x, 2) + Math.Pow(y, 2);
 
-        var dartBoard = new DartBoard();
-
-        if(radiusSquaredOfThrow <= dartBoard.InnerRegion.RadiusSquared) { return dartBoard.InnerRegion.Score;}
-        else if(radiusSquaredOfThrow <= dartBoard.MiddleRegion.RadiusSquared) { return dartBoard.MiddleRegion.Score; }
-        else if(radiusSquaredOfThrow <= dartBoard.OuterRegion.RadiusSquared) { return dartBoard.OuterRegion.Score; }
+        if(radiusSquaredOfThrow <= InnerRegion.RadiusSquared) { return InnerRegion.Score;}
+        else if(radiusSquaredOfThrow <= MiddleRegion.RadiusSquared) { return MiddleRegion.Score; }
+        else if(radiusSquaredOfThrow <= OuterRegion.RadiusSquared) { return OuterRegion.Score; }
         else { return 0; }
-    }
-
-    public class DartBoard
-    {
-        public Region InnerRegion => new Region { RadiusSquared = 1, Score = 10 };
-        public Region MiddleRegion => new Region { RadiusSquared = 25, Score = 5 };
-        public Region OuterRegion => new Region { RadiusSquared = 100, Score = 1 };
-    }
-
-    public class Region
-    {
-        public int RadiusSquared { get; set; }
-        public int Score { get; set; }
     }
 }
