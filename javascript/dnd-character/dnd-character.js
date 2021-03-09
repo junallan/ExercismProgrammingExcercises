@@ -1,13 +1,21 @@
+import { SSL_OP_TLS_ROLLBACK_BUG } from "constants";
+
 export const abilityModifier = (number) => {
     if (number < 3) { throw 'Ability scores must be at least 3'; }
     if (number > 18) { throw 'Ability scores can be at most 18'; }
     return Math.floor((number - 10) / 2);
 };
 
-
-
-
 export class Character {
+    constructor() {
+        this._strength = Character.rollAbility(); 
+        this._dexterity = Character.rollAbility();
+        this._constitution = Character.rollAbility();
+        this._intelligence = Character.rollAbility();
+        this._wisdom = Character.rollAbility();
+        this._charisma = Character.rollAbility();
+    }
+
     static rollAbility() {
         let diceDotsCount = 6;
 
@@ -21,54 +29,23 @@ export class Character {
         return roles.reduce((total, roll) => total + roll);
     } 
 
-    static strength = 0;
-    static dexterity = 0;
-    static constitution = 0;
-    static intelligence = 0;
-    static wisdom = 0;
-    static charisma = 0;
-
     get strength() {
-        if (Character.strength === 0) {
-            Character.strength = Character.rollAbility();
-        }
-
-        return Character.strength;
+        return this._strength;
     };
     get dexterity() {
-        if (Character.dexterity === 0) {
-            Character.dexterity = Character.rollAbility();
-        }
-
-        return Character.dexterity;
+        return this._dexterity;
     };
     get constitution() {
-        if (Character.constitution === 0) {
-            Character.constitution = Character.rollAbility();
-        }
-
-        return Character.constitution;
+        return this._constitution;
     };
     get intelligence() {
-        if (Character.intelligence === 0) {
-            Character.intelligence = Character.rollAbility();
-        }
-
-        return Character.intelligence;
+        return this._intelligence;
     };
     get wisdom() {
-        if (Character.wisdom === 0) {
-            Character.wisdom = Character.rollAbility();
-        }
-
-        return Character.wisdom;
+        return this._wisdom;
     };   
     get charisma() {
-        if (Character.charisma === 0) {
-            Character.charisma = Character.rollAbility();
-        }
-
-        return Character.charisma;
+        return this._charisma;
     };
-    get hitpoints() { return 10 + abilityModifier(this.constitution) };
+    get hitpoints() { return 10 + abilityModifier(this._constitution) };
 }
