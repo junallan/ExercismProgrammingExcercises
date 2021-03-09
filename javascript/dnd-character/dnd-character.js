@@ -1,5 +1,3 @@
-import { SSL_OP_TLS_ROLLBACK_BUG } from "constants";
-
 export const abilityModifier = (number) => {
     if (number < 3) { throw 'Ability scores must be at least 3'; }
     if (number > 18) { throw 'Ability scores can be at most 18'; }
