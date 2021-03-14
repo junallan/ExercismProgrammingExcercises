@@ -16,7 +16,7 @@ describe('Square root', () => {
   test('root of 196', () => {
     expect(squareRoot(196)).toEqual(14);
   });
-  xtest('root of 65025', () => {
+  test('root of 65025', () => {
     expect(squareRoot(65025)).toEqual(255);
   });
 });
