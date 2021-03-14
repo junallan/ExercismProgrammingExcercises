@@ -10,24 +10,47 @@ export const squareRoot = (number) => {
 	let maskedNumber = undefined;
 	let evaluatedResult = [];
 	let subtractedResult = 0;
-
+	//console.log('binaryComponents: ' + binaryComponents);
 	for (let i = 0; i < binaryComponents.length; i++) {
-		subtractedResult = subtractedResult << 2;
+		//console.log('before subtractedResult ' + subtractedResult);
+
 		subtractedResult += binaryComponents[i];
 
+		//console.log('subtractedResult ' + subtractedResult);
 		console.log('Before placeholder evaluation: maskedNumber, subractedValue: ' + maskedNumber + ',' + subtractedResult);
 		placeholderNumber = placeholderEvaluation(maskedNumber, subtractedResult);
 
-		if (maskedNumber === undefined) {
-			maskedNumber = placeholderNumber;
-		}
+
+
+
 
 		if (placeholderNumber !== 0) {
+			if (maskedNumber === undefined) {
+				maskedNumber = placeholderNumber;
+			}
+			else {
+				maskedNumber = (maskedNumber + 1) << 1;
+			}
+			/*
+				if(maskedNumber > 1){
+					maskedNumber += 1;     if (maskedNumber === undefined) {
+					maskedNumber = placeholderNumber;
+				}
+			  }
+				*/
+			console.log('subtractedResult ' + subtractedResult);
+			console.log('maskednumber ' + maskedNumber);
 			subtractedResult = subtractedResult - maskedNumber;
-
+			console.log('subtractedResult evaluation ' + subtractedResult);
+			subtractedResult = subtractedResult << 2;
+			maskedNumber = maskedNumber + 1;
 		}
-	
-		maskedNumber = maskedNumber << 1;
+		else {
+			subtractedResult = subtractedResult << 2;
+			maskedNumber = maskedNumber << 1;
+		}
+
+		//maskedNumber = maskedNumber << 1;
 
 
 		evaluatedResult.push(placeholderNumber);
@@ -47,7 +70,11 @@ function splitToBinaryComponents(number) {
 	let numberParsed = [];
 
 	do {
+		//console.log('number: ' + number);
+		//console.log('maskedNumber: ' + maskedNumber);
 		evaluatedNumber = number & maskedNumber;
+		//console.log('shifts: ' + shifts);
+		//console.log('evaluatedNumber shifts: ' + (evaluatedNumber >> shifts));
 		numberParsed.push(evaluatedNumber >> shifts);
 		shifts += 2;
 		maskedNumber = maskedNumber << 2;
@@ -67,8 +94,8 @@ function splitToBinaryComponents(number) {
 
 function placeholderEvaluation(maskedNumber, subtractedResult) {
 	if (maskedNumber === undefined) { return 1; }
-
-	if ((maskedNumber << 1) <= subtractedResult) {
+	//console.log('placeholderEvaluation maskedNumber eval: ' + (maskedNumber<<1));
+	if ((maskedNumber + 1) <= subtractedResult) {
 		return 1;
 	} else {
 		return 0;
