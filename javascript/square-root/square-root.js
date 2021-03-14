@@ -10,20 +10,15 @@ export const squareRoot = (number) => {
 
 		placeholderNumber = placeholderEvaluation(maskedNumber, subtractedResult);
 
-		if (placeholderNumber !== 0) {
-			if (maskedNumber === undefined) {
-				maskedNumber = placeholderNumber;
-			}
-			else {
-				maskedNumber = (maskedNumber << 1) + 1;
-			}
-		
-			subtractedResult = subtractedResult - maskedNumber;
-			maskedNumber = maskedNumber + 1;
+		if (maskedNumber === undefined) {
+			maskedNumber = placeholderNumber;
 		}
 		else {
-			maskedNumber = maskedNumber << 1;
+			maskedNumber = (maskedNumber << 1) + placeholderNumber;
 		}
+
+		subtractedResult = subtractedResult - (maskedNumber * placeholderNumber);
+		maskedNumber = maskedNumber + placeholderNumber;
 
 		subtractedResult = subtractedResult << 2;
 		evaluatedResult.push(placeholderNumber);
