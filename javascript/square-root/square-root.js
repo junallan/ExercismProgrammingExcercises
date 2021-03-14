@@ -1,8 +1,3 @@
-//
-// This is only a SKELETON file for the 'Square root' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 export const squareRoot = (number) => {
 	//TODO: ALGORITHM STEPS
 	// Bit split
@@ -12,19 +7,33 @@ export const squareRoot = (number) => {
 	
 	let binaryComponents = splitToBinaryComponents(number);
 	let placeholderNumber = undefined;
-	let placeholderEvaluationResult = 0;
+	let maskedNumber = undefined;
 	let evaluatedResult = [];
 	let subtractedResult = 0;
 
 	for (let i = 0; i < binaryComponents.length; i++) {
+		subtractedResult = subtractedResult << 2;
 		subtractedResult += binaryComponents[i];
-		placeholderEvaluationResult = placeholderEvaluation(binaryComponents[i], placeholderNumber);
-		evaluatedResult.push(placeholderEvaluationResult);
 
-		placeholderNumber = placeholderEvaluationResult;
-		subtractedResult = (subtractedResult - placeholderNumber) << 2;
+		console.log('Before placeholder evaluation: maskedNumber, subractedValue: ' + maskedNumber + ',' + subtractedResult);
+		placeholderNumber = placeholderEvaluation(maskedNumber, subtractedResult);
+
+		if (maskedNumber === undefined) {
+			maskedNumber = placeholderNumber;
+		}
+
+		if (placeholderNumber !== 0) {
+			subtractedResult = subtractedResult - maskedNumber;
+
+		}
+	
+		maskedNumber = maskedNumber << 1;
+
+
+		evaluatedResult.push(placeholderNumber);
 	}
 
+	console.log("split values: " + evaluatedResult);
 	return evaluatedResult.reduce(function (accumulator, currentValue, currentIndex, array) {
 		return accumulator + (currentValue === 0 && currentIndex === (array.length - 1) ? 0 : (currentValue * 2) ** ((array.length - 1) - currentIndex));
 	}, 0);
@@ -56,14 +65,12 @@ function splitToBinaryComponents(number) {
 	return numberParsed;
 }
 
-function placeholderEvaluation(number, placeholderNumber) {
-	if (placeholderNumber === undefined) { return number; }
+function placeholderEvaluation(maskedNumber, subtractedResult) {
+	if (maskedNumber === undefined) { return 1; }
 
-	let evaluatedNumber = (placeholderNumber << 2) + 1;
-	if (number >= evaluatedNumber) {
+	if ((maskedNumber << 1) <= subtractedResult) {
 		return 1;
-	}
-	else {
+	} else {
 		return 0;
 	}
 }
