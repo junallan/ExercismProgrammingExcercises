@@ -5,7 +5,7 @@ public class Robot
 {    
     private const string AlphabetLetters = "ABCDEFGHIJKLMNOPQRSTUVWZYZ";
 
-    private int _maxNames = AlphabetLetters.Length * AlphabetLetters.Length * 1_000 * 1_000;
+    private int _maxNames = AlphabetLetters.Length * AlphabetLetters.Length * 1_000;
     private string _name;
     private Random _random = new Random();
 
