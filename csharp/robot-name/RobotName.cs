@@ -6,7 +6,6 @@ public class Robot
     private const string AlphabetLetters = "ABCDEFGHIJKLMNOPQRSTUVWZYZ";
 
     private int _maxNames = AlphabetLetters.Length * AlphabetLetters.Length * 1_000;
-    private string _name;
     private readonly Random _random = new Random();
 
     public static HashSet<string> RobotNames = new HashSet<string>();
@@ -16,7 +15,7 @@ public class Robot
         Reset();
     }
 
-    public string Name => _name;
+    public string Name { get; private set; }
 
     public void Reset()
     {
@@ -33,8 +32,8 @@ public class Robot
         } while (RobotNames.Contains(generatedName));
 
 
-        _name = generatedName;
-        RobotNames.Add(_name);
+        Name = generatedName;
+        RobotNames.Add(Name);
     }
 
     private char GetRandomLetter()
