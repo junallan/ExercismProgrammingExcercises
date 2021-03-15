@@ -7,7 +7,7 @@ public class Robot
 
     private int _maxNames = AlphabetLetters.Length * AlphabetLetters.Length * 1_000;
     private string _name;
-    private Random _random = new Random();
+    private readonly Random _random = new Random();
 
     public static HashSet<string> RobotNames = new HashSet<string>();
 
