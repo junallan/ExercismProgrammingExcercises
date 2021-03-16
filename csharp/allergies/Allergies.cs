@@ -1,32 +1,22 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public enum Allergen
 {
-    Eggs,
-    Peanuts,
-    Shellfish,
-    Strawberries,
-    Tomatoes,
-    Chocolate,
-    Pollen,
-    Cats
+    Eggs = 1,
+    Peanuts = 2,
+    Shellfish = 4,
+    Strawberries = 8,
+    Tomatoes = 16,
+    Chocolate = 32,
+    Pollen = 64,
+    Cats = 128
 }
 
 public class Allergies
 {
     private readonly int _mask;
-    private Dictionary<Allergen, int> _foodAllergiesMaping = new Dictionary<Allergen, int>
-    {
-        { Allergen.Eggs, 1 },
-        { Allergen.Peanuts, 2 },
-        { Allergen.Shellfish, 4 },
-        { Allergen.Strawberries, 8 },
-        { Allergen.Tomatoes, 16 },
-        { Allergen.Chocolate, 32 },
-        { Allergen.Pollen, 64 },
-        { Allergen.Cats, 128 }
-    }; 
     private List<Allergen> _foodAllergies = new List<Allergen>();
 
     public Allergies(int mask)
@@ -50,14 +40,11 @@ public class Allergies
 
     public bool IsAllergicTo(Allergen allergen)
     {
-        var allergyMaskValue = _foodAllergiesMaping[allergen];
-
-
-        return (_mask & allergyMaskValue) > 0;
+        return (_mask & (int)allergen) > 0;
     }
 
     public Allergen[] List()
     {
-        return _foodAllergies.ToArray();
+        return Enum.GetValues(typeof(Allergen)).Cast<Allergen>().Where(IsAllergicTo).ToArray();
     }
 }
