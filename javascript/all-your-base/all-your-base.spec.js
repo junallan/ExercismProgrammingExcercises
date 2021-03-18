@@ -5,11 +5,11 @@ describe('Converter', () => {
     expect(convert([1], 2, 10)).toEqual([1]);
   });
 
-  xtest('binary to single decimal', () => {
+  test('binary to single decimal', () => {
     expect(convert([1, 0, 1], 2, 10)).toEqual([5]);
   });
 
-  xtest('single decimal to binary', () => {
+  test('single decimal to binary', () => {
     expect(convert([5], 10, 2)).toEqual([1, 0, 1]);
   });
 
