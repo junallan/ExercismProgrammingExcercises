@@ -1,45 +1,34 @@
-import { basename } from "path";
-
 export const convert = (sourceNumbers, sourceBase, targetBase) => {
 	let accumulatedNumber = [];
-
+	//console.log('num: ' + getNumber(sourceNumbers, sourceBase));
 	let numberCalculated = getNumberComponentsLessThanOrEqualTo(getNumber(sourceNumbers, sourceBase), targetBase);
-	accumulatedNumber.push(numberCalculated);
 
-	return accumulatedNumber.map(x => x.multipledNumber);
-	//let savedExponents = [];
-	//let number = getNumber(sourceNumber);
+	let lastExponent = numberCalculated[numberCalculated.length - 1].exponentNumber;
+	for (let i = 0; i < numberCalculated.length; i++) {
+		console.log('numberCalculated[i]:' + numberCalculated[i].multipliedNumber + ' ' + numberCalculated[i].baseNumber + ' ' + numberCalculated[i].exponentNumber);
+		
 
-	//savedExponents.push(1 * targetBase ** getLatestExponent(targetBase, number)); //TODO
-	//let accumulatedNumber = targetBase ** savedExponents[savedExponents.length-1];
-	
-	//let remaindingNumber = number - accumulatedNumber;
+		for (let j = numberCalculated[i].exponentNumber+1; j < lastExponent; j++) {
+			accumulatedNumber.push(0);
+		}
 
-	//if (accumulatedNumber === number) {
-	//	console.log('savedExponents: ' + savedExponents);
-	//	return savedExponents;
-	//}
+		accumulatedNumber.push(numberCalculated[i].multipliedNumber);
 
-	//console.log('number: ' + number);
-	//console.log('accumulatedNumber: ' + accumulatedNumber);
-	//console.log('savedExponents.length: ' + savedExponents.length);
-	//console.log('savedExponents[0]: ' + savedExponents[0]);
-	//console.log('savedExponents[savedExponents.length-1]: ' + savedExponents[savedExponents.length - 1]);
+		lastExponent = numberCalculated[i].exponentNumber;
+		
+	}
 
-	//for (let i = 1; i < savedExponents.length; i++) {
-	//	let evaluatedNumber = accumulatedNumber + (targetBase ** i);
-	//	if (evaluatedNumber === number) {
-	//		savedExponents.push(i);
-	//	}
-	//}
+	for (let i = 0; i < accumulatedNumber.length; i++) {
+		console.log('accumulatedNumber[i]: ' + accumulatedNumber[i]);
+	}
 
-	//return savedExponents;
-	//return [1];
+	return accumulatedNumber;
 };
 
 function getNumberComponentsLessThanOrEqualTo(comparedNumber, baseNumber) {
 	if (comparedNumber < baseNumber) {
-		return { multipledNumber: comparedNumber , baseNumber: baseNumber , exponentNumber: 0};
+		//console.log('comparedNumber < baseNumber:' + comparedNumber + ' ' + baseNumber);
+		return [{ multipliedNumber: comparedNumber , baseNumber: baseNumber , exponentNumber: 0}];
 	}
 
 	let closestNumberLessThanOrEqualToComparedNumber = [];
@@ -54,11 +43,27 @@ function getNumberComponentsLessThanOrEqualTo(comparedNumber, baseNumber) {
 			//console.log(`In for: ${i},${baseNumber},${exponentNumber},${evaluatedNumber}`);
 		} while (evaluatedNumber <= comparedNumber)
 		exponentNumber -= 2;
-		closestNumberLessThanOrEqualToComparedNumber.push({ multipledNumber: i, baseNumber: baseNumber, exponentNumber: exponentNumber });
-		console.log(`In for: ${i},${baseNumber},${exponentNumber}`);
+		closestNumberLessThanOrEqualToComparedNumber.push({ multipliedNumber: i, baseNumber: baseNumber, exponentNumber: exponentNumber });
+		//console.log(`In for: ${i},${baseNumber},${exponentNumber}`);
 	}
+
+	let result = 0;
+
+	for (let i = 0; i < closestNumberLessThanOrEqualToComparedNumber.length; i++) {
+		result += closestNumberLessThanOrEqualToComparedNumber[i].multipliedNumber * baseNumber ** closestNumberLessThanOrEqualToComparedNumber[i].exponentNumber;
+	}
+
+	//console.log('resut == comparedNumber: ' + result + ' ' + comparedNumber);
+
+	if (result === comparedNumber) {
+		return closestNumberLessThanOrEqualToComparedNumber;
+	}
+
+	//return closestNumberLessThanOrEqualToComparedNumber + getNumberComponentsLessThanOrEqualTo(comparedNumber - result, baseNumber);
+	//console.log('recursive:' + (comparedNumber - result));
+	return closestNumberLessThanOrEqualToComparedNumber.concat(getNumberComponentsLessThanOrEqualTo(comparedNumber - result, baseNumber)); 
 	
-	return closestNumberLessThanOrEqualToComparedNumber[0];
+	//return closestNumberLessThanOrEqualToComparedNumber;
 }
 
 function getNumber(sourceNumbers, sourceBase) {
