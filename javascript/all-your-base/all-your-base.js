@@ -1,5 +1,8 @@
 export const convert = (sourceNumbers, sourceBase, targetBase) => {
-	let numberToEvaluate = getNumber(sourceNumbers, sourceBase);
+	let numberToEvaluate = sourceNumbers.reduce(function (accumulator, currentValue, currentIndex, array) {
+													return accumulator + (currentValue * sourceBase ** (array.length - 1 - currentIndex));
+												}, 0)
+
 	if (sourceBase <= 1) { throw "Wrong input base" };
 	if (targetBase <= 1) { throw "Wrong output base" };
 	if (!isFormatValid(sourceNumbers, numberToEvaluate, sourceBase)) { throw "Input has wrong format"; }
@@ -22,12 +25,12 @@ export const convert = (sourceNumbers, sourceBase, targetBase) => {
 };
 
 function isFormatValid(sourceNumbers, numberToEvaluate, sourceBase) {
-	let negativeNumbers = sourceNumbers.filter(x => x < 0);
-	let numbersGreaterOrEqualToBase = sourceNumbers.filter(x => x >= sourceBase);
-	let isNotNegative = negativeNumbers.length === 0;
-	let isCorrectPositiveNumber = numbersGreaterOrEqualToBase.length === 0;
+	let isNotNegative = sourceNumbers.every(e => e >= 0); 
+	let isCorrectPositiveNumber = sourceNumbers.every(e => e < sourceBase);
+	let isSingleDigit = (sourceNumbers.length === 1);
+	let isMultipleDigitsWithNoLeadingZeroEquatingToValueGreaterThan0 = sourceNumbers.length > 1 && numberToEvaluate > 0 && sourceNumbers[0] !== 0
+	let isFormatValid = isSingleDigit || (isMultipleDigitsWithNoLeadingZeroEquatingToValueGreaterThan0 && isNotNegative && isCorrectPositiveNumber);
 
-	let isFormatValid = (sourceNumbers.length === 1) || (sourceNumbers.length > 1 && numberToEvaluate > 0 && sourceNumbers[0] !== 0 && isNotNegative && isCorrectPositiveNumber);
 	return isFormatValid;
 }
 
@@ -70,13 +73,4 @@ function getNumberComponentsLessThanOrEqualTo(comparedNumber, baseNumber) {
 	}
 }
 
-function getNumber(sourceNumbers, sourceBase) {
-	let number = 0;
-
-	for (let i = 0; i < sourceNumbers.length; i++) {
-		number += sourceNumbers[i] * sourceBase ** (sourceNumbers.length- 1 - i);
-	}
-
-	return number;
-}
 
