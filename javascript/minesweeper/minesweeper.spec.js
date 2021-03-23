@@ -9,13 +9,13 @@ describe(')', () => {
     expect(annotate([''])).toEqual(['']);
   });
 
-  xtest('handles no mines', () => {
+  test('handles no mines', () => {
     const input = ['   ', '   ', '   '];
     const expected = ['   ', '   ', '   '];
     expect(annotate(input)).toEqual(expected);
   });
 
-  xtest('handles minefield with only mines', () => {
+  test('handles minefield with only mines', () => {
     const input = ['***', '***', '***'];
     const expected = ['***', '***', '***'];
     expect(annotate(input)).toEqual(expected);
