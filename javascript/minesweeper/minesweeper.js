@@ -2,9 +2,9 @@ const MineField = '*';
 const EmptyField = ' ';
 
 export const annotate = (input) => {
-	if (isAllElementsSetTo(EmptyField, input) || isAllElementsSetTo(MineField, input)) {
-		return input;
-	}
+	//if (isAllElementsSetTo(EmptyField, input) || isAllElementsSetTo(MineField, input)) {
+	//	return input;
+	//}
 
 	let evaluatedInput = [];
 	
@@ -27,9 +27,9 @@ export const annotate = (input) => {
 	return evaluatedInput;
 };
 
-function isAllElementsSetTo(element, input) {
-	return input.reduce((accumulator, currentValue) => accumulator && [...currentValue].every(x => x === element), true);
-}
+//function isAllElementsSetTo(element, input) {
+//	return input.reduce((accumulator, currentValue) => accumulator && [...currentValue].every(x => x === element), true);
+//}
 
 function isCoordinateInBoard(xCoordinate, yCoordinate, input) {
 	return (xCoordinate >= 0 && yCoordinate >= 0 && xCoordinate < input.length && yCoordinate < input[xCoordinate].length);
