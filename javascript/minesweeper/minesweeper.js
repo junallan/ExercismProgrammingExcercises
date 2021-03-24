@@ -23,15 +23,13 @@ export const annotate = (input) => {
 	return evaluatedInput;
 };
 
-function isCoordinateInBoard(xCoordinate, yCoordinate, input) {
-	return (xCoordinate >= 0 && yCoordinate >= 0 && xCoordinate < input.length && yCoordinate < input[xCoordinate].length);
-}
-
 function mineCount(xCoordinate, yCoordinate, input) {
+	let isCoordinateBoard = (xCoord, yCoord) => (xCoord >= 0 && yCoord >= 0 && xCoord < input.length && yCoord < input[xCoord].length);
+
 	let surroudingNeighbors = [[xCoordinate - 1, yCoordinate - 1], [xCoordinate - 1, yCoordinate], [xCoordinate - 1, yCoordinate + 1],
 							   [xCoordinate, yCoordinate - 1], [xCoordinate, yCoordinate + 1],
 							   [xCoordinate + 1, yCoordinate - 1], [xCoordinate + 1, yCoordinate], [xCoordinate + 1, yCoordinate + 1]];
 
 	return surroudingNeighbors.reduce((accumulator, coordinate) =>
-									accumulator + (isCoordinateInBoard(coordinate[0], coordinate[1], input) && input[coordinate[0]][coordinate[1]] === MineField ? 1 : 0), 0); 
+								accumulator + (isCoordinateBoard(coordinate[0], coordinate[1]) && input[coordinate[0]][coordinate[1]] === MineField ? 1 : 0), 0); 
 }
