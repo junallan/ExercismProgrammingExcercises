@@ -28,15 +28,12 @@ export const annotate = (input) => {
 };
 
 function isAllElementsSetTo(element, input) {
-	let allElementsSet = true;
-
-	input.forEach(row => allElementsSet = allElementsSet && [...row].every(x => x === element)); //TODO: Check if use reduce function whether this is simplified
-	return allElementsSet;
+	return input.reduce((accumulator, currentValue) => accumulator && [...currentValue].every(x => x === element), true);
 }
 
 function mineCount(xCoordinate, yCoordinate, input) {
 	let mineFieldCount = 0;
-
+	
 	if (xCoordinate > 0) {
 		if (yCoordinate > 0) {
 			if (input[xCoordinate - 1][yCoordinate - 1] === MineField) { mineFieldCount++;}	
