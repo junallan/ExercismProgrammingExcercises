@@ -36,16 +36,11 @@ function isCoordinateInBoard(xCoordinate, yCoordinate, input) {
 }
 
 function mineCount(xCoordinate, yCoordinate, input) {
-	let mineFieldCount = 0;
-	
-	if (isCoordinateInBoard(xCoordinate-1, yCoordinate-1, input) && (input[xCoordinate - 1][yCoordinate - 1] === MineField)) { mineFieldCount++; }	
-	if (isCoordinateInBoard(xCoordinate-1, yCoordinate, input) && (input[xCoordinate - 1][yCoordinate] === MineField)) { mineFieldCount++; }
-	if (isCoordinateInBoard(xCoordinate-1, yCoordinate+1, input) && (input[xCoordinate - 1][yCoordinate + 1] === MineField)) { mineFieldCount++; }
-	if (isCoordinateInBoard(xCoordinate, yCoordinate-1, input) && (input[xCoordinate][yCoordinate - 1] === MineField)) { mineFieldCount++; }
-	if (isCoordinateInBoard(xCoordinate, yCoordinate+1, input) && (input[xCoordinate][yCoordinate + 1] === MineField)) { mineFieldCount++;}
-	if (isCoordinateInBoard(xCoordinate+1, yCoordinate-1, input) && (input[xCoordinate + 1][yCoordinate - 1] === MineField)) { mineFieldCount++;}
-	if (isCoordinateInBoard(xCoordinate+1, yCoordinate, input) && (input[xCoordinate + 1][yCoordinate] === MineField)) { mineFieldCount++;}
-	if (isCoordinateInBoard(xCoordinate+1, yCoordinate+1, input) && (input[xCoordinate + 1][yCoordinate + 1] === MineField)) { mineFieldCount++;}
+	let surroudingNeighbors = [[xCoordinate - 1, yCoordinate - 1], [xCoordinate - 1, yCoordinate], [xCoordinate - 1, yCoordinate + 1],
+							   [xCoordinate, yCoordinate - 1], [xCoordinate, yCoordinate + 1],
+							   [xCoordinate + 1, yCoordinate - 1], [xCoordinate + 1, yCoordinate], [xCoordinate + 1, yCoordinate + 1]];
 
-	return mineFieldCount;
+
+	return surroudingNeighbors.reduce((accumulator, coordinate) =>
+									accumulator + (isCoordinateInBoard(coordinate[0], coordinate[1], input) && input[coordinate[0]][coordinate[1]] === MineField ? 1 : 0), 0); 
 }
