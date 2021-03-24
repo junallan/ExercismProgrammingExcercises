@@ -31,40 +31,21 @@ function isAllElementsSetTo(element, input) {
 	return input.reduce((accumulator, currentValue) => accumulator && [...currentValue].every(x => x === element), true);
 }
 
+function isCoordinateInBoard(xCoordinate, yCoordinate, input) {
+	return (xCoordinate >= 0 && yCoordinate >= 0 && xCoordinate < input.length && yCoordinate < input[xCoordinate].length);
+}
+
 function mineCount(xCoordinate, yCoordinate, input) {
 	let mineFieldCount = 0;
 	
-	if (xCoordinate > 0) {
-		if (yCoordinate > 0) {
-			if (input[xCoordinate - 1][yCoordinate - 1] === MineField) { mineFieldCount++;}	
-		}
-
-		if (input[xCoordinate - 1][yCoordinate] === MineField) { mineFieldCount++;}
-
-		if (yCoordinate < input[xCoordinate - 1].length - 1) {
-			if (input[xCoordinate - 1][yCoordinate + 1] === MineField) { mineFieldCount++;}
-		}
-	}
-
-	if (yCoordinate > 0) {
-		if (input[xCoordinate][yCoordinate - 1] === MineField) { mineFieldCount++;}
-	}
-
-	if (yCoordinate < input[xCoordinate].length) {
-		if (input[xCoordinate][yCoordinate + 1] === MineField) { mineFieldCount++;}
-	}
-
-	if (xCoordinate + 1 < input.length) {
-		if (yCoordinate > 0) {
-			if (input[xCoordinate + 1][yCoordinate - 1] === MineField) { mineFieldCount++;}
-		}
-
-		if (input[xCoordinate + 1][yCoordinate] === MineField) { mineFieldCount++;}
-
-		if (yCoordinate + 1 < input[xCoordinate + 1].length) {
-			if (input[xCoordinate + 1][yCoordinate + 1] === MineField) { mineFieldCount++;}
-		}
-	}
+	if (isCoordinateInBoard(xCoordinate-1, yCoordinate-1, input) && (input[xCoordinate - 1][yCoordinate - 1] === MineField)) { mineFieldCount++; }	
+	if (isCoordinateInBoard(xCoordinate-1, yCoordinate, input) && (input[xCoordinate - 1][yCoordinate] === MineField)) { mineFieldCount++; }
+	if (isCoordinateInBoard(xCoordinate-1, yCoordinate+1, input) && (input[xCoordinate - 1][yCoordinate + 1] === MineField)) { mineFieldCount++; }
+	if (isCoordinateInBoard(xCoordinate, yCoordinate-1, input) && (input[xCoordinate][yCoordinate - 1] === MineField)) { mineFieldCount++; }
+	if (isCoordinateInBoard(xCoordinate, yCoordinate+1, input) && (input[xCoordinate][yCoordinate + 1] === MineField)) { mineFieldCount++;}
+	if (isCoordinateInBoard(xCoordinate+1, yCoordinate-1, input) && (input[xCoordinate + 1][yCoordinate - 1] === MineField)) { mineFieldCount++;}
+	if (isCoordinateInBoard(xCoordinate+1, yCoordinate, input) && (input[xCoordinate + 1][yCoordinate] === MineField)) { mineFieldCount++;}
+	if (isCoordinateInBoard(xCoordinate+1, yCoordinate+1, input) && (input[xCoordinate + 1][yCoordinate + 1] === MineField)) { mineFieldCount++;}
 
 	return mineFieldCount;
 }
