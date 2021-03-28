@@ -4,11 +4,11 @@ using System.Linq;
 
 public enum Schedule
 {
-    Teenth,
-    First,
-    Second,
-    Third,
-    Fourth,
+    Teenth = 13,
+    First = 1,
+    Second = 8,
+    Third = 15,
+    Fourth = 22,
     Last
 }
 
@@ -26,47 +26,20 @@ public class Meetup
     public DateTime Day(DayOfWeek dayOfWeek, Schedule schedule)
     {
         var daysInMonth = DateTime.DaysInMonth(_year, _month);
-        List<int> dayRange = new List<int>();
+        DateTime startDate = new DateTime();
 
-        switch(schedule)
+        startDate = new DateTime(_year, _month, (int)schedule);
+
+        return schedule == Schedule.Last ? GetDateRange(new DateTime(_year, _month, (int)Schedule.Fourth), new DateTime(_year,_month, daysInMonth)).Where(x => x.DayOfWeek == dayOfWeek).Last() :
+                                            GetDateRange(startDate, startDate.AddDays(6)).Where(x => x.DayOfWeek == dayOfWeek).Single();
+    }
+
+    private IEnumerable<DateTime> GetDateRange(DateTime startDate, DateTime endDate)
+    {
+        while(startDate <= endDate)
         {
-            case Schedule.Teenth:
-                dayRange.AddRange(Enumerable.Range(13, 7)); 
-                break;
-            case Schedule.First:
-                dayRange.AddRange(Enumerable.Range(1, 7));
-                break;
-            case Schedule.Second:
-                dayRange.AddRange(Enumerable.Range(8, 7));
-                break;
-            case Schedule.Third:
-                dayRange.AddRange(Enumerable.Range(15, 7));
-                break;
-            case Schedule.Fourth:
-            case Schedule.Last:
-                dayRange.AddRange(Enumerable.Range(22, 7));
-                if(schedule == Schedule.Last)
-                {
-                    int numberOfDaysPastFourthWeek = daysInMonth - 28;
-
-                    if (numberOfDaysPastFourthWeek > 0)
-                    {
-                        dayRange.AddRange(Enumerable.Range(29, numberOfDaysPastFourthWeek));
-                    }
-                }
-
-                break;
+            yield return startDate;
+            startDate = startDate.AddDays(1);
         }
-
-
-        DateTime currentDate;
-        int i = dayRange.Count-1;
-
-        do
-        {
-            currentDate = new DateTime(_year, _month, dayRange[i--]);
-        } while (currentDate.DayOfWeek != dayOfWeek);
-
-        return currentDate;
     }
 }
