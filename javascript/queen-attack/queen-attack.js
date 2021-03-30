@@ -1,10 +1,11 @@
 const MaxBoardPosition = 7;
 const MinBoardPosition = 0;
+const BoardLength = 15;
 
 export class QueenAttack {
   constructor({
-      black: [blackRow, blackColumn] = [MaxBoardPosition,3],
-      white: [whiteRow, whiteColumn] = [MinBoardPosition,3],
+      black: [blackRow, blackColumn] = [MinBoardPosition,3],
+      white: [whiteRow, whiteColumn] = [MaxBoardPosition,3],
   } = {}) {
       if (blackRow < MinBoardPosition || blackRow > MaxBoardPosition
           || whiteRow < MinBoardPosition || whiteRow > MaxBoardPosition
@@ -23,7 +24,23 @@ export class QueenAttack {
   }
 
   toString() {
-    throw new Error('Remove this statement and implement this function');
+      let board = '';
+
+      for (let i = 0; i <= MaxBoardPosition; i++) {
+          let boardRow = '_ _ _ _ _ _ _ _';
+
+          if (this.white[0] === i) {
+              boardRow = boardRow.substr(0, this.white[1] * 2) + 'W'.padEnd(BoardLength - (this.white[1] * 2),' _');
+          }
+
+          if (this.black[0] === i) {
+              boardRow = boardRow.substr(0, this.black[1] * 2) + 'B'.padEnd(BoardLength - (this.black[1] * 2), ' _');
+          }
+
+          board = board.concat(boardRow).concat('\n'); 
+      }
+
+      return board.substring(0, board.length - 1);
   }
 
   get canAttack() {

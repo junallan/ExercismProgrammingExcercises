@@ -86,7 +86,7 @@ describe('Queens', () => {
   });
 
   describe('Test the board visualisation', () => {
-    xtest('board', () => {
+    test('board', () => {
       const positioning = { white: [3, 2], black: [6, 5] };
       const queens = new QueenAttack(positioning);
       const board = [
@@ -102,7 +102,7 @@ describe('Queens', () => {
       expect(queens.toString()).toEqual(board);
     });
 
-    xtest('board with queens at their starting positions', () => {
+    test('board with queens at their starting positions', () => {
       const queens = new QueenAttack();
       const board = [
         '_ _ _ B _ _ _ _',
@@ -117,7 +117,7 @@ describe('Queens', () => {
       expect(queens.toString()).toEqual(board);
     });
 
-    xtest('board with the black queen at her starting positions', () => {
+    test('board with the black queen at her starting positions', () => {
       const queens = new QueenAttack({ white: [1, 6] });
       const board = [
         '_ _ _ B _ _ _ _',
@@ -132,7 +132,7 @@ describe('Queens', () => {
       expect(queens.toString()).toEqual(board);
     });
 
-    xtest('board with queens at the edges', () => {
+    test('board with queens at the edges', () => {
       const positioning = { white: [0, 0], black: [7, 7] };
       const queens = new QueenAttack(positioning);
       const board = [
