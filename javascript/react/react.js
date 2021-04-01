@@ -15,7 +15,7 @@ export class ComputeCell {
   }
 
   addCallback(cb) {
-    throw new Error('Remove this statement and implement this function');
+      this.cb = cb;
   }
 
   removeCallback(cb) {
@@ -25,6 +25,7 @@ export class ComputeCell {
 
 export class CallbackCell {
   constructor(fn) {
-    throw new Error('Remove this statement and implement this function');
+      this.fn = fn;
+      //this.values = 
   }
 }
