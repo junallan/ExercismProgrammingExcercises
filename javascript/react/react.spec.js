@@ -40,7 +40,7 @@ describe('React module', () => {
     expect(computeCell.value).toEqual(4);
   });
 
-  xtest('compute cells can depend on other compute cells', () => {
+  test('compute cells can depend on other compute cells', () => {
     const inputCell = new InputCell(1);
     const timesTwo = new ComputeCell(
       [inputCell],
@@ -63,7 +63,7 @@ describe('React module', () => {
     expect(sum.value).toEqual(96);
   });
 
-  xtest('compute cells fire callbacks', () => {
+  test('compute cells fire callbacks', () => {
     const inputCell = new InputCell(1);
     const output = new ComputeCell(
       [inputCell],
@@ -77,7 +77,7 @@ describe('React module', () => {
     expect(callback.values).toEqual([4]);
   });
 
-  xtest('callbacks fire only when output values change', () => {
+  test('callbacks fire only when output values change', () => {
     const inputCell = new InputCell(1);
     const output = new ComputeCell([inputCell], (inputs) =>
       inputs[0].value < 3 ? 111 : 222
