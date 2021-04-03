@@ -12,14 +12,18 @@ export class ComputeCell {
   constructor(inputCells, fn) {
       this.inputCells = inputCells;
       this.fn = fn;
+      this.cb = [];
   }
 
   get value() {
       return this.fn(this.inputCells);
   }
 
-  addCallback(cb) {
-      this.cb = cb;
+    addCallback(cb) {
+        //if (cb.inputCells.value !== this.cb[this.cb.length - 1]) {
+
+        //}
+      this.cb.push(cb);
       //console.log('inputCells: ' + this.inputCells.value);
       //console.log('fn: ' + this.fn);
       cb.setComputedCell(this.inputCells);
@@ -50,7 +54,9 @@ export class CallbackCell {
         console.log('computedCellfn: ' + this.computedCellfn);
         console.log('fn: ' + this.fn);
 
+    
         return [this.fn(new ComputeCell(this.computedCell, this.computedCellfn))];
+  
         //return this.fn(this.computedCellfn(this.computedCell));
         //return this.fn(this.computedCellfn(computedCell));
   }
