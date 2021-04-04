@@ -1,12 +1,15 @@
 export class InputCell {
   constructor(value) {
       this.value = value;
-      this.values.push(value);
+      this.values = [];
+      //this.values.push(value);
   }
 
   setValue(value) {
       this.value = value;
+      //console.log('in setValue: ' + value);
       this.values.push(value);
+      //console.log('in setValue values: ' + this.values);
   }
 }
 
@@ -64,18 +67,25 @@ export class CallbackCell {
   }
 
     get values() {
-        //console.log('computedCell: ' + this.computedCell[0].value);
-        //console.log('computedCellfn: ' + this.computedCellfn);
-        //console.log('fn: ' + this.fn);
+        console.log('this.computedCell[0].values.length:' + this.computedCell[0].values.length);
 
-        let computedValue = this.fn(new ComputeCell(this.computedCell, this.computedCellfn));
-        console.log('computedValue:' + computedValue);
-        if (this.currentComputedValue !== computedValue) {
-            this.loggedComputedValues.push(computedValue)
-            this.currentComputedValue = computedValue;
-           //console.log("1:" + computedValue);
-            //return [computedValue];
-        } 
+        for (let i = 0; i < this.computedCell[0].values.length; i++) {
+           // console.log('this.computedCellfn:' + this.computedCellfn);
+          console.log('this.computedCell[0].values[i]:' + (this.computedCell[0].values[i]));
+            let computedValue = this.computedCellfn([new InputCell(this.computedCell[0].values[i])]);
+            let callbackComputedValue = this.fn(new ComputeCell([new InputCell(this.computedCell[0].values[i])], this.computedCellfn));
+            console.log('computedValue:' + computedValue);
+            console.log('callbackComputedValue:' + callbackComputedValue);
+            //console.log('this.computedCellfn(this.currentComputedValue):' + this.currentComputedValue);
+            if (computedValue !== this.currentComputedValue) {
+                console.log('fn:' + this.fn);
+                this.loggedComputedValues.push(callbackComputedValue);
+                this.currentComputedValue = computedValue;
+            } 
+        }
+
+        
+       
 
        // console.log('loggedComputedValues: ' + this.loggedComputedValues);
 
