@@ -93,7 +93,7 @@ describe('React module', () => {
     expect(callback.values).toEqual([222]);
   });
 
-  xtest('static callbacks fire even if their own value has not changed', () => {
+  test('static callbacks fire even if their own value has not changed', () => {
     const inputCell = new InputCell(1);
     const output = new ComputeCell([inputCell], (inputs) =>
       inputs[0].value < 3 ? 111 : 222

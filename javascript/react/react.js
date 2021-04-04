@@ -1,10 +1,12 @@
 export class InputCell {
   constructor(value) {
       this.value = value;
+      this.values.push(value);
   }
 
   setValue(value) {
       this.value = value;
+      this.values.push(value);
   }
 }
 
@@ -26,12 +28,12 @@ export class ComputeCell {
         //console.log(cb.fn(this.inputCells));
         //console.log(this.inputCells);
         //console.log(this.fn(this.inputCells));
-        console.log(this.value);
+        //console.log(this.value);
         //if (this.cb !== [] && this.cb[0].values !== this.fn(new ComputeCell(this.inputCells, this.fn)).values){
             this.cb.push(cb);
             //console.log('inputCells: ' + this.inputCells.value);
             //console.log('fn: ' + this.fn);
-            cb.setOriginalComputedValue(this.value);
+            cb.setCurrentComputedValue(this.value);
             cb.setComputedCell(this.inputCells);
             cb.setComputedCellfn(this.fn);
         //}  
@@ -45,10 +47,11 @@ export class ComputeCell {
 export class CallbackCell {
   constructor(fn) {
       this.fn = fn;
+      this.loggedComputedValues = [];
   }
 
-  setOriginalComputedValue(value) {
-      this.originalComputedValue = value;
+  setCurrentComputedValue(value) {
+      this.currentComputedValue = value;
   }
 
   setComputedCell(cell) {
@@ -66,12 +69,22 @@ export class CallbackCell {
         //console.log('fn: ' + this.fn);
 
         let computedValue = this.fn(new ComputeCell(this.computedCell, this.computedCellfn));
+        console.log('computedValue:' + computedValue);
+        if (this.currentComputedValue !== computedValue) {
+            this.loggedComputedValues.push(computedValue)
+            this.currentComputedValue = computedValue;
+           //console.log("1:" + computedValue);
+            //return [computedValue];
+        } 
 
-        if (this.originalComputedValue === computedValue) {
-            return [];
-        } else {
-            return [computedValue];
-        }
+       // console.log('loggedComputedValues: ' + this.loggedComputedValues);
+
+        return this.loggedComputedValues;
+            //else {
+        //    console.log("2:" + this.loggedComputedValues);
+        //    this.setOriginalComputedValues(computedValue);
+        //    return this.loggedComputedValues;
+        //}
         
         //return this.fn(this.computedCellfn(this.computedCell));
         //return this.fn(this.computedCellfn(computedCell));
