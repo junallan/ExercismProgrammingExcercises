@@ -23,11 +23,18 @@ export class ComputeCell {
         //if (cb.inputCells.value !== this.cb[this.cb.length - 1]) {
 
         //}
-      this.cb.push(cb);
-      //console.log('inputCells: ' + this.inputCells.value);
-      //console.log('fn: ' + this.fn);
-      cb.setComputedCell(this.inputCells);
-      cb.setComputedCellfn(this.fn);
+        //console.log(cb.fn(this.inputCells));
+        //console.log(this.inputCells);
+        //console.log(this.fn(this.inputCells));
+        console.log(this.value);
+        //if (this.cb !== [] && this.cb[0].values !== this.fn(new ComputeCell(this.inputCells, this.fn)).values){
+            this.cb.push(cb);
+            //console.log('inputCells: ' + this.inputCells.value);
+            //console.log('fn: ' + this.fn);
+            cb.setOriginalComputedValue(this.value);
+            cb.setComputedCell(this.inputCells);
+            cb.setComputedCellfn(this.fn);
+        //}  
   }
 
   removeCallback(cb) {
@@ -40,6 +47,10 @@ export class CallbackCell {
       this.fn = fn;
   }
 
+  setOriginalComputedValue(value) {
+      this.originalComputedValue = value;
+  }
+
   setComputedCell(cell) {
       this.computedCell = cell;
      
@@ -50,13 +61,18 @@ export class CallbackCell {
   }
 
     get values() {
-        console.log('computedCell: ' + this.computedCell[0].value);
-        console.log('computedCellfn: ' + this.computedCellfn);
-        console.log('fn: ' + this.fn);
+        //console.log('computedCell: ' + this.computedCell[0].value);
+        //console.log('computedCellfn: ' + this.computedCellfn);
+        //console.log('fn: ' + this.fn);
 
-    
-        return [this.fn(new ComputeCell(this.computedCell, this.computedCellfn))];
-  
+        let computedValue = this.fn(new ComputeCell(this.computedCell, this.computedCellfn));
+
+        if (this.originalComputedValue === computedValue) {
+            return [];
+        } else {
+            return [computedValue];
+        }
+        
         //return this.fn(this.computedCellfn(this.computedCell));
         //return this.fn(this.computedCellfn(computedCell));
   }
