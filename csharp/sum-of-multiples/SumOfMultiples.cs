@@ -8,12 +8,10 @@ public static class SumOfMultiples
     {
         List<int> multipleNumbers = new List<int>();
 
-        foreach (var multiple in multiples)
-        {
-            if (multiple <= 0) { continue; }
-
+        foreach (var multiple in multiples.Where(m => m > 0))
+        {   
             var maxMultipleIndex = max / multiple - (max % multiple == 0 ? 1 : 0);
-    
+
             multipleNumbers.AddRange(Enumerable.Range(1, maxMultipleIndex).Select(i => multiple * i));
         }
 
