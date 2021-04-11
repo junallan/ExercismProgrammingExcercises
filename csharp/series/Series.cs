@@ -11,6 +11,7 @@ public static class Series
             throw new ArgumentException(); 
         }
 
-        return Enumerable.Range(0, numbers.Length+1-sliceLength).Select(i => numbers[i..(i+sliceLength)]).ToArray();
+        return Enumerable.Range(0, numbers.Length+1-sliceLength)
+                        .Select(i => numbers[i..(i+sliceLength)]).ToArray();
     }
 }
