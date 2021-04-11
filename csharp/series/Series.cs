@@ -5,9 +5,7 @@ public static class Series
 {
     public static string[] Slices(string numbers, int sliceLength)
     {
-        if (numbers == string.Empty 
-                        || sliceLength <= 0 
-                        || numbers.Length < sliceLength) 
+        if (sliceLength <= 0  || numbers.Length < sliceLength) 
         { 
             throw new ArgumentException(); 
         }
