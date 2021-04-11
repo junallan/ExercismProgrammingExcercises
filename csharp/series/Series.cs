@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class Series
 {
@@ -9,14 +10,7 @@ public static class Series
         { 
             throw new ArgumentException(); 
         }
-        
-        List<string> series = new List<string>();
 
-        for(var i=0; i<=numbers.Length-sliceLength; i++)
-        {
-            series.Add(numbers.Substring(i, sliceLength));
-        }
-        
-       return series.ToArray();
+        return Enumerable.Range(0, numbers.Length+1-sliceLength).Select(i => numbers[i..(i+sliceLength)]).ToArray();
     }
 }
