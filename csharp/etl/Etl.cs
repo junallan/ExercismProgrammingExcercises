@@ -8,17 +8,10 @@ public static class Etl
     {
         Dictionary<string, int> transformedData = new Dictionary<string, int>();
 
-        old.Keys.ToList().ForEach(k => old[k].ToList().ForEach(v => transformedData.Add(v.ToLower(), k)));
+        var transformation = old.Keys.Select(k => new { Letters = old[k], Score = k });
 
-        //foreach (var key in old.Keys)
-        //{
-        //    old[key].ToList().ForEach(v => tranformedData.Add(v.ToLower(), key));
-        //}
-
-        //foreach(KeyValuePair<int, string[]> entry in old)
-        //{
-        //    entry.Value.ToList().ForEach(v => tranformedData.Add(v.ToLower(), entry.Key));
-        //}
+        transformation.ToList().ForEach(x => x.Letters.ToList().ForEach(l => transformedData.Add(l.ToLower(), x.Score)));
+        //old.Keys.ToList().ForEach(k => old[k].ToList().ForEach(v => transformedData.Add(v.ToLower(), k)));
 
         return transformedData;
     }
