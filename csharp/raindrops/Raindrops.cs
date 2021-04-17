@@ -11,7 +11,6 @@ public static class Raindrops
                                 (Factor: 7, Message: "Plong") }
                     .Where(x => number % x.Factor == 0)
                     .Select(x => x.Message)
-                    .SkipWhile(string.IsNullOrEmpty)
                     .DefaultIfEmpty(number.ToString())
                     .SelectMany(x => x)
                     .ToArray());
