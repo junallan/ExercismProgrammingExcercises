@@ -1,31 +1,20 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 public static class Raindrops
 {
     public static string Convert(int number)
     {
-        Func<int, int, bool> isFactor = (int input, int divisbleFactor) => input % divisbleFactor == 0;
+        List<(int Factor,string Message)> specicalDivisibleFactors = new List<(int Factor, string Message)> { (3, "Pling"), (5, "Plang"), (7, "Plong") };
 
-        bool isDivisbleBy3 = isFactor(number, 3);
-        bool isDivisbleBy5 = isFactor(number, 5);
-        bool isDivisbleBy7 = isFactor(number, 7);
+        Func<int, int, bool> isFactor = (input, divisbleFactor) => input % divisbleFactor == 0;
 
         StringBuilder output = new StringBuilder();
 
-        if(isDivisbleBy3)
+        foreach (var factorElement in specicalDivisibleFactors)
         {
-            output.Append("Pling");
-        }
-
-        if(isDivisbleBy5)
-        {
-            output.Append("Plang");
-        }
-
-        if(isDivisbleBy7)
-        {
-            output.Append("Plong");
+            if (isFactor(number, factorElement.Factor)) { output.Append(factorElement.Message); }
         }
 
         return output.Length == 0 ? number.ToString() : output.ToString();
