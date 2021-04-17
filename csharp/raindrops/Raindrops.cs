@@ -5,16 +5,14 @@ using System.Text;
 
 public static class Raindrops
 {
-    public static string Convert(int number)
-    {
-        return new string( new[] {  (Factor: 3, Message: "Pling"),
+    public static string Convert(int number) 
+        => new string(new[] {   (Factor: 3, Message: "Pling"),
                                 (Factor: 5, Message: "Plang"),
                                 (Factor: 7, Message: "Plong") }
-                        .Where(x => number % x.Factor == 0)
-                        .Select(x => x.Message)
-                        .SkipWhile(string.IsNullOrEmpty)
-                        .DefaultIfEmpty(number.ToString())
-                        .SelectMany(x => x)
-                        .ToArray() );
-    }
+                    .Where(x => number % x.Factor == 0)
+                    .Select(x => x.Message)
+                    .SkipWhile(string.IsNullOrEmpty)
+                    .DefaultIfEmpty(number.ToString())
+                    .SelectMany(x => x)
+                    .ToArray());
 }
