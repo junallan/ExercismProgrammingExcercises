@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 public static class Raindrops
@@ -8,15 +9,13 @@ public static class Raindrops
     {
         List<(int Factor,string Message)> specicalDivisibleFactors = new List<(int Factor, string Message)> { (3, "Pling"), (5, "Plang"), (7, "Plong") };
 
-        Func<int, int, bool> isFactor = (input, divisbleFactor) => input % divisbleFactor == 0;
-
-        StringBuilder output = new StringBuilder();
-
-        foreach (var factorElement in specicalDivisibleFactors)
-        {
-            if (isFactor(number, factorElement.Factor)) { output.Append(factorElement.Message); }
-        }
-
-        return output.Length == 0 ? number.ToString() : output.ToString();
+        return  specicalDivisibleFactors.Aggregate(
+                                            number.ToString(), 
+                                            (accumulate, next)  => 
+                                                {
+                                                    if (number % next.Factor != 0) { return accumulate; }
+                     
+                                                    return int.TryParse(accumulate, out _) ? next.Message : string.Concat(accumulate, next.Message);
+                                            });
     }
 }
