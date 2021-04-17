@@ -5,9 +5,11 @@ public static class Raindrops
 {
     public static string Convert(int number)
     {
-        bool isDivisbleBy3 = IsFactor(number, 3);
-        bool isDivisbleBy5 = IsFactor(number, 5);
-        bool isDivisbleBy7 = IsFactor(number, 7);
+        Func<int, int, bool> isFactor = (int input, int divisbleFactor) => input % divisbleFactor == 0;
+
+        bool isDivisbleBy3 = isFactor(number, 3);
+        bool isDivisbleBy5 = isFactor(number, 5);
+        bool isDivisbleBy7 = isFactor(number, 7);
 
         StringBuilder output = new StringBuilder();
 
@@ -27,10 +29,5 @@ public static class Raindrops
         }
 
         return output.Length == 0 ? number.ToString() : output.ToString();
-    }
-
-    private static bool IsFactor(int input, int divisbleFactor)
-    {
-        return (input % divisbleFactor) == 0;
     }
 }
