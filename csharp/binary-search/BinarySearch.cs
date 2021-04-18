@@ -25,13 +25,9 @@ public static class BinarySearch
         {
             if (middleIndex + 1 == input.Length) { return NoValueFoundIndex; }
 
-            var indexAccumulation = middleIndex + 1;
+            var subResulIndex = Find(input[(middleIndex + 1)..], value);
 
-            var subResulIndex = Find(input[(middleIndex + 1)..], value); ;
-
-            if (subResulIndex == NoValueFoundIndex) { return NoValueFoundIndex; }
-
-            return indexAccumulation + subResulIndex;
+            return subResulIndex == NoValueFoundIndex ? NoValueFoundIndex : middleIndex + 1 + subResulIndex;
         }
     }
 }
