@@ -10,13 +10,18 @@ export const age = (planet, secondsTravelled) => {
 		neptune: 5200418560
 	};
 
-	//caluculation to deal with rare case of floating point precision in calculation being off, below calculation is more accurate
-	let round = (number, decimalPlaces) => Number(Math.round(number + 'e' + decimalPlaces) + 'e-' + decimalPlaces);
+	return Number(Number(secondsTravelled / planetSecondPeriods[planet]).toFixed(2));
 
+	//Variation 2
+	//caluculation to deal with rare case of floating point precision in calculation being off, below calculation is more accurate
+	//let round = (number, decimalPlaces) => Number(Math.round(number + 'e' + decimalPlaces) + 'e-' + decimalPlaces);
+
+	//Variation 3
+	//calculation not 100% accurate with all floating point numbers
 	//const round = (number, decimalPlaces) => {
 	//	const factorOfTen = Math.pow(10, decimalPlaces);
 	//	return Math.round(number * factorOfTen) / factorOfTen;
 	//};
 
-	return round(secondsTravelled / planetSecondPeriods[planet], 2);
+	 //return round(secondsTravelled / planetSecondPeriods[planet], 2);
 };
