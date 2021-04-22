@@ -10,7 +10,7 @@ export const age = (planet, secondsTravelled) => {
 		neptune: 5200418560
 	};
 
-	return Number(Number(secondsTravelled / planetSecondPeriods[planet]).toFixed(2));
+	return Number((secondsTravelled / planetSecondPeriods[planet]).toFixed(2));
 
 	//Variation 2
 	//caluculation to deal with rare case of floating point precision in calculation being off, below calculation is more accurate
