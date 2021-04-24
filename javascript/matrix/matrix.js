@@ -4,19 +4,18 @@ export class Matrix {
         this._columns = [];
 
         let matrixRow = matrix.split("\n");
-    
-        this._matrixRowsCount = matrixRow.length;
-        this._matrixColumnsCount = matrixRow[0].split(" ").length;
+        let matrixRowsCount = matrixRow.length;
+        let matrixColumnsCount = matrixRow[0].split(" ").length;
 
-        let elements = matrix.split("\n").join().split(" ").join().split(",").map(Number);
+        let elements = matrixRow.join().split(" ").join().split(",").map(Number);
 
-        for (let i = 0; i < this._matrixRowsCount; i++) {
-            let rowItems = elements.filter((_, index) => Math.floor(index / this._matrixColumnsCount) === i);
+        for (let i = 0; i < matrixRowsCount; i++) {
+            let rowItems = elements.filter((_, index) => Math.floor(index / matrixColumnsCount) === i);
             this._rows.push(rowItems);
         }
 
-        for (let i = 0; i < this._matrixColumnsCount; i++) {
-            let columnItems = elements.filter((_, index) => index % this._matrixColumnsCount === i);
+        for (let i = 0; i < matrixColumnsCount; i++) {
+            let columnItems = elements.filter((_, index) => index % matrixColumnsCount === i);
             this._columns.push(columnItems);         
         }
   }
