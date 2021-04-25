@@ -1,30 +1,24 @@
 export class BankAccount {
     constructor() {
-      this._bankAccountState = { Active: 1, Inactive: 0 };
         this._balance = 0;
-        this._state = this._bankAccountState.Inactive;
+        this._isOpen = false;
   }
 
   open() {
-      if (this._state === this._bankAccountState.Active) {
-          throw new ValueError();
-      }
+      if (this._isOpen) { throw new ValueError(); }
 
-      this._state = this._bankAccountState.Active;
+      this._isOpen = true;
   }
 
   close() {
-      if (this._state === this._bankAccountState.Inactive) {
-          throw new ValueError();
-      }
+      if (!this._isOpen) { throw new ValueError(); }
 
       this._balance = 0;
-      this._state = this._bankAccountState.Inactive;
+      this._isOpen = false;
   }
 
   deposit(money) {
-      if (this._state === this._bankAccountState.Inactive ||
-          money < 0) {
+      if (!this._isOpen || money < 0) {
         throw new ValueError();
       }
 
@@ -32,9 +26,7 @@ export class BankAccount {
   }
 
   withdraw(money) {
-      if (this._state === this._bankAccountState.Inactive ||
-          money > this.balance ||
-          money < 0) {
+      if (!this._isOpen || money > this.balance || money < 0) {
           throw new ValueError();
       }
 
@@ -42,9 +34,7 @@ export class BankAccount {
   }
 
   get balance() {
-       if (this._state === this._bankAccountState.Inactive) {
-         throw new ValueError();
-       }
+       if (!this._isOpen) { throw new ValueError(); }
 
        return this._balance;
   }
