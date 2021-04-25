@@ -14,11 +14,11 @@ public static class RotationalCipher
         {
             if(alphabetLower.Contains(text[i]))
             {
-                convertedText[i] = alphabetLower.ElementAt((alphabetLower.IndexOf(text[i]) + shiftKey) % alphabetLower.Length);
+                convertedText[i] = LetterRotation(text[i], shiftKey, alphabetLower);
             }
             else if(alphabetUpper.Contains(text[i]))
             {
-                convertedText[i] = alphabetUpper.ElementAt((alphabetUpper.IndexOf(text[i]) + shiftKey) % alphabetUpper.Length);
+                convertedText[i] = LetterRotation(text[i], shiftKey, alphabetUpper);
             }
             else
             {
@@ -27,6 +27,7 @@ public static class RotationalCipher
         }
 
         return string.Concat(convertedText);
-//        return new String(text.Select(letter => alphabet.ElementAt((alphabet.IndexOf(letter) + shiftKey) % alphabet.Length)).ToArray());
     }
+
+    private static char LetterRotation(char letter, int shiftKey, string alphabetLower) => alphabetLower.ElementAt((alphabetLower.IndexOf(letter) + shiftKey) % alphabetLower.Length);
 }
