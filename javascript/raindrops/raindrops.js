@@ -1,5 +1,5 @@
 export const convert = (number) => {
-	let sounds = { 3: 'Pling' , 5: 'Plang' , 7: 'Plong' };
+	const sounds = { 3: 'Pling' , 5: 'Plang' , 7: 'Plong' };
 
 	let response = "";
 
