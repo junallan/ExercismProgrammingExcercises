@@ -1,6 +1,6 @@
 export const countWords = (sentence) => {
 	//const regex = /\w+(?:[']?\w+)*/g;
-	const regex = /\w+([']?\w+)*/g;
+	const regex = /\w+('\w+)?/g;
 	const words = sentence.toLowerCase().match(regex);
 	let wordMap = {};
 
