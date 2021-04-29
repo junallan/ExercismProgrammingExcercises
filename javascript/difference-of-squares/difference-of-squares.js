@@ -4,7 +4,7 @@ export class Squares {
   }
 
   get sumOfSquares() {
-      return [...Array(this._number).keys()].reduce((accumulator, currentValue) => { return accumulator + (currentValue + 1) ** 2 }, 0);
+        return (this._number * (this._number + 1) * (2 * this._number + 1)) / 6;
   }
 
   get squareOfSum() {
