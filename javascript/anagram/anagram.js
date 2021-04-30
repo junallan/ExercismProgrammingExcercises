@@ -1,6 +1,6 @@
 export const findAnagrams = (wordToCheck, words) => {
 	let wordToCheckLowerCase = wordToCheck.toLowerCase();
-	let wordToCheckSorted = [...wordToCheckLowerCase].sort().join('');
+	let wordToCheckSorted = wordToCheckLowerCase.split('').sort().join('');
 
 	return words.reduce((accumulator, currentValue) => {
 				let wordLowerCase = currentValue.toLowerCase();
@@ -9,7 +9,7 @@ export const findAnagrams = (wordToCheck, words) => {
 					return accumulator;
 				}
 
-				let wordSorted = [...wordLowerCase].sort().join('');
+				let wordSorted = wordLowerCase.split('').sort().join('');
 
 				if (wordToCheckSorted === wordSorted) {
 					accumulator.push(currentValue);
