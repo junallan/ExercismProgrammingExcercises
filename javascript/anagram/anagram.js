@@ -3,18 +3,13 @@ export const findAnagrams = (wordToCheck, words) => {
 	let wordToCheckSorted = wordToCheckLowerCase.split('').sort().join('');
 
 	return words.reduce((accumulator, currentValue) => {
-				let wordLowerCase = currentValue.toLowerCase();
+			let wordLowerCase = currentValue.toLowerCase();
+			let wordSorted = wordLowerCase.split('').sort().join('');
 
-				if (wordToCheckLowerCase === wordLowerCase) {
-					return accumulator;
-				}
+			if (wordToCheckLowerCase !== wordLowerCase && wordToCheckSorted === wordSorted) {
+				accumulator.push(currentValue);
+			}
 
-				let wordSorted = wordLowerCase.split('').sort().join('');
-
-				if (wordToCheckSorted === wordSorted) {
-					accumulator.push(currentValue);
-				}
-
-				return accumulator;
-			}, [])
+			return accumulator;
+		}, [])
 };
