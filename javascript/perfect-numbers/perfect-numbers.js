@@ -1,11 +1,9 @@
 export const classify = (number) => {
 	if (number <= 0) { throw new Error('Classification is only possible for natural numbers.') }
 
-	if (number == 1) { return "deficient"; }
+	let sumOfFactors = 0;
 
-	let sumOfFactors = 1;
-
-	for (let i = 2; i < number; i++) {
+	for (let i = 1; i < number; i++) {
 		if (number % i == 0) {
 			sumOfFactors += i;
 		}
