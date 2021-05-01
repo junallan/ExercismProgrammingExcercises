@@ -3,15 +3,13 @@ export const classify = (number) => {
 
 	if (number == 1) { return "deficient"; }
 
-	let numberFactors = [1];
+	let sumOfFactors = 1;
 
 	for (let i = 2; i < number; i++) {
-		if (number % i == 0 && !numberFactors.includes(i)) {
-			numberFactors.push(i)
+		if (number % i == 0) {
+			sumOfFactors += i;
 		}
 	}
-
-	let sumOfFactors = numberFactors.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
 	if (sumOfFactors === number) {
 		return "perfect";
