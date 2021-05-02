@@ -1,7 +1,5 @@
 export const parse = (name) => {
-	//let parsedName = name.match(/\w+'?\w?/g);
-	let wordMatch = '[A-Za-z]';
-	let parsedName = name.match(/[A-Za-z]+'?[A-Za-z]?/g);
+	let parsedName = name.match(/[A-Z]+'?[A-Z]?/gi);
 
 	let acronym = '';
 
