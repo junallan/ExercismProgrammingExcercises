@@ -3,16 +3,14 @@ export const isPaired = (data) => {
 
 	if (bracketsFound === null) { return true; }
 
-//	console.log(bracketsFound.join(''));
-//	console.log(bracketsFound.join('').replace(/\[\]|{}|\(\)/g, ''));
+	let bracketsToFilter = bracketsFound.join('');
 
-	let bracketsBeforeFilter = bracketsFound.join('');
-	let bracketsToFilter = bracketsBeforeFilter.replace(/\[\]|{}|\(\)/g, '');
+	let countBracketsBeforeFilter = 0; 
 	
-	while (bracketsToFilter.length > 0 && (bracketsBeforeFilter.length !== bracketsToFilter.length)) {
-		bracketsBeforeFilter = bracketsToFilter;
-		bracketsToFilter = bracketsBeforeFilter.replace(/\[\]|{}|\(\)/g, '');
-	}
+	do {
+		countBracketsBeforeFilter = bracketsToFilter.length;
+		bracketsToFilter = bracketsToFilter.replace(/\[\]|{}|\(\)/g, '');
+	} while (bracketsToFilter.length > 0 && (countBracketsBeforeFilter !== bracketsToFilter.length))
 
 	return bracketsToFilter.length === 0;
 };
