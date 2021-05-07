@@ -5,12 +5,12 @@ export const isPaired = (data) => {
 
 	let bracketsToFilter = bracketsFound.join('');
 
-	let countBracketsBeforeFilter = 0; 
-	
-	do {
-		countBracketsBeforeFilter = bracketsToFilter.length;
-		bracketsToFilter = bracketsToFilter.replace(/\[\]|{}|\(\)/g, '');
-	} while (bracketsToFilter.length > 0 && (countBracketsBeforeFilter !== bracketsToFilter.length))
+	let countBracketsBeforeFilter = bracketsToFilter.length;
 
-	return bracketsToFilter.length === 0;
+	bracketsToFilter = bracketsToFilter.replace(/\[\]|{}|\(\)/g, '');
+
+	if (bracketsToFilter.length === 0) { return true; }
+	if (countBracketsBeforeFilter === bracketsToFilter.length) { return false; }
+
+	return isPaired(bracketsToFilter);
 };
