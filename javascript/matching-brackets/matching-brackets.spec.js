@@ -1,10 +1,6 @@
 import { isPaired } from './matching-brackets';
 
 describe('Matching Brackets', () => {
-    //test('MY TEST', () => {
-    //    expect(isPaired(')(')).toEqual(false);
-    //});
-
   test('paired square brackets', () => {
     expect(isPaired('[]')).toEqual(true);
   });
@@ -57,7 +53,7 @@ describe('Matching Brackets', () => {
     expect(isPaired('[({]})')).toEqual(false);
   });
 
-  xtest('paired and incomplete brackets', () => {
+  test('paired and incomplete brackets', () => {
     expect(isPaired('{}[')).toEqual(false);
   });
 
@@ -65,11 +61,11 @@ describe('Matching Brackets', () => {
     expect(isPaired('[]]')).toEqual(false);
   });
 
-  xtest('math expression', () => {
+  test('math expression', () => {
     expect(isPaired('(((185 + 223.85) * 15) - 543)/2')).toEqual(true);
   });
 
-  xtest('complex latex expression', () => {
+  test('complex latex expression', () => {
     expect(
       isPaired(
         '\\left(\\begin{array}{cc} \\frac{1}{3} & x\\\\ \\mathrm{e}^{x} &... x^2 \\end{array}\\right)'
