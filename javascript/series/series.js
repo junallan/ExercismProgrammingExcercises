@@ -14,7 +14,7 @@ export class Series {
       for (let i = 0; i + sliceLength <= this.series.length; i++) {
           allSlices.push(this.series.substring(i, i + sliceLength)
                                     .split('')
-                                    .map(n => parseInt(n)));
+                                    .map(Number));
       }
 
       return allSlices;
