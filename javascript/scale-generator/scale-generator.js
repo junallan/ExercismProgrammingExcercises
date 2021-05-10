@@ -6,7 +6,7 @@ export class Scale {
   }
 
   chromatic() {
-      let flatNotes = ['F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb'];
+      let flatNotes = ['F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb','d','g','c','f','bb','eb'];
  
       let scaleSequence = [];
       let isFlatScale = flatNotes.includes(this._tonic);
