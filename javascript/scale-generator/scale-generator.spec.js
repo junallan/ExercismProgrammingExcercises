@@ -20,7 +20,7 @@ describe('ScaleGenerator', () => {
       expect(new Scale('C').chromatic()).toEqual(expected);
     });
 
-    xtest('Chromatic scale with flats', () => {
+    test('Chromatic scale with flats', () => {
       const expected = [
         'F',
         'Gb',

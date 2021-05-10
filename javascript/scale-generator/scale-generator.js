@@ -1,19 +1,24 @@
 export class Scale {
   constructor(tonic) {
       this._tonic = tonic;
-      this._scale = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
+      this._scaleSharp = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
+      this._scaleFlat = ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'];
   }
 
   chromatic() {
-      let tonicIndex = this._scale.findIndex((note) => note === this._tonic);
+      let flatNotes = ['F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb'];
+ 
       let scaleSequence = [];
+      let isFlatScale = flatNotes.includes(this._tonic);
 
-      for (let i = tonicIndex; i < this._scale.length; i++) {
-          scaleSequence.push(this._scale[i]);
+      let tonicIndex = isFlatScale ? this._scaleFlat.findIndex((note) => note === this._tonic) : this._scaleSharp.findIndex((note) => note === this._tonic);
+
+      for (let i = tonicIndex; i < this._scaleFlat.length; i++) {
+          scaleSequence.push(isFlatScale ? this._scaleFlat[i] : this._scaleSharp[i]);
       }
 
       for (let i = 0; i < tonicIndex; i++) {
-          scaleSequence.push(this._scale[i]);
+          scaleSequence.push(isFlatScale ? this._scaleFlat[i] : this._scaleSharp[i]);
       }
 
       return scaleSequence;
