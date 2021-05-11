@@ -3,16 +3,12 @@ export class Scale {
       this._tonic = tonic;
       this._scaleSharp = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
       this._scaleFlat = ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'];
-      this._flatNotes = ['F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'd', 'g', 'c', 'f', 'bb', 'eb'];
-      this._isFlatScale = this._flatNotes.includes(this._tonic);
+      this._isFlatScale = ['F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'd', 'g', 'c', 'f', 'bb', 'eb'].includes(this._tonic);
   }
 
-  chromatic() {
-      //let flatNotes = ['F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb','d','g','c','f','bb','eb'];
- 
+  chromatic() { 
       let scaleSequence = [];
-      //let isFlatScale = this._flatNotes.includes(this._tonic);
-
+   
       let tonicIndex = this._isFlatScale ? this._scaleFlat.findIndex((note) => note === this._tonic) : this._scaleSharp.findIndex((note) => note === this._tonic);
 
       for (let i = tonicIndex; i < this._scaleFlat.length; i++) {
