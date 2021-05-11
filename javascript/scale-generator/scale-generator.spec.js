@@ -70,7 +70,7 @@ describe('ScaleGenerator', () => {
       expect(new Scale('d').interval('MmMMMmM')).toEqual(expected);
     });
 
-    xtest('Mixolydian mode', () => {
+    test('Mixolydian mode', () => {
       const expected = ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'Db'];
       expect(new Scale('Eb').interval('MMmMMmM')).toEqual(expected);
     });
@@ -80,7 +80,7 @@ describe('ScaleGenerator', () => {
       expect(new Scale('a').interval('MMMmMMm')).toEqual(expected);
     });
 
-    xtest('Phrygian mode', () => {
+    test('Phrygian mode', () => {
       const expected = ['E', 'F', 'G', 'A', 'B', 'C', 'D'];
       expect(new Scale('e').interval('mMMMmMM')).toEqual(expected);
     });
@@ -95,7 +95,7 @@ describe('ScaleGenerator', () => {
       expect(new Scale('d').interval('MmMMmAm')).toEqual(expected);
     });
 
-    xtest('Octatonic', () => {
+    test('Octatonic', () => {
       const expected = ['C', 'D', 'D#', 'F', 'F#', 'G#', 'A', 'B'];
       expect(new Scale('C').interval('MmMmMmMm')).toEqual(expected);
     });
