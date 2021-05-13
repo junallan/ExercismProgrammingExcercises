@@ -5,13 +5,11 @@ export const score = (word) => {
 		return wordMatches === null ? 0 : wordMatches.length;
 	};
 
-	let oneScore = wordMatchCount('aeioulnrst');
-	let twoScore = wordMatchCount('dg') * 2;
-	let threeScore = wordMatchCount('bcmp') * 3;
-	let fourScore = wordMatchCount('fhvwy') * 4;
-	let fiveScore = wordMatchCount('k') * 5;
-	let eightScore = wordMatchCount('jx') * 8;
-	let tenScore = wordMatchCount('qz') * 10;
-
-	return oneScore + twoScore + threeScore + fourScore + fiveScore + eightScore + tenScore;
+	return wordMatchCount('aeioulnrst') +
+			(wordMatchCount('dg') * 2) +
+			(wordMatchCount('bcmp') * 3) +
+			(wordMatchCount('fhvwy') * 4) +
+			(wordMatchCount('k') * 5) +
+			(wordMatchCount('jx') * 8) +
+			(wordMatchCount('qz') * 10);
 };
