@@ -20,7 +20,7 @@ export class Allergies {
       return this._allergyList;
   }
 
-  allergicTo(alergy) {
-      return (this._allergyMapping[alergy] & this._inputData) > 0;
+  allergicTo(allergy) {
+      return (this._allergyMapping[allergy] & this._inputData) > 0;
   }
 }
