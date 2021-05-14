@@ -12,20 +12,20 @@ export class Allergies {
           pollen: 64,
           cats: 128
       };
+
+      let allergyNames = Reflect.ownKeys(this._allergyMapping);
+
+      this._allergyList = [];
+
+      for (let i = 0; i < allergyNames.length; i++) {
+          if (this.allergicTo(allergyNames[i])) {
+              this._allergyList.push(allergyNames[i]);
+          }
+      } 
   }
 
   list() {
-      let allergyNames = Reflect.ownKeys(this._allergyMapping);
-
-      let allergyList = [];
-
-      for (let i = 0; i < allergyNames.length; i++) {
-          if (this.allergicTo(allergyNames[i])){
-              allergyList.push(allergyNames[i]);
-          }
-      }
-
-      return allergyList;
+      return this._allergyList;
   }
 
   allergicTo(alergy) {
