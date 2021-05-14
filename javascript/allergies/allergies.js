@@ -13,15 +13,7 @@ export class Allergies {
           cats: 128
       };
 
-      let allergyNames = Reflect.ownKeys(this._allergyMapping);
-
-      this._allergyList = [];
-
-      for (let i = 0; i < allergyNames.length; i++) {
-          if (this.allergicTo(allergyNames[i])) {
-              this._allergyList.push(allergyNames[i]);
-          }
-      } 
+      this._allergyList = Reflect.ownKeys(this._allergyMapping).filter(allergy => this.allergicTo(allergy));
   }
 
   list() {
