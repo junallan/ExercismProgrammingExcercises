@@ -26,6 +26,7 @@ export class ComplexNumber {
 
     div(complexNumber) {
         let denominator = (complexNumber.real ** 2 + complexNumber.imag ** 2);
+
         return new ComplexNumber((this._realNumber * complexNumber.real + this._imaginaryNumber * complexNumber.imag) / denominator,
             (this._imaginaryNumber * complexNumber.real - this._realNumber * complexNumber.imag) / denominator);
      
@@ -40,8 +41,9 @@ export class ComplexNumber {
       return new ComplexNumber(this._realNumber, this._imaginaryNumber === 0 ? 0 : -1 * this._imaginaryNumber);
   }
 
-    get exp() {
-        let factor = Math.exp(this._realNumber);
+  get exp() {
+      let factor = Math.exp(this._realNumber);
+
       return new ComplexNumber(factor * Math.cos(this._imaginaryNumber), factor * Math.sin(this._imaginaryNumber));
   }
 }
