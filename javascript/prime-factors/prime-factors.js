@@ -4,18 +4,17 @@ export const primeFactors = (number) => {
 	let factors = [];
 	let startDivisor = 2;
 	let factorForNumber = number;
-	let value = null;
 
 	do {
-		value = firstFactorsOf(factorForNumber, startDivisor);
-		factorForNumber = value.result;
-		startDivisor = value.factor;
+		const { result, factor } = firstFactorsOf(factorForNumber, startDivisor);
+		factorForNumber = result;
+		startDivisor = factor;
 
-		factors.push(value.factor);
+		factors.push(factor);
 
-		if (value.result === 1) { return factors; }
+		if (result === 1) { return factors; }
 
-	} while (value.result !== 1);
+	} while (factorForNumber !== 1);
 
 	return factors;
 };
