@@ -1,20 +1,15 @@
 export const primeFactors = (number) => {
-	if (number === 1) { return []; }
-
 	let factors = [];
 	let startDivisor = 2;
 	let factorForNumber = number;
 
-	do {
+	while (factorForNumber !== 1) {
 		const { result, factor } = firstFactorsOf(factorForNumber, startDivisor);
 		factorForNumber = result;
 		startDivisor = factor;
 
 		factors.push(factor);
-
-		if (result === 1) { return factors; }
-
-	} while (factorForNumber !== 1);
+	}
 
 	return factors;
 };
