@@ -1,21 +1,26 @@
 export function triplets({ minFactor, maxFactor, sum }) {
     let allTriplets = [];
-    //allTriplets.push(new Triplet(1, 2, 3));
-    //return allTriplets;
+    let minFirstNumber = minFactor - 1 || 0;
+    let maxThirdNumber = maxFactor || sum - 1;
     let sumLimit = sum;
 
-    for (let i = 0; i < sumLimit; i++) {
-        let firstNumber = i + 1;
-        let secondNumber = i + 2;
-        let thirdNumbr = i + 3;
+    for (let i = minFirstNumber; i < sumLimit; i++) {
+        for (let j = i+1; j < sumLimit; j++) {
+            let firstNumber = i + 1;
+            let secondNumber = j + 1;
+            //let thirdNumbr = i + 3;
 
-        if (firstNumber + secondNumber + thirdNumbr <= sumLimit) {
-            let aSquared = firstNumber ** 2;
-            let bSquared = secondNumber ** 2;
+            if (firstNumber + secondNumber + (secondNumber + 1) <= sumLimit) {
+                let aSquared = firstNumber ** 2;
+                let bSquared = secondNumber ** 2;
 
-            let cSquareRoot = Math.sqrt(aSquared + bSquared);
-            if (cSquareRoot % 1 === 0) {
-                allTriplets.push(new Triplet(firstNumber, secondNumber, cSquareRoot));
+                let cSquareRoot = Math.sqrt(aSquared + bSquared);
+
+                if (cSquareRoot > maxThirdNumber) { continue;};
+
+                if ((cSquareRoot % 1 === 0) && (firstNumber + secondNumber + cSquareRoot === sumLimit)) {
+                    allTriplets.push(new Triplet(firstNumber, secondNumber, cSquareRoot));
+                }
             }
         }
     }
