@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class ScrabbleScore
 {
@@ -34,15 +35,5 @@ public static class ScrabbleScore
                 { 'Z', 10 }
             };
 
-    public static int Score(string input)
-    {
-        int total = 0;
-
-        foreach(var letter in input)
-        {
-            total += LetterMap[Char.ToUpper(letter)];
-        }
-
-        return total;
-    }
+    public static int Score(string input) => input.ToUpper().Sum(letter => LetterMap[letter]);
 }
