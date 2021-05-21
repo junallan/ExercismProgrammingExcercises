@@ -8,7 +8,6 @@ export function triplets({ minFactor, maxFactor, sum }) {
         for (let j = i+1; j < sumLimit; j++) {
             let firstNumber = i + 1;
             let secondNumber = j + 1;
-            //let thirdNumbr = i + 3;
 
             if (firstNumber + secondNumber + (secondNumber + 1) <= sumLimit) {
                 let aSquared = firstNumber ** 2;
