@@ -11,7 +11,7 @@ public static class Proverb
         if (subjects.Length == 0) { return subjects; }
 
         return subjects.Zip(subjects.Skip(1), (firstSubject, secondSubject) => $"For want of a {firstSubject} the {secondSubject} was lost.")
-                       .Append($"And all for the want of a {subjects[0]}.")
+                       .Append($"And all for the want of a {subjects.First()}.")
                        .ToArray();
     }
 }
