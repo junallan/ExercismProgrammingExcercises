@@ -30,12 +30,11 @@ public static class ProteinTranslation
             { "UGA", StopSequence},
         };
 
-        var codons = Enumerable.Range(0, (strand.Length + CodonSize - 1) / CodonSize)
+        var codons = Enumerable.Range(0, strand.Length / CodonSize)
                                .Select(i => proteinMapping[strand.Substring(i * CodonSize, CodonSize)])
                                .ToArray();
         var stopSequenceIndex = Array.IndexOf(codons, StopSequence);
 
         return stopSequenceIndex != -1 ? Enumerable.Range(0, stopSequenceIndex).Select(i => codons[i]).ToArray() : codons;
-            //Array.Empty<string>() : codons;
     }
 }
