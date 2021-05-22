@@ -12,27 +12,18 @@ public static class ProteinTranslation
         Dictionary<string, string> proteinMapping = new Dictionary<string, string>()
         {
             { "AUG", "Methionine" },
-            { "UUU", "Phenylalanine"},
-            { "UUC", "Phenylalanine"},
-            { "UUA", "Leucine"},
-            { "UUG", "Leucine"},
-            { "UCU", "Serine"},
-            { "UCC", "Serine"},
-            { "UCA", "Serine"},
-            { "UCG", "Serine"},
-            { "UAU", "Tyrosine"},
-            { "UAC", "Tyrosine"},
-            { "UGU", "Cysteine"},
-            { "UGC", "Cysteine"},
+            { "UUU", "Phenylalanine"}, { "UUC", "Phenylalanine"},
+            { "UUA", "Leucine"}, { "UUG", "Leucine"},
+            { "UCU", "Serine"}, { "UCC", "Serine"}, { "UCA", "Serine"}, { "UCG", "Serine"},
+            { "UAU", "Tyrosine"}, { "UAC", "Tyrosine"},
+            { "UGU", "Cysteine"}, { "UGC", "Cysteine"},
             { "UGG", "Tryptophan"},
-            { "UAA", StopSequence},
-            { "UAG", StopSequence},
-            { "UGA", StopSequence},
+            { "UAA", StopSequence}, { "UAG", StopSequence}, { "UGA", StopSequence},
         };
 
         return Enumerable.Range(0, strand.Length / CodonSize)
-                               .Select(i => proteinMapping[strand.Substring(i * CodonSize, CodonSize)])
-                               .TakeWhile(c => c != StopSequence)
-                               .ToArray();
+                         .Select(i => proteinMapping[strand.Substring(i * CodonSize, CodonSize)])
+                         .TakeWhile(c => c != StopSequence)
+                         .ToArray();
     }
 }
