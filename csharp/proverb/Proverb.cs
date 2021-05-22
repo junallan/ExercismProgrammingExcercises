@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class Proverb
 {
@@ -9,13 +10,8 @@ public static class Proverb
 
         if (subjects.Length == 0) { return subjects; }
 
-        for(int i=0; i<subjects.Length-1; i++)
-        {
-            messages[i] = $"For want of a {subjects[i]} the {subjects[i+1]} was lost.";
-        }
-
-        messages[subjects.Length-1] = $"And all for the want of a {subjects[0]}.";
-
-        return messages;
+        return subjects.Zip(subjects.Skip(1), (firstSubject, secondSubject) => $"For want of a {firstSubject} the {secondSubject} was lost.")
+                       .Append($"And all for the want of a {subjects[0]}.")
+                       .ToArray();
     }
 }
