@@ -13,13 +13,12 @@ public static class PerfectNumbers
 {
     public static Classification Classify(int number)
     {
-        if (number == 1 || number == 2) { return Classification.Deficient; }
         if (number < 1) { throw new ArgumentOutOfRangeException(); }
 
-        var summation = 1 + (Enumerable.Range(2, number / 2)
+        var summation = Enumerable.Range(1, number / 2)
                                        .Where(x => number % x == 0)
                                        .Distinct()
-                                       .Sum());
+                                       .Sum();
 
         if (summation == number) { return Classification.Perfect; }
         else if (summation > number) { return Classification.Abundant; }
