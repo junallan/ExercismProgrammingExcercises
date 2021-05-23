@@ -19,31 +19,25 @@ public class KindergartenGarden
 
     public KindergartenGarden(string diagram)
     {
-        this.PlantArrangement = diagram.Split(Environment.NewLine.ToCharArray());
+        this.PlantArrangement = diagram.Split("\n");
     }
 
     public IEnumerable<Plant> Plants(string student)
     {
         var studentPlantPlacementIndex = Array.IndexOf(this.StudentNames, student) * NumberOfPlantsForStudentPerRow;
 
-        return  Enumerable.Range(0, NumberOfPlantsForStudent)
-                          .Select(i => GetPlant(this.PlantArrangement[i / NumberOfPlantsForStudentPerRow][i % NumberOfPlantsForStudentPerRow + studentPlantPlacementIndex]));
-    }
+        Func<char, Plant> getPlant = (plantCode) => { 
+            switch (plantCode) 
+            { 
+                case 'V': return Plant.Violets;
+                case 'R': return Plant.Radishes;
+                case 'C': return Plant.Clover;
+                case 'G': return Plant.Grass;
+                default: throw new ArgumentException();
+            }   
+        };
 
-    private Plant GetPlant(char plantCode)
-    {
-        switch (plantCode)
-        {
-            case 'V':
-                return Plant.Violets;
-            case 'R':
-                return Plant.Radishes;
-            case 'C':
-                return Plant.Clover;
-            case 'G':
-                return Plant.Grass;
-            default:
-                throw new ArgumentException();
-        }
+        return  Enumerable.Range(0, NumberOfPlantsForStudent)
+                          .Select(i => getPlant(this.PlantArrangement[i / NumberOfPlantsForStudentPerRow][i % NumberOfPlantsForStudentPerRow + studentPlantPlacementIndex]));
     }
 }
