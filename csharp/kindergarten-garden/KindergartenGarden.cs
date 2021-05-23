@@ -15,8 +15,7 @@ public class KindergartenGarden
     private readonly string[] PlantArrangement;
     private readonly string[] StudentNames = new string[] { "Alice", "Bob", "Charlie", "David", "Eve", "Fred", "Ginny", "Harriet", "Ileana", "Joseph", "Kincaid", "Larry" };
     private readonly int NumberOfPlantsForStudentPerRow = 2;
-    private readonly int NumberOfPlantsForStudent = 4;
-
+ 
     public KindergartenGarden(string diagram)
     {
         this.PlantArrangement = diagram.Split("\n");
@@ -37,7 +36,9 @@ public class KindergartenGarden
             }   
         };
 
-        return  Enumerable.Range(0, NumberOfPlantsForStudent)
-                          .Select(i => getPlant(this.PlantArrangement[i / NumberOfPlantsForStudentPerRow][i % NumberOfPlantsForStudentPerRow + studentPlantPlacementIndex]));
+        return new[] {  getPlant(this.PlantArrangement[0][studentPlantPlacementIndex]), 
+                        getPlant(this.PlantArrangement[0][studentPlantPlacementIndex + 1]), 
+                        getPlant(this.PlantArrangement[1][studentPlantPlacementIndex]), 
+                        getPlant(this.PlantArrangement[1][studentPlantPlacementIndex + 1]) };
     }
 }
