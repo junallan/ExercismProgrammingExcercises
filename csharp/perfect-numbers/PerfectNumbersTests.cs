@@ -77,7 +77,7 @@ public class PerfectNumbersTests
         Assert.Throws<ArgumentOutOfRangeException>(() => PerfectNumbers.Classify(0));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Negative_integer_is_rejected_not_a_natural_number_()
     {
         Assert.Throws<ArgumentOutOfRangeException>(() => PerfectNumbers.Classify(-1));
