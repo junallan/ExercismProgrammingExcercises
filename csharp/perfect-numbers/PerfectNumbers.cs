@@ -17,9 +17,8 @@ public static class PerfectNumbers
         if (number < 1) { throw new ArgumentOutOfRangeException(); }
 
         List<int> factors = new List<int>() {1};
-        int checkNumber = 2;
-
-        while(checkNumber < number)
+     
+        for(int checkNumber = 2; checkNumber < number; checkNumber++)
         {
             if (IsFactor(number, checkNumber))
             {
@@ -32,8 +31,6 @@ public static class PerfectNumbers
 
                 factors.Add(otherFactor);
             }
-
-            checkNumber++;
         }
 
         var summation = factors.Sum();
