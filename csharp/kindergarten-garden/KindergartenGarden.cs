@@ -4,10 +4,10 @@ using System.Linq;
 
 public enum Plant
 {
-    Violets,
-    Radishes,
-    Clover,
-    Grass
+    Violets = 'V',
+    Radishes = 'R',
+    Clover = 'C',
+    Grass = 'G'
 }
 
 public class KindergartenGarden
@@ -25,20 +25,9 @@ public class KindergartenGarden
     {
         var studentPlantPlacementIndex = Array.IndexOf(this.StudentNames, student) * NumberOfPlantsForStudentPerRow;
 
-        Func<char, Plant> getPlant = (plantCode) => { 
-            switch (plantCode) 
-            { 
-                case 'V': return Plant.Violets;
-                case 'R': return Plant.Radishes;
-                case 'C': return Plant.Clover;
-                case 'G': return Plant.Grass;
-                default: throw new ArgumentException();
-            }   
-        };
-
-        return new[] {  getPlant(this.PlantArrangement[0][studentPlantPlacementIndex]), 
-                        getPlant(this.PlantArrangement[0][studentPlantPlacementIndex + 1]), 
-                        getPlant(this.PlantArrangement[1][studentPlantPlacementIndex]), 
-                        getPlant(this.PlantArrangement[1][studentPlantPlacementIndex + 1]) };
+        return new[] {  (Plant)this.PlantArrangement[0][studentPlantPlacementIndex], 
+                        (Plant)this.PlantArrangement[0][studentPlantPlacementIndex + 1], 
+                        (Plant)this.PlantArrangement[1][studentPlantPlacementIndex], 
+                        (Plant)this.PlantArrangement[1][studentPlantPlacementIndex + 1] };
     }
 }
