@@ -17,9 +17,9 @@ public static class PerfectNumbers
         if (number < 1) { throw new ArgumentOutOfRangeException(); }
 
         var summation = 1 + (Enumerable.Range(2, number / 2)
-                                      .Where(x => number % x == 0)
-                                      .Distinct()
-                                      .Sum());
+                                       .Where(x => number % x == 0)
+                                       .Distinct()
+                                       .Sum());
 
         if (summation == number) { return Classification.Perfect; }
         else if (summation > number) { return Classification.Abundant; }
