@@ -5,13 +5,16 @@ public static class Sieve
 {
     public static int[] Primes(int limit)
     {
-        if (limit < 2) { throw new ArgumentOutOfRangeException(); }
+        var smallestPrime = 2;
 
-        var numbers = Enumerable.Range(2, limit - 1).ToList();
+        if (limit < smallestPrime) { throw new ArgumentOutOfRangeException(); }
 
-        for(var i=2; i<=Math.Sqrt(limit); i++)
+        var numbers = Enumerable.Range(smallestPrime, limit - 1).ToList();
+
+        for(var i= smallestPrime; i<=Math.Sqrt(limit); i++)
         {
             var j = i*i;
+
             while(j <= limit)
             {
                 numbers.Remove(j);
