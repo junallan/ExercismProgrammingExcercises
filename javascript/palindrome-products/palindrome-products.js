@@ -1,29 +1,40 @@
 export class Palindromes {
-    static generate(factor) {
+   static generate(factor) {
         if (factor.minFactor > factor.maxFactor) {
             throw Error('min must be <= max');
         }
 
+        let palindromesSorted = this.getSortedProducts(factor);
+       
+        if (palindromesSorted.length === 0) {
+            return { smallest: { value: null, factors: [] }, largest: { value: null, factors: [] } };
+        }
+
+        let palindromes = this.buildProdutFactorGroups(palindromesSorted);
+
+        palindromes = { smallest: palindromes[0], largest: palindromes[palindromes.length - 1] };
+
+        return palindromes;
+  }
+
+  static getSortedProducts(factor){
       let productList = [];
 
       for (let i = factor.minFactor; i <= factor.maxFactor; i++) {
-          for (let j = i; j <= factor.maxFactor; j++) {         
+          for (let j = i; j <= factor.maxFactor; j++) {
               let result = (i * j).toString();
-             
+
               if (result === result.split("").reverse().join("")) {
-                  productList.push({ value: i*j, factor: [i, j]});
+                  productList.push({ value: i * j, factor: [i, j] });
               }
           }
       }
 
-      let palindromesSorted = productList.sort((a, b) => a.value - b.value);
+      return productList.sort((a, b) => a.value - b.value);
+  }
+
+  static buildProdutFactorGroups(palindromesSorted) {
       let palindromes = [];
-
-      if (palindromesSorted.length === 0) {
-          palindromes = { smallest: { value: null, factors: [] }, largest: { value: null, factors: [] } };
-
-          return palindromes;
-      }
 
       let currentProductValue = palindromesSorted[0].value;
       let currentFactors = [];
@@ -40,7 +51,7 @@ export class Palindromes {
               palindromes.push({ value: currentProductValue, factors: currentFactors });
 
               if (i === (palindromesSorted.length - 1)) {
-                  palindromes.push({ value: palindromesSorted[i].value, factors: [palindromesSorted[i].factor]});
+                  palindromes.push({ value: palindromesSorted[i].value, factors: [palindromesSorted[i].factor] });
               }
               else {
                   currentProductValue = palindromesSorted[i].value;
@@ -49,8 +60,6 @@ export class Palindromes {
               }
           }
       }
-
-      palindromes = { smallest: palindromes[0], largest: palindromes[palindromes.length - 1] };
 
       return palindromes;
   }
