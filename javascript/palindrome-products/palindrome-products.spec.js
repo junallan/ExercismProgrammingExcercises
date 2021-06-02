@@ -110,7 +110,7 @@ describe('Palindromes', () => {
     expect(largest.factors).toEqual([]);
   });
 
-  xtest('error for smallest if min is more than max', () => {
+  test('error for smallest if min is more than max', () => {
     expect(() => {
       const palindromes = Palindromes.generate({
         maxFactor: 1,
@@ -120,7 +120,7 @@ describe('Palindromes', () => {
     }).toThrow(new Error('min must be <= max'));
   });
 
-  xtest('error for largest if min is more than max', () => {
+  test('error for largest if min is more than max', () => {
     expect(() => {
       const palindromes = Palindromes.generate({ maxFactor: 1, minFactor: 2 });
       palindromes.largest;

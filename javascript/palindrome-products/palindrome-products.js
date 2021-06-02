@@ -20,6 +20,17 @@ export class Palindromes {
       let palindromesSorted = productList.sort((a, b) => a.value - b.value);
       let palindromes = [];
 
+   /*     console.log(palindromesSorted);*/
+
+      if (palindromesSorted.length === 0) {
+          //palindromes.push({ smallest: { value: null, factors: [] }, largest: { value: null, factors: [] } });
+          palindromes.largest = { value: null, factors: [] };
+          palindromes.smallest = { value: null, factors: [] };
+          //console.log(palindromes);
+          //console.log(palindromes.largest);
+          return palindromes;
+      }
+
       let currentProductValue = palindromesSorted[0].value;
       let currentFactors = [];
 
@@ -56,10 +67,10 @@ export class Palindromes {
           palindromes.largest = palindromes[palindromes.length - 1];
       }
       else {
-          palindromes.push({ smallest: { value: null, factors: [] }, largest: { value: null, factors: [] } });
+          //palindromes.push({ smallest: { value: null, factors: [] }, largest: { value: null, factors: [] } });
 
-          //palindromes.smallest = { value: null, factors: [] };
-          //palindromes.largest = { value: null, factors: [] };
+          palindromes.smallest = { value: null, factors: [] };
+          palindromes.largest = { value: null, factors: [] };
       }
     
 
