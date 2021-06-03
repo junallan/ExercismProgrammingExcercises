@@ -4,63 +4,35 @@ export class Palindromes {
             throw Error('min must be <= max');
         }
 
-        let palindromesSorted = this.getSortedProducts(factor);
-       
-        if (palindromesSorted.length === 0) {
-            return { smallest: { value: null, factors: [] }, largest: { value: null, factors: [] } };
-        }
+       let smallestProduct = { value: null, factors: [] };
+       let largestProduct = { value: null, factors: [] };
 
-        let palindromes = this.buildProdutFactorGroups(palindromesSorted);
+       for (let i = factor.minFactor; i <= factor.maxFactor; i++) {
+           for (let j = i; j <= factor.maxFactor; j++) {
+               let currentProductEvaluation = i * j;
+            
+               if (this.isPalindrome(currentProductEvaluation.toString())) {
+                   if (smallestProduct.value === null || (smallestProduct.value > currentProductEvaluation)) {
+                       smallestProduct = { value: currentProductEvaluation, factors: [[i,j]] };
+                   }
+                   else if (smallestProduct.value === currentProductEvaluation) {
+                       smallestProduct.factors.push([i, j]);
+                   }
 
-        palindromes = { smallest: palindromes[0], largest: palindromes[palindromes.length - 1] };
+                   if (largestProduct.value === null || (largestProduct.value < currentProductEvaluation)) {
+                       largestProduct = { value: currentProductEvaluation, factors: [[i, j]] };
+                   }
+                   else if (largestProduct.value === currentProductEvaluation) {
+                       largestProduct.factors.push([i, j]);
+                   }
+               }
+           }
+       }
 
-        return palindromes;
-  }
+       return { smallest: smallestProduct, largest: largestProduct };
+   }
 
-  static getSortedProducts(factor){
-      let productList = [];
-
-      for (let i = factor.minFactor; i <= factor.maxFactor; i++) {
-          for (let j = i; j <= factor.maxFactor; j++) {
-              let result = (i * j).toString();
-
-              if (result === result.split("").reverse().join("")) {
-                  productList.push({ value: i * j, factor: [i, j] });
-              }
-          }
-      }
-
-      return productList.sort((a, b) => a.value - b.value);
-  }
-
-  static buildProdutFactorGroups(palindromesSorted) {
-      let palindromes = [];
-
-      let currentProductValue = palindromesSorted[0].value;
-      let currentFactors = [];
-
-      for (let i = 0; i < palindromesSorted.length; i++) {
-          if (palindromesSorted[i].value === currentProductValue) {
-              currentFactors.push(palindromesSorted[i].factor);
-
-              if (i === (palindromesSorted.length - 1)) {
-                  palindromes.push({ value: currentProductValue, factors: currentFactors });
-              }
-          }
-          else {
-              palindromes.push({ value: currentProductValue, factors: currentFactors });
-
-              if (i === (palindromesSorted.length - 1)) {
-                  palindromes.push({ value: palindromesSorted[i].value, factors: [palindromesSorted[i].factor] });
-              }
-              else {
-                  currentProductValue = palindromesSorted[i].value;
-                  currentFactors = [];
-                  currentFactors.push(palindromesSorted[i].factor);
-              }
-          }
-      }
-
-      return palindromes;
-  }
+    static isPalindrome(data) {
+        return (data === data.split("").reverse().join(""));
+    }
 }
