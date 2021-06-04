@@ -1,9 +1,18 @@
 export const largestProduct = (digitSequence, length) => {
 	let sumOfList = (items) => items.reduce((accumulator, currentValue) => parseInt(accumulator) * parseInt(currentValue));
 
+	if (length === 0) {
+		return 1;
+	}
+
 	if (digitSequence.length === length) {
 		return sumOfList([...digitSequence]);
 	}
+
+	if (digitSequence.length < length) {
+		throw new Error('Span must be smaller than string length');
+	}
+
 
 	let chunkOfProducts = groupOfAllProducts(digitSequence, length);
 
@@ -21,6 +30,8 @@ function groupOfAllProducts(digitSequence, length) {
 }
 
 function findLargestProductResultInGroup(chunkOfProducts, sumOfList) {
+
+
 	let largestProduct = null;
 
 	for (let i = 0; i < chunkOfProducts.length; i++) {
