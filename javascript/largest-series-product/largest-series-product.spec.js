@@ -5,7 +5,7 @@ describe('Largest Series Product', () => {
     expect(largestProduct('29', 2)).toEqual(18);
   });
 
-  xtest('can find the largest product of 2 with numbers in order', () => {
+  test('can find the largest product of 2 with numbers in order', () => {
     expect(largestProduct('0123456789', 2)).toEqual(72);
   });
 
