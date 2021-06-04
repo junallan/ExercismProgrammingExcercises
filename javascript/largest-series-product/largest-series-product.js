@@ -1,6 +1,8 @@
 export const largestProduct = (digitSequence, length) => {
+	let sumOfList = (items) => items.reduce((accumulator, currentValue) => parseInt(accumulator) * parseInt(currentValue));
+
 	if (digitSequence.length === length) {
-		return [...digitSequence].reduce((accumulator, currentValue) => parseInt(accumulator) * parseInt(currentValue));
+		return sumOfList([...digitSequence]);
 	}
 
 	let chunkOfProducts = [];
@@ -13,10 +15,10 @@ export const largestProduct = (digitSequence, length) => {
 
 	for (let i = 0; i < chunkOfProducts.length; i++) {
 		if (largestProduct === null) {
-			largestProduct = chunkOfProducts[i].reduce((accumulator, currentValue) => parseInt(accumulator) * parseInt(currentValue));
+			largestProduct = sumOfList(chunkOfProducts[i]);
 		}
 		else {
-			let currentProductEvaluation = chunkOfProducts[i].reduce((accumulator, currentValue) => parseInt(accumulator) * parseInt(currentValue));
+			let currentProductEvaluation = sumOfList(chunkOfProducts[i]);
 
 			if (largestProduct < currentProductEvaluation) {
 				largestProduct = currentProductEvaluation;
@@ -26,3 +28,6 @@ export const largestProduct = (digitSequence, length) => {
 
 	return largestProduct;
 };
+
+
+
