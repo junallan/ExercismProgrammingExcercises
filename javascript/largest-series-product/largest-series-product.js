@@ -5,12 +5,22 @@ export const largestProduct = (digitSequence, length) => {
 		return sumOfList([...digitSequence]);
 	}
 
+	let chunkOfProducts = groupOfAllProducts(digitSequence, length);
+
+	return findLargestProductResultInGroup(chunkOfProducts, sumOfList);
+};
+
+function groupOfAllProducts(digitSequence, length) {
 	let chunkOfProducts = [];
 
 	for (let i = 0; i <= digitSequence.length - length; i++) {
 		chunkOfProducts.push([...digitSequence].slice(i, i + length));
 	}
 
+	return chunkOfProducts;
+}
+
+function findLargestProductResultInGroup(chunkOfProducts, sumOfList) {
 	let largestProduct = null;
 
 	for (let i = 0; i < chunkOfProducts.length; i++) {
@@ -27,7 +37,5 @@ export const largestProduct = (digitSequence, length) => {
 	}
 
 	return largestProduct;
-};
-
-
+}
 
