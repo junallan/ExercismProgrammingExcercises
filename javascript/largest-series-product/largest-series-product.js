@@ -1,23 +1,17 @@
 export const largestProduct = (digitSequence, length) => {
+	if (length < 0) { throw new Error('Span must be greater than zero'); }
+	if (!/^\d*$/.test(digitSequence)) { throw new Error('Digits input must only contain digits'); }
+
 	let sumOfList = (items) => items.reduce((accumulator, currentValue) => parseInt(accumulator) * parseInt(currentValue));
 
-	if (length === 0) {
-		return 1;
-	}
-
-	if (digitSequence.length === length) {
-		return sumOfList([...digitSequence]);
-	}
-
-	if (digitSequence.length < length) {
-		throw new Error('Span must be smaller than string length');
-	}
-
+	if (digitSequence.length < length) { throw new Error('Span must be smaller than string length'); }
+	if (length === 0) { return 1; }
 
 	let chunkOfProducts = groupOfAllProducts(digitSequence, length);
 
 	return findLargestProductResultInGroup(chunkOfProducts, sumOfList);
 };
+
 
 function groupOfAllProducts(digitSequence, length) {
 	let chunkOfProducts = [];
@@ -29,9 +23,8 @@ function groupOfAllProducts(digitSequence, length) {
 	return chunkOfProducts;
 }
 
+
 function findLargestProductResultInGroup(chunkOfProducts, sumOfList) {
-
-
 	let largestProduct = null;
 
 	for (let i = 0; i < chunkOfProducts.length; i++) {

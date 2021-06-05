@@ -59,13 +59,13 @@ describe('Largest Series Product', () => {
     );
   });
 
-  xtest('rejects invalid character in digits', () => {
+  test('rejects invalid character in digits', () => {
     expect(() => largestProduct('1234a5', 2)).toThrow(
       new Error('Digits input must only contain digits')
     );
   });
 
-  xtest('rejects negative span', () => {
+  test('rejects negative span', () => {
     expect(() => largestProduct('12345', -1)).toThrow(
       new Error('Span must be greater than zero')
     );
