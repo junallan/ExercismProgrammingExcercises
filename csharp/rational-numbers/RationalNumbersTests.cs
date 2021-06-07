@@ -28,25 +28,25 @@ public class RationalNumbersTests
         Assert.Equal(new RationalNumber(0, 1), new RationalNumber(1, 2) + (new RationalNumber(-1, 2)));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Subtract_two_positive_rational_numbers()
     {
         Assert.Equal(new RationalNumber(-1, 6), new RationalNumber(1, 2) - (new RationalNumber(2, 3)));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Subtract_a_positive_rational_number_and_a_negative_rational_number()
     {
         Assert.Equal(new RationalNumber(7, 6), new RationalNumber(1, 2) - (new RationalNumber(-2, 3)));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Subtract_two_negative_rational_numbers()
     {
         Assert.Equal(new RationalNumber(1, 6), new RationalNumber(-1, 2) - (new RationalNumber(-2, 3)));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Subtract_a_rational_number_from_itself()
     {
         Assert.Equal(new RationalNumber(0, 1), new RationalNumber(1, 2) - (new RationalNumber(1, 2)));
