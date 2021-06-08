@@ -82,7 +82,7 @@ public class RationalNumbersTests
         Assert.Equal(new RationalNumber(1, 2), new RationalNumber(1, 2) * (new RationalNumber(1, 1)));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Multiply_a_rational_number_by_0()
     {
         Assert.Equal(new RationalNumber(0, 1), new RationalNumber(1, 2) * (new RationalNumber(0, 1)));
