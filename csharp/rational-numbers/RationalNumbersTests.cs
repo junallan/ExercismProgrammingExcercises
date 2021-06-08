@@ -52,7 +52,7 @@ public class RationalNumbersTests
         Assert.Equal(new RationalNumber(0, 1), new RationalNumber(1, 2) - (new RationalNumber(1, 2)));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Multiply_two_positive_rational_numbers()
     {
         Assert.Equal(new RationalNumber(1, 3), new RationalNumber(1, 2) * (new RationalNumber(2, 3)));
