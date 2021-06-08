@@ -88,9 +88,16 @@ public struct RationalNumber
     public static RationalNumber operator *(RationalNumber r1, RationalNumber r2)
     {
         //(a1 * a2) / (b1 * b2)
-        var numerator = r1.Numerator * r1.Denominator;
-        var denominator = r2.Numerator * r2.Denominator;
-        int greatestCommonDivisor = GreatestCommonDivisor(numerator, denominator);
+        var numerator = r1.Numerator * r2.Numerator;
+        var denominator = r1.Denominator * r2.Denominator;
+
+        //if (numerator < 0 && denominator < 0)
+        //{
+        //    numerator = Math.Abs(numerator);
+        //    denominator = Math.Abs(denominator);
+        //}
+
+        int greatestCommonDivisor = GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denominator));
 
         return new RationalNumber(numerator / greatestCommonDivisor, denominator / greatestCommonDivisor);
     }
