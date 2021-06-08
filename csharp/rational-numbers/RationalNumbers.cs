@@ -20,27 +20,35 @@ public struct RationalNumber
         Denominator = denominator;
     }
 
+    private static int GreatestCommonDivisor(int numerator, int denominator)
+    {
+        if (numerator == 0 || (numerator == denominator)) { return denominator; }
+        if (numerator == 1 || denominator == 1) { return 1; }
+
+        int largestPossibleDivisor = numerator < denominator ? numerator / 2 : denominator / 2;
+
+        bool isCommonDivisor = numerator % largestPossibleDivisor == 0 && denominator % largestPossibleDivisor == 0;
+        while (!isCommonDivisor)
+        {
+            --largestPossibleDivisor;
+            isCommonDivisor = numerator % largestPossibleDivisor == 0 && denominator % largestPossibleDivisor == 0;
+        }
+
+        return largestPossibleDivisor;
+
+    }
+
     public static RationalNumber operator +(RationalNumber r1, RationalNumber r2)
     {
-        var rationalNumber1Value = (decimal)r1.Numerator / r1.Denominator;
         var rationalNumber2Value = (decimal)r2.Numerator / r2.Denominator;
 
-        if(rationalNumber1Value < 0 && rationalNumber2Value < 0)
+        if(rationalNumber2Value < 0)
         {
-            var rational1Abs = r1.Abs();
-            var rational2Abs = r2.Abs();
-
-            var numerator = (rational1Abs.Numerator * rational2Abs.Denominator + rational1Abs.Denominator * rational2Abs.Numerator);
-            var denominator = (rational2Abs.Numerator * rational2Abs.Denominator);
-
-            return new RationalNumber(-numerator, denominator);
-
-        }
-        else if(rationalNumber2Value < 0)
-        {
-            var result = r1 - r2.Abs();
-            var resultAbs = result.Abs();
+            var resultAbs = r2.Abs();
             var greatestCommonDivisor = GreatestCommonDivisor(resultAbs.Numerator, resultAbs.Denominator);
+
+            var result = r1 - r2.Abs();
+
             return new RationalNumber(result.Numerator / greatestCommonDivisor, result.Denominator / greatestCommonDivisor);
         }
         else
@@ -53,27 +61,9 @@ public struct RationalNumber
        
     }
 
-    public static int GreatestCommonDivisor(int numerator, int denominator)
-    {
-        if (numerator == 0 || (numerator == denominator)) { return denominator; }
-        if (numerator == 1 || denominator == 1) { return 1; }
-
-        int largestPossibleDivisor = numerator < denominator ? numerator / 2 : denominator / 2;
-
-        bool isCommonDivisor = numerator % largestPossibleDivisor == 0 && denominator % largestPossibleDivisor == 0;
-        while(!isCommonDivisor)
-        {
-            --largestPossibleDivisor;
-            isCommonDivisor = numerator % largestPossibleDivisor == 0 && denominator % largestPossibleDivisor == 0;
-        }
-
-        return largestPossibleDivisor;
-
-    }
-
+ 
     public static RationalNumber operator -(RationalNumber r1, RationalNumber r2)
     {
-       // var rationalNumber1Value = (decimal)r1.Numerator / r1.Denominator;
         var rationalNumber2Value = (decimal)r2.Numerator / r2.Denominator;
         int greatestCommonDivisor;
 
@@ -89,6 +79,7 @@ public struct RationalNumber
 
         var numerator = r1.Numerator * r2.Denominator - r1.Denominator * r2.Numerator;
         var denominator = r2.Numerator * r2.Denominator;
+
         greatestCommonDivisor = GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denominator));
 
         return new RationalNumber(numerator / greatestCommonDivisor, denominator / greatestCommonDivisor);

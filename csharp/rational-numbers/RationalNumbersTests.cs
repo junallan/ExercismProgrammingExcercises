@@ -45,7 +45,7 @@ public class RationalNumbersTests
     {
         Assert.Equal(new RationalNumber(1, 6), new RationalNumber(-1, 2) - (new RationalNumber(-2, 3)));
     }
-
+     
     [Fact]
     public void Subtract_a_rational_number_from_itself()
     {
