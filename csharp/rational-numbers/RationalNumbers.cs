@@ -41,24 +41,25 @@ public struct RationalNumber
     public static RationalNumber operator +(RationalNumber r1, RationalNumber r2)
     {
         var rationalNumber2Value = (decimal)r2.Numerator / r2.Denominator;
+        int greatestCommonDivisor;
 
-        if(rationalNumber2Value < 0)
+        if (rationalNumber2Value < 0)
         {
             var resultAbs = r2.Abs();
-            var greatestCommonDivisor = GreatestCommonDivisor(resultAbs.Numerator, resultAbs.Denominator);
+
+            greatestCommonDivisor = GreatestCommonDivisor(resultAbs.Numerator, resultAbs.Denominator);
 
             var result = r1 - r2.Abs();
 
             return new RationalNumber(result.Numerator / greatestCommonDivisor, result.Denominator / greatestCommonDivisor);
         }
-        else
-        {
-            var numerator = (r1.Numerator * r2.Denominator + r1.Denominator * r2.Numerator);
-            var denominator = (r2.Numerator * r2.Denominator);
-
-            return new RationalNumber(numerator, denominator);
-        }
        
+        var numerator = (r1.Numerator * r2.Denominator + r1.Denominator * r2.Numerator);
+        var denominator = (r2.Numerator * r2.Denominator);
+
+        greatestCommonDivisor = GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denominator));
+
+        return new RationalNumber(numerator, denominator);
     }
 
  
