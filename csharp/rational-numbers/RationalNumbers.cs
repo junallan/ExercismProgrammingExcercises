@@ -97,7 +97,16 @@ public struct RationalNumber
 
     public static RationalNumber operator /(RationalNumber r1, RationalNumber r2)
     {
-        throw new NotImplementedException("You need to implement this operator.");
+        //r1 = a1/b1
+        //r2 = a2/b2 
+        //r1 / r2 = (a1 * b2) / (a2 * b1)
+
+        var numerator = r1.Numerator * r2.Denominator;
+        var denominator = r2.Numerator * r1.Denominator;
+
+        int greatestCommonDivisor = GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denominator));
+
+        return new RationalNumber(numerator / greatestCommonDivisor, denominator / greatestCommonDivisor);
     }
 
     public RationalNumber Abs()
