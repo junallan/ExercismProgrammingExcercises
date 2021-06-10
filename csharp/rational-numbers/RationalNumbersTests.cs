@@ -94,19 +94,19 @@ public class RationalNumbersTests
         Assert.Equal(new RationalNumber(3, 4), new RationalNumber(1, 2) / (new RationalNumber(2, 3)));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Divide_a_positive_rational_number_by_a_negative_rational_number()
     {
         Assert.Equal(new RationalNumber(-3, 4), new RationalNumber(1, 2) / (new RationalNumber(-2, 3)));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Divide_two_negative_rational_numbers()
     {
         Assert.Equal(new RationalNumber(3, 4), new RationalNumber(-1, 2) / (new RationalNumber(-2, 3)));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Divide_a_rational_number_by_1()
     {
         Assert.Equal(new RationalNumber(1, 2), new RationalNumber(1, 2) / (new RationalNumber(1, 1)));

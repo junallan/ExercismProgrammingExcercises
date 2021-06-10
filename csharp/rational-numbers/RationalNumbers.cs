@@ -105,6 +105,17 @@ public struct RationalNumber
         var denominator = r2.Numerator * r1.Denominator;
 
         int greatestCommonDivisor = GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denominator));
+        
+        if (numerator > 0 && denominator < 0)
+        {
+            numerator *= -1;
+            denominator *= -1;
+        }
+        else if(numerator < 0 && denominator < 0)
+        {
+            numerator *= -1;
+            denominator *= -1;
+        }
 
         return new RationalNumber(numerator / greatestCommonDivisor, denominator / greatestCommonDivisor);
     }
