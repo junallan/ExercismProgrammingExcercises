@@ -112,31 +112,31 @@ public class RationalNumbersTests
         Assert.Equal(new RationalNumber(1, 2), new RationalNumber(1, 2) / (new RationalNumber(1, 1)));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Absolute_value_of_a_positive_rational_number()
     {
         Assert.Equal(new RationalNumber(1, 2), new RationalNumber(1, 2).Abs());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Absolute_value_of_a_positive_rational_number_with_negative_numerator_and_denominator()
     {
         Assert.Equal(new RationalNumber(1, 2), new RationalNumber(-1, -2).Abs());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Absolute_value_of_a_negative_rational_number()
     {
         Assert.Equal(new RationalNumber(1, 2), new RationalNumber(-1, 2).Abs());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Absolute_value_of_a_negative_rational_number_with_negative_denominator()
     {
         Assert.Equal(new RationalNumber(1, 2), new RationalNumber(1, -2).Abs());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Absolute_value_of_zero()
     {
         Assert.Equal(new RationalNumber(0, 1), new RationalNumber(0, 1).Abs());
