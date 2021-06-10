@@ -135,7 +135,9 @@ public struct RationalNumber
 
     public RationalNumber Exprational(int power)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        //r = a/b
+        // r ^ n = (a ^ n) / (b ^ n)
+        return new RationalNumber((int)Math.Pow(Numerator, power), (int)Math.Pow(Denominator, power));
     }
 
     public double Expreal(int baseNumber)
