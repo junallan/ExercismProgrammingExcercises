@@ -3,11 +3,7 @@ using System.Diagnostics;
 
 public static class RealNumberExtension
 {
-    public static double Expreal(this int realNumber, RationalNumber r)
-    {
-        // root(x^a, b)
-        return r.Expreal(realNumber);
-    }
+    public static double Expreal(this int realNumber, RationalNumber r) => r.Expreal(realNumber);
 }
 
 public struct RationalNumber
@@ -98,10 +94,6 @@ public struct RationalNumber
 
     public static RationalNumber operator /(RationalNumber r1, RationalNumber r2)
     {
-        //r1 = a1/b1
-        //r2 = a2/b2 
-        //r1 / r2 = (a1 * b2) / (a2 * b1)
-
         var numerator = r1.Numerator * r2.Denominator;
         var denominator = r2.Numerator * r1.Denominator;
 
@@ -143,16 +135,7 @@ public struct RationalNumber
         return new RationalNumber(Numerator / greatestCommonDivisor, Denominator / greatestCommonDivisor);
     }
 
-    public RationalNumber Exprational(int power)
-    {
-        //r = a/b
-        // r ^ n = (a ^ n) / (b ^ n)
-        return new RationalNumber((int)Math.Pow(Numerator, power), (int)Math.Pow(Denominator, power));
-    }
+    public RationalNumber Exprational(int power) => new RationalNumber((int)Math.Pow(Numerator, power), (int)Math.Pow(Denominator, power));
 
-    public double Expreal(int baseNumber)
-    {
-        // root(x^a, b)
-        return Math.Pow(Math.Pow(baseNumber, Numerator), (double)1 / Denominator);
-    }
+    public double Expreal(int baseNumber) => Math.Pow(Math.Pow(baseNumber, Numerator), (double)1 / Denominator);
 }
