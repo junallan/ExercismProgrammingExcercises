@@ -66,9 +66,8 @@ public struct RationalNumber
         var numerator = r1.Numerator * r2.Numerator;
         var denominator = r1.Denominator * r2.Denominator;
 
-        int greatestCommonDivisor = GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denominator));
-
-        return new RationalNumber(numerator / greatestCommonDivisor, denominator / greatestCommonDivisor);
+        
+        return new RationalNumber(numerator, denominator).Reduce();
     }
 
     public static RationalNumber operator /(RationalNumber r1, RationalNumber r2)
