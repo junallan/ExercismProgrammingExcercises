@@ -36,7 +36,7 @@ public struct RationalNumber
 
     public static RationalNumber operator +(RationalNumber r1, RationalNumber r2)
     {
-        if (((decimal)r2.Numerator / r2.Denominator) < 0)
+        if (((double) r2.Numerator / r2.Denominator) < 0)
         {
             return (r1 - r2.Abs()).Reduce(); 
         }
@@ -50,7 +50,7 @@ public struct RationalNumber
  
     public static RationalNumber operator -(RationalNumber r1, RationalNumber r2)
     {
-        if (((decimal)r2.Numerator / r2.Denominator) < 0)
+        if (((double)r2.Numerator / r2.Denominator) < 0)
         {
             return (r1 + r2.Abs()).Reduce();
         }
