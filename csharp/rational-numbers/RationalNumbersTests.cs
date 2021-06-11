@@ -196,37 +196,37 @@ public class RationalNumbersTests
         Assert.Equal(1, 2.Expreal(new RationalNumber(0, 1)), precision: 7);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Reduce_a_positive_rational_number_to_lowest_terms()
     {
         Assert.Equal(new RationalNumber(1, 2), new RationalNumber(2, 4).Reduce());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Reduce_a_negative_rational_number_to_lowest_terms()
     {
         Assert.Equal(new RationalNumber(-2, 3), new RationalNumber(-4, 6).Reduce());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Reduce_a_rational_number_with_a_negative_denominator_to_lowest_terms()
     {
         Assert.Equal(new RationalNumber(-1, 3), new RationalNumber(3, -9).Reduce());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Reduce_zero_to_lowest_terms()
     {
         Assert.Equal(new RationalNumber(0, 1), new RationalNumber(0, 6).Reduce());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Reduce_an_integer_to_lowest_terms()
     {
         Assert.Equal(new RationalNumber(-2, 1), new RationalNumber(-14, 7).Reduce());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Reduce_one_to_lowest_terms()
     {
         Assert.Equal(new RationalNumber(1, 1), new RationalNumber(13, 13).Reduce());

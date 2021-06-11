@@ -131,7 +131,16 @@ public struct RationalNumber
 
     public RationalNumber Reduce()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        var absRational = this.Abs();
+        var greatestCommonDivisor = GreatestCommonDivisor(absRational.Numerator, absRational.Denominator);
+
+        if(Numerator > 0 && Denominator < 0)
+        {
+            Numerator *= -1;
+            Denominator *= -1;
+        }
+
+        return new RationalNumber(Numerator / greatestCommonDivisor, Denominator / greatestCommonDivisor);
     }
 
     public RationalNumber Exprational(int power)
