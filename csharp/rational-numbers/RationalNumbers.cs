@@ -65,8 +65,7 @@ public struct RationalNumber
     {
         var numerator = r1.Numerator * r2.Numerator;
         var denominator = r1.Denominator * r2.Denominator;
-
-        
+    
         return new RationalNumber(numerator, denominator).Reduce();
     }
 
