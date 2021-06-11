@@ -178,19 +178,19 @@ public class RationalNumbersTests
         Assert.Equal(new RationalNumber(1, 1), new RationalNumber(-1, 2).Exprational(0));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Raise_a_real_number_to_a_positive_rational_number()
     {
         Assert.Equal(16, 8.Expreal(new RationalNumber(4, 3)), precision: 7);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Raise_a_real_number_to_a_negative_rational_number()
     {
         Assert.Equal(0.33333334, 9.Expreal(new RationalNumber(-1, 2)), precision: 7);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Raise_a_real_number_to_a_zero_rational_number()
     {
         Assert.Equal(1, 2.Expreal(new RationalNumber(0, 1)), precision: 7);

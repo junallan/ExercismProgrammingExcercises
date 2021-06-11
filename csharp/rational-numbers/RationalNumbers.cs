@@ -5,7 +5,8 @@ public static class RealNumberExtension
 {
     public static double Expreal(this int realNumber, RationalNumber r)
     {
-        throw new NotImplementedException("You need to implement this extension method.");
+        // root(x^a, b)
+        return r.Expreal(realNumber);
     }
 }
 
@@ -142,6 +143,7 @@ public struct RationalNumber
 
     public double Expreal(int baseNumber)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        // root(x^a, b)
+        return Math.Pow(Math.Pow(baseNumber, Numerator), (double)1 / Denominator);
     }
 }
