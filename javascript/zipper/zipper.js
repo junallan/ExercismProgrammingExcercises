@@ -1,32 +1,37 @@
 export class Zipper {
-  constructor(tree) {
-      this._zipper = tree;
-  }
+    constructor(tree, parent) {
+        this._zipper = tree;
+        this._parent = parent
+    }
 
-  static fromTree(tree) {
-      return new Zipper(tree);
-  }
+    static fromTree(tree) {
+        return new Zipper(tree);
+    }
 
-  toTree() {
-      return this._zipper;
-  }
+    toTree() {
+        return this._zipper;
+    }
 
-  value() {
-      return this._zipper.value;
-  }
+    value() {
+        return this._zipper.value;
+    }
 
-  left() {
-      if (this._zipper.left === null) { return null; }
+    left() {
+        if (this._zipper.left === null) { return null; }
 
-      return new Zipper(this._zipper.left);
-  }
+        return new Zipper(this._zipper.left, this._zipper);
+    }
 
-  right() {
-      return new Zipper(this._zipper.right);
-  }
+    right() {
+        return new Zipper(this._zipper.right, this._zipper);
+    }
 
-  up() {
-    throw new Error('Remove this statement and implement this function');
+    up() {
+        if (this._parent === undefined || this._parent === null) { return null; }
+        console.log(this._parent);
+        //if (this._parent._parent === null) { return null; }
+
+      return new Zipper(this._parent, this._parent._parent);
   }
 
   setValue() {
