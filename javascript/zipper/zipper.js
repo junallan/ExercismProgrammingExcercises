@@ -12,15 +12,15 @@ export class Zipper {
   }
 
   value() {
-    throw new Error('Remove this statement and implement this function');
+      return this._zipper.value;
   }
 
   left() {
-    throw new Error('Remove this statement and implement this function');
+      return new Zipper(this._zipper.left);
   }
 
   right() {
-    throw new Error('Remove this statement and implement this function');
+      return new Zipper(this._zipper.right);
   }
 
   up() {

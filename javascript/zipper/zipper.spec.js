@@ -29,7 +29,7 @@ describe('Zipper', () => {
     expect(zipper.toTree()).toEqual(t1);
   });
 
-  xtest('left, right and value', () => {
+  test('left, right and value', () => {
     expect(zipper.left().right().value()).toEqual(3);
   });
 
