@@ -33,7 +33,7 @@ describe('Zipper', () => {
     expect(zipper.left().right().value()).toEqual(3);
   });
 
-  xtest('dead end', () => {
+  test('dead end', () => {
     expect(zipper.left().left()).toBe(null);
   });
 

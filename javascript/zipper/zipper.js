@@ -16,6 +16,8 @@ export class Zipper {
   }
 
   left() {
+      if (this._zipper.left === null) { return null; }
+
       return new Zipper(this._zipper.left);
   }
 
