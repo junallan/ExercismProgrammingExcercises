@@ -1,80 +1,60 @@
 import { traverse } from "@babel/core";
 
+function copy(tree) {
+    return tree && Object.assign({}, tree);
+}
+
 export class Zipper {
-    constructor(root, focus, parent) {
-        this._root = root;
+    constructor(focus, parent) {
         this._focus = focus;
-        this._parent = parent
+        this._parent = parent || null;
     }
 
-    static fromTree(root) {
-        return new Zipper(root,root);
+    static fromTree(focus) {
+        return new Zipper(copy(focus));
     }
 
     toTree() {
-        //console.log(this.up().up()._tree.left());
-        return this._root;
-        ////TO DO: TRAVERSE TO GET PARENT NODE
-        //let currentTree = this;
-        //let parentTree = this.up();
-        ////console.log(parentTree);
-        ////var parent = this._parent;
-
-        //while (parentTree !== null) {
-           
-        //    currentTree = parentTree;
-        //    //console.log(parentTree._parent);
-        //    //console.log(parentTree.left);
-        //    //console.log(parentTree);
-        //    parentTree = parentTree.up();
-           
-         
-        //}
-        ////console.log(currentTree._tree);
-        //return currentTree._tree;
+        return this._parent ? this._parent.toTree() : this._focus;
     }
 
     value() {
-        //console.log(this._tree);
         return this._focus.value;
     }
 
     left() {
-        //console.log(this._tree);
-        if (this._focus.left === null) { return null; }
-       
-        return new Zipper(this._root, this._focus.left, this._focus);
+        this._focus.left = copy(this._focus.left);
+        let next = this._focus.left;
+
+        return next ? new Zipper(next, this) : null;
     }
 
     right() {
-        //console.log(this._tree);
-        return new Zipper(this._root, this._focus.right, this._focus);
+        this._focus.right = copy(this._focus.right);
+        let next = this._focus.right;
+
+        return next ? new Zipper(next, this) : null;
     }
 
     up() {
-        if (this._parent === undefined || this._parent === null) { return null; }
-        //console.log(this._parent);
-        //if (this._parent._parent === null) { return null; }
-        //console.log(this._parent);
-        //console.log(this._parent._parent);
-      return new Zipper(this._root, this._parent);
-  }
+        return this._parent;
+    }
 
-  setValue(value) {
-      this._focus.value = value;
-      //TODO
-      return new Zipper(this._root, this._focus, this._parent);
-  }
+    setValue(value) {
+        this._focus.value = value;
+
+        return new Zipper(this._focus, this._parent);
+    }
 
     setLeft(branch) {
-        console.log(this._focus);
         this._focus.left = branch;
-        console.log(this._focus);
 
-      return new Zipper(this._root, this._focus, this._parent);
-  }
+        return new Zipper(this._focus.left, this);
+    }
 
-  setRight() {
-    throw new Error('Remove this statement and implement this function');
-  }
+    setRight(branch) {
+        this._focus.right = branch;
+
+        return new Zipper(this._focus.right, this);
+    }
 }

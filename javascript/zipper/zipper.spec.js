@@ -61,44 +61,44 @@ describe('Zipper', () => {
     expect(zipper.left().setLeft(leaf(5)).toTree()).toEqual(t3);
   });
 
-  xtest('setRight with null', () => {
+  test('setRight with null', () => {
     expect(zipper.left().setRight(null).toTree()).toEqual(t4);
   });
 
-  xtest('setRight with subtree', () => {
+  test('setRight with subtree', () => {
     expect(zipper.setRight(bt(6, leaf(7), leaf(8))).toTree()).toEqual(t5);
   });
 
-  xtest('setValue on deep focus', () => {
+  test('setValue on deep focus', () => {
     expect(zipper.left().right().setValue(5).toTree()).toEqual(t6);
   });
 
-  xtest('left returns a new Zipper', () => {
+  test('left returns a new Zipper', () => {
     const left = zipper.left();
     expect(left).not.toBe(zipper);
   });
 
-  xtest('right returns a new Zipper', () => {
+  test('right returns a new Zipper', () => {
     const right = zipper.right();
     expect(right).not.toBe(zipper);
   });
 
-  xtest('setValue returns a new Zipper', () => {
+  test('setValue returns a new Zipper', () => {
     const anotherZipper = zipper.setValue(99);
     expect(anotherZipper).not.toBe(zipper);
   });
 
-  xtest('setRight returns a new Zipper', () => {
+  test('setRight returns a new Zipper', () => {
     const right = zipper.setRight(bt(55, null, null));
     expect(right).not.toBe(zipper);
   });
 
-  xtest('setLeft returns a new Zipper', () => {
+  test('setLeft returns a new Zipper', () => {
     const left = zipper.setLeft(bt(55, null, null));
     expect(left).not.toBe(zipper);
   });
 
-  xtest('up returns a new Zipper', () => {
+  test('up returns a new Zipper', () => {
     const up = zipper.right().up();
     expect(zipper).not.toBe(up);
   });
