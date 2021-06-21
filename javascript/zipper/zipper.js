@@ -1,9 +1,3 @@
-import { traverse } from "@babel/core";
-
-function copy(tree) {
-    return tree && Object.assign({}, tree);
-}
-
 export class Zipper {
     constructor(focus, parent) {
         this._focus = focus;
@@ -11,7 +5,8 @@ export class Zipper {
     }
 
     static fromTree(focus) {
-        return new Zipper(copy(focus));
+        let treeCopy = JSON.parse(JSON.stringify(focus));
+        return new Zipper(treeCopy);
     }
 
     toTree() {
@@ -23,17 +18,11 @@ export class Zipper {
     }
 
     left() {
-        this._focus.left = copy(this._focus.left);
-        let next = this._focus.left;
-
-        return next ? new Zipper(next, this) : null;
+        return this._focus.left ? new Zipper(this._focus.left, this) : null;
     }
 
     right() {
-        this._focus.right = copy(this._focus.right);
-        let next = this._focus.right;
-
-        return next ? new Zipper(next, this) : null;
+        return this._focus.right ? new Zipper(this._focus.right, this) : null;
     }
 
     up() {
