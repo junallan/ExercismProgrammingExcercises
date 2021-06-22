@@ -1,16 +1,17 @@
 export class Zipper {
-    constructor(focus, parent) {
+    constructor(focus, root, upper) {
         this._focus = focus;
-        this._parent = parent || null;
+        this._root = root;
+        this._upper = upper || [];
     }
 
     static fromTree(focus) {
         let treeCopy = JSON.parse(JSON.stringify(focus));
-        return new Zipper(treeCopy);
+        return new Zipper(treeCopy, treeCopy);
     }
 
     toTree() {
-        return this._parent ? this._parent.toTree() : this._focus;
+        return this._root;//this._parent ? this._parent.toTree() : this._focus;
     }
 
     value() {
@@ -18,32 +19,45 @@ export class Zipper {
     }
 
     left() {
-        return this._focus.left ? new Zipper(this._focus.left, this) : null;
+        if (this._focus.left === null) { return null; }
+
+        this._upper.push(this._focus);
+        this._focus = this._focus.left;
+
+        return new Zipper(this._focus, this._root, this._upper);
     }
 
     right() {
-        return this._focus.right ? new Zipper(this._focus.right, this) : null;
+        if (this._focus.right === null) { return null; }
+
+        this._upper.push(this._focus);
+        this._focus = this._focus.right;
+
+        return new Zipper(this._focus, this._root, this._upper);
     }
 
     up() {
-        return this._parent;
+        if (this._upper.length === 0) { return null; }
+        this._focus = this._upper.pop();
+        //console.log(this._focus);
+        return new Zipper(this._focus, this._root, this._upper);
     }
 
     setValue(value) {
         this._focus.value = value;
 
-        return new Zipper(this._focus, this._parent);
+        return new Zipper(this._focus, this._root, this._upper);
     }
 
     setLeft(branch) {
         this._focus.left = branch;
 
-        return new Zipper(this._focus.left, this);
+        return new Zipper(this._focus, this._root, this._upper);
     }
 
     setRight(branch) {
         this._focus.right = branch;
 
-        return new Zipper(this._focus.right, this);
+        return new Zipper(this._focus, this._root, this._upper);
     }
 }
