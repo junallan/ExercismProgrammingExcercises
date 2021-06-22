@@ -11,7 +11,7 @@ export class Zipper {
     }
 
     toTree() {
-        return this._root;//this._parent ? this._parent.toTree() : this._focus;
+        return this._root;
     }
 
     value() {
@@ -39,7 +39,7 @@ export class Zipper {
     up() {
         if (this._upper.length === 0) { return null; }
         this._focus = this._upper.pop();
-        //console.log(this._focus);
+
         return new Zipper(this._focus, this._root, this._upper);
     }
 
