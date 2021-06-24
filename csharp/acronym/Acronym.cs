@@ -7,8 +7,8 @@ public static class Acronym
 {
     public static string Abbreviate(string phrase)
     {
-        MatchCollection matches = Regex.Matches(phrase, @"\b[a-zA-Z]");
+        MatchCollection matches = Regex.Matches(phrase.Replace("'",string.Empty), @"\b[a-zA-Z]");
 
-        return string.Join("", matches.Select(m => m.Value.ToUpper()));
+        return string.Join(string.Empty, matches.Select(m => m.Value.ToUpper()));
     }
 }
