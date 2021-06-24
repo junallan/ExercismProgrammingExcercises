@@ -52,7 +52,7 @@ public class AcronymTests
         Assert.Equal("HC", Acronym.Abbreviate("Halley's Comet"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Underscore_emphasis()
     {
         Assert.Equal("TRNT", Acronym.Abbreviate("The Road _Not_ Taken"));
