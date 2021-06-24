@@ -11,6 +11,6 @@ public static class Acronym
                                                       .Replace("_",string.Empty), 
                                                 @"\b[a-zA-Z]");
 
-        return string.Join(string.Empty, matches.Select(m => m.Value.ToUpper()));
+        return string.Join(string.Empty, matches.Select(m => m.Value)).ToUpper();
     }
 }
