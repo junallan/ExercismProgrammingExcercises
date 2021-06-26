@@ -46,6 +46,6 @@ public class Matrix
 
     public int[] Column(int col)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return Enumerable.Range(0, _matrix.GetLength(0)).Select(x => _matrix[x, col - 1]).ToArray();
     }
 }
