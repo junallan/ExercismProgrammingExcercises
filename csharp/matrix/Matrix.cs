@@ -23,29 +23,11 @@ public class Matrix
         }
     }
 
-    public int Rows
-    {
-        get
-        {
-            throw new NotImplementedException("You need to implement this function.");
-        }
-    }
+    public int Rows => _matrix.GetLength(0);
 
-    public int Cols
-    {
-        get
-        {
-            throw new NotImplementedException("You need to implement this function.");
-        }
-    }
+    public int Cols => _matrix.GetLength(1);
 
-    public int[] Row(int row)
-    {
-        return Enumerable.Range(0, _matrix.GetLength(1)).Select(x => _matrix[row - 1, x]).ToArray();
-    }
+    public int[] Row(int row) => Enumerable.Range(0, Cols).Select(x => _matrix[row - 1, x]).ToArray();
 
-    public int[] Column(int col)
-    {
-        return Enumerable.Range(0, _matrix.GetLength(0)).Select(x => _matrix[x, col - 1]).ToArray();
-    }
+    public int[] Column(int col) => Enumerable.Range(0, Rows).Select(x => _matrix[x, col - 1]).ToArray();
 }
