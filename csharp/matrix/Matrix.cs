@@ -15,7 +15,7 @@ public class Matrix
 
     public int Cols => _matrix.First().Length;
 
-    public int[] Row(int row) => Enumerable.Range(0, Cols).Select(x => _matrix[row - 1][x]).ToArray();
+    public int[] Row(int row) => _matrix[row - 1];
 
-    public int[] Column(int col) => Enumerable.Range(0, Rows).Select(x => _matrix[x][col - 1]).ToArray();
+    public int[] Column(int col) => _matrix.Select(row => row[col - 1]).ToArray(); 
 }
