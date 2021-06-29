@@ -77,19 +77,19 @@ public class LargestSeriesProductTests
         Assert.Equal(1, LargestSeriesProduct.GetLargestProduct("123", 0));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Rejects_empty_string_and_nonzero_span()
     {
         Assert.Throws<ArgumentException>(() => LargestSeriesProduct.GetLargestProduct("", 1));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Rejects_invalid_character_in_digits()
     {
         Assert.Throws<ArgumentException>(() => LargestSeriesProduct.GetLargestProduct("1234a5", 2));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Rejects_negative_span()
     {
         Assert.Throws<ArgumentException>(() => LargestSeriesProduct.GetLargestProduct("12345", -1));
