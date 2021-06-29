@@ -6,6 +6,7 @@ public static class LargestSeriesProduct
     public static long GetLargestProduct(string digits, int span) 
     {
         if (span > digits.Length) { throw new ArgumentException(); }
+        if (span == 0 && digits == string.Empty) { return 1; }
 
         long result = 0;
 

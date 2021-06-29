@@ -65,11 +65,11 @@ public class LargestSeriesProductTests
         Assert.Throws<ArgumentException>(() => LargestSeriesProduct.GetLargestProduct("123", 4));
     }
 
-    //[Fact]
-    //public void Reports_1_for_empty_string_and_empty_product_0_span_()
-    //{
-    //    Assert.Equal(1, LargestSeriesProduct.GetLargestProduct("", 0));
-    //}
+    [Fact]
+    public void Reports_1_for_empty_string_and_empty_product_0_span_()
+    {
+        Assert.Equal(1, LargestSeriesProduct.GetLargestProduct("", 0));
+    }
 
     [Fact(Skip = "Remove this Skip property to run this test")]
     public void Reports_1_for_nonempty_string_and_empty_product_0_span_()
