@@ -5,6 +5,8 @@ public static class LargestSeriesProduct
 {
     public static long GetLargestProduct(string digits, int span) 
     {
+        if (span > digits.Length) { throw new ArgumentException(); }
+
         long result = 0;
 
         long substringProduct(int startIndex, int endIndex) => digits.Substring(startIndex, endIndex)
