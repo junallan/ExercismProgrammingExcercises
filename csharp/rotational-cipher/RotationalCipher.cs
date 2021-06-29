@@ -8,25 +8,12 @@ public static class RotationalCipher
     {
         const string alphabetLower = "abcdefghijklmnopqrstuvwxyz";
         string alphabetUpper = alphabetLower.ToUpper();
-        char[] convertedText = new char[text.Length];
 
-        for(int i=0; i< text.Length; i++)
-        {
-            if(alphabetLower.Contains(text[i]))
-            {
-                convertedText[i] = LetterRotation(text[i], shiftKey, alphabetLower);
-            }
-            else if(alphabetUpper.Contains(text[i]))
-            {
-                convertedText[i] = LetterRotation(text[i], shiftKey, alphabetUpper);
-            }
-            else
-            {
-                convertedText[i] = text[i];
-            }
-        }
-
-        return string.Concat(convertedText);
+        return string.Concat(text.Select(x => alphabetLower.Contains(x) ? 
+                                    LetterRotation(x, shiftKey, alphabetLower) 
+                                    : alphabetUpper.Contains(x.ToString()) ? 
+                                        LetterRotation(x, shiftKey, alphabetUpper) 
+                                        : x));
     }
 
     private static char LetterRotation(char letter, int shiftKey, string alphabetLower) => alphabetLower.ElementAt((alphabetLower.IndexOf(letter) + shiftKey) % alphabetLower.Length);
