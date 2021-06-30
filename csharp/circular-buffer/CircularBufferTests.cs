@@ -20,7 +20,7 @@ public class CircularBufferTests
         Assert.Equal(1, buffer.Read());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Each_item_may_only_be_read_once()
     {
         var buffer = new CircularBuffer<int>(capacity: 1);
@@ -29,7 +29,7 @@ public class CircularBufferTests
         Assert.Throws<InvalidOperationException>(() => buffer.Read());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Items_are_read_in_the_order_they_are_written()
     {
         var buffer = new CircularBuffer<int>(capacity: 2);
@@ -39,7 +39,7 @@ public class CircularBufferTests
         Assert.Equal(2, buffer.Read());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Full_buffer_cant_be_written_to()
     {
         var buffer = new CircularBuffer<int>(capacity: 1);

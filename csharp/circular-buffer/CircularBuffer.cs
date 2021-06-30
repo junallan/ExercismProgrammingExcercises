@@ -20,6 +20,8 @@ public class CircularBuffer<T>
 
     public void Write(T value)
     {
+        if (Math.Abs(_endIndex - _startIndex) == _bufferData.Length) { throw new InvalidOperationException(); }
+
         _bufferData[_endIndex++] = value;
 
     }
