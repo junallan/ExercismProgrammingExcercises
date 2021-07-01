@@ -97,7 +97,7 @@ public class CircularBufferTests
         Assert.Equal(1, buffer.Read());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Overwrite_acts_like_write_on_non_full_buffer()
     {
         var buffer = new CircularBuffer<int>(capacity: 2);
@@ -107,7 +107,7 @@ public class CircularBufferTests
         Assert.Equal(2, buffer.Read());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Overwrite_replaces_the_oldest_item_on_full_buffer()
     {
         var buffer = new CircularBuffer<int>(capacity: 2);
@@ -118,7 +118,7 @@ public class CircularBufferTests
         Assert.Equal(3, buffer.Read());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Overwrite_replaces_the_oldest_item_remaining_in_buffer_following_a_read()
     {
         var buffer = new CircularBuffer<int>(capacity: 3);
@@ -133,7 +133,7 @@ public class CircularBufferTests
         Assert.Equal(5, buffer.Read());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Initial_clear_does_not_affect_wrapping_around()
     {
         var buffer = new CircularBuffer<int>(capacity: 2);

@@ -29,15 +29,23 @@ public class CircularBuffer<T>
     public void Write(T value)
     {
         if (_itemsAdded == _bufferData.Length) { throw new InvalidOperationException(); }
-        //_startIndex = ++_startIndex % _bufferData.Length;
-
-        _bufferData[_startIndex + _itemsAdded] = value;
+      
+        _bufferData[(_startIndex + _itemsAdded) % _bufferData.Length] = value;
         _itemsAdded++;
     }
 
     public void Overwrite(T value)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        _bufferData[(_startIndex + _itemsAdded) % _bufferData.Length] = value;
+
+        if (_itemsAdded == _bufferData.Length)
+        {
+            _startIndex = ++_startIndex % _bufferData.Length;
+        }
+        else
+        {
+            _itemsAdded++;
+        }
     }
 
     public void Clear()
