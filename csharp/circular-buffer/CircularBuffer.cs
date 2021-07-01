@@ -42,6 +42,8 @@ public class CircularBuffer<T>
 
     public void Clear()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        _bufferData = new T[_bufferData.Length];
+        _startIndex = 0;
+        _itemsAdded = 0;
     }
 }
