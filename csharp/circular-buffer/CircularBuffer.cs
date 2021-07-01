@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Linq;
 
 public class CircularBuffer<T>
 {
     private T[] _bufferData;
     private int _startIndex;
-    private int _endIndex;
+    private int _itemsAdded;
+     
 
     public CircularBuffer(int capacity)
     {
@@ -13,17 +15,24 @@ public class CircularBuffer<T>
 
     public T Read()
     {
-        if (_startIndex == _endIndex) { throw new InvalidOperationException(); }
+        if(_itemsAdded == 0) { throw new InvalidOperationException(); }
 
-        return _bufferData[_startIndex++];
+        _itemsAdded--;
+
+        var readData = _bufferData[_startIndex];
+
+        _startIndex = ++_startIndex % _bufferData.Length;
+
+        return readData;
     }
 
     public void Write(T value)
     {
-        if (Math.Abs(_endIndex - _startIndex) == _bufferData.Length) { throw new InvalidOperationException(); }
+        if (_itemsAdded == _bufferData.Length) { throw new InvalidOperationException(); }
+        //_startIndex = ++_startIndex % _bufferData.Length;
 
-        _bufferData[_endIndex++] = value;
-
+        _bufferData[_startIndex + _itemsAdded] = value;
+        _itemsAdded++;
     }
 
     public void Overwrite(T value)
