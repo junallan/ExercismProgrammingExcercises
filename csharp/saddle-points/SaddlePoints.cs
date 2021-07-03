@@ -6,42 +6,29 @@ public static class SaddlePoints
 {
     public static IEnumerable<(int, int)> Calculate(int[,] matrix)
     {
-        var potentialSaddlePointCoordinates = new List<Tuple<int, int>>();
+        var saddlePointCoordinates = new HashSet<(int,int)>();
 
         for(int rowIndex=0; rowIndex<matrix.GetLength(0); rowIndex++)
         {
             var rowValues = GetRow(matrix, rowIndex);
-
             var maxRowValue = rowValues.Max();
+            var maxRowData = rowValues.Select((value, index) => (value, index)).Where(x => x.value == maxRowValue);
 
-            var columnIndexMaxValue = Array.IndexOf(rowValues, maxRowValue);
+            foreach(var item in maxRowData)
+            {
+                var columnValues = GetColumn(matrix, item.index);
+                var minColumnValue = columnValues.Min();
 
-            var columnValues = GetColumn(matrix, columnIndexMaxValue);
-            var minColumnValue = columnValues.Min();
+                if(maxRowValue == minColumnValue)
+                {
+                    var minColumnData = columnValues.Select((value, index) => (value, index)).Where(x => x.value == minColumnValue);
 
-            var rowIndexMinValue = Array.IndexOf(columnValues, minColumnValue);
+                    minColumnData.ToList().ForEach(x => saddlePointCoordinates.Add((rowIndex + 1, item.index + 1)));
+                }          
+            }
         }
 
-        return null;
-        //for (int row=0; row<matrix.GetLength(0); row++)
-        //{
-        //    int maxValue = 0;
- 
-        //    for(int column=0; column<matrix.GetLength(1); column++)
-        //    {
-        //        if (matrix[row, column] > maxValue) 
-        //        {
-        //            potentialSaddlePointCoordinates.Clear();
-        //            potentialSaddlePointCoordinates.Add(Tuple.Create(row, column));
-        //        }
-        //        else if(matrix[row, column] == maxValue)
-        //        {
-        //            potentialSaddlePointCoordinates.Add(Tuple.Create(row, column));
-        //        }
-        //    }  
-        //}
-
-        //potentialS
+        return saddlePointCoordinates;
     }
 
     public static int[] GetColumn(int[,] matrix, int columnNumber)
