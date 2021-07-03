@@ -44,5 +44,4 @@ public static class SaddlePoints
                          .Select(x => matrix[rowNumber, x])
                          .ToArray();
     }
-
 }
