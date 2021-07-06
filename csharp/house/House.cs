@@ -9,28 +9,37 @@ public static class House
      
     public static string Recite(int verseNumber)
     {
-        return Recite(1, verseNumber);
-    }
+        Dictionary<int, string> sentenceNouns = new Dictionary<int, string>() { { 1, "malt" }, { 2, "rat" } };
+        Dictionary<int, string> sentenceVerbs = new Dictionary<int, string>() { { 1, "ate" } };
 
-    public static string Recite(int startVerse, int endVerse)
-    {
-        Dictionary<int, string> sentenceNouns = new Dictionary<int, string>() { { 1, "malt" } };
-        Dictionary<int, string> sentenceVerbs = new Dictionary<int, string>() { };
+        int indexEnd = (verseNumber + (NumberOfVerses - 1)) % NumberOfVerses;
 
-        int indexStart = (startVerse + (NumberOfVerses - 1)) % NumberOfVerses;
-        int indexEnd = (endVerse + (NumberOfVerses - 1)) % NumberOfVerses;
-       
-        if (indexStart == 0 && indexStart == indexEnd)
+        if (indexEnd == 0)
         {
             return "This is the house that Jack built.";
         }
 
-
         List<string> sentences = new List<string>();
 
         sentences.Add($"This is the {sentenceNouns[indexEnd]}");
+
+
+        if (indexEnd > 1)
+        {
+            for (var i = 1; i < indexEnd; i++)
+            {
+                sentences.Add($"that {sentenceVerbs[i]} the {sentenceNouns[i]}");
+            }
+        }
+
         sentences.Add("that lay in the house that Jack built.");
 
         return string.Join(" ", sentences);
     }
+
+    public static string Recite(int startVerse, int endVerse)
+    {
+        return string.Empty;
+    }
 }
+
