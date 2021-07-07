@@ -25,7 +25,7 @@ public class HouseTests
         Assert.Equal(expected, House.Recite(3));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Verse_four_the_cat_that_killed()
     {
         var expected = "This is the cat that killed the rat that ate the malt that lay in the house that Jack built.";

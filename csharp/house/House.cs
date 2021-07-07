@@ -9,9 +9,9 @@ public static class House
      
     public static string Recite(int verseNumber)
     {
-        Dictionary<int, string> sentenceNouns = new Dictionary<int, string>() { { 1, "malt" }, { 2, "rat" } };
-        Dictionary<int, string> sentenceVerbs = new Dictionary<int, string>() { { 1, "ate" } };
-
+        Dictionary<int, string> sentenceNouns = new Dictionary<int, string>() { { 1, "malt" }, { 2, "rat" }, { 3, "cat" } };
+        Dictionary<int, string> sentenceVerbs = new Dictionary<int, string>() { { 1, "ate" }, { 2, "killed" } };
+        
         int indexEnd = (verseNumber + (NumberOfVerses - 1)) % NumberOfVerses;
 
         if (indexEnd == 0)
@@ -26,7 +26,7 @@ public static class House
 
         if (indexEnd > 1)
         {
-            for (var i = 1; i < indexEnd; i++)
+            for (var i = indexEnd-1; 0 < i; i--)
             {
                 sentences.Add($"that {sentenceVerbs[i]} the {sentenceNouns[i]}");
             }
