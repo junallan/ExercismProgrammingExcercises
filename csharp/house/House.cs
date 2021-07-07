@@ -9,8 +9,8 @@ public static class House
      
     public static string Recite(int verseNumber)
     {
-        Dictionary<int, string> sentenceNouns = new Dictionary<int, string>() { { 1, "malt" }, { 2, "rat" }, { 3, "cat" }, { 4, "dog"} };
-        Dictionary<int, string> sentenceVerbs = new Dictionary<int, string>() { { 1, "ate" }, { 2, "killed" }, { 3, "worried"} };
+        Dictionary<int, string> sentenceNouns = new Dictionary<int, string>() { { 1, "malt" }, { 2, "rat" }, { 3, "cat" }, { 4, "dog"}, { 5, "cow with the crumpled horn"} };
+        Dictionary<int, string> sentenceVerbs = new Dictionary<int, string>() { { 1, "ate" }, { 2, "killed" }, { 3, "worried"}, { 4, "tossed"} };
         
         int indexEnd = (verseNumber + (NumberOfVerses - 1)) % NumberOfVerses;
 
