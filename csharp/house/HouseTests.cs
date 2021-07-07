@@ -88,7 +88,7 @@ public class HouseTests
         Assert.Equal(expected, House.Recite(12));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Multiple_verses()
     {
         var expected = 
@@ -100,7 +100,7 @@ public class HouseTests
         Assert.Equal(expected, House.Recite(4, 8));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Full_rhyme()
     {
         var expected = 
