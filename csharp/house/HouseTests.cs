@@ -46,7 +46,7 @@ public class HouseTests
         Assert.Equal(expected, House.Recite(6));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Verse_seven_the_maiden_all_forlorn()
     {
         var expected = "This is the maiden all forlorn that milked the cow with the crumpled horn that tossed the dog that worried the cat that killed the rat that ate the malt that lay in the house that Jack built.";
