@@ -31,6 +31,7 @@ public static class House
 
     public static string Recite(int startVerse, int endVerse)
     {
+        //return string.Join("\n", Enumerable.Range(startVerse, endVerse).Select(i => $"{Recite(i)}")).TrimEnd();
         //var entirePoem = string.Concat(Enumerable.Range(startVerse, endVerse).Select(i => $"{Recite(i)}\n"));
 
         //return entirePoem.Substring(0, entirePoem.Length - 1);
@@ -41,6 +42,6 @@ public static class House
             nurseryRhyme.Append($"{Recite(i)}\n");
         }
 
-        return nurseryRhyme.ToString().Substring(0, nurseryRhyme.Length - 1);
+        return nurseryRhyme.ToString().TrimEnd('\n');
     }
 }
