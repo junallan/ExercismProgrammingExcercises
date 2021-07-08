@@ -35,8 +35,7 @@ public static class House
 
         for(int i=startVerse; i<=endVerse; i++)
         {
-            nurseryRhyme.Append($"{Recite(i)}");
-            nurseryRhyme.Append("\x0A");
+            nurseryRhyme.Append($"{Recite(i)}\n");
         }
 
         return nurseryRhyme.ToString().Substring(0,nurseryRhyme.Length-1);
