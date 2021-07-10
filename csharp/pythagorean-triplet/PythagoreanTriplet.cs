@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class PythagoreanTriplet
 {
@@ -7,16 +8,10 @@ public static class PythagoreanTriplet
     {
         Func<int, int, int, bool> isPythagoreanTriplet = (a, b, c) => (Math.Pow(a, 2) + Math.Pow(b, 2)) == Math.Pow(c, 2);
 
-        for(int a = 1; a <sum / 3; a++)
-        {
-            for(int b = a + 1; b < sum - a; b++)
-            {
-                int c = sum - b - a;
-
-                if (c < b) break;
-
-                if (isPythagoreanTriplet(a, b, c)) yield return (a, b, c);
-            }
-        }
+        return  Enumerable.Range(1, (sum / 3) - 1)
+                        .Select(a => Enumerable.Range(a + 1, sum - a - 1).Select(b => (a, b))
+                                               .Where(x => isPythagoreanTriplet(x.a, x.b, sum - x.a - x.b))
+                                               .Select(x => (x.a, x.b, sum - x.a - x.b)))
+                        .SelectMany(x => x);
     }
 }
