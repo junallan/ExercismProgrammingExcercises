@@ -1,30 +1,23 @@
 export class Matrix {
     constructor(matrix) {
-        this._rows = [];    
-        this._columns = [];
+        this._matrix = matrix.split("\n").map(row => row.split(" ").map(Number));
 
-        let matrixRow = matrix.split("\n");
-        let matrixRowsCount = matrixRow.length;
-        let matrixColumnsCount = matrixRow[0].split(" ").length;
+        let transpose = (matrixToTranspose) => {
+            return matrixToTranspose[0].map((_, i) => {
+                return matrixToTranspose.map((row) => {
+                    return row[i];
+                });
+            });
+        };  
 
-        let elements = matrixRow.join().split(" ").join().split(",").map(Number);
-
-        for (let i = 0; i < matrixRowsCount; i++) {
-            let rowItems = elements.filter((_, index) => Math.floor(index / matrixColumnsCount) === i);
-            this._rows.push(rowItems);
-        }
-
-        for (let i = 0; i < matrixColumnsCount; i++) {
-            let columnItems = elements.filter((_, index) => index % matrixColumnsCount === i);
-            this._columns.push(columnItems);         
-        }
+        this._transposedMatrix = transpose(this._matrix);
   }
 
   get rows() {
-      return this._rows;
+      return this._matrix;
   }
 
   get columns() {
-      return this._columns;
-  }
+      return this._transposedMatrix;
+    }
 }
