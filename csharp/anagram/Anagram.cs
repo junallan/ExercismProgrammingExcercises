@@ -10,17 +10,11 @@ public class Anagram
     public Anagram(string baseWord)
     {
         _baseWordLowercase = baseWord.ToLower();
-        _baseWordSortedLowercase = SortedWord(_baseWordLowercase);
+        _baseWordSortedLowercase = new string(_baseWordLowercase.OrderBy(x => x).ToArray());
     }
 
-    public string[] FindAnagrams(string[] potentialMatches) => potentialMatches.Where(pm => pm.ToLower() != _baseWordLowercase 
-                                                                                        && _baseWordSortedLowercase == SortedWord(pm.ToLower()))
-                                                                                .ToArray();
-    private string SortedWord(string word)
-    {
-        char[] wordSort = word.ToCharArray();
-        Array.Sort(wordSort);
-
-        return new string(wordSort);
-    }
+    public string[] FindAnagrams(string[] potentialMatches) 
+        => potentialMatches.Where(pm => pm.ToLower() != _baseWordLowercase
+                                   && _baseWordSortedLowercase == new string(pm.ToLower().OrderBy(x => x).ToArray()))
+                           .ToArray();
 }
