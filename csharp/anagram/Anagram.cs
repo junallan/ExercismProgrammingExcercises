@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Anagram
 {
@@ -12,18 +13,9 @@ public class Anagram
         _baseWordSortedLowercase = SortedWord(_baseWordLowercase);
     }
 
-    public string[] FindAnagrams(string[] potentialMatches)
-    {
-        List<string> anagrams = new List<string>();
-
-        foreach (var potentialMatch in potentialMatches)
-        {
-            if (_baseWordLowercase == potentialMatch.ToLower()) continue;
-            if (_baseWordSortedLowercase == SortedWord(potentialMatch.ToLower())) anagrams.Add(potentialMatch);
-        }
-
-        return anagrams.ToArray();
-    }
+    public string[] FindAnagrams(string[] potentialMatches) => potentialMatches.Where(pm => pm.ToLower() != _baseWordLowercase 
+                                                                                        && _baseWordSortedLowercase == SortedWord(pm.ToLower()))
+                                                                                .ToArray();
     private string SortedWord(string word)
     {
         char[] wordSort = word.ToCharArray();
