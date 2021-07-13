@@ -17,13 +17,13 @@ describe('Transpose', () => {
     expect(transpose(input)).toEqual(expected);
   });
 
-  xtest('simple', () => {
+  test('simple', () => {
     const input = ['ABC', '123'];
     const expected = ['A1', 'B2', 'C3'];
     expect(transpose(input)).toEqual(expected);
   });
 
-  xtest('single line', () => {
+  test('single line', () => {
     const input = ['Single line.'];
     const expected = [
       'S',
@@ -42,7 +42,7 @@ describe('Transpose', () => {
     expect(transpose(input)).toEqual(expected);
   });
 
-  xtest('first line longer than second line', () => {
+  test('first line longer than second line', () => {
     const input = ['The fourth line.', 'The fifth line.'];
     const expected = [
       'TT',
@@ -65,7 +65,7 @@ describe('Transpose', () => {
     expect(transpose(input)).toEqual(expected);
   });
 
-  xtest('second line longer than first line', () => {
+  test('second line longer than first line', () => {
     const input = ['The first line.', 'The second line.'];
     const expected = [
       'TT',
