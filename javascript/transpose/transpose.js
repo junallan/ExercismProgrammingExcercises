@@ -1,7 +1,7 @@
 export const transpose = (matrix) => {
 	if (matrix.length === 0) return [];
 
-	let result = [...matrix[0]].map((_, index) => matrix.map(row => row[index]));
+	let result = [...matrix[0]].map((_, index) => matrix.map(row => row[index]).join(''));
 	//console.log(result);
-	return result.flat();
+	return result;
 };

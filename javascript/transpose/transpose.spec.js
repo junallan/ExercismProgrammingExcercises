@@ -11,7 +11,7 @@ describe('Transpose', () => {
     expect(transpose(input)).toEqual(expected);
   });
 
-  xtest('two characters in a column', () => {
+  test('two characters in a column', () => {
     const input = ['A', '1'];
     const expected = ['A1'];
     expect(transpose(input)).toEqual(expected);
