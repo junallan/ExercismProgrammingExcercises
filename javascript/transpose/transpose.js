@@ -3,8 +3,8 @@ export const transpose = (matrix) => {
 
 	let maxRowLength = Math.max(...matrix.map(x => x.length));
 	let lastRowLength = matrix[matrix.length-1].length;
-
-	let result = [...Array(Math.max(...matrix.map(x => x.length))).keys()]
+	
+	let result = [...Array(maxRowLength).keys()]
 						.map((_, index) => matrix.map(row => index < row.length ? row[index] : ' ')
 						.join(''));
 
