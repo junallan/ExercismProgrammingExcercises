@@ -9,8 +9,6 @@ export const transpose = (matrix) => {
 						.join(''));
 
 	if (maxRowLength > lastRowLength) result[result.length - 1] = result[result.length - 1].trimRight();
-	//console.log(maxRowLength);
-	//console.log(lastRowLength);
-	//console.log(result[result.length - 1]);
+	
 	return result;
 };

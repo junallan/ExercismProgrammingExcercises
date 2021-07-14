@@ -94,7 +94,7 @@ describe('Transpose', () => {
     expect(transpose(input)).toEqual(expected);
   });
 
-  xtest('rectangle', () => {
+  test('rectangle', () => {
     const input = ['FRACTURE', 'OUTLINED', 'BLOOMING', 'SEPTETTE'];
     const expected = [
       'FOBS',
@@ -109,7 +109,7 @@ describe('Transpose', () => {
     expect(transpose(input)).toEqual(expected);
   });
 
-  xtest('triangle', () => {
+  test('triangle', () => {
     const input = ['T', 'EE', 'AAA', 'SSSS', 'EEEEE', 'RRRRRR'];
     const expected = [
       'TEASER',
@@ -122,7 +122,7 @@ describe('Transpose', () => {
     expect(transpose(input)).toEqual(expected);
   });
 
-  xtest('many lines', () => {
+  test('many lines', () => {
     const input = [
       'Chor. Two households, both alike in dignity,',
       'In fair Verona, where we lay our scene,',
