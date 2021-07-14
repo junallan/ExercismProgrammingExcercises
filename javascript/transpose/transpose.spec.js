@@ -88,7 +88,7 @@ describe('Transpose', () => {
     expect(transpose(input)).toEqual(expected);
   });
 
-  xtest('square', () => {
+  test('square', () => {
     const input = ['HEART', 'EMBER', 'ABUSE', 'RESIN', 'TREND'];
     const expected = ['HEART', 'EMBER', 'ABUSE', 'RESIN', 'TREND'];
     expect(transpose(input)).toEqual(expected);
