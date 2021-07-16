@@ -1,126 +1,126 @@
 import { transpose } from './transpose';
 
 describe('Transpose', () => {
-  //test('empty string', () => {
-  //  expect(transpose([])).toEqual([]);
-  //});
+  test('empty string', () => {
+    expect(transpose([])).toEqual([]);
+  });
 
-  //test('two characters in a row', () => {
-  //  const input = ['A1'];
-  //  const expected = ['A', '1'];
-  //  expect(transpose(input)).toEqual(expected);
-  //});
+  test('two characters in a row', () => {
+    const input = ['A1'];
+    const expected = ['A', '1'];
+    expect(transpose(input)).toEqual(expected);
+  });
 
-  //test('two characters in a column', () => {
-  //  const input = ['A', '1'];
-  //  const expected = ['A1'];
-  //  expect(transpose(input)).toEqual(expected);
-  //});
+  test('two characters in a column', () => {
+    const input = ['A', '1'];
+    const expected = ['A1'];
+    expect(transpose(input)).toEqual(expected);
+  });
 
-  //test('simple', () => {
-  //  const input = ['ABC', '123'];
-  //  const expected = ['A1', 'B2', 'C3'];
-  //  expect(transpose(input)).toEqual(expected);
-  //});
+  test('simple', () => {
+    const input = ['ABC', '123'];
+    const expected = ['A1', 'B2', 'C3'];
+    expect(transpose(input)).toEqual(expected);
+  });
 
-  //test('single line', () => {
-  //  const input = ['Single line.'];
-  //  const expected = [
-  //    'S',
-  //    'i',
-  //    'n',
-  //    'g',
-  //    'l',
-  //    'e',
-  //    ' ',
-  //    'l',
-  //    'i',
-  //    'n',
-  //    'e',
-  //    '.',
-  //  ];
-  //  expect(transpose(input)).toEqual(expected);
-  //});
+  test('single line', () => {
+    const input = ['Single line.'];
+    const expected = [
+      'S',
+      'i',
+      'n',
+      'g',
+      'l',
+      'e',
+      ' ',
+      'l',
+      'i',
+      'n',
+      'e',
+      '.',
+    ];
+    expect(transpose(input)).toEqual(expected);
+  });
 
-  //test('first line longer than second line', () => {
-  //  const input = ['The fourth line.', 'The fifth line.'];
-  //  const expected = [
-  //    'TT',
-  //    'hh',
-  //    'ee',
-  //    '  ',
-  //    'ff',
-  //    'oi',
-  //    'uf',
-  //    'rt',
-  //    'th',
-  //    'h ',
-  //    ' l',
-  //    'li',
-  //    'in',
-  //    'ne',
-  //    'e.',
-  //    '.',
-  //  ];
-  //  expect(transpose(input)).toEqual(expected);
-  //});
+  test('first line longer than second line', () => {
+    const input = ['The fourth line.', 'The fifth line.'];
+    const expected = [
+      'TT',
+      'hh',
+      'ee',
+      '  ',
+      'ff',
+      'oi',
+      'uf',
+      'rt',
+      'th',
+      'h ',
+      ' l',
+      'li',
+      'in',
+      'ne',
+      'e.',
+      '.',
+    ];
+    expect(transpose(input)).toEqual(expected);
+  });
 
-  //test('second line longer than first line', () => {
-  //  const input = ['The first line.', 'The second line.'];
-  //  const expected = [
-  //    'TT',
-  //    'hh',
-  //    'ee',
-  //    '  ',
-  //    'fs',
-  //    'ie',
-  //    'rc',
-  //    'so',
-  //    'tn',
-  //    ' d',
-  //    'l ',
-  //    'il',
-  //    'ni',
-  //    'en',
-  //    '.e',
-  //    ' .',
-  //  ];
-  //  expect(transpose(input)).toEqual(expected);
-  //});
+  test('second line longer than first line', () => {
+    const input = ['The first line.', 'The second line.'];
+    const expected = [
+      'TT',
+      'hh',
+      'ee',
+      '  ',
+      'fs',
+      'ie',
+      'rc',
+      'so',
+      'tn',
+      ' d',
+      'l ',
+      'il',
+      'ni',
+      'en',
+      '.e',
+      ' .',
+    ];
+    expect(transpose(input)).toEqual(expected);
+  });
 
-  //test('square', () => {
-  //  const input = ['HEART', 'EMBER', 'ABUSE', 'RESIN', 'TREND'];
-  //  const expected = ['HEART', 'EMBER', 'ABUSE', 'RESIN', 'TREND'];
-  //  expect(transpose(input)).toEqual(expected);
-  //});
+  test('square', () => {
+    const input = ['HEART', 'EMBER', 'ABUSE', 'RESIN', 'TREND'];
+    const expected = ['HEART', 'EMBER', 'ABUSE', 'RESIN', 'TREND'];
+    expect(transpose(input)).toEqual(expected);
+  });
 
-  //test('rectangle', () => {
-  //  const input = ['FRACTURE', 'OUTLINED', 'BLOOMING', 'SEPTETTE'];
-  //  const expected = [
-  //    'FOBS',
-  //    'RULE',
-  //    'ATOP',
-  //    'CLOT',
-  //    'TIME',
-  //    'UNIT',
-  //    'RENT',
-  //    'EDGE',
-  //  ];
-  //  expect(transpose(input)).toEqual(expected);
-  //});
+  test('rectangle', () => {
+    const input = ['FRACTURE', 'OUTLINED', 'BLOOMING', 'SEPTETTE'];
+    const expected = [
+      'FOBS',
+      'RULE',
+      'ATOP',
+      'CLOT',
+      'TIME',
+      'UNIT',
+      'RENT',
+      'EDGE',
+    ];
+    expect(transpose(input)).toEqual(expected);
+  });
 
-  //test('triangle', () => {
-  //  const input = ['T', 'EE', 'AAA', 'SSSS', 'EEEEE', 'RRRRRR'];
-  //  const expected = [
-  //    'TEASER',
-  //    ' EASER',
-  //    '  ASER',
-  //    '   SER',
-  //    '    ER',
-  //    '     R',
-  //  ];
-  //  expect(transpose(input)).toEqual(expected);
-  //});
+  test('triangle', () => {
+    const input = ['T', 'EE', 'AAA', 'SSSS', 'EEEEE', 'RRRRRR'];
+    const expected = [
+      'TEASER',
+      ' EASER',
+      '  ASER',
+      '   SER',
+      '    ER',
+      '     R',
+    ];
+    expect(transpose(input)).toEqual(expected);
+  });
 
   test('many lines', () => {
     const input = [
