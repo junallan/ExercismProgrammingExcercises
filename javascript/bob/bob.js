@@ -18,5 +18,4 @@ export const hey = (message) => {
   else {
     return "Whatever.";
   }
-  
 };

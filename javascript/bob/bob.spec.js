@@ -116,12 +116,12 @@ describe('Bob', () => {
     expect(result).toEqual('Sure.');
   });
 
-  xtest('other whitespace', () => {
+  test('other whitespace', () => {
     const result = hey('\n\r \t');
     expect(result).toEqual('Fine. Be that way!');
   });
 
-  xtest('non-question ending with whitespace', () => {
+  test('non-question ending with whitespace', () => {
     const result = hey('This is a statement ending with whitespace      ');
     expect(result).toEqual('Whatever.');
   });
