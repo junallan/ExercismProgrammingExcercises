@@ -96,22 +96,22 @@ describe('Bob', () => {
     expect(result).toEqual('Fine. Be that way!');
   });
 
-  xtest('alternate silence', () => {
+  test('alternate silence', () => {
     const result = hey('\t\t\t\t\t\t\t\t\t\t');
     expect(result).toEqual('Fine. Be that way!');
   });
 
-  xtest('multiple line question', () => {
+  test('multiple line question', () => {
     const result = hey('\nDoes this cryogenic chamber make me look fat?\nno');
     expect(result).toEqual('Whatever.');
   });
 
-  xtest('starting with whitespace', () => {
+  test('starting with whitespace', () => {
     const result = hey('         hmmmmmmm...');
     expect(result).toEqual('Whatever.');
   });
 
-  xtest('ending with whitespace', () => {
+  test('ending with whitespace', () => {
     const result = hey('Okay if like my  spacebar  quite a bit?   ');
     expect(result).toEqual('Sure.');
   });

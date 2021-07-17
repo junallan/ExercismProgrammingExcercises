@@ -1,5 +1,5 @@
 export const hey = (message) => {
-  let isQuestion = /\?$/.test(message);
+  let isQuestion = /\?$/.test(message.replace(/\s/g,''));
   let isYelling = /[A-Z]+/.test(message) && /^[A-Z !?,0-9%^@#$(*]*$/.test(message);
   let isSilence = /^\s*$/.test(message);
 
