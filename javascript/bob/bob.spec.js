@@ -21,22 +21,22 @@ describe('Bob', () => {
     expect(result).toEqual('Sure.');
   });
 
-  xtest('asking a numeric question', () => {
+  test('asking a numeric question', () => {
     const result = hey('You are, what, like 15?');
     expect(result).toEqual('Sure.');
   });
 
-  xtest('asking gibberish', () => {
+  test('asking gibberish', () => {
     const result = hey('fffbbcbeab?');
     expect(result).toEqual('Sure.');
   });
 
-  xtest('talking forcefully', () => {
+  test('talking forcefully', () => {
     const result = hey("Let's go make out behind the gym!");
     expect(result).toEqual('Whatever.');
   });
 
-  xtest('using acronyms in regular speech', () => {
+  test('using acronyms in regular speech', () => {
     const result = hey("It's OK if you don't want to go to the DMV.");
     expect(result).toEqual('Whatever.');
   });

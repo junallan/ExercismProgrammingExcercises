@@ -1,8 +1,11 @@
 export const hey = (message) => {
-  if(/\?+/.test(message)) {
+  let questionTest = /\?+/.test(message);
+  let yellingTest = /^[A-Z !]*$/.test(message);
+
+  if(questionTest) {
     return 'Sure.';
   }
-  else if(/^[A-Z !]*$/.test(message)) {
+  else if(yellingTest) {
     return 'Whoa, chill out!';
   }
   else {
