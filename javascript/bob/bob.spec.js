@@ -56,12 +56,12 @@ describe('Bob', () => {
     expect(result).toEqual('Whatever.');
   });
 
-  xtest('question with no letters', () => {
+  test('question with no letters', () => {
     const result = hey('4?');
     expect(result).toEqual('Sure.');
   });
 
-  xtest('shouting with special characters', () => {
+  test('shouting with special characters', () => {
     const result = hey('ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!');
     expect(result).toEqual('Whoa, chill out!');
   });
