@@ -1,18 +1,18 @@
 export const hey = (message) => {
   let isQuestion = /\?+/.test(message);
-  let isYelling = /^[A-Z !]*$/.test(message);
+  let isYelling = /^[A-Z !?]*$/.test(message);
 
   if(isQuestion && isYelling){
-    return 'Calm down, I know what I"m doing!';
+    return "Calm down, I know what I'm doing!";
   }
   else if(isQuestion) {
-    return 'Sure.';
+    return "Sure.";
   }
   else if(isYelling) {
-    return 'Whoa, chill out!';
+    return "Whoa, chill out!";
   }
   else {
-    return 'Whatever.';
+    return "Whatever.";
   }
   
 };

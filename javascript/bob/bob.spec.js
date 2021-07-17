@@ -41,7 +41,7 @@ describe('Bob', () => {
     expect(result).toEqual('Whatever.');
   });
 
-  xtest('forceful question', () => {
+  test('forceful question', () => {
     const result = hey('WHAT THE HELL WERE YOU THINKING?');
     expect(result).toEqual("Calm down, I know what I'm doing!");
   });
