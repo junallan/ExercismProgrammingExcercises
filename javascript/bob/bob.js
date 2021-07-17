@@ -1,8 +1,12 @@
 export const hey = (message) => {
   let isQuestion = /\?$/.test(message);
   let isYelling = /[A-Z]+/.test(message) && /^[A-Z !?,0-9%^@#$(*]*$/.test(message);
+  let isSilence = /^\s*$/.test(message);
 
-  if(isQuestion && isYelling){
+  if(isSilence){
+    return "Fine. Be that way!";
+  }
+  else if(isQuestion && isYelling){
     return "Calm down, I know what I'm doing!";
   }
   else if(isQuestion) {
