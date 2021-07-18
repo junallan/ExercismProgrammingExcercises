@@ -1,7 +1,7 @@
 export class Rectangles {
     static count(data) {
       //console.log(data.map(row => [...row]))
-        let rectangleCount = 0;
+        let rectangleCoordinates = [];
         let parsedData = data.map(row => [...row]);
 
         for (let rowIndex = 1; rowIndex < parsedData.length - 1; rowIndex++) {
@@ -10,11 +10,11 @@ export class Rectangles {
                     parsedData[rowIndex][columnIndex - 1] === '|' && parsedData[rowIndex][columnIndex + 1] === '|' &&
                     parsedData[rowIndex - 1][columnIndex - 1] === '+' && parsedData[rowIndex - 1][columnIndex + 1] === '+' &&
                     parsedData[rowIndex + 1][columnIndex - 1] === '+' && parsedData[rowIndex + 1][columnIndex + 1] === '+') {
-                    rectangleCount++;
+                    rectangleCoordinates.push((rowIndex, columnIndex));
                 }
             }
         }
 
-      return rectangleCount;
+        return rectangleCoordinates.length;
   }
 }

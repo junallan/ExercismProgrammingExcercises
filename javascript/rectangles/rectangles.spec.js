@@ -29,7 +29,7 @@ describe('Rectangles', () => {
     expect(actual).toEqual(expected);
   });
 
-  xtest('two rectangles without shared parts', () => {
+  test('two rectangles without shared parts', () => {
     const expected = 2;
     const actual = Rectangles.count([
       '  +-+',
