@@ -3,21 +3,25 @@ export class Rectangles {
         let bottomCornerMatches = 0;
         for (let rowIndex = topCornerPair.leftCorner.x + 1; rowIndex < data.length; rowIndex++) {
             if (data[rowIndex][topCornerPair.leftCorner.y] === '+' && data[rowIndex][topCornerPair.rightCorner.y] === '+') {
-                let isValidSide = true;
-
-                for (let sideRowIndex = topCornerPair.leftCorner.x + 1; sideRowIndex < rowIndex; sideRowIndex++) {         
-                    if ((data[sideRowIndex][topCornerPair.leftCorner.y] !== '|' && data[sideRowIndex][topCornerPair.leftCorner.y] !== '+') ||
-                        (data[sideRowIndex][topCornerPair.rightCorner.y] !== '|' && data[sideRowIndex][topCornerPair.rightCorner.y] !== '+')) {
-                        isValidSide = false;
-                        break;
-                    }
-                }
-
-                if(isValidSide) bottomCornerMatches++;
+                if(this.isLeftToRightComplete(data, rowIndex, topCornerPair)) bottomCornerMatches++;
             }
         }
 
         return bottomCornerMatches;
+    }
+
+    static isLeftToRightComplete(data, rowIndex, topCornerPair) {
+        let isValidSide = true;
+
+        for (let sideRowIndex = topCornerPair.leftCorner.x + 1; sideRowIndex < rowIndex; sideRowIndex++) {
+            if ((data[sideRowIndex][topCornerPair.leftCorner.y] !== '|' && data[sideRowIndex][topCornerPair.leftCorner.y] !== '+') ||
+                (data[sideRowIndex][topCornerPair.rightCorner.y] !== '|' && data[sideRowIndex][topCornerPair.rightCorner.y] !== '+')) {
+                isValidSide = false;
+                break;
+            }
+        }
+
+        return isValidSide;
     }
 
     static isTopBottomComplete(columnIndexesOfCorners, startIndex, endIndex, data, dataRowIndex) {
