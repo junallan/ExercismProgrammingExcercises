@@ -10,11 +10,25 @@ export class Rectangles {
                     parsedData[rowIndex][columnIndex - 1] === '|' && parsedData[rowIndex][columnIndex + 1] === '|' &&
                     parsedData[rowIndex - 1][columnIndex - 1] === '+' && parsedData[rowIndex - 1][columnIndex + 1] === '+' &&
                     parsedData[rowIndex + 1][columnIndex - 1] === '+' && parsedData[rowIndex + 1][columnIndex + 1] === '+') {
-                    rectangleCoordinates.push((rowIndex, columnIndex));
+                    //console.log(`Row index:${rowIndex}`);
+                    //console.log(`Column index:${columnIndex}`);
+
+                    rectangleCoordinates.push({x: rowIndex, y: columnIndex });
+                    //console.log(rectangleCoordinates);
                 }
             }
         }
 
-        return rectangleCoordinates.length;
+        //let adjacentRectangleCoordinatesByRow = [...Array(parsedData.length).keys()].map(rowIndex => rectangleCoordinates.filt
+
+        let rectangleCount = rectangleCoordinates.length;
+
+        for (let i = 0; i < rectangleCoordinates.length; i++) {
+            const adjacentRectangleRowCount = rectangleCoordinates.filter(coordinate => coordinate.x === rectangleCoordinates[i].x && (coordinate.y - 2 === rectangleCoordinates[i].y)).length;
+            const adjacentRectangleColumnCount = rectangleCoordinates.filter(coordinate => coordinate.y === rectangleCoordinates[i].y && (coordinate.x - 2 === rectangleCoordinates[i].x)).length;
+            rectangleCount += adjacentRectangleRowCount + adjacentRectangleColumnCount;
+        }
+
+        return rectangleCount;
   }
 }

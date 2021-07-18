@@ -42,7 +42,7 @@ describe('Rectangles', () => {
     expect(actual).toEqual(expected);
   });
 
-  xtest('five rectangles with shared parts', () => {
+  test('five rectangles with shared parts', () => {
     const expected = 5;
     const actual = Rectangles.count([
       '  +-+',
