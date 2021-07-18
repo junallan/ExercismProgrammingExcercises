@@ -55,14 +55,14 @@ describe('Rectangles', () => {
     expect(actual).toEqual(expected);
   });
 
-  xtest('rectangle of height 1 is counted', () => {
+  test('rectangle of height 1 is counted', () => {
     const expected = 1;
     const actual = Rectangles.count(['+--+', '+--+']);
 
     expect(actual).toEqual(expected);
   });
 
-  xtest('rectangle of width 1 is counted', () => {
+  test('rectangle of width 1 is counted', () => {
     const expected = 1;
     const actual = Rectangles.count(['++', '||', '++']);
 
