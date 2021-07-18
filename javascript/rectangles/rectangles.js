@@ -1,4 +1,14 @@
 export class Rectangles {
+    static isBaseRectangle(rowIndex, columnIndex, data) {
+        if (rowIndex < 1 || (rowIndex > data.length - 1)) return false;
+        if (columnIndex < 1 || (columnIndex > data[0].length)) return false;
+
+        return (data[rowIndex - 1][columnIndex] === '-' && data[rowIndex + 1][columnIndex] === '-' &&
+            data[rowIndex][columnIndex - 1] === '|' && data[rowIndex][columnIndex + 1] === '|' &&
+            data[rowIndex - 1][columnIndex - 1] === '+' && data[rowIndex - 1][columnIndex + 1] === '+' &&
+            data[rowIndex + 1][columnIndex - 1] === '+' && data[rowIndex + 1][columnIndex + 1] === '+')
+    }
+
     static count(data) {
       //console.log(data.map(row => [...row]))
         let rectangleCoordinates = [];
@@ -6,10 +16,7 @@ export class Rectangles {
 
         for (let rowIndex = 1; rowIndex < parsedData.length - 1; rowIndex++) {
             for (let columnIndex = 1; columnIndex < parsedData[0].length - 1; columnIndex++) {
-                if (parsedData[rowIndex - 1][columnIndex] === '-' && parsedData[rowIndex + 1][columnIndex] === '-' &&
-                    parsedData[rowIndex][columnIndex - 1] === '|' && parsedData[rowIndex][columnIndex + 1] === '|' &&
-                    parsedData[rowIndex - 1][columnIndex - 1] === '+' && parsedData[rowIndex - 1][columnIndex + 1] === '+' &&
-                    parsedData[rowIndex + 1][columnIndex - 1] === '+' && parsedData[rowIndex + 1][columnIndex + 1] === '+') {
+                if (Rectangles.isBaseRectangle(rowIndex, columnIndex, parsedData)) {
                     //console.log(`Row index:${rowIndex}`);
                     //console.log(`Column index:${columnIndex}`);
 
@@ -30,5 +37,5 @@ export class Rectangles {
         }
 
         return rectangleCount;
-  }
+    }
 }
