@@ -1,9 +1,8 @@
 export class Rectangles {
     static isBaseRectangle(rowIndex, columnIndex, data) {
         if (rowIndex < 1 || (rowIndex > data.length - 2)) return false;
-        if (columnIndex < 1 || (columnIndex > data[0].length-2)) return false;
-        //console.log(rowIndex);
-        //console.log(columnIndex);
+        if (columnIndex < 1 || (columnIndex > data[0].length - 2)) return false;
+     
         return (data[rowIndex - 1][columnIndex] === '-' && data[rowIndex + 1][columnIndex] === '-' &&
             data[rowIndex][columnIndex - 1] === '|' && data[rowIndex][columnIndex + 1] === '|' &&
             data[rowIndex - 1][columnIndex - 1] === '+' && data[rowIndex - 1][columnIndex + 1] === '+' &&
@@ -13,10 +12,19 @@ export class Rectangles {
     static isRectangleOfHeightOne(rowIndex, columnIndex, data) {
         if (rowIndex > data.length - 2) return false;
         if (columnIndex > data[0].length - 4) return false;
-        //console.log(data);
-        //console.log(data[rowIndex][columnIndex+1]);
+      
         return (data[rowIndex][columnIndex] === '+' && data[rowIndex][columnIndex + 1] === '-' && data[rowIndex][columnIndex + 2] === '-' && data[rowIndex][columnIndex + 3] === '+' &&
                 data[rowIndex + 1][columnIndex] === '+' && data[rowIndex + 1][columnIndex + 1] === '-' && data[rowIndex + 1][columnIndex + 2] === '-' && data[rowIndex + 1][columnIndex + 3] === '+');
+    }
+
+    static isRectangleOfWidthOne(rowIndex, columnIndex, data) {
+        if ((rowIndex + 2) > data.length - 1) return false;
+        if ((columnIndex + 1) > data[0].length - 1) return false;
+        //console.log(data);
+        //console.log(data[rowIndex][columnIndex+1]);
+        return (data[rowIndex][columnIndex] === '+' && data[rowIndex][columnIndex + 1] === '+' &&
+                data[rowIndex + 1][columnIndex] === '|' && data[rowIndex + 1][columnIndex + 1] === '|' &&
+                data[rowIndex + 2][columnIndex] === '+' && data[rowIndex + 2][columnIndex + 1] === '+');
     }
 
     static count(data) {
@@ -26,7 +34,9 @@ export class Rectangles {
 
         for (let rowIndex = 0; rowIndex < parsedData.length; rowIndex++) {
             for (let columnIndex = 0; columnIndex < parsedData[0].length; columnIndex++) {
-                if (Rectangles.isBaseRectangle(rowIndex, columnIndex, parsedData) || Rectangles.isRectangleOfHeightOne(rowIndex, columnIndex, parsedData)) {
+                if (Rectangles.isBaseRectangle(rowIndex, columnIndex, parsedData) ||
+                    Rectangles.isRectangleOfHeightOne(rowIndex, columnIndex, parsedData) || 
+                    Rectangles.isRectangleOfWidthOne(rowIndex, columnIndex, parsedData)) {
                     //console.log(`Row index:${rowIndex}`);
                     //console.log(`Column index:${columnIndex}`);
 
