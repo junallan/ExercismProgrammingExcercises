@@ -69,7 +69,7 @@ describe('Rectangles', () => {
     expect(actual).toEqual(expected);
   });
 
-  xtest('1x1 square is counted', () => {
+  test('1x1 square is counted', () => {
     const expected = 1;
     const actual = Rectangles.count(['++', '++']);
 

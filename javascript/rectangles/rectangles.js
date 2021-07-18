@@ -27,6 +27,14 @@ export class Rectangles {
                 data[rowIndex + 2][columnIndex] === '+' && data[rowIndex + 2][columnIndex + 1] === '+');
     }
 
+    static isSquareOneByOne(rowIndex, columnIndex, data) {
+        if ((rowIndex + 1) > data.length - 1) return false;
+        if ((columnIndex + 1) > data[0].length - 1) return false;
+
+        return (data[rowIndex][columnIndex] === '+' && data[rowIndex][columnIndex + 1] === '+' &&
+                data[rowIndex+1][columnIndex] === '+' && data[rowIndex+1][columnIndex + 1] === '+');
+    }
+
     static count(data) {
       //console.log(data.map(row => [...row]))
         let rectangleCoordinates = [];
@@ -36,7 +44,8 @@ export class Rectangles {
             for (let columnIndex = 0; columnIndex < parsedData[0].length; columnIndex++) {
                 if (Rectangles.isBaseRectangle(rowIndex, columnIndex, parsedData) ||
                     Rectangles.isRectangleOfHeightOne(rowIndex, columnIndex, parsedData) || 
-                    Rectangles.isRectangleOfWidthOne(rowIndex, columnIndex, parsedData)) {
+                    Rectangles.isRectangleOfWidthOne(rowIndex, columnIndex, parsedData) ||
+                    Rectangles.isSquareOneByOne(rowIndex,columnIndex, parsedData)) {
                     //console.log(`Row index:${rowIndex}`);
                     //console.log(`Column index:${columnIndex}`);
 
