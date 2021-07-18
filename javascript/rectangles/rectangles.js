@@ -1,69 +1,68 @@
 export class Rectangles {
-    static isBaseRectangle(rowIndex, columnIndex, data) {
-        if (rowIndex < 1 || ((rowIndex + 1) > (data.length - 1))) return false;
-        if (columnIndex < 1 || ((columnIndex + 1) > (data[0].length - 1))) return false;
-     
-        return (data[rowIndex - 1][columnIndex] === '-' && data[rowIndex + 1][columnIndex] === '-' &&
-            data[rowIndex][columnIndex - 1] === '|' && data[rowIndex][columnIndex + 1] === '|' &&
-            data[rowIndex - 1][columnIndex - 1] === '+' && data[rowIndex - 1][columnIndex + 1] === '+' &&
-            data[rowIndex + 1][columnIndex - 1] === '+' && data[rowIndex + 1][columnIndex + 1] === '+')
-    }
+    static countBottomCornerPair(topCornerPair, data) {
+        let bottomCornerMatches = 0;
+        for (let rowIndex = topCornerPair.leftCorner.x + 1; rowIndex < data.length; rowIndex++) {
+            //console.log(data[rowIndex][topCornerPair.leftCorner.y]);
+            //console.log(data[rowIndex][topCornerPair.rightCorner.y]);
+            if (data[rowIndex][topCornerPair.leftCorner.y] === '+' && data[rowIndex][topCornerPair.rightCorner.y] === '+') {
+                bottomCornerMatches++;
+            }
+        }
 
-    static isRectangleOfHeightOne(rowIndex, columnIndex, data) {
-        if ((rowIndex + 1) > (data.length - 1)) return false;
-        if ((columnIndex + 3) > (data[0].length - 1)) return false;
-      
-        return (data[rowIndex][columnIndex] === '+' && data[rowIndex][columnIndex + 1] === '-' && data[rowIndex][columnIndex + 2] === '-' && data[rowIndex][columnIndex + 3] === '+' &&
-                data[rowIndex + 1][columnIndex] === '+' && data[rowIndex + 1][columnIndex + 1] === '-' && data[rowIndex + 1][columnIndex + 2] === '-' && data[rowIndex + 1][columnIndex + 3] === '+');
-    }
-
-    static isRectangleOfWidthOne(rowIndex, columnIndex, data) {
-        if ((rowIndex + 2) > data.length - 1) return false;
-        if ((columnIndex + 1) > data[0].length - 1) return false;
-        //console.log(data);
-        //console.log(data[rowIndex][columnIndex+1]);
-        return (data[rowIndex][columnIndex] === '+' && data[rowIndex][columnIndex + 1] === '+' &&
-                data[rowIndex + 1][columnIndex] === '|' && data[rowIndex + 1][columnIndex + 1] === '|' &&
-                data[rowIndex + 2][columnIndex] === '+' && data[rowIndex + 2][columnIndex + 1] === '+');
-    }
-
-    static isSquareOneByOne(rowIndex, columnIndex, data) {
-        if ((rowIndex + 1) > data.length - 1) return false;
-        if ((columnIndex + 1) > data[0].length - 1) return false;
-
-        return (data[rowIndex][columnIndex] === '+' && data[rowIndex][columnIndex + 1] === '+' &&
-                data[rowIndex+1][columnIndex] === '+' && data[rowIndex+1][columnIndex + 1] === '+');
+        return bottomCornerMatches;
     }
 
     static count(data) {
-      //console.log(data.map(row => [...row]))
         let rectangleCoordinates = [];
         let parsedData = data.map(row => [...row]);
 
-        for (let rowIndex = 0; rowIndex < parsedData.length; rowIndex++) {
-            for (let columnIndex = 0; columnIndex < parsedData[0].length; columnIndex++) {
-                if (Rectangles.isBaseRectangle(rowIndex, columnIndex, parsedData) ||
-                    Rectangles.isRectangleOfHeightOne(rowIndex, columnIndex, parsedData) || 
-                    Rectangles.isRectangleOfWidthOne(rowIndex, columnIndex, parsedData) ||
-                    Rectangles.isSquareOneByOne(rowIndex,columnIndex, parsedData)) {
-                    //console.log(`Row index:${rowIndex}`);
-                    //console.log(`Column index:${columnIndex}`);
+        //row by row find those with more than 1 +, get all permutations and combinations of the column positions for pairs
+            // if found pair matches of + go through sequential rows that match column position for left + and right +
+                    //Add to count
 
-                    rectangleCoordinates.push({x: rowIndex, y: columnIndex });
-                    //console.log(rectangleCoordinates);
+        let cornerPairs = [];
+
+        for (let rowIndex = 0; rowIndex < parsedData.length; rowIndex++) {
+            let columnIndexesOfCorners = [];
+
+            for (let columnIndex = 0; columnIndex < parsedData[0].length; columnIndex++) {
+                if (parsedData[rowIndex][columnIndex] === '+') columnIndexesOfCorners.push(columnIndex);
+            }
+
+            console.log(columnIndexesOfCorners);
+            for (let i = 0; i < columnIndexesOfCorners.length-1; i++) {
+                for (let j = i+1; j < columnIndexesOfCorners.length; j++) {
+                    cornerPairs.push({ leftCorner: { x: rowIndex, y: i }, rightCorner: { x: rowIndex, y: columnIndexesOfCorners[j] } });
                 }
             }
         }
 
-        //let adjacentRectangleCoordinatesByRow = [...Array(parsedData.length).keys()].map(rowIndex => rectangleCoordinates.filt
+        let rectangleCount = 0;
 
-        let rectangleCount = rectangleCoordinates.length;
+        cornerPairs.forEach(topCornerPair => rectangleCount += this.countBottomCornerPair(topCornerPair, parsedData));
 
-        for (let i = 0; i < rectangleCoordinates.length; i++) {
-            const adjacentRectangleRowCount = rectangleCoordinates.filter(coordinate => coordinate.x === rectangleCoordinates[i].x && (coordinate.y - 2 === rectangleCoordinates[i].y)).length;
-            const adjacentRectangleColumnCount = rectangleCoordinates.filter(coordinate => coordinate.y === rectangleCoordinates[i].y && (coordinate.x - 2 === rectangleCoordinates[i].x)).length;
-            rectangleCount += adjacentRectangleRowCount + adjacentRectangleColumnCount;
-        }
+        //cornerPairs.forEach(coordinate =>
+        //    rectangleCount += cornerPairs.filter(element => element.leftCorner.y === coordinate.leftCorner.y
+        //                                                                                    && element.rightCorner.y === coordinate.rightCorner.y
+        //                                                                                    && element.leftCorner.x !== coordinate.leftCorner.x
+        //        && element.rightCorner.x !== coordinate.rightCorner.x).length
+        //);
+
+        console.log(cornerPairs);
+
+        //for (let rowIndex = 0; rowIndex < parsedData.length; rowIndex++) {
+        //    for (let columnIndex = 0; columnIndex < parsedData[0].length; columnIndex++) {
+        //        if (Rectangles.isBaseRectangle(rowIndex, columnIndex, parsedData) ||
+        //            Rectangles.isRectangleOfHeightOne(rowIndex, columnIndex, parsedData) || 
+        //            Rectangles.isRectangleOfWidthOne(rowIndex, columnIndex, parsedData) ||
+        //            Rectangles.isSquareOneByOne(rowIndex,columnIndex, parsedData)) {
+
+        //            rectangleCoordinates.push({x: rowIndex, y: columnIndex });
+        //        }
+        //    }
+        //}
+
+        //let rectangleCount = rectangleCoordinates.length;
 
         return rectangleCount;
     }
