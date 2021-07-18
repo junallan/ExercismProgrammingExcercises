@@ -1,7 +1,7 @@
 export class Rectangles {
     static isBaseRectangle(rowIndex, columnIndex, data) {
-        if (rowIndex < 1 || (rowIndex > data.length - 2)) return false;
-        if (columnIndex < 1 || (columnIndex > data[0].length - 2)) return false;
+        if (rowIndex < 1 || ((rowIndex + 1) > (data.length - 1))) return false;
+        if (columnIndex < 1 || ((columnIndex + 1) > (data[0].length - 1))) return false;
      
         return (data[rowIndex - 1][columnIndex] === '-' && data[rowIndex + 1][columnIndex] === '-' &&
             data[rowIndex][columnIndex - 1] === '|' && data[rowIndex][columnIndex + 1] === '|' &&
@@ -10,8 +10,8 @@ export class Rectangles {
     }
 
     static isRectangleOfHeightOne(rowIndex, columnIndex, data) {
-        if (rowIndex > data.length - 2) return false;
-        if (columnIndex > data[0].length - 4) return false;
+        if ((rowIndex + 1) > (data.length - 1)) return false;
+        if ((columnIndex + 3) > (data[0].length - 1)) return false;
       
         return (data[rowIndex][columnIndex] === '+' && data[rowIndex][columnIndex + 1] === '-' && data[rowIndex][columnIndex + 2] === '-' && data[rowIndex][columnIndex + 3] === '+' &&
                 data[rowIndex + 1][columnIndex] === '+' && data[rowIndex + 1][columnIndex + 1] === '-' && data[rowIndex + 1][columnIndex + 2] === '-' && data[rowIndex + 1][columnIndex + 3] === '+');
