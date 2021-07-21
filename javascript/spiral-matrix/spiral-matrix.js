@@ -9,21 +9,12 @@ export class SpiralMatrix {
             return;
         }
 
-        for (let i = startIndex; i <= endIndex; i++) {
-            matrix[startIndex][i] = value++;
-        }
-
-        for (let i = startIndex + 1; i <= endIndex; i++) {
-            matrix[i][endIndex] = value++;
-        }
-
-        for (let i = endIndex - 1; i >= startIndex; i--) {
-            matrix[endIndex][i] = value++;
-        }
-
-        for (let i = endIndex - 1; i > startIndex; i--) {
-            matrix[i][startIndex] = value++;
-        }
+        const range = (min, max) => [...Array(max - min + 1).keys()].map(i => i + min);
+        
+        range(startIndex, endIndex).forEach(i => matrix[startIndex][i] = value++);
+        range(startIndex+1, endIndex).forEach(i => matrix[i][endIndex] = value++);
+        range(startIndex, endIndex - 1).reverse().forEach(i => matrix[endIndex][i] = value++);
+        range(startIndex+1, endIndex - 1).reverse().forEach(i => matrix[i][startIndex] = value++);
 
         let nextInnerStartIndex = startIndex + 1;
         let nextInnerEndIndex = endIndex - 1;
