@@ -13,15 +13,15 @@ export class SpiralMatrix {
             matrix[startIndex][i] = value++;
         }
 
-        for (let i = startIndex+1; i <= endIndex; i++) {
+        for (let i = startIndex + 1; i <= endIndex; i++) {
             matrix[i][endIndex] = value++;
         }
 
-        for (let i = endIndex - 1; i >= 0; i--) {
+        for (let i = endIndex - 1; i >= startIndex; i--) {
             matrix[endIndex][i] = value++;
         }
 
-        for (let i = endIndex - 1; i > 0; i--) {
+        for (let i = endIndex - 1; i > startIndex; i--) {
             matrix[i][startIndex] = value++;
         }
 
