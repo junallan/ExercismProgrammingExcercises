@@ -1,6 +1,3 @@
-import { endianness } from "os";
-import { start } from "repl";
-
 export class SpiralMatrix {
     static populateEdgesOfMatrix(matrix, startIndex, endIndex, value) {
         if (startIndex === endIndex) {
