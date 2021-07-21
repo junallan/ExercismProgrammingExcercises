@@ -1,4 +1,5 @@
 import { endianness } from "os";
+import { start } from "repl";
 
 export class SpiralMatrix {
     static populateEdgesOfMatrix(matrix, startIndex, endIndex, value) {
@@ -20,11 +21,16 @@ export class SpiralMatrix {
             matrix[endIndex][i] = value++;
         }
 
-        for (let i = endIndex - 1; i >= 0; i--) {
+        for (let i = endIndex - 1; i > 0; i--) {
             matrix[i][startIndex] = value++;
         }
 
-        this.populateEdgesOfMatrix(matrix, startIndex + 1, endIndex - 1, value);
+        let nextInnerStartIndex = startIndex + 1;
+        let nextInnerEndIndex = endIndex - 1;
+
+        if (nextInnerEndIndex < nextInnerStartIndex) return;
+
+        this.populateEdgesOfMatrix(matrix, nextInnerStartIndex, nextInnerEndIndex, value);
     }
 
     static ofSize(matrixSize) {

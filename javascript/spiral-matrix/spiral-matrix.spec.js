@@ -15,15 +15,15 @@ describe('Spiral Matrix', () => {
     expect(actual).toEqual(expected);
   });
 
-  //test('spiral of size 2', () => {
-  //  const expected = [
-  //    [1, 2],
-  //    [4, 3],
-  //  ];
-  //  const actual = SpiralMatrix.ofSize(2);
+  test('spiral of size 2', () => {
+    const expected = [
+      [1, 2],
+      [4, 3],
+    ];
+    const actual = SpiralMatrix.ofSize(2);
 
-  //  expect(actual).toEqual(expected);
-  //});
+    expect(actual).toEqual(expected);
+  });
 
   xtest('spiral of size 3', () => {
     const expected = [
