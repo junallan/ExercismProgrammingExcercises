@@ -133,7 +133,7 @@ describe('ocr', () => {
     ).toBe('10');
   });
 
-  xtest('identifies garble', () => {
+  test('identifies garble', () => {
     expect(
       // prettier-ignore
       convert(
