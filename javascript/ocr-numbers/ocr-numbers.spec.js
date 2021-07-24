@@ -49,7 +49,7 @@ describe('ocr', () => {
     ).toBe('3');
   });
 
-  xtest('recognizes four', () => {
+  test('recognizes four', () => {
     expect(
       // prettier-ignore
       convert(
