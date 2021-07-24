@@ -145,7 +145,7 @@ describe('ocr', () => {
     ).toBe('?');
   });
 
-  xtest('converts 110101100', () => {
+  test('converts 110101100', () => {
     expect(
       // prettier-ignore
       convert(
