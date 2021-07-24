@@ -20,5 +20,5 @@ export const convert = (input) => {
 	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_|' && thirdLineNumberToProcess === '|_|') return '8';
 	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_|' && thirdLineNumberToProcess === ' _|') return '9';	 
 
-	return '?'
+	return '?' + convert(nextNumberDataToProcess);
 };

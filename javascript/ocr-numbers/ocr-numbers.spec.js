@@ -157,7 +157,7 @@ describe('ocr', () => {
     ).toBe('110101100');
   });
 
-  xtest('identifies garble mixed in', () => {
+  test('identifies garble mixed in', () => {
     expect(
       // prettier-ignore
       convert(
