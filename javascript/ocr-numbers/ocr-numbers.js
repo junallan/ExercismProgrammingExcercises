@@ -1,25 +1,23 @@
 export const convert = (input) => {
 	if (input.trim() === '') return '';
 
-	const ColumnsPerInput = 3;
 	const parsedInput = input.split('\n');
-
+	const ColumnsPerInput = 3;
 	const NumbersToProcess = parsedInput[0].length / ColumnsPerInput;
-	let convertedNumbers = '';
 
-	for (let i = 0; i < NumbersToProcess; i++) {
-		const startIndex = i * ColumnsPerInput;
+	let convertedNumbers = [...Array(NumbersToProcess).keys()].reduce((accumulator, _, i) => {
+																			const ColumnsPerInput = 3;
+																			const startIndex = i * ColumnsPerInput;
 
-		convertedNumbers += ProcessNumber(parsedInput[0].substr(startIndex, ColumnsPerInput),
-									      parsedInput[1].substr(startIndex, ColumnsPerInput),
- 										  parsedInput[2].substr(startIndex, ColumnsPerInput));
-	}
+																			return accumulator + ProcessNumber(parsedInput[0].substr(startIndex, ColumnsPerInput),
+																											   parsedInput[1].substr(startIndex, ColumnsPerInput),
+																											   parsedInput[2].substr(startIndex, ColumnsPerInput));
+																		}, '');
 
 	const LinesPerParsedInput = 4;
 	const nextGroupOfNumbers = parsedInput.length / LinesPerParsedInput;
 
 	if (nextGroupOfNumbers > 1) convertedNumbers += ',';
-
 
 	let nextNumberDataToProcess = '';
 
@@ -27,6 +25,7 @@ export const convert = (input) => {
 		const nextNumberSetStartIndex = i * LinesPerParsedInput;
 		nextNumberDataToProcess += parsedInput[nextNumberSetStartIndex] + '\n' + parsedInput[nextNumberSetStartIndex + 1] + '\n' + parsedInput[nextNumberSetStartIndex + 2] + '\n' + parsedInput[nextNumberSetStartIndex + 3] + '\n';
 	}
+
 	if (nextNumberDataToProcess.endsWith('\n')) nextNumberDataToProcess = nextNumberDataToProcess.slice(0,-1);
 
 	return convertedNumbers + convert(nextNumberDataToProcess);
