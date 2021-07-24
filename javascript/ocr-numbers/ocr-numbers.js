@@ -15,16 +15,16 @@ export const convert = (input) => {
 																		}, '');
 
 	const LinesPerParsedInput = 4;
-	const nextGroupOfNumbers = parsedInput.length / LinesPerParsedInput;
+	const NextGroupOfNumbers = parsedInput.length / LinesPerParsedInput;
 
-	if (nextGroupOfNumbers > 1) convertedNumbers += ',';
+	if (NextGroupOfNumbers > 1) convertedNumbers += ',';
 
-	let nextNumberDataToProcess = '';
-
-	for (let i = 1; i < nextGroupOfNumbers; i++) {
-		const nextNumberSetStartIndex = i * LinesPerParsedInput;
-		nextNumberDataToProcess += parsedInput[nextNumberSetStartIndex] + '\n' + parsedInput[nextNumberSetStartIndex + 1] + '\n' + parsedInput[nextNumberSetStartIndex + 2] + '\n' + parsedInput[nextNumberSetStartIndex + 3] + '\n';
-	}
+	let nextNumberDataToProcess = [...Array(NextGroupOfNumbers-1).keys()].reduce((accummulator, _, i) => {
+																				const LinesPerParsedInput = 4;
+																				const nextNumberSetStartIndex = (i+1) * LinesPerParsedInput;
+			
+																				return accummulator + parsedInput[nextNumberSetStartIndex] + '\n' + parsedInput[nextNumberSetStartIndex + 1] + '\n' + parsedInput[nextNumberSetStartIndex + 2] + '\n' + parsedInput[nextNumberSetStartIndex + 3] + '\n';
+																				}, '');
 
 	if (nextNumberDataToProcess.endsWith('\n')) nextNumberDataToProcess = nextNumberDataToProcess.slice(0,-1);
 
