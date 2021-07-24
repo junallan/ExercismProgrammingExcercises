@@ -1,22 +1,27 @@
 export const convert = (input) => {
-	const parsedInput = input.split('\n');
+	if (input.trim() === '') return '';
 
-	if (parsedInput[0] === ' _ ' && parsedInput[1] === '| |' && parsedInput[2] === '|_|') return '0';
-	if (parsedInput[0] === '   ' && parsedInput[1] === '  |' && parsedInput[2] === '  |') return '1';
-	if (parsedInput[0] === ' _ ' && parsedInput[1] === ' _|' && parsedInput[2] === '|_ ') return '2';
-	if (parsedInput[0] === ' _ ' && parsedInput[1] === ' _|' && parsedInput[2] === ' _|') return '3';
-	if (parsedInput[0] === '   ' && parsedInput[1] === '|_|' && parsedInput[2] === '  |') return '4';
-	if (parsedInput[0] === ' _ ' && parsedInput[1] === '|_ ' && parsedInput[2] === ' _|') return '5';
-	if (parsedInput[0] === ' _ ' && parsedInput[1] === '|_ ' && parsedInput[2] === '|_|') return '6'; 
-	if (parsedInput[0] === ' _ ' && parsedInput[1] === '  |' && parsedInput[2] === '  |') return '7'; 	 
-	if (parsedInput[0] === ' _ ' && parsedInput[1] === '|_|' && parsedInput[2] === '|_|') return '8';
-	if (parsedInput[0] === ' _ ' && parsedInput[1] === '|_|' && parsedInput[2] === ' _|') return '9';	 
-		 
-		
-	 
-		 
-		
-		
-		 	 
-		
+	const parsedInput = input.split('\n');
+	//console.log(parsedInput);
+	//console.log(parsedInput[0].substr(0,3));
+	const firstLineNumberToProcess = parsedInput[0].substr(0, 3);
+	//console.log(parsedInput[1])
+	const secondLineNumberToProcess = parsedInput[1].substr(0, 3);
+	const thirdLineNumberToProcess = parsedInput[2].substr(0, 3);
+
+	
+	
+	const nextNumberDataToProcess = parsedInput[0].length > 3 ? parsedInput[0].substr(3) + '\n' + parsedInput[1].substr(3) + '\n' + parsedInput[2].substr(3) + '\n' + '   ' : '';
+	//console.log('Next');
+	//console.log(nextNumberDataToProcess);
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '| |' && thirdLineNumberToProcess === '|_|') return '0' + convert(nextNumberDataToProcess);
+	if (firstLineNumberToProcess === '   ' && secondLineNumberToProcess === '  |' && thirdLineNumberToProcess === '  |') return '1' + convert(nextNumberDataToProcess);
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === ' _|' && thirdLineNumberToProcess === '|_ ') return '2';
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === ' _|' && thirdLineNumberToProcess === ' _|') return '3';
+	if (firstLineNumberToProcess === '   ' && secondLineNumberToProcess === '|_|' && thirdLineNumberToProcess === '  |') return '4';
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_ ' && thirdLineNumberToProcess === ' _|') return '5';
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_ ' && thirdLineNumberToProcess === '|_|') return '6'; 
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '  |' && thirdLineNumberToProcess === '  |') return '7'; 	 
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_|' && thirdLineNumberToProcess === '|_|') return '8';
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_|' && thirdLineNumberToProcess === ' _|') return '9';	 
 };
