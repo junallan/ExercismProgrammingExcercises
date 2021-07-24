@@ -169,7 +169,7 @@ describe('ocr', () => {
     ).toBe('11?10?1?0');
   });
 
-  xtest('converts 1234567890', () => {
+  test('converts 1234567890', () => {
     expect(
       // prettier-ignore
       convert(
