@@ -9,21 +9,10 @@ export const convert = (input) => {
 
 	for (let i = 0; i < NumbersToProcess; i++) {
 		const startIndex = i * ColumnsPerInput;
-		const firstLineNumberToProcess = parsedInput[0].substr(startIndex, ColumnsPerInput);
-		const secondLineNumberToProcess = parsedInput[1].substr(startIndex, ColumnsPerInput);
-		const thirdLineNumberToProcess = parsedInput[2].substr(startIndex, ColumnsPerInput);
 
-		if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '| |' && thirdLineNumberToProcess === '|_|') convertedNumbers += '0';
-		else if (firstLineNumberToProcess === '   ' && secondLineNumberToProcess === '  |' && thirdLineNumberToProcess === '  |') convertedNumbers += '1';
-		else if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === ' _|' && thirdLineNumberToProcess === '|_ ') convertedNumbers += '2';
-		else if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === ' _|' && thirdLineNumberToProcess === ' _|') convertedNumbers += '3';
-		else if (firstLineNumberToProcess === '   ' && secondLineNumberToProcess === '|_|' && thirdLineNumberToProcess === '  |') convertedNumbers += '4';
-		else if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_ ' && thirdLineNumberToProcess === ' _|') convertedNumbers += '5';
-		else if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_ ' && thirdLineNumberToProcess === '|_|') convertedNumbers += '6';
-		else if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '  |' && thirdLineNumberToProcess === '  |') convertedNumbers += '7';
-		else if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_|' && thirdLineNumberToProcess === '|_|') convertedNumbers += '8';
-		else if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_|' && thirdLineNumberToProcess === ' _|') convertedNumbers += '9';
-		else convertedNumbers += '?';	
+		convertedNumbers += ProcessNumber(parsedInput[0].substr(startIndex, ColumnsPerInput),
+									      parsedInput[1].substr(startIndex, ColumnsPerInput),
+ 										  parsedInput[2].substr(startIndex, ColumnsPerInput));
 	}
 
 	const LinesPerParsedInput = 4;
@@ -42,3 +31,17 @@ export const convert = (input) => {
 
 	return convertedNumbers + convert(nextNumberDataToProcess);
 }; 
+
+function ProcessNumber(firstLineNumberToProcess, secondLineNumberToProcess, thirdLineNumberToProcess) {
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '| |' && thirdLineNumberToProcess === '|_|') return '0';
+	if (firstLineNumberToProcess === '   ' && secondLineNumberToProcess === '  |' && thirdLineNumberToProcess === '  |') return '1';
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === ' _|' && thirdLineNumberToProcess === '|_ ') return '2';
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === ' _|' && thirdLineNumberToProcess === ' _|') return '3';
+	if (firstLineNumberToProcess === '   ' && secondLineNumberToProcess === '|_|' && thirdLineNumberToProcess === '  |') return '4';
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_ ' && thirdLineNumberToProcess === ' _|') return '5';
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_ ' && thirdLineNumberToProcess === '|_|') return '6';
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '  |' && thirdLineNumberToProcess === '  |') return '7';
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_|' && thirdLineNumberToProcess === '|_|') return '8';
+	if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '|_|' && thirdLineNumberToProcess === ' _|') return '9';
+	return '?';	
+}
