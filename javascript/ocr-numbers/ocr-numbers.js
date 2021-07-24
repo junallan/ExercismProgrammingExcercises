@@ -1,16 +1,17 @@
 export const convert = (input) => {
 	if (input.trim() === '') return '';
 
+	const ColumnsPerInput = 3;
 	const parsedInput = input.split('\n');
 
-	const numbersToProcess = parsedInput[0].length / 3;
+	const NumbersToProcess = parsedInput[0].length / ColumnsPerInput;
 	let convertedNumbers = '';
 
-	for (let i = 0; i < numbersToProcess; i++) {
-		const startIndex = i * 3;
-		const firstLineNumberToProcess = parsedInput[0].substr(startIndex, 3);
-		const secondLineNumberToProcess = parsedInput[1].substr(startIndex, 3);
-		const thirdLineNumberToProcess = parsedInput[2].substr(startIndex, 3);
+	for (let i = 0; i < NumbersToProcess; i++) {
+		const startIndex = i * ColumnsPerInput;
+		const firstLineNumberToProcess = parsedInput[0].substr(startIndex, ColumnsPerInput);
+		const secondLineNumberToProcess = parsedInput[1].substr(startIndex, ColumnsPerInput);
+		const thirdLineNumberToProcess = parsedInput[2].substr(startIndex, ColumnsPerInput);
 
 		if (firstLineNumberToProcess === ' _ ' && secondLineNumberToProcess === '| |' && thirdLineNumberToProcess === '|_|') convertedNumbers += '0';
 		else if (firstLineNumberToProcess === '   ' && secondLineNumberToProcess === '  |' && thirdLineNumberToProcess === '  |') convertedNumbers += '1';
@@ -25,7 +26,8 @@ export const convert = (input) => {
 		else convertedNumbers += '?';	
 	}
 
-	const nextGroupOfNumbers = parsedInput.length / 4;
+	const LinesPerParsedInput = 4;
+	const nextGroupOfNumbers = parsedInput.length / LinesPerParsedInput;
 
 	if (nextGroupOfNumbers > 1) convertedNumbers += ',';
 
@@ -33,8 +35,8 @@ export const convert = (input) => {
 	let nextNumberDataToProcess = '';
 
 	for (let i = 1; i < nextGroupOfNumbers; i++) {
-		const nextNumberSetStart = i * 4;
-		nextNumberDataToProcess += parsedInput[nextNumberSetStart] + '\n' + parsedInput[nextNumberSetStart + 1] + '\n' + parsedInput[nextNumberSetStart + 2] + '\n' + parsedInput[nextNumberSetStart + 3] + '\n';
+		const nextNumberSetStartIndex = i * LinesPerParsedInput;
+		nextNumberDataToProcess += parsedInput[nextNumberSetStartIndex] + '\n' + parsedInput[nextNumberSetStartIndex + 1] + '\n' + parsedInput[nextNumberSetStartIndex + 2] + '\n' + parsedInput[nextNumberSetStartIndex + 3] + '\n';
 	}
 	if (nextNumberDataToProcess.endsWith('\n')) nextNumberDataToProcess = nextNumberDataToProcess.slice(0,-1);
 
