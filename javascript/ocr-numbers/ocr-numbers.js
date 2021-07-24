@@ -6,16 +6,7 @@ export const convert = (input) => {
 	const LinesPerParsedInput = 4;
 	const NextGroupOfNumbers = parsedInput.length / LinesPerParsedInput;
 
-	let nextNumberDataToProcess = [...Array(NextGroupOfNumbers-1).keys()].reduce((accummulator, _, i) => {
-																				const LinesPerParsedInput = 4;
-																				const nextNumberSetStartIndex = (i+1) * LinesPerParsedInput;
-			
-																				return accummulator + parsedInput[nextNumberSetStartIndex] + '\n' + parsedInput[nextNumberSetStartIndex + 1] + '\n' + parsedInput[nextNumberSetStartIndex + 2] + '\n' + parsedInput[nextNumberSetStartIndex + 3] + '\n';
-																				}, '');
-
-	if (nextNumberDataToProcess.endsWith('\n')) nextNumberDataToProcess = nextNumberDataToProcess.slice(0,-1);
-
-	return NumberRepresentationOfData(parsedInput, NextGroupOfNumbers > 1) + convert(nextNumberDataToProcess);
+	return NumberRepresentationOfData(parsedInput, NextGroupOfNumbers > 1) + convert(ExtractNextNumberDataToProcess(parsedInput, NextGroupOfNumbers));
 }; 
 
 function NumberRepresentationOfData(parsedInput, hasNextGroupOfNumbers) {
@@ -34,6 +25,19 @@ function NumberRepresentationOfData(parsedInput, hasNextGroupOfNumbers) {
 	if (hasNextGroupOfNumbers) convertedNumbers += ',';
 
 	return convertedNumbers;
+}
+
+function ExtractNextNumberDataToProcess(parsedInput, nextGroupOfNumbers) {
+	let nextNumberDataToProcess = [...Array(nextGroupOfNumbers - 1).keys()].reduce((accummulator, _, i) => {
+		const LinesPerParsedInput = 4;
+		const nextNumberSetStartIndex = (i + 1) * LinesPerParsedInput;
+
+		return accummulator + parsedInput[nextNumberSetStartIndex] + '\n' + parsedInput[nextNumberSetStartIndex + 1] + '\n' + parsedInput[nextNumberSetStartIndex + 2] + '\n' + parsedInput[nextNumberSetStartIndex + 3] + '\n';
+	}, '');
+
+	if (nextNumberDataToProcess.endsWith('\n')) nextNumberDataToProcess = nextNumberDataToProcess.slice(0, -1);
+
+	return nextNumberDataToProcess;
 }
 
 function ProcessNumber(firstLineNumberToProcess, secondLineNumberToProcess, thirdLineNumberToProcess) {
