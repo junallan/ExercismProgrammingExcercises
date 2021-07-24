@@ -7,9 +7,13 @@ export const convert = (input) => {
 	if (parsedInput[0] === ' _ ' && parsedInput[1] === ' _|' && parsedInput[2] === ' _|') return '3';
 	if (parsedInput[0] === '   ' && parsedInput[1] === '|_|' && parsedInput[2] === '  |') return '4';
 	if (parsedInput[0] === ' _ ' && parsedInput[1] === '|_ ' && parsedInput[2] === ' _|') return '5';
+	if (parsedInput[0] === ' _ ' && parsedInput[1] === '|_ ' && parsedInput[2] === '|_|') return '6'; 
+	if (parsedInput[0] === ' _ ' && parsedInput[1] === '  |' && parsedInput[2] === '  |') return '7'; 	 
+	 
 	 
 		 
-		 
+		
+		
 		 	 
 		
 };
