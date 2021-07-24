@@ -9,7 +9,9 @@ export const convert = (input) => {
 	if (parsedInput[0] === ' _ ' && parsedInput[1] === '|_ ' && parsedInput[2] === ' _|') return '5';
 	if (parsedInput[0] === ' _ ' && parsedInput[1] === '|_ ' && parsedInput[2] === '|_|') return '6'; 
 	if (parsedInput[0] === ' _ ' && parsedInput[1] === '  |' && parsedInput[2] === '  |') return '7'; 	 
+	if (parsedInput[0] === ' _ ' && parsedInput[1] === '|_|' && parsedInput[2] === '|_|') return '8';
 	 
+		 
 	 
 		 
 		
