@@ -42,7 +42,7 @@ describe('Beer Song', () => {
 
   describe('lyrics', () => {
     describe('multiple verses', () => {
-      xtest('first two verses', () => {
+      test('first two verses', () => {
         expect(recite(99, 2)).toEqual([
           '99 bottles of beer on the wall, 99 bottles of beer.',
           'Take one down and pass it around, 98 bottles of beer on the wall.',
@@ -52,7 +52,7 @@ describe('Beer Song', () => {
         ]);
       });
 
-      xtest('last three verses', () => {
+      test('last three verses', () => {
         expect(recite(2, 3)).toEqual([
           '2 bottles of beer on the wall, 2 bottles of beer.',
           'Take one down and pass it around, 1 bottle of beer on the wall.',
@@ -65,7 +65,7 @@ describe('Beer Song', () => {
         ]);
       });
 
-      xtest('all verses', () => {
+      test('all verses', () => {
         expect(recite(99, 100)).toEqual([
           '99 bottles of beer on the wall, 99 bottles of beer.',
           'Take one down and pass it around, 98 bottles of beer on the wall.',
