@@ -31,7 +31,7 @@ describe('Beer Song', () => {
         ]);
       });
 
-      xtest('verse with 0 bottles', () => {
+      test('verse with 0 bottles', () => {
         expect(recite(0, 1)).toEqual([
           'No more bottles of beer on the wall, no more bottles of beer.',
           'Go to the store and buy some more, 99 bottles of beer on the wall.',
