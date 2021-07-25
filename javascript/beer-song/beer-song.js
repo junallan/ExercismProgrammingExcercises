@@ -6,13 +6,13 @@ export const recite = (initialBottlesCount, takeDownCount) => {
 	for (let i = initialBottlesCount; i > endOfSongBottleCount; i--) {
 		const singularOrPluralFirstVerse = i > 1 ? 's' : '';
 		const singularOrPluralSecondVerse = (i - 1) > 1 ? 's' : '';
+		const firstSentenceFirstPartPhrase = i === 0 ? 'No more bottles' : `${i} bottle${singularOrPluralFirstVerse}`;
+		const firstSentenceSecondPartPhrase = i == 0 ? 'no more bottles' : `${i} bottle${singularOrPluralFirstVerse}`;
 
 		if (song.length !== 0) song.push('');
 
-		if (i === 0)
-			song.push('No more bottles of beer on the wall, no more bottles of beer.');
-		else
-			song.push(`${i} bottle${singularOrPluralFirstVerse} of beer on the wall, ${i} bottle${singularOrPluralFirstVerse} of beer.`);
+	
+		song.push(`${firstSentenceFirstPartPhrase} of beer on the wall, ${firstSentenceSecondPartPhrase} of beer.`);
 
 		if (i === 0)
 			song.push('Go to the store and buy some more, 99 bottles of beer on the wall.');
