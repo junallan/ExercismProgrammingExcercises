@@ -10,14 +10,14 @@ describe('Beer Song', () => {
         ]);
       });
 
-      xtest('last generic verse', () => {
+      test('last generic verse', () => {
         expect(recite(3, 1)).toEqual([
           '3 bottles of beer on the wall, 3 bottles of beer.',
           'Take one down and pass it around, 2 bottles of beer on the wall.',
         ]);
       });
 
-      xtest('verse with 2 bottles', () => {
+      test('verse with 2 bottles', () => {
         expect(recite(2, 1)).toEqual([
           '2 bottles of beer on the wall, 2 bottles of beer.',
           'Take one down and pass it around, 1 bottle of beer on the wall.',
