@@ -14,12 +14,12 @@ export const recite = (initialBottlesCount, takeDownCount) => {
 	
 		song.push(`${firstSentenceFirstPartPhrase} of beer on the wall, ${firstSentenceSecondPartPhrase} of beer.`);
 
-		if (i === 0)
-			song.push('Go to the store and buy some more, 99 bottles of beer on the wall.');
-		else if (i === 1)
-			song.push(`Take it down and pass it around, no more bottles of beer on the wall.`);
-		else 
-			song.push(`Take one down and pass it around, ${i - 1} bottle${singularOrPluralSecondVerse} of beer on the wall.`);	
+		const secondSentenceFirstPartPhrases = ['Go to the store and buy some more,', 'Take it down and pass it around,', 'Take one down and pass it around,'];
+		const secondSentenceSecondPartPhrases = ['99 bottles of beer on the wall.', 'no more bottles of beer on the wall.', `${i - 1} bottle${singularOrPluralSecondVerse} of beer on the wall.`];
+		const secondSentenceFirstPartPhrase = i > 1 ? `${secondSentenceFirstPartPhrases[2]}` : `${secondSentenceFirstPartPhrases[i]}`;
+		const secondSentenceSecondPartPhrase = i > 1 ? `${secondSentenceSecondPartPhrases[2]}` : `${secondSentenceSecondPartPhrases[i]}`;
+		
+		song.push(`${secondSentenceFirstPartPhrase} ${secondSentenceSecondPartPhrase}`);	
 	}
 
 	return song;
