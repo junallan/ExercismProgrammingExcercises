@@ -57,7 +57,7 @@ const run = () => {
 
 	const fileContents = readLines(fileName);
 
-	const regex = new RegExp(pattern);
+	const regex = flag === '-i' ? new RegExp(pattern,'i') : new RegExp(pattern);
 
 	for (let i = 0; i < fileContents.length; i++) {
 		if (regex.test(fileContents[i])) {

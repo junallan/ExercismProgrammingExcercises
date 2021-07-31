@@ -81,7 +81,7 @@ describe('grep exercise', () => {
       ).resolves.toBe('2:Of that Forbidden Tree, whose mortal tast');
     });
 
-    xit('One file, one match, case-insensitive flag', () => {
+    it('One file, one match, case-insensitive flag', () => {
       return expect(
         spawnGrep({
           pattern: 'FORBIDDEN',
