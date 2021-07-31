@@ -101,7 +101,7 @@ describe('grep exercise', () => {
       ).resolves.toBe(resolveDataFile('paradise-lost.txt'));
     });
 
-    xit('One file, one match, match entire lines flag', () => {
+    it('One file, one match, match entire lines flag', () => {
       return expect(
         spawnGrep({
           pattern: 'With loss of Eden, till one greater Man',
@@ -111,7 +111,7 @@ describe('grep exercise', () => {
       ).resolves.toBe('With loss of Eden, till one greater Man');
     });
 
-    xit('One file, one match, multiple flags', () => {
+    it('One file, one match, multiple flags', () => {
       return expect(
         spawnGrep({
           pattern: 'OF ATREUS, Agamemnon, KIng of MEN.',
@@ -121,7 +121,7 @@ describe('grep exercise', () => {
       ).resolves.toBe('9:Of Atreus, Agamemnon, King of men.');
     });
 
-    xit('One file, several matches, no flags', () => {
+    it('One file, several matches, no flags', () => {
       return expect(
         spawnGrep({
           pattern: 'may',
@@ -135,7 +135,7 @@ describe('grep exercise', () => {
       );
     });
 
-    xit('One file, several matches, print line numbers flag', () => {
+    it('One file, several matches, print line numbers flag', () => {
       return expect(
         spawnGrep({
           pattern: 'may',
@@ -149,7 +149,7 @@ describe('grep exercise', () => {
       );
     });
 
-    xit('One file, several matches, match entire lines flag', () => {
+    it('One file, several matches, match entire lines flag', () => {
       return expect(
         spawnGrep({
           pattern: 'may',
