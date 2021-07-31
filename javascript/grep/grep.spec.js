@@ -159,7 +159,7 @@ describe('grep exercise', () => {
       ).resolves.toBe('');
     });
 
-    xit('One file, several matches, case-insensitive flag', () => {
+    it('One file, several matches, case-insensitive flag', () => {
       return expect(
         spawnGrep({
           pattern: 'ACHILLES',
@@ -172,7 +172,7 @@ describe('grep exercise', () => {
       );
     });
 
-    xit('One file, several matches, inverted flag', () => {
+    it('One file, several matches, inverted flag', () => {
       return expect(
         spawnGrep({
           pattern: 'Of',

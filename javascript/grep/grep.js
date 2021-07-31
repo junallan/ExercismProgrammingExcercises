@@ -66,9 +66,10 @@ const run = () => {
 	if (flags.includes('-i')) regex = new RegExp(pattern, 'i');
 	else if (flags.includes('-x')) regex = new RegExp('^' + pattern + '$');
 
-
 	for (let i = 0; i < fileContents.length; i++) {
-		if (regex.test(fileContents[i])) {
+		const isOutput = !flags.includes('-v') && regex.test(fileContents[i]) ||
+						 flags.includes('-v') && !regex.test(fileContents[i]) ;
+		if (isOutput) {
 			if (flags.includes('-l')) console.log(fileName);
 			else if (flags.includes('-n')) console.log(`${i + 1}:${fileContents[i]}`);
 			else console.log(fileContents[i]);
