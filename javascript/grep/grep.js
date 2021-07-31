@@ -61,7 +61,8 @@ const run = () => {
 
 	for (let i = 0; i < fileContents.length; i++) {
 		if (regex.test(fileContents[i])) {
-			if (flag === '-n') console.log(`${i+1}:${fileContents[i]}`);
+			if (flag === '-l') console.log(fileName);
+			else if (flag === '-n') console.log(`${i + 1}:${fileContents[i]}`);
 			else console.log(fileContents[i]);
 		}
 				

@@ -91,7 +91,7 @@ describe('grep exercise', () => {
       ).resolves.toBe('Of that Forbidden Tree, whose mortal tast');
     });
 
-    xit('One file, one match, print file names flag', () => {
+    it('One file, one match, print file names flag', () => {
       return expect(
         spawnGrep({
           pattern: 'Forbidden',
