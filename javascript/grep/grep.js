@@ -52,17 +52,21 @@ const run = () => {
 	//console.log(ARGS);
 
 	const fileName = ARGS[ARGS.length - 1];
-	const flag = ARGS.length === 5 ? ARGS[2] : '';
-	const pattern = ARGS.length == 5 ? ARGS[3] : ARGS[2];
+	const pattern = ARGS[ARGS.length - 2];
+
+	let flags = [...Array(ARGS.length - 2).keys()].map(i => ARGS[i+2]);
+
+	//const flag = ARGS.length >= 5 ? ARGS[2] : '';
+	
 
 	const fileContents = readLines(fileName);
 
-	const regex = flag === '-i' ? new RegExp(pattern,'i') : new RegExp(pattern);
+	const regex = flags.includes('-i') ? new RegExp(pattern,'i') : new RegExp(pattern);
 
 	for (let i = 0; i < fileContents.length; i++) {
 		if (regex.test(fileContents[i])) {
-			if (flag === '-l') console.log(fileName);
-			else if (flag === '-n') console.log(`${i + 1}:${fileContents[i]}`);
+			if (flags.includes('-l')) console.log(fileName);
+			else if (flags.includes('-n')) console.log(`${i + 1}:${fileContents[i]}`);
 			else console.log(fileContents[i]);
 		}
 				
