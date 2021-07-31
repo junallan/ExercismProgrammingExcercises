@@ -49,19 +49,25 @@ const ARGS = process.argv;
 // This file should *not* export a function. Use ARGS to determine what to grep
 // and use console.log(output) to write to the standard output.
 const run = () => {
-	//console.log(readLines('data/iliad.txt'));
-	let fileContents = readLines(ARGS[3]);
+	//console.log(ARGS);
 
-	//console.log(fileContents[8]);
-	let pattern = ARGS[2];
-	//const regex = new RegExp(`*${pattern}*`);
-	const regex = new RegExp(`${ARGS[2]}`);
+	const fileName = ARGS[ARGS.length - 1];
+	const flag = ARGS.length === 5 ? ARGS[2] : '';
+	const pattern = ARGS.length == 5 ? ARGS[3] : ARGS[2];
+
+	const fileContents = readLines(fileName);
+
+	const regex = new RegExp(pattern);
 
 	for (let i = 0; i < fileContents.length; i++) {
-		if (regex.test(fileContents[i])) console.log(fileContents[i]);
+		if (regex.test(fileContents[i])) {
+			if (flag === '-n') console.log(`${i+1}:${fileContents[i]}`);
+			else console.log(fileContents[i]);
+		}
+				
 	}
 
-	//console.log(ARGS[2]);
+	
 }
 
 run()

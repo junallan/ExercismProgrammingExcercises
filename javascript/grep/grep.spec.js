@@ -71,7 +71,7 @@ describe('grep exercise', () => {
       ).resolves.toBe('Of Atreus, Agamemnon, King of men.');
     });
 
-    xit('One file, one match, print line numbers flag', () => {
+    it('One file, one match, print line numbers flag', () => {
       return expect(
         spawnGrep({
           pattern: 'Forbidden',
