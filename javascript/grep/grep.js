@@ -42,42 +42,36 @@ const VALID_OPTIONS = [
 
 const ARGS = process.argv;
 
-//
-// This is only a SKELETON file for the 'Grep' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-// This file should *not* export a function. Use ARGS to determine what to grep
-// and use console.log(output) to write to the standard output.
 const run = () => {
-	//console.log(ARGS);
-
-	const fileName = ARGS[ARGS.length - 1];
-	const pattern = ARGS[ARGS.length - 2];
-
-	let flags = [...Array(ARGS.length - 2).keys()].map(i => ARGS[i+2]);
-
-	//const flag = ARGS.length >= 5 ? ARGS[2] : '';
+	const fileNames = ARGS.filter(arguments => arguments.endsWith(".txt"));
+	const wordMatch = /^[a-z]+$/i;
+	const pattern = ARGS.filter(argument => wordMatch.test(argument.replace(/\s/g, "").replace(/[,.!'`]/g, "")));
 	
+	let flags = ARGS.filter(arguments => arguments.startsWith("-")); 
 
-	const fileContents = readLines(fileName);
+	for (fileName of fileNames) {
+		const fileContents = readLines(fileName);
 
-	let regex = new RegExp(pattern);
+		let regex = new RegExp(pattern);
 
-	if (flags.includes('-i')) regex = new RegExp(pattern, 'i');
-	else if (flags.includes('-x')) regex = new RegExp('^' + pattern + '$');
+		if (flags.includes('-i')) regex = new RegExp(pattern, 'i');
+		else if (flags.includes('-x')) regex = new RegExp('^' + pattern + '$');
 
-	for (let i = 0; i < fileContents.length; i++) {
-		const isOutput = !flags.includes('-v') && regex.test(fileContents[i]) ||
-						 flags.includes('-v') && !regex.test(fileContents[i]) ;
-		if (isOutput) {
-			if (flags.includes('-l')) console.log(fileName);
-			else if (flags.includes('-n')) console.log(`${i + 1}:${fileContents[i]}`);
-			else console.log(fileContents[i]);
+		for (let i = 0; i < fileContents.length; i++) {
+			const isOutput = !flags.includes('-v') && regex.test(fileContents[i]) ||
+							 flags.includes('-v') && !regex.test(fileContents[i]);
+
+			let result = fileNames.length > 1 ? `${fileName}:` : "";
+		
+			if (isOutput) {
+				if (flags.includes('-l')) { console.log(fileName); break; }
+				else if (flags.includes('-n')) result += `${i + 1}:${fileContents[i]}`;				
+				else result += fileContents[i];
+
+				console.log(result);
+			}
 		}
-				
 	}
-
-	
 }
 
-run()
+run();
