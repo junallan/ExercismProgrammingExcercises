@@ -1,7 +1,7 @@
 export const hey = (message) => {
-  let isQuestion = /\?$/.test(message.replace(/\s/g,''));
-  let isYelling = /[A-Z]+/.test(message) && /^[A-Z !?,0-9%^@#$(*]*$/.test(message);
-  let isSilence = /^\s*$/.test(message);
+  const isQuestion = message.trimEnd().endsWith("?");
+  const isYelling = /[A-Z]+/.test(message) && /^[A-Z !?,0-9%^@#$(*]*$/.test(message);
+  const isSilence = message.trim().length === 0;
 
   if(isSilence)                     return "Fine. Be that way!";
   else if(isQuestion && isYelling)  return "Calm down, I know what I'm doing!"; 
