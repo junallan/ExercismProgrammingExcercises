@@ -1,6 +1,6 @@
 export const hey = (message) => {
   const isQuestion = message.trimEnd().endsWith("?");
-  const isYelling = /[A-Z]+/.test(message) && /^[A-Z !?,0-9%^@#$(*]*$/.test(message);
+  const isYelling = message === message.toUpperCase() && message !== message.toLowerCase();
   const isSilence = message.trim().length === 0;
 
   if(isSilence)                     return "Fine. Be that way!";
