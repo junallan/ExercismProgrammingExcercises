@@ -4,11 +4,9 @@ export const rows = (numRows) => {
 
 	let triangle = [];
 
-	for (let i = 0; i < numRows; i++) {
-		triangle.push([i + 1]);
-
-		for (let j = 0; j < i / 2; j++) {
-
+	for (let i = 1; i <= numRows; i++) {
+		for (let j = 1; j <= i; j++) {
+			triangle.push([i]);
 		}
 	}
 
