@@ -1,8 +1,9 @@
 export const hey = (message) => {
-  const inputTrimmed = message.trim();
-  const isQuestion = inputTrimmed.endsWith("?");
-  const isYelling = inputTrimmed === inputTrimmed.toUpperCase() && inputTrimmed !== inputTrimmed.toLowerCase();
-  const isSilence = inputTrimmed.length === 0;
+  message = message.trim();
+
+  const isQuestion = message.endsWith("?");
+  const isYelling = message === message.toUpperCase() && message !== message.toLowerCase();
+  const isSilence = message.length === 0;
 
   if(isSilence)                     return "Fine. Be that way!";
   else if(isQuestion && isYelling)  return "Calm down, I know what I'm doing!"; 
