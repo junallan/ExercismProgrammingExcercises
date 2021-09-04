@@ -10,7 +10,7 @@ describe('Pascals Triangle', () => {
       expect(rows(1)).toEqual([[1]]);
     });
 
-    xtest('two rows', () => {
+    test('two rows', () => {
       expect(rows(2)).toEqual([[1], [1, 1]]);
     });
 
