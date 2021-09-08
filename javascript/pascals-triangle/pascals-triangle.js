@@ -1,6 +1,4 @@
 export const rows = (numRows) => {
-	let triangle = [];
-
 	function isInitialPosition(row, column) {
 		return row === 1 && column === 1;
 	}
@@ -13,33 +11,38 @@ export const rows = (numRows) => {
 		return column < columnEdge;
 	}
 
-	function lookupLeftSide(row, column) {
+	function lookupLeftSide(triangle, row, column) {
 		return triangle[row - 2][column - 2];
 	}
 
-	function lookupRightSide(row, column) {
+	function lookupRightSide(triangle, row, column) {
 		return triangle[row - 2][column - 1]
 	}
 
-	
-	for (let i = 1; i <= numRows; i++) {
-		let lineValues = [];
+	function createPascalsTriangle(numRows) {
+		let triangle = [];
 
-		for (let j = 1; j <= i; j++) {
-			let leftSideSum = 0;
-			let rightSideSum = 0;
+		for (let i = 1; i <= numRows; i++) {
+			let lineValues = [];
 
-			if (isInitialPosition(i,j)) lineValues.push(1);
-			else {			
-				if (isLeftSideSum(j))		leftSideSum = lookupLeftSide(i ,j);
-				if (isRightSideSum(j,i))	rightSideSum = lookupRightSide(i, j);				
+			for (let j = 1; j <= i; j++) {
+				let leftSideSum = 0;
+				let rightSideSum = 0;
 
-				lineValues.push(leftSideSum + rightSideSum);
-			}	
+				if (isInitialPosition(i, j)) lineValues.push(1);
+				else {
+					if (isLeftSideSum(j)) leftSideSum = lookupLeftSide(triangle, i, j);
+					if (isRightSideSum(j, i)) rightSideSum = lookupRightSide(triangle, i, j);
+
+					lineValues.push(leftSideSum + rightSideSum);
+				}
+			}
+
+			triangle.push(lineValues)
 		}
 
-		triangle.push(lineValues)
+		return triangle;
 	}
-
-	return triangle;
+	
+	return createPascalsTriangle(numRows);
 };
