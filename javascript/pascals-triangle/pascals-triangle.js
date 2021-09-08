@@ -1,4 +1,6 @@
 export const rows = (numRows) => {
+	let triangle = [];
+
 	function isInitialPosition(row, column) {
 		return row === 1 && column === 1;
 	}
@@ -15,8 +17,11 @@ export const rows = (numRows) => {
 		return triangle[row - 2][column - 2];
 	}
 
-	let triangle = [];
+	function lookupRightSide(row, column) {
+		return triangle[row - 2][column - 1]
+	}
 
+	
 	for (let i = 1; i <= numRows; i++) {
 		let lineValues = [];
 
@@ -27,7 +32,7 @@ export const rows = (numRows) => {
 			if (isInitialPosition(i,j)) lineValues.push(1);
 			else {			
 				if (isLeftSideSum(j))		leftSideSum = lookupLeftSide(i ,j);
-				if (isRightSideSum(j,i))	rightSideSum = triangle[i - 2][j - 1];				
+				if (isRightSideSum(j,i))	rightSideSum = lookupRightSide(i, j);				
 
 				lineValues.push(leftSideSum + rightSideSum);
 			}	
