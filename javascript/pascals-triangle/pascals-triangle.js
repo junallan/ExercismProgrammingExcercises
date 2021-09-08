@@ -8,7 +8,7 @@ export const rows = (numRows) => {
 			let leftSideSum = 0;
 			let rightSideSum = 0;
 
-			if (i === 1 && j === 1) lineValues.push(1);
+			if (isInitialPosition(i,j)) lineValues.push(1);
 			else {			
 				if ((j - 1) > 0)	leftSideSum  = triangle[i - 2][j - 2];		
 				if (j < i)			rightSideSum = triangle[i - 2][j - 1];				
@@ -18,6 +18,10 @@ export const rows = (numRows) => {
 		}
 
 		triangle.push(lineValues)
+	}
+
+	function isInitialPosition(row, column){
+		return row === 1 && column === 1;
 	}
 
 	return triangle;
