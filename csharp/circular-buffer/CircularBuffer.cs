@@ -1,57 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public class CircularBuffer<T>
 {
-    private T[] _bufferData;
-    private int _startIndex;
-    private int _itemsAdded;
-     
+    private Queue<T> _bufferData;
+    private int _capacity;     
 
     public CircularBuffer(int capacity)
     {
-        _bufferData = new T[capacity];
+        _bufferData = new Queue<T>(capacity);
+        _capacity = capacity;
     }
 
-    public T Read()
-    {
-        if(_itemsAdded == 0) { throw new InvalidOperationException(); }
-
-        _itemsAdded--;
-
-        var readData = _bufferData[_startIndex];
-
-        _startIndex = ++_startIndex % _bufferData.Length;
-
-        return readData;
-    }
+    public T Read() => !_bufferData.Any() ? throw new InvalidOperationException() : _bufferData.Dequeue();
 
     public void Write(T value)
     {
-        if (_itemsAdded == _bufferData.Length) { throw new InvalidOperationException(); }
-      
-        _bufferData[(_startIndex + _itemsAdded) % _bufferData.Length] = value;
-        _itemsAdded++;
+        if (_bufferData.Count == _capacity) throw new InvalidOperationException(); 
+
+        _bufferData.Enqueue(value);
     }
 
     public void Overwrite(T value)
     {
-        _bufferData[(_startIndex + _itemsAdded) % _bufferData.Length] = value;
+        if (_bufferData.Count == _capacity) _bufferData.Dequeue();
 
-        if (_itemsAdded == _bufferData.Length)
-        {
-            _startIndex = ++_startIndex % _bufferData.Length;
-        }
-        else
-        {
-            _itemsAdded++;
-        }
+        _bufferData.Enqueue(value);
     }
 
-    public void Clear()
-    {
-        _bufferData = new T[_bufferData.Length];
-        _startIndex = 0;
-        _itemsAdded = 0;
-    }
+    public void Clear() => _bufferData.Clear();
 }
