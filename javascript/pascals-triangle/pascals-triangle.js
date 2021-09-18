@@ -1,23 +1,16 @@
 export const rows = (numRows) => {
 	function createPascalsTriangle(numRows) {
-		if (numRows === 0) {
-			return [];
-		}
-
 		let triangle = [];
 		
 		for (let i = 0; i < numRows; i++) {
-			let currentRow = triangle.length === 0 ? [] : triangle[triangle.length-1];
-			triangle.push(nextRow(currentRow));
+			triangle.push(nextRow(triangle.length === 0 ? [] : triangle[triangle.length - 1]));
 		}
 
 		return triangle;
 	}
 
-	function nextRow(priorRow) {
+	function pairs(priorRow) {
 		let rowPairs = [];
-
-		if (priorRow.length === 0) return [1];
 
 		rowPairs.push([0, 1]);
 
@@ -27,7 +20,13 @@ export const rows = (numRows) => {
 
 		rowPairs.push([1, 0]);
 
-		return rowPairs.map(([a, b]) => a + b);
+		return rowPairs;
+	}
+
+	function nextRow(priorRow) {
+		if (priorRow.length === 0) return [1];
+
+		return pairs(priorRow).map(([a, b]) => a + b);
 	}
 
 	return createPascalsTriangle(numRows);
