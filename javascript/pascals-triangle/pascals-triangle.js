@@ -3,11 +3,9 @@ export const rows = (numRows) => {
 		let triangle = [];
 		
 		for (let i = 0; i < numRows; i++) {
-			//console.log('nextRow:' + nextRow(triangle.length === 0 ? [] : triangle[triangle.length - 1]));
 			triangle.push(nextRow(triangle.length === 0 ? [] : triangle[triangle.length - 1]));
 		}
 
-		/*console.log('triangle:' + triangle);*/
 		return triangle;
 	}
 
