@@ -10,7 +10,13 @@ export const rows = (numRows) => {
 	}
 
 	function pairs(priorRow) {
-		return [[0, 1], ...Array.from(Array(priorRow.length-1).keys()).map(i => [priorRow[i], priorRow[i + 1]]), [1, 0]];
+		let rowPairs = [];
+
+		for (let i = 1; i < priorRow.length; i++) {
+			rowPairs.push([priorRow[i - 1], priorRow[i]]);
+		}
+
+		return [[0, 1], ...rowPairs, [1, 0]];
 	}
 	
 	function nextRow(priorRow) {
