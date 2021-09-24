@@ -34,9 +34,8 @@
  * The amount of minutes it takes to prepare a single layer.
  */
 const PREPARATION_MINUTES_PER_LAYER = 2;
-const EXPECTED_MINUTES_IN_OVEN = 40;
+export const EXPECTED_MINUTES_IN_OVEN = 40;
 
-export { EXPECTED_MINUTES_IN_OVEN };
 /**
  * Determines the amount of minutes the lasagna still needs to remain in the
  * oven to be properly prepared.
