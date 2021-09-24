@@ -8,7 +8,7 @@ describe('Rotational cipher', () => {
     expect(actual).toEqual(expected);
   });
 
-  xtest('rotate a by 1', () => {
+  test('rotate a by 1', () => {
     const expected = 'b';
     const actual = RotationalCipher.rotate('a', 1);
 
