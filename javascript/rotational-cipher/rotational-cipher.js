@@ -17,10 +17,10 @@ export class RotationalCipher {
 
     static doRotation(data, key) {
         const elementCode = data.charCodeAt(0);
-        if (this.isLowerCaseLetter(elementCode)) {
+        if (this.isCharacterCodeRange(elementCode, aCharCode, zCharCode)) {
             return this.getLetterRotation(elementCode, key, aCharCode, zCharCode);
         }
-        else if (this.isUpperCaseLetter(elementCode)) {
+        else if (this.isCharacterCodeRange(elementCode, ACharCode, ZCharCode)) {
             return this.getLetterRotation(elementCode, key, ACharCode, ZCharCode);
         }
         else {
@@ -29,30 +29,22 @@ export class RotationalCipher {
         
     }
 
-    static isLowerCaseLetter(elementCode) {   
-        return aCharCode <= elementCode && elementCode <= zCharCode;
+    static isCharacterCodeRange(elementCode, lowerBoundCharacterCode, upperBoundCharacterCode) {
+        return lowerBoundCharacterCode <= elementCode && elementCode <= upperBoundCharacterCode;
     }
 
-    static isUpperCaseLetter(elementCode) {
-        return ACharCode <= elementCode && elementCode <= ZCharCode;
-    }
+    //static isLowerCaseLetter(elementCode) {   
+    //    return aCharCode <= elementCode && elementCode <= zCharCode;
+    //}
+
+    //static isUpperCaseLetter(elementCode) {
+    //    return ACharCode <= elementCode && elementCode <= ZCharCode;
+    //}
 
     static getLetterRotation(elementCode, key, lowerBoundCharacter, upperBoundCharacter) {
         let letterRotationCode = elementCode + key;
 
         return String.fromCharCode(((elementCode - lowerBoundCharacter) + key) <= (upperBoundCharacter - lowerBoundCharacter) ? letterRotationCode : (letterRotationCode % upperBoundCharacter) + (lowerBoundCharacter - 1));
     }
-
-    //static getLowerCaseLetterRotation(elementCode, key) {
-    //    let letterRotationCode = elementCode + key;
-       
-    //    return String.fromCharCode(((elementCode - aCharCode) + key) <= (zCharCode - aCharCode) ? letterRotationCode : (letterRotationCode % zCharCode) + (aCharCode - 1));
-    //}
-
-    //static getUpperCaseLetterRotation(elementCode, key) {
-    //    let letterRotationCode = elementCode + key;
-
-    //    return String.fromCharCode(((elementCode - ACharCode) + key) <= (zCharCode - ACharCode) ? letterRotationCode : (letterRotationCode % ZCharCode) + (ACharCode - 1));
-    //}
 }
 
