@@ -16,7 +16,7 @@ export class RotationalCipher {
     static doRotation(data, key) {
         const elementCode = data.charCodeAt(0);
         if (this.isLowerCaseLetter(elementCode)) {
-            return String.fromCharCode(key <= (zCharCode - aCharCode) ? elementCode + key : ((elementCode + key) % zCharCode) + (aCharCode - 1));
+            return this.getLowerCaseLetterRotation(elementCode, key);
         }
         else {
             return "";
@@ -26,6 +26,11 @@ export class RotationalCipher {
 
     static isLowerCaseLetter(elementCode) {   
         return aCharCode <= elementCode && elementCode <= zCharCode;
+    }
+
+    static getLowerCaseLetterRotation(elementCode, key) {
+        let letterRotationCode = elementCode + key;
+        return String.fromCharCode(key <= (zCharCode - aCharCode) ? letterRotationCode : (letterRotationCode % zCharCode) + (aCharCode - 1));
     }
 }
 
