@@ -30,7 +30,8 @@ export class RotationalCipher {
 
     static getLowerCaseLetterRotation(elementCode, key) {
         let letterRotationCode = elementCode + key;
-        return String.fromCharCode(key <= (zCharCode - aCharCode) ? letterRotationCode : (letterRotationCode % zCharCode) + (aCharCode - 1));
+       
+        return String.fromCharCode(((elementCode - aCharCode) + key) <= (zCharCode - aCharCode) ? letterRotationCode : (letterRotationCode % zCharCode) + (aCharCode - 1));
     }
 }
 
