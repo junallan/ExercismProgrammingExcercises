@@ -11,16 +11,12 @@ export class RotationalCipher {
 
         const elementCode = data.charCodeAt(0);
 
-        if (this.isCharacterCodeRange(elementCode, aCharCode, zCharCode)) {
+        if (this.isCharacterCodeRange(elementCode, aCharCode, zCharCode))
             return this.getLetterRotationCode(elementCode, key, aCharCode, zCharCode);
-        }
-        else if (this.isCharacterCodeRange(elementCode, ACharCode, ZCharCode)) {
+        else if (this.isCharacterCodeRange(elementCode, ACharCode, ZCharCode)) 
             return this.getLetterRotationCode(elementCode, key, ACharCode, ZCharCode);
-        }
-        else {
-            return elementCode;
-        }
-        
+        else
+            return elementCode;    
     }
 
     static isCharacterCodeRange(elementCode, lowerBoundCharacterCode, upperBoundCharacterCode) {
