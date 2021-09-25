@@ -43,28 +43,28 @@ describe('Rotational cipher', () => {
     expect(actual).toEqual(expected);
   });
 
-  xtest('rotate spaces', () => {
+  test('rotate spaces', () => {
     const expected = 'T R L';
     const actual = RotationalCipher.rotate('O M G', 5);
 
     expect(actual).toEqual(expected);
   });
 
-  xtest('rotate numbers', () => {
+  test('rotate numbers', () => {
     const expected = 'Xiwxmrk 1 2 3 xiwxmrk';
     const actual = RotationalCipher.rotate('Testing 1 2 3 testing', 4);
 
     expect(actual).toEqual(expected);
   });
 
-  xtest('rotate punctuation', () => {
+  test('rotate punctuation', () => {
     const expected = "Gzo'n zvo, Bmviyhv!";
     const actual = RotationalCipher.rotate("Let's eat, Grandma!", 21);
 
     expect(actual).toEqual(expected);
   });
 
-  xtest('rotate all letters', () => {
+  test('rotate all letters', () => {
     const expected = 'Gur dhvpx oebja sbk whzcf bire gur ynml qbt.';
     const actual = RotationalCipher.rotate(
       'The quick brown fox jumps over the lazy dog.',
