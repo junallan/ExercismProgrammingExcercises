@@ -1,5 +1,7 @@
 const aCharCode = 97;
 const zCharCode = 122;
+const ACharCode = 65;
+const ZCharCode = 90;
 
 //console.log('a'.charCodeAt(0)); -> 97
 //console.log('z'.charCodeAt(0)); -> 122
@@ -10,13 +12,16 @@ const zCharCode = 122;
 
 export class RotationalCipher {
     static rotate(data, key) {
-        return [...data].map(d => this.doRotation(d, key)).join();
+        return [...data].map(d => this.doRotation(d, key)).join('');
     }
 
     static doRotation(data, key) {
         const elementCode = data.charCodeAt(0);
         if (this.isLowerCaseLetter(elementCode)) {
             return this.getLowerCaseLetterRotation(elementCode, key);
+        }
+        else if (this.isUpperCaseLetter(elementCode)) {
+            return this.getUpperCaseLetterRotation(elementCode, key);
         }
         else {
             return "";
@@ -28,10 +33,20 @@ export class RotationalCipher {
         return aCharCode <= elementCode && elementCode <= zCharCode;
     }
 
+    static isUpperCaseLetter(elementCode) {
+        return ACharCode <= elementCode && elementCode <= ZCharCode;
+    }
+
     static getLowerCaseLetterRotation(elementCode, key) {
         let letterRotationCode = elementCode + key;
        
         return String.fromCharCode(((elementCode - aCharCode) + key) <= (zCharCode - aCharCode) ? letterRotationCode : (letterRotationCode % zCharCode) + (aCharCode - 1));
+    }
+
+    static getUpperCaseLetterRotation(elementCode, key) {
+        let letterRotationCode = elementCode + key;
+
+        return String.fromCharCode(((elementCode - ACharCode) + key) <= (zCharCode - ACharCode) ? letterRotationCode : (letterRotationCode % ZCharCode) + (ACharCode - 1));
     }
 }
 

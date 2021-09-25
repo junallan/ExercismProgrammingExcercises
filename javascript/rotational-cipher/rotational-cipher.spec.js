@@ -36,12 +36,12 @@ describe('Rotational cipher', () => {
     expect(actual).toEqual(expected);
   });
 
-  //test('rotate capital letters', () => {
-  //  const expected = 'TRL';
-  //  const actual = RotationalCipher.rotate('OMG', 5);
+  test('rotate capital letters', () => {
+    const expected = 'TRL';
+    const actual = RotationalCipher.rotate('OMG', 5);
 
-  //  expect(actual).toEqual(expected);
-  //});
+    expect(actual).toEqual(expected);
+  });
 
   xtest('rotate spaces', () => {
     const expected = 'T R L';
