@@ -15,33 +15,33 @@ describe('Rotational cipher', () => {
     expect(actual).toEqual(expected);
   });
 
-  xtest('rotate a by 26, same output as input', () => {
+  test('rotate a by 26, same output as input', () => {
     const expected = 'a';
     const actual = RotationalCipher.rotate('a', 26);
 
     expect(actual).toEqual(expected);
   });
 
-  xtest('rotate m by 13', () => {
-    const expected = 'z';
-    const actual = RotationalCipher.rotate('m', 13);
+  //test('rotate m by 13', () => {
+  //  const expected = 'z';
+  //  const actual = RotationalCipher.rotate('m', 13);
 
-    expect(actual).toEqual(expected);
-  });
+  //  expect(actual).toEqual(expected);
+  //});
 
-  xtest('rotate n by 13 with wrap around alphabet', () => {
-    const expected = 'a';
-    const actual = RotationalCipher.rotate('n', 13);
+  //test('rotate n by 13 with wrap around alphabet', () => {
+  //  const expected = 'a';
+  //  const actual = RotationalCipher.rotate('n', 13);
 
-    expect(actual).toEqual(expected);
-  });
+  //  expect(actual).toEqual(expected);
+  //});
 
-  xtest('rotate capital letters', () => {
-    const expected = 'TRL';
-    const actual = RotationalCipher.rotate('OMG', 5);
+  //test('rotate capital letters', () => {
+  //  const expected = 'TRL';
+  //  const actual = RotationalCipher.rotate('OMG', 5);
 
-    expect(actual).toEqual(expected);
-  });
+  //  expect(actual).toEqual(expected);
+  //});
 
   xtest('rotate spaces', () => {
     const expected = 'T R L';
