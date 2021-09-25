@@ -18,13 +18,13 @@ export class RotationalCipher {
     static doRotation(data, key) {
         const elementCode = data.charCodeAt(0);
         if (this.isLowerCaseLetter(elementCode)) {
-            return this.getLowerCaseLetterRotation(elementCode, key);
+            return this.getLetterRotation(elementCode, key, aCharCode, zCharCode);
         }
         else if (this.isUpperCaseLetter(elementCode)) {
-            return this.getUpperCaseLetterRotation(elementCode, key);
+            return this.getLetterRotation(elementCode, key, ACharCode, ZCharCode);
         }
         else {
-            return "";
+            return data;
         }
         
     }
@@ -37,16 +37,22 @@ export class RotationalCipher {
         return ACharCode <= elementCode && elementCode <= ZCharCode;
     }
 
-    static getLowerCaseLetterRotation(elementCode, key) {
+    static getLetterRotation(elementCode, key, lowerBoundCharacter, upperBoundCharacter) {
         let letterRotationCode = elementCode + key;
+
+        return String.fromCharCode(((elementCode - lowerBoundCharacter) + key) <= (upperBoundCharacter - lowerBoundCharacter) ? letterRotationCode : (letterRotationCode % upperBoundCharacter) + (lowerBoundCharacter - 1));
+    }
+
+    //static getLowerCaseLetterRotation(elementCode, key) {
+    //    let letterRotationCode = elementCode + key;
        
-        return String.fromCharCode(((elementCode - aCharCode) + key) <= (zCharCode - aCharCode) ? letterRotationCode : (letterRotationCode % zCharCode) + (aCharCode - 1));
-    }
+    //    return String.fromCharCode(((elementCode - aCharCode) + key) <= (zCharCode - aCharCode) ? letterRotationCode : (letterRotationCode % zCharCode) + (aCharCode - 1));
+    //}
 
-    static getUpperCaseLetterRotation(elementCode, key) {
-        let letterRotationCode = elementCode + key;
+    //static getUpperCaseLetterRotation(elementCode, key) {
+    //    let letterRotationCode = elementCode + key;
 
-        return String.fromCharCode(((elementCode - ACharCode) + key) <= (zCharCode - ACharCode) ? letterRotationCode : (letterRotationCode % ZCharCode) + (ACharCode - 1));
-    }
+    //    return String.fromCharCode(((elementCode - ACharCode) + key) <= (zCharCode - ACharCode) ? letterRotationCode : (letterRotationCode % ZCharCode) + (ACharCode - 1));
+    //}
 }
 
