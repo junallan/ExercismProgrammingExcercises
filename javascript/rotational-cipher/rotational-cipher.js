@@ -1,31 +1,32 @@
 export class RotationalCipher {
     static rotate(data, key) {
-        return String.fromCharCode(...[...data].map(d => this.doRotation(d, key)));
+        return [...data].map(d => this.doRotation(d, key)).join('');
     }
 
     static doRotation(data, key) {
-        const alphapetBoundary = 25;
-        const ZCharCode = 90;
+        if (!this.isCharacterALetter(data)) return data;
+
+        const lowerCaseLetterCode = data.toLowerCase().charCodeAt(0);
+        
+        const letterRotationCode = this.getLetterRotationCode(lowerCaseLetterCode, key);
+           
+        const isCharacterLowercase = data.toLowerCase() === data;
+        const lowerCaseLetter = String.fromCharCode(letterRotationCode);
+
+        return isCharacterLowercase ? lowerCaseLetter : lowerCaseLetter.toUpperCase();
+    }
+
+    static isCharacterALetter(char) {
+        return char.toLowerCase() !== char.toUpperCase()
+    }
+
+    static getLetterRotationCode(elementCode, key) {
         const zCharCode = 122;
-
-        const elementCode = data.charCodeAt(0);
-
-        if (!(this.isCharacterCodeRange(elementCode, ZCharCode - alphapetBoundary, ZCharCode)) && !(this.isCharacterCodeRange(elementCode, zCharCode-alphapetBoundary, zCharCode))) return elementCode;
-
-        const upperBoundCharacterCode = elementCode <= ZCharCode ? ZCharCode : zCharCode;
-
-        return this.getLetterRotationCode(elementCode, key, upperBoundCharacterCode, alphapetBoundary);  
-    }
-
-    static isCharacterCodeRange(elementCode, lowerBoundCharacterCode, upperBoundCharacterCode) {
-        return lowerBoundCharacterCode <= elementCode && elementCode <= upperBoundCharacterCode;
-    }
-
-    static getLetterRotationCode(elementCode, key, upperBoundCharacter, alphabetBoundary) {
+        const alphabetBoundary = 25;
         const letterRotationCode = elementCode + key;
-        const lowerBoundCharacter = upperBoundCharacter - alphabetBoundary;
+        const aCharCode = zCharCode - alphabetBoundary;
 
-        return ((elementCode - lowerBoundCharacter) + key) <= (upperBoundCharacter - lowerBoundCharacter) ? letterRotationCode : (letterRotationCode % upperBoundCharacter) + (lowerBoundCharacter - 1);
+        return ((elementCode - aCharCode) + key) <= (zCharCode - aCharCode) ? letterRotationCode : (letterRotationCode % zCharCode) + (aCharCode - 1);
     }
 }
 
