@@ -9,12 +9,13 @@ export class RotationalCipher {
         return dataTransformation;
     }
 
-    static doShift(dataElement, shiftPosition) {
-        if (!this.isCharacterALetter(dataElement)) return dataElement;
+    static doShift(character, shiftPosition) {
+        if (!this.isCharacterALetter(character)) return character;
 
-        const lowerCaseLetter = this.getLetterRotation(dataElement.toLowerCase(), shiftPosition);      
-    
-        return dataElement.toLowerCase() === dataElement ? lowerCaseLetter : lowerCaseLetter.toUpperCase();
+        const lowerCaseLetter = this.getLetterRotation(character.toLowerCase(), shiftPosition);      
+        const isCharacterLowercase = character.toLowerCase() === character;
+
+        return isCharacterLowercase ? lowerCaseLetter : lowerCaseLetter.toUpperCase();
     }
 
     static isCharacterALetter(char) {
