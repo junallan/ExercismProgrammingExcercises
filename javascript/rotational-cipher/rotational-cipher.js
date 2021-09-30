@@ -1,12 +1,6 @@
 export class RotationalCipher {
     static rotate(data, shiftPosition) {
-        let dataTransformation = '';
-
-        for (let i = 0; i < data.length; i++) {
-           dataTransformation += this.doShift(data.charAt(i), shiftPosition);
-        }
-
-        return dataTransformation;
+        return [...data].map(c => this.doShift(c,shiftPosition)).join('');
     }
 
     static doShift(character, shiftPosition) {
