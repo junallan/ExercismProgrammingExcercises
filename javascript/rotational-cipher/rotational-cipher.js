@@ -1,19 +1,15 @@
 export class RotationalCipher {
     static rotate(data, shiftPosition) {
-        return [...data].map(c => this.doShift(c,shiftPosition)).join('');
+        return data.replace(/[a-z]/gi, (characterMatch) => {
+            return this.doShift(characterMatch, shiftPosition);
+        });
     }
 
     static doShift(character, shiftPosition) {
-        if (!this.isCharacterALetter(character)) return character;
-
         const lowerCaseLetter = this.getLetterRotation(character.toLowerCase(), shiftPosition);      
         const isCharacterLowercase = character.toLowerCase() === character;
 
         return isCharacterLowercase ? lowerCaseLetter : lowerCaseLetter.toUpperCase();
-    }
-
-    static isCharacterALetter(char) {
-        return char.toLowerCase() !== char.toUpperCase()
     }
     
     static getLetterRotation(dataElement, shiftPosition) {
