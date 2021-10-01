@@ -1,7 +1,7 @@
 public class Lasagna
 {
-    public readonly int OvenTime = 40;
-    public readonly int LayerPrepTime = 2;
+    public static readonly int OvenTime = 40;
+    public static readonly int LayerPrepTime = 2;
 
     public int ExpectedMinutesInOven() => OvenTime;
     public int RemainingMinutesInOven(int cookTime) => OvenTime - cookTime;
