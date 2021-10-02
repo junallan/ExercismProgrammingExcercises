@@ -1,18 +1,12 @@
 export class RotationalCipher {
-    static rotate(data, shiftPosition) {
-        return new RotationalCipher(data).rotate(shiftPosition);
-    }
+    static ACharacterCode = 97;
+    static Alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-    constructor(data) {
-        this.data = data;
-        this.ACharacterCode = 97;
-        this.Alphabet = "abcdefghijklmnopqrstuvwxyz";
-    }
+    constructor(data) { this.data = data; }
 
-    rotate(shiftPosition) {
-        return this.data.replace(/[a-z]/gi, (characterMatch) => this.doShift(characterMatch, shiftPosition));
-    }
-
+    static rotate(data, shiftPosition) { return new RotationalCipher(data).rotate(shiftPosition); }
+    rotate(shiftPosition) { return this.data.replace(/[a-z]/gi, (characterMatch) => this.doShift(characterMatch, shiftPosition)); }
+    
     doShift(character, shiftPosition) {
         const lowerCaseLetter = this.getLetterRotation(character.toLowerCase(), shiftPosition);
         const isCharacterLowercase = character.toLowerCase() === character;
@@ -20,15 +14,12 @@ export class RotationalCipher {
         return isCharacterLowercase ? lowerCaseLetter : lowerCaseLetter.toUpperCase();
     }
 
-    indexOf(character) {
-        return character.charCodeAt(0) - this.ACharacterCode;
-    }
-
     getLetterRotation(character, shiftPosition) {
-        const elementPosition = (this.indexOf(character) + shiftPosition) % this.Alphabet.length
+        const elementPosition = (this.indexOf(character) + shiftPosition) % RotationalCipher.Alphabet.length
 
-        return this.Alphabet.charAt(elementPosition);
+        return RotationalCipher.Alphabet.charAt(elementPosition);
     }
-   
+
+    indexOf(character) { return character.charCodeAt(0) - RotationalCipher.ACharacterCode; }
 }
 
