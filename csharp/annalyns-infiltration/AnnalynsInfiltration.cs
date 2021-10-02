@@ -4,10 +4,7 @@ static class QuestLogic
 {
     public static bool CanFastAttack(bool knightIsAwake) => !knightIsAwake;
 
-    public static bool CanSpy(bool knightIsAwake, bool archerIsAwake, bool prisonerIsAwake)
-    {
-        throw new NotImplementedException("Please implement the (static) QuestLogic.CanSpy() method");
-    }
+    public static bool CanSpy(bool knightIsAwake, bool archerIsAwake, bool prisonerIsAwake) => knightIsAwake || archerIsAwake || prisonerIsAwake;
 
     public static bool CanSignalPrisoner(bool archerIsAwake, bool prisonerIsAwake)
     {
