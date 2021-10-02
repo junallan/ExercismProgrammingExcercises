@@ -10,6 +10,9 @@ static class QuestLogic
 
     public static bool CanFreePrisoner(bool knightIsAwake, bool archerIsAwake, bool prisonerIsAwake, bool petDogIsPresent)
     {
-        throw new NotImplementedException("Please implement the (static) QuestLogic.CanFreePrisoner() method");
-    }
+        return (!knightIsAwake && !archerIsAwake && !prisonerIsAwake && petDogIsPresent)
+                || (!knightIsAwake && !archerIsAwake && prisonerIsAwake)
+                || (knightIsAwake && !archerIsAwake && !prisonerIsAwake && petDogIsPresent)
+                || (knightIsAwake && !archerIsAwake && prisonerIsAwake && petDogIsPresent);
+    }    
 }
