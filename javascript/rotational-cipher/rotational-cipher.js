@@ -1,8 +1,6 @@
 export class RotationalCipher {
     static rotate(data, shiftPosition) {
-        return data.replace(/[a-z]/gi, (characterMatch) => {
-            return this.doShift(characterMatch, shiftPosition);
-        });
+        return data.replace(/[a-z]/gi, (characterMatch) =>  this.doShift(characterMatch, shiftPosition) );
     }
 
     static doShift(character, shiftPosition) {
