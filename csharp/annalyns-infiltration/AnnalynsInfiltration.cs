@@ -6,10 +6,7 @@ static class QuestLogic
 
     public static bool CanSpy(bool knightIsAwake, bool archerIsAwake, bool prisonerIsAwake) => knightIsAwake || archerIsAwake || prisonerIsAwake;
 
-    public static bool CanSignalPrisoner(bool archerIsAwake, bool prisonerIsAwake)
-    {
-        throw new NotImplementedException("Please implement the (static) QuestLogic.CanSignalPrisoner() method");
-    }
+    public static bool CanSignalPrisoner(bool archerIsAwake, bool prisonerIsAwake) => !archerIsAwake && prisonerIsAwake;
 
     public static bool CanFreePrisoner(bool knightIsAwake, bool archerIsAwake, bool prisonerIsAwake, bool petDogIsPresent)
     {
