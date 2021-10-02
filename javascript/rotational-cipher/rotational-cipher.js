@@ -11,11 +11,16 @@ export class RotationalCipher {
 
         return isCharacterLowercase ? lowerCaseLetter : lowerCaseLetter.toUpperCase();
     }
+
+    static indexOf(character) {
+        const aCharacterCode = 97;
+        return character.charCodeAt(0) - aCharacterCode;
+    }
     
-    static getLetterRotation(dataElement, shiftPosition) {
+    static getLetterRotation(character, shiftPosition) {
         const alphabet = "abcdefghijklmnopqrstuvwxyz";
    
-        const elementPosition = (alphabet.indexOf(dataElement) + shiftPosition) % alphabet.length
+        const elementPosition = (this.indexOf(character) + shiftPosition) % alphabet.length
       
         return alphabet.charAt(elementPosition);
     }
