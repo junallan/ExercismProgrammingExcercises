@@ -1,5 +1,5 @@
 export class RotationalCipher {
-    static ASCIICharacterCodeOfa = 97;
+    static ASCIIa = "a".charCodeAt(0);
     static Alphabet = "abcdefghijklmnopqrstuvwxyz";
 
     constructor(data) { this.data = data; }
@@ -20,6 +20,6 @@ export class RotationalCipher {
         return RotationalCipher.Alphabet.charAt(elementPosition);
     }
 
-    indexOf(character) { return character.charCodeAt(0) - RotationalCipher.ASCIICharacterCodeOfa; }
+    indexOf(character) { return character.charCodeAt(0) - RotationalCipher.ASCIIa; }
 }
 
