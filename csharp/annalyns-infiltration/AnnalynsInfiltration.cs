@@ -8,11 +8,5 @@ static class QuestLogic
 
     public static bool CanSignalPrisoner(bool archerIsAwake, bool prisonerIsAwake) => !archerIsAwake && prisonerIsAwake;
 
-    public static bool CanFreePrisoner(bool knightIsAwake, bool archerIsAwake, bool prisonerIsAwake, bool petDogIsPresent)
-    {
-        return (!knightIsAwake && !archerIsAwake && !prisonerIsAwake && petDogIsPresent)
-               || (!knightIsAwake && !archerIsAwake && prisonerIsAwake)
-               || (knightIsAwake && !archerIsAwake && petDogIsPresent);
-
-    }    
+    public static bool CanFreePrisoner(bool knightIsAwake, bool archerIsAwake, bool prisonerIsAwake, bool petDogIsPresent) => (!knightIsAwake && !archerIsAwake && prisonerIsAwake) || (!archerIsAwake && petDogIsPresent);
 }
