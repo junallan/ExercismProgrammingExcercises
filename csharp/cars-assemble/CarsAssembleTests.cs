@@ -45,7 +45,7 @@ public class AssemblyLineTests
         Assert.Equal(0, AssemblyLine.WorkingItemsPerMinute(0));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Working_items_per_minute_for_speed_one()
     {
         Assert.Equal(3, AssemblyLine.WorkingItemsPerMinute(1));

@@ -3,6 +3,7 @@ using System;
 static class AssemblyLine
 {
     private const int CarsProductionForSpeedMeasurement = 221;
+    private const int MinutesPerHour = 60;
 
     public static double ProductionRatePerHour(int speed)
     {
@@ -16,6 +17,7 @@ static class AssemblyLine
     public static int WorkingItemsPerMinute(int speed)
     {
         if (speed == 0) return 0;
+        else if (speed == 1) return (int)ProductionRatePerHour(speed) / MinutesPerHour;
         throw new NotImplementedException("Please implement the (static) AssemblyLine.WorkingItemsPerMinute() method");
     }
 }
