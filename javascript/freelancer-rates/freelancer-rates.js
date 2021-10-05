@@ -20,6 +20,11 @@
 // Get those rates calculated!
 
 const WorkingHoursInDay = 8;
+const BillableDaysInMonth = 22;
+
+function BillablePercentage(discount) {
+	return 1 - discount;
+}
 
 /**
  * The day rate, given a rate per hour
@@ -39,7 +44,7 @@ export function dayRate(ratePerHour) {
  * @returns {number} the rounded up monthly rate
  */
 export function monthRate(ratePerHour, discount) {
-  throw new Error('Implement the monthRate function');
+	return Math.ceil(ratePerHour * WorkingHoursInDay * BillableDaysInMonth * BillablePercentage(discount));
 }
 
 /**
