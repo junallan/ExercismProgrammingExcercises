@@ -27,7 +27,9 @@
  * @return {boolean} Whether or not you can execute a fast attack.
  */
 export function canExecuteFastAttack(knightIsAwake) {
-	return !knightIsAwake;
+	const knightIsAsleep = !knightIsAwake;
+
+	return knightIsAsleep;
 }
 
 /**
@@ -52,7 +54,9 @@ export function canSpy(knightIsAwake, archerIsAwake, prisonerIsAwake) {
  * @returns {boolean} Whether or not you can send a signal to the prisoner.
  */
 export function canSignalPrisoner(archerIsAwake, prisonerIsAwake) {
-	return prisonerIsAwake && !archerIsAwake;
+	const archerIsAsleep = !archerIsAwake;
+
+	return prisonerIsAwake && archerIsAsleep;
 }
 
 /**
@@ -71,6 +75,9 @@ export function canFreePrisoner(
   prisonerIsAwake,
   petDogIsPresent
 ) {
-	return (prisonerIsAwake && !knightIsAwake && !archerIsAwake) || (!archerIsAwake && petDogIsPresent);
+	const knightIsAsleep = !knightIsAwake
+	const archerIsAsleep = !archerIsAwake;
+
+	return (knightIsAsleep && canSignalPrisoner(archerIsAwake, prisonerIsAwake)) || (archerIsAsleep && petDogIsPresent);
 }
-	
+		
