@@ -14,9 +14,5 @@ static class AssemblyLine
         else return (CarsProductionForSpeedMeasurement * speed * 0.77);
     }
 
-    public static int WorkingItemsPerMinute(int speed)
-    {
-        return (int)ProductionRatePerHour(speed) / MinutesPerHour;
-       // throw new NotImplementedException("Please implement the (static) AssemblyLine.WorkingItemsPerMinute() method");
-    }
+    public static int WorkingItemsPerMinute(int speed) => (int)ProductionRatePerHour(speed) / MinutesPerHour;
 }
