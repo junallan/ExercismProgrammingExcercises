@@ -10,9 +10,9 @@ static class AssemblyLine
     private static double SuccessRate(int speed)
     {
         if (speed > 0 && speed < 5) return 1.0;
-        else if (speed < 9) return RawProductionRate(speed) * 0.9;
-        else if (speed == 9) return RawProductionRate(speed) * 0.8;
-        else if (speed == 10) return RawProductionRate(speed) * 0.77;
+        else if (speed < 9) return  0.9;
+        else if (speed == 9) return 0.8;
+        else if (speed == 10) return 0.77;
         else return 0;
     }
 
