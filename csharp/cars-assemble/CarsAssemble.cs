@@ -5,20 +5,18 @@ static class AssemblyLine
     private const int CarsProductionForSpeedMeasurement = 221;
     private const int MinutesPerHour = 60;
 
-    private const double FiveToEightCarSuccessRate = 0.9;
-    private const double NineCarSuccessRate = 0.8;
-    private const double TenCarSuccessRate = 0.77;
-
     private static int RawProductionRate(int speed) => CarsProductionForSpeedMeasurement * speed;
 
-    public static double ProductionRatePerHour(int speed)
+    private static double SuccessRate(int speed)
     {
-        if (speed == 0) return 0;
-        else if (speed < 5) return RawProductionRate(speed);
-        else if(speed < 9) return RawProductionRate(speed) * FiveToEightCarSuccessRate;
-        else if(speed < 10) return RawProductionRate(speed) * NineCarSuccessRate;
-        else return RawProductionRate(speed) * TenCarSuccessRate;
+        if (speed > 0 && speed < 5) return 1.0;
+        else if (speed < 9) return RawProductionRate(speed) * 0.9;
+        else if (speed == 9) return RawProductionRate(speed) * 0.8;
+        else if (speed == 10) return RawProductionRate(speed) * 0.77;
+        else return 0;
     }
+
+    public static double ProductionRatePerHour(int speed) => RawProductionRate(speed) * SuccessRate(speed);
 
     public static int WorkingItemsPerMinute(int speed) => (int)ProductionRatePerHour(speed) / MinutesPerHour;
 }
