@@ -33,7 +33,7 @@ public class AssemblyLineTests
         Assert.Equal(1591.2, AssemblyLine.ProductionRatePerHour(9), precision: 1);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Production_rate_per_hour_for_speed_ten()
     {
         Assert.Equal(1701.7, AssemblyLine.ProductionRatePerHour(10), precision: 1);
