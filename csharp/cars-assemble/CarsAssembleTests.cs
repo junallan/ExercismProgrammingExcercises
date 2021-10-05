@@ -51,25 +51,25 @@ public class AssemblyLineTests
         Assert.Equal(3, AssemblyLine.WorkingItemsPerMinute(1));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Working_items_per_minute_for_speed_five()
     {
         Assert.Equal(16, AssemblyLine.WorkingItemsPerMinute(5));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Working_items_per_minute_for_speed_eight()
     {
         Assert.Equal(26, AssemblyLine.WorkingItemsPerMinute(8));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Working_items_per_minute_for_speed_nine()
     {
         Assert.Equal(26, AssemblyLine.WorkingItemsPerMinute(9));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Working_items_per_minute_for_speed_ten()
     {
         Assert.Equal(28, AssemblyLine.WorkingItemsPerMinute(10));
