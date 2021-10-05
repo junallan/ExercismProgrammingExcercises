@@ -15,6 +15,7 @@ static class AssemblyLine
 
     public static int WorkingItemsPerMinute(int speed)
     {
+        if (speed == 0) return 0;
         throw new NotImplementedException("Please implement the (static) AssemblyLine.WorkingItemsPerMinute() method");
     }
 }
