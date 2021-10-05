@@ -7,8 +7,7 @@ static class AssemblyLine
     public static double ProductionRatePerHour(int speed)
     {
         if (speed == 0) return 0;
-        else if (speed == 1) return CarsProductionForSpeedMeasurement;
-        else return 100;
+        else return CarsProductionForSpeedMeasurement * speed;
     }
 
     public static int WorkingItemsPerMinute(int speed)
