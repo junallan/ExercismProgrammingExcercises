@@ -22,9 +22,8 @@
 const WorkingHoursInDay = 8;
 const BillableDaysInMonth = 22;
 
-function BillablePercentage(discount) {
-	return 1 - discount;
-}
+let BillablePercentage = (discount) => 1 - discount;
+
 
 /**
  * The day rate, given a rate per hour
