@@ -38,7 +38,9 @@ export function frontDoorResponse(blurb) {
  * @returns {string}
  */
 export function backDoorResponse(blurb) {
-  throw new Error('Implement the backDoorResponse function');
+	let blurbParsed = blurb.trimEnd();
+
+	return blurbParsed[blurbParsed.length - 1];
 }
 
 /**
