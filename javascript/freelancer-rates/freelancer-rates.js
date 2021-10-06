@@ -43,7 +43,7 @@ export function dayRate(ratePerHour) {
  * @returns {number} the rounded up monthly rate
  */
 export function monthRate(ratePerHour, discount) {
-	let monthlyBillableRate = ratePerHour * WORKING_HOURS_IN_DAY * BILLABLE_DAYS_IN_MONTH
+	let monthlyBillableRate = dayRate(ratePerHour) * BILLABLE_DAYS_IN_MONTH
 
 	return applyDiscount(monthlyBillableRate, discount);
 }
