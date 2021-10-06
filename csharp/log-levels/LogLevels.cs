@@ -11,11 +11,13 @@ static class LogLine
 
     public static string LogLevel(string logLine)
     {
-        throw new NotImplementedException("Please implement the (static) LogLine.LogLevel() method");
+        int beginningMarkerForLogLevelIdentifier = logLine.IndexOf("[") + 1;
+        int endingMarkerForLogLevelIdentifier = logLine.IndexOf("]");
+
+        return logLine.Substring(beginningMarkerForLogLevelIdentifier, 
+                                 endingMarkerForLogLevelIdentifier - beginningMarkerForLogLevelIdentifier)
+                      .ToLower();
     }
 
-    public static string Reformat(string logLine)
-    {
-        throw new NotImplementedException("Please implement the (static) LogLine.Reformat() method");
-    }
+    public static string Reformat(string logLine) => $"{Message(logLine)} ({LogLevel(logLine)})";
 }
