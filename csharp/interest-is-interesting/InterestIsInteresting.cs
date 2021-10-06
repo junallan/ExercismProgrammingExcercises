@@ -17,13 +17,18 @@ static class SavingsAccount
         return interestRatePercentage * Math.Abs(balance);
     }
 
-    public static decimal AnnualBalanceUpdate(decimal balance)
-    {
-        return balance + Interest(balance);
-    }
+    public static decimal AnnualBalanceUpdate(decimal balance) => balance + Interest(balance);
 
     public static int YearsBeforeDesiredBalance(decimal balance, decimal targetBalance)
     {
-        throw new NotImplementedException("Please implement the (static) SavingsAccount.YearsBeforeDesiredBalance() method");
+        int yearsOfInterest = 0;
+
+        do
+        {
+            balance = AnnualBalanceUpdate(balance);
+            yearsOfInterest++;
+        } while (balance < targetBalance);
+
+        return yearsOfInterest;
     }
 }
