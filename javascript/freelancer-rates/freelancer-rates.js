@@ -19,10 +19,10 @@
 //
 // Get those rates calculated!
 
-const WorkingHoursInDay = 8;
-const BillableDaysInMonth = 22;
+const WORKING_HOURS_IN_DAY = 8;
+const BILLABLE_DAYS_IN_MONTH = 22;
 
-let BillablePercentage = (discount) => 1 - discount;
+let billablePercentage = (discount) => 1 - discount;
 
 
 /**
@@ -32,7 +32,7 @@ let BillablePercentage = (discount) => 1 - discount;
  * @returns {number} the rate per day
  */
 export function dayRate(ratePerHour) {
-	return ratePerHour * WorkingHoursInDay;
+	return ratePerHour * WORKING_HOURS_IN_DAY;
 }
 
 /**
@@ -43,7 +43,9 @@ export function dayRate(ratePerHour) {
  * @returns {number} the rounded up monthly rate
  */
 export function monthRate(ratePerHour, discount) {
-	return applyDiscount(ratePerHour * WorkingHoursInDay * BillableDaysInMonth, discount);
+	let monthlyBillableRate = ratePerHour * WORKING_HOURS_IN_DAY * BILLABLE_DAYS_IN_MONTH
+
+	return applyDiscount(monthlyBillableRate, discount);
 }
 
 /**
@@ -55,7 +57,9 @@ export function monthRate(ratePerHour, discount) {
  * @returns {number} the number of days
  */
 export function daysInBudget(budget, ratePerHour, discount) {
-	return  Math.floor(budget / (ratePerHour * WorkingHoursInDay * BillablePercentage(discount)));
+	let dailyCharge = dayRate(ratePerHour) * billablePercentage(discount);
+
+	return  Math.floor(budget / dailyCharge);
 }
 
 /**
@@ -66,5 +70,5 @@ export function daysInBudget(budget, ratePerHour, discount) {
  * @returns {number} the discounted value
  */
 function applyDiscount(value, percentage) {
-	return Math.ceil(value * BillablePercentage(percentage));
+	return Math.ceil(value * billablePercentage(percentage));
 }
