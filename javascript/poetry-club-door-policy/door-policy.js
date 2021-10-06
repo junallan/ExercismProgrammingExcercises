@@ -71,5 +71,5 @@ export function frontDoorPassword(responses) {
  * @returns {string} the password
  */
 export function backDoorPassword(responses) {
-  return capitalize(responses);
+  return `${capitalize(responses)}, please`;
 }
