@@ -122,14 +122,14 @@ public class SavingsAccountTests
         Assert.Equal(856.3698m, SavingsAccount.Interest(34600.80m));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     [Task(3)]
     public void Annual_balance_update_for_empty_start_balance()
     {
         Assert.Equal(0.0000m, SavingsAccount.AnnualBalanceUpdate(0.0m));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     [Task(3)]
     public void Annual_balance_update_for_small_positive_start_balance()
     {
@@ -143,28 +143,28 @@ public class SavingsAccountTests
         Assert.Equal(1016.210000m, SavingsAccount.AnnualBalanceUpdate(1_000.0m));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     [Task(3)]
     public void Annual_balance_update_for_large_positive_start_balance()
     {
         Assert.Equal(1016.210101621m, SavingsAccount.AnnualBalanceUpdate(1_000.0001m));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     [Task(3)]
     public void Annual_balance_update_for_huge_positive_start_balance()
     {
         Assert.Equal(920352587.26744292868451875m, SavingsAccount.AnnualBalanceUpdate(898124017.826243404425m));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     [Task(3)]
     public void Annual_balance_update_for_small_negative_start_balance()
     {
         Assert.Equal(-0.12695199m, SavingsAccount.AnnualBalanceUpdate(-0.123m));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     [Task(3)]
     public void Annual_balance_update_for_large_negative_start_balance()
     {

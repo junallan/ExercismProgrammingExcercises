@@ -19,7 +19,7 @@ static class SavingsAccount
 
     public static decimal AnnualBalanceUpdate(decimal balance)
     {
-        throw new NotImplementedException("Please implement the (static) SavingsAccount.AnnualBalanceUpdate() method");
+        return balance + Interest(balance);
     }
 
     public static int YearsBeforeDesiredBalance(decimal balance, decimal targetBalance)
