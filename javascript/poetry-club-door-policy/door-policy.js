@@ -49,7 +49,7 @@ export function backDoorResponse(blurb) {
  * @returns {string}
  */
 function capitalize(word) {
-  throw new Error('Implement the capitalize function');
+	return `${word[0].toUpperCase()}${word.substring(1).toLowerCase()}`;
 }
 
 /**
