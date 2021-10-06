@@ -12,7 +12,9 @@ static class SavingsAccount
 
     public static decimal Interest(decimal balance)
     {
-        throw new NotImplementedException("Please implement the (static) SavingsAccount.Interest() method");
+        decimal interestRatePercentage = (decimal)(InterestRate(balance) / 100);
+        
+        return interestRatePercentage * Math.Abs(balance);
     }
 
     public static decimal AnnualBalanceUpdate(decimal balance)
