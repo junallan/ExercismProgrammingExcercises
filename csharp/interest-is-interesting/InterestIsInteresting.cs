@@ -2,13 +2,7 @@ using System;
 
 static class SavingsAccount
 {
-    public static float InterestRate(decimal balance)
-    {
-        if (balance < 0) return -3.213f;
-        else if (balance < 1000) return 0.5f;
-        else if (balance < 5000) return 1.621f;
-        else return 2.475f;
-    }
+    public static float InterestRate(decimal balance) => balance switch { < 0 => -3.213f, < 1000 => 0.5f, < 5000 => 1.621f, _ => 2.475f };
 
     public static decimal Interest(decimal balance)
     {
