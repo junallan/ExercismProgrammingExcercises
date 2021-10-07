@@ -9,9 +9,7 @@ static class LogLine
         return logLine.Substring(endOfMessageLevelIdentifier).Trim();
     }
 
-    public static string LogLevel(string logLine) => logLine.Replace(Message(logLine), string.Empty)
-                                                            .Replace("[", string.Empty)
-                                                            .Replace("]: ", string.Empty)
+    public static string LogLevel(string logLine) => logLine.Substring(1, logLine.IndexOf("]") - 1)
                                                             .TrimEnd()
                                                             .ToLower();
 
