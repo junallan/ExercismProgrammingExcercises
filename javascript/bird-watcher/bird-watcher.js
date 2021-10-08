@@ -4,6 +4,8 @@
 // the @ts-check directive. It will give you helpful autocompletion when
 // implementing this exercise.
 
+const DAYS_IN_WEEK = 7;
+
 function add(a, b) {
 	return a + b;
 }
@@ -26,7 +28,10 @@ export function totalBirdCount(birdsPerDay) {
  * @returns {number} birds counted in the given week
  */
 export function birdsInWeek(birdsPerDay, week) {
-  throw new Error('Please implement the birdsInWeek function');
+	const startOfWeekIndex = (week-1) * DAYS_IN_WEEK;
+	const birdsForTheWeek = birdsPerDay.slice(startOfWeekIndex, startOfWeekIndex + DAYS_IN_WEEK);
+
+	return totalBirdCount(birdsForTheWeek);
 }
 
 /**
