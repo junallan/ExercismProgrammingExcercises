@@ -4,6 +4,16 @@
 // the @ts-check directive. It will give you helpful autocompletion when
 // implementing this exercise.
 
+function countWedge(wedgeSize) {
+	switch (wedgeSize) {
+		case 'small':	return 6;
+		case 'medium':	return 8;
+		case 'large': return 10;
+		default: throw new Error('Incorrect wedge size');
+	}
+
+}
+
 /**
  * Determines how long it takes to prepare a certain juice.
  *
@@ -35,7 +45,19 @@ export function timeToMixJuice(name) {
  * @returns {number} number of limes cut
  */
 export function limesToCut(wedgesNeeded, limes) {
-  throw new Error('Please implement the limesToCut function');
+	let limeCount = 0;
+	let wedgeCount = 0;
+
+	if (wedgesNeeded === 0) return 0;
+
+	for (let i = 0; i < limes.length; i++) {
+		limeCount += 1;
+		wedgeCount += countWedge(limes[i]);
+		if (wedgesNeeded < wedgeCount) break;
+	
+	}
+
+	return limeCount;
 }
 
 /**
