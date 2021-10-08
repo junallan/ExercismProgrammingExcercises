@@ -4,6 +4,10 @@
 // the @ts-check directive. It will give you helpful autocompletion when
 // implementing this exercise.
 
+function add(a, b) {
+	return a + b;
+}
+
 /**
  * Calculates the total bird count.
  *
@@ -11,7 +15,7 @@
  * @returns {number} total bird count
  */
 export function totalBirdCount(birdsPerDay) {
-	return birdsPerDay.reduce((previousValue, currentValue) => previousValue + currentValue);
+	return birdsPerDay.reduce(add);
 }
 
 /**
