@@ -20,19 +20,19 @@ public class BobTests
         Assert.Equal("Whoa, chill out!", Bob.Response("FCECDFCAAB"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Asking_a_question()
     {
         Assert.Equal("Sure.", Bob.Response("Does this cryogenic chamber make me look fat?"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Asking_a_numeric_question()
     {
         Assert.Equal("Sure.", Bob.Response("You are, what, like 15?"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Asking_gibberish()
     {
         Assert.Equal("Sure.", Bob.Response("fffbbcbeab?"));
