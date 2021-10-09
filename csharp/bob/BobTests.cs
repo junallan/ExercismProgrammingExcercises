@@ -116,25 +116,25 @@ public class BobTests
         Assert.Equal("Fine. Be that way!", Bob.Response("          "));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Alternate_silence()
     {
         Assert.Equal("Fine. Be that way!", Bob.Response("\t\t\t\t\t\t\t\t\t\t"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Multiple_line_question()
     {
         Assert.Equal("Whatever.", Bob.Response("\nDoes this cryogenic chamber make me look fat?\nNo."));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Starting_with_whitespace()
     {
         Assert.Equal("Whatever.", Bob.Response("         hmmmmmmm..."));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Ending_with_whitespace()
     {
         Assert.Equal("Sure.", Bob.Response("Okay if like my  spacebar  quite a bit?   "));
