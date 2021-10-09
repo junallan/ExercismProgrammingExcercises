@@ -80,31 +80,31 @@ public class BobTests
         Assert.Equal("Whoa, chill out!", Bob.Response("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Shouting_with_no_exclamation_mark()
     {
         Assert.Equal("Whoa, chill out!", Bob.Response("I HATE THE DENTIST"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Statement_containing_question_mark()
     {
         Assert.Equal("Whatever.", Bob.Response("Ending with ? means a question."));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Non_letters_with_question()
     {
         Assert.Equal("Sure.", Bob.Response(":) ?"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Prattling_on()
     {
         Assert.Equal("Sure.", Bob.Response("Wait! Hang on. Are you going to be OK?"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Silence()
     {
         Assert.Equal("Fine. Be that way!", Bob.Response(""));
