@@ -68,7 +68,7 @@ public class BobTests
         Assert.Equal("Whatever.", Bob.Response("1, 2, 3"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Question_with_no_letters()
     {
         Assert.Equal("Sure.", Bob.Response("4?"));
