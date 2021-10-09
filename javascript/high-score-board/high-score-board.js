@@ -1,6 +1,8 @@
 /// <reference path="./global.d.ts" />
 // @ts-check
 
+const MONDAY_BONUS_POINT = 100;
+
 /**
  * Creates a new score board with an initial entry.
  *
@@ -58,7 +60,11 @@ export function updateScore(scoreBoard, player, points) {
  * @returns {Record<string, number>} updated score board
  */
 export function applyMondayBonus(scoreBoard) {
-  throw new Error('Please implement the applyMondayBonus function');
+	for (let playerName in scoreBoard) {
+		scoreBoard[playerName] += MONDAY_BONUS_POINT;
+	}
+
+	return scoreBoard;
 }
 
 /**
