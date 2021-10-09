@@ -52,7 +52,7 @@ export function ticketStatus(tickets, ticketId) {
  * @returns {string} ticket status
  */
 export function simpleTicketStatus(tickets, ticketId) {
-  throw new Error('Please implement the simpleTicketStatus function.');
+	return tickets[ticketId] ?? "invalid ticket !!!";
 }
 
 /**
