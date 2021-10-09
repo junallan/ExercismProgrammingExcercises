@@ -11,7 +11,6 @@ function countWedge(wedgeSize) {
 		case 'large': return 10;
 		default: throw new Error('Incorrect wedge size');
 	}
-
 }
 
 /**
@@ -48,14 +47,9 @@ export function limesToCut(wedgesNeeded, limes) {
 	let limeCount = 0;
 	let wedgeCount = 0;
 
-	if (wedgesNeeded === 0) return 0;
-
-	for (let i = 0; i < limes.length; i++) {
-		limeCount += 1;
-		wedgeCount += countWedge(limes[i]);
-
-		if (wedgesNeeded < wedgeCount) break;
-	
+	while ((wedgesNeeded > wedgeCount) && (limes.length > limeCount)) {
+		wedgeCount += countWedge(limes[limeCount++]);
+		
 	}
 
 	return limeCount;
