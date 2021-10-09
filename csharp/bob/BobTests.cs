@@ -50,11 +50,11 @@ public class BobTests
         Assert.Equal("Whatever.", Bob.Response("It's OK if you don't want to go work for NASA."));
     }
 
-    //[Fact]
-    //public void Forceful_question()
-    //{
-    //    Assert.Equal("Calm down, I know what I'm doing!", Bob.Response("WHAT'S GOING ON?"));
-    //}
+    [Fact]
+    public void Forceful_question()
+    {
+        Assert.Equal("Calm down, I know what I'm doing!", Bob.Response("WHAT'S GOING ON?"));
+    }
 
     [Fact(Skip = "Remove this Skip property to run this test")]
     public void Shouting_numbers()
