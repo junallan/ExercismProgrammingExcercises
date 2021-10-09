@@ -8,13 +8,13 @@ public class BobTests
         Assert.Equal("Whatever.", Bob.Response("Tom-ay-to, tom-aaaah-to."));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Shouting()
     {
         Assert.Equal("Whoa, chill out!", Bob.Response("WATCH OUT!"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Shouting_gibberish()
     {
         Assert.Equal("Whoa, chill out!", Bob.Response("FCECDFCAAB"));
