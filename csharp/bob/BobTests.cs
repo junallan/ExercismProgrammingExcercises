@@ -140,13 +140,13 @@ public class BobTests
         Assert.Equal("Sure.", Bob.Response("Okay if like my  spacebar  quite a bit?   "));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Other_whitespace()
     {
         Assert.Equal("Fine. Be that way!", Bob.Response("\n\r \t"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Non_question_ending_with_whitespace()
     {
         Assert.Equal("Whatever.", Bob.Response("This is a statement ending with whitespace      "));
