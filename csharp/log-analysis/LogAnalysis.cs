@@ -14,7 +14,7 @@ public static class LogAnalysis
         return message.Substring(indexAfterStartDelimeter, messageContentLength);
     }
 
-    // TODO: define the 'Message()' extension method on the `string` type
+    public static string Message(this string message) => SubstringAfter(message, ": ");
 
     // TODO: define the 'LogLevel()' extension method on the `string` type
 }
