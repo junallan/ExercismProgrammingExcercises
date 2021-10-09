@@ -28,11 +28,4 @@ public class LogAnalysisTests
         var log = "[WARNING]: Library is deprecated.";
         Assert.Equal("Library is deprecated.", log.Message());
     }
-
-    //[Fact(Skip = "Remove this Skip property to run this test")]
-    //public void LogLevel()
-    //{
-    //    var log = "[WARNING]: Library is deprecated.";
-    //    Assert.Equal("WARNING", log.LogLevel());;
-    //}
 }
