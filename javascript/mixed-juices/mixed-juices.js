@@ -53,6 +53,7 @@ export function limesToCut(wedgesNeeded, limes) {
 	for (let i = 0; i < limes.length; i++) {
 		limeCount += 1;
 		wedgeCount += countWedge(limes[i]);
+
 		if (wedgesNeeded < wedgeCount) break;
 	
 	}
@@ -68,5 +69,7 @@ export function limesToCut(wedgesNeeded, limes) {
  * @returns {string[]} remaining orders after the time is up
  */
 export function remainingOrders(timeLeft, orders) {
-  throw new Error('Please implement the remainingOrders function');
+	while (timeLeft > 0) timeLeft -= timeToMixJuice(orders.shift());
+	
+	return orders;
 }
