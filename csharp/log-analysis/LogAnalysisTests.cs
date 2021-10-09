@@ -16,11 +16,11 @@ public class LogAnalysisTests
         Assert.Equal(" test", "I am the 2nd test".SubstringAfter("2nd"));
     }
 
-    //[Fact(Skip = "Remove this Skip property to run this test")]
-    //public void SubstringBetween()
-    //{
-    //    Assert.Equal("INFO", "[INFO]: File Deleted.".SubstringBetween("[", "]"));
-    //}
+    [Fact]
+    public void SubstringBetween()
+    {
+        Assert.Equal("INFO", "[INFO]: File Deleted.".SubstringBetween("[", "]"));
+    }
 
     //[Fact(Skip = "Remove this Skip property to run this test")]
     //public void Message()
