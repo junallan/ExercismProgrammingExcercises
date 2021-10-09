@@ -19,7 +19,7 @@ export function createScoreBoard() {
  * @returns {Record<string, number>} updated score board
  */
 export function addPlayer(scoreBoard, player, score) {
-	scoreBoard.player = score;
+	scoreBoard[player] = score;
 
 	return scoreBoard;
 }
