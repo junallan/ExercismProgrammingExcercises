@@ -65,5 +65,6 @@ export function monitorTheMachine(actions) {
             else
                 actions.alertOverheating();
         }
+        else throw error;
     }
 }
