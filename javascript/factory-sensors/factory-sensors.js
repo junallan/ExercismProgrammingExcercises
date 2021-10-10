@@ -2,6 +2,7 @@
 
 const HUMIDITY_THRESHOLD_PERCENTAGE = 70;
 const TEMPERATURE_OVERHEATING_THRESHOLD = 500;
+const TEMPERATURE_OVERHEATING_SHUTDOWN_THRESHOLD = 600;
 
 export class ArgumentError extends Error {}
 
@@ -58,5 +59,11 @@ export function monitorTheMachine(actions) {
     } catch (error) {
         if (error instanceof ArgumentError)
             actions.alertDeadSensor();
+        else if (error instanceof OverheatingError) {
+            if (error.temperature > TEMPERATURE_OVERHEATING_SHUTDOWN_THRESHOLD)
+                actions.shutdown();
+            else
+                actions.alertOverheating();
+        }
     }
 }

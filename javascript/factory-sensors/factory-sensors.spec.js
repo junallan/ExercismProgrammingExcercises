@@ -77,39 +77,39 @@ describe('monitorTheMachine', () => {
     expect(actions.shutdown).not.toHaveBeenCalled();
   });
 
-  //test('should call only the shutdown action if the check throws an OverheatingError with a temperature equals to 651°C', () => {
-  //  actions.check = jest.fn(() => {
-  //    throw new OverheatingError(651);
-  //  });
-  //  monitorTheMachine(actions);
+  test('should call only the shutdown action if the check throws an OverheatingError with a temperature equals to 651°C', () => {
+    actions.check = jest.fn(() => {
+      throw new OverheatingError(651);
+    });
+    monitorTheMachine(actions);
 
-  //  expect(actions.alertDeadSensor).not.toHaveBeenCalled();
-  //  expect(actions.alertOverheating).not.toHaveBeenCalled();
-  //  expect(actions.shutdown).toHaveBeenCalledTimes(1);
-  //});
+    expect(actions.alertDeadSensor).not.toHaveBeenCalled();
+    expect(actions.alertOverheating).not.toHaveBeenCalled();
+    expect(actions.shutdown).toHaveBeenCalledTimes(1);
+  });
 
-  //test('should call only the alertOverheating if the check throws an OverheatingError with a temperature of 530°C', () => {
-  //  actions.check = jest.fn(() => {
-  //    throw new OverheatingError(530);
-  //  });
-  //  monitorTheMachine(actions);
+  test('should call only the alertOverheating if the check throws an OverheatingError with a temperature of 530°C', () => {
+    actions.check = jest.fn(() => {
+      throw new OverheatingError(530);
+    });
+    monitorTheMachine(actions);
 
-  //  expect(actions.alertDeadSensor).not.toHaveBeenCalled();
-  //  expect(actions.alertOverheating).toHaveBeenCalledTimes(1);
-  //  expect(actions.shutdown).not.toHaveBeenCalled();
-  //});
+    expect(actions.alertDeadSensor).not.toHaveBeenCalled();
+    expect(actions.alertOverheating).toHaveBeenCalledTimes(1);
+    expect(actions.shutdown).not.toHaveBeenCalled();
+  });
 
-  //test('should rethrow the error if the check throws an unknown error', () => {
-  //  class UnknownError extends Error {}
+  test('should rethrow the error if the check throws an unknown error', () => {
+    class UnknownError extends Error {}
 
-  //  actions.check = jest.fn(() => {
-  //    throw new UnknownError();
-  //  });
+    actions.check = jest.fn(() => {
+      throw new UnknownError();
+    });
 
-  //  expect(() => monitorTheMachine(actions)).toThrow(UnknownError);
+    expect(() => monitorTheMachine(actions)).toThrow(UnknownError);
 
-  //  expect(actions.alertDeadSensor).not.toHaveBeenCalled();
-  //  expect(actions.alertOverheating).not.toHaveBeenCalled();
-  //  expect(actions.shutdown).not.toHaveBeenCalled();
-  //});
+    expect(actions.alertDeadSensor).not.toHaveBeenCalled();
+    expect(actions.alertOverheating).not.toHaveBeenCalled();
+    expect(actions.shutdown).not.toHaveBeenCalled();
+  });
 });
