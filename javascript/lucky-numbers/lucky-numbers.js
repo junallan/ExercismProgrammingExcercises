@@ -30,4 +30,10 @@ export function luckyNumber(value) {
  */
 export function errorMessage(input) {
 	if (!input) return 'Required field';
+
+	const inputParsed = Number(input);
+
+	if (isNaN(inputParsed) || (inputParsed === 0)) return 'Must be a number besides 0';
+
+	return '';
 }
