@@ -4,7 +4,7 @@ public static class LogAnalysis
 {
 
     private static int IndexAfterDelimeter(this string message, string delimeter) => message.IndexOf(delimeter) + delimeter.Length;
-    public static string SubstringAfter(this string message, string delimeter) => message.Substring(message.IndexAfterDelimeter(delimeter));
+    public static string SubstringAfter(this string message, string delimeter) => message.Split(delimeter)[1]; //message.Substring(message.IndexAfterDelimeter(delimeter));
    
     public static string SubstringBetween(this string message, string beginningDelimeter, string endingDelimeter)
     {
