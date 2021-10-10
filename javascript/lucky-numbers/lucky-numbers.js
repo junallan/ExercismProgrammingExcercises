@@ -29,5 +29,5 @@ export function luckyNumber(value) {
  * @returns {string} error message
  */
 export function errorMessage(input) {
-  throw new Error('Implement the errorMessage function');
+	if (!input) return 'Required field';
 }
