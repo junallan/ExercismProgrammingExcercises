@@ -13,11 +13,6 @@ export class OverheatingError extends Error {
   }
 }
 
-//function check(fn) {
-//    if (fn === undefined) return;
-
-//}
-
 /**
  * Check if the humidity level is not too high.
  *
