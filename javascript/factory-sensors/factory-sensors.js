@@ -12,6 +12,11 @@ export class OverheatingError extends Error {
   }
 }
 
+//function check(fn) {
+//    if (fn === undefined) return;
+
+//}
+
 /**
  * Check if the humidity level is not too high.
  *
@@ -29,12 +34,10 @@ export function checkHumidityLevel(humidityPercentage) {
  * @throws {ArgumentError|OverheatingError}
  */
 export function reportOverheating(temperature) {
-    if (temperature === null) {
+    if (temperature === null)
         throw new ArgumentError('Temperature was not specified, therefore overheating cannot be determined');
-    }
-    else if (temperature > TEMPERATURE_OVERHEATING_THRESHOLD) {
+    else if (temperature > TEMPERATURE_OVERHEATING_THRESHOLD) 
         throw new OverheatingError(temperature);
-    }
   
 }
 
@@ -50,5 +53,10 @@ export function reportOverheating(temperature) {
  * @throws {ArgumentError|OverheatingError|Error}
  */
 export function monitorTheMachine(actions) {
-  throw new Error('Implement the monitorTheMachine function');
+    try {
+        actions.check();
+    } catch (error) {
+        if (error instanceof ArgumentError)
+            actions.alertDeadSensor();
+    }
 }
