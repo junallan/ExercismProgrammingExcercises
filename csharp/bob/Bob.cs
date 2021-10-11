@@ -1,10 +1,11 @@
 using System;
+using System.Linq;
 
 public static class Bob
 {
     private static bool IsAskingQuestion(string statement)          => statement.TrimEnd().EndsWith("?");
     private static bool IsShouting(string statement)                => statement == statement.ToUpper() && ContainsLetter(statement);
-    private static bool ContainsLetter(string statement)            => statement.ToUpper() != statement.ToLower();
+    private static bool ContainsLetter(string statement)            => statement.Any(x => Char.IsLetter(x));
 
     public static string Response(string statement)
     {
