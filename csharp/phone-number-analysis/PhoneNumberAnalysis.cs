@@ -5,8 +5,8 @@ public static class PhoneNumber
     const string NewYorkAreaCode = "212";
     const string FakePrefixCode = "555";
 
-    private static bool IsNewYorkAreaCode(string areaCode) => areaCode == NewYorkAreaCode;
-    private static bool IsFakePrefixCode(string prefixCode) => prefixCode == FakePrefixCode;
+    private static bool IsNewYorkAreaCode(string areaCode) => areaCode.Equals( NewYorkAreaCode, StringComparison.CurrentCultureIgnoreCase);
+    private static bool IsFakePrefixCode(string prefixCode) => prefixCode.Equals(FakePrefixCode, StringComparison.CurrentCultureIgnoreCase);
 
     public static (bool IsNewYork, bool IsFake, string LocalNumber) Analyze(string phoneNumber)
     {
