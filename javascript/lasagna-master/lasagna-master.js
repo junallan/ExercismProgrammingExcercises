@@ -18,15 +18,12 @@ export function preparationTime(layers, preparationTime=2) {
 }
 
 export function quantities(layers) {
-	let noodleQuantity = 0;
-	let sauceQuantity = 0;
+	return layers.reduce((noodlesAndSauceAmount, ingredient) => {
+							if (ingredient === 'noodles') noodlesAndSauceAmount.noodles += GRAMS_OF_NOODLES_PER_LAYER;
+							if (ingredient === 'sauce') noodlesAndSauceAmount.sauce += LITERS_OF_SAUCE_PER_LAYER;
 
-	for (let i = 0; i < layers.length; i++) {
-		if		(layers[i] === 'sauce')	  sauceQuantity += LITERS_OF_SAUCE_PER_LAYER;
-		else if (layers[i] === 'noodles') noodleQuantity += GRAMS_OF_NOODLES_PER_LAYER;
-	}
-
-	return { noodles: noodleQuantity, sauce: sauceQuantity};
+							return noodlesAndSauceAmount;
+						}, { noodles: 0, sauce:0 });
 }
 
 export function addSecretIngredient(friendsList, myList) {
