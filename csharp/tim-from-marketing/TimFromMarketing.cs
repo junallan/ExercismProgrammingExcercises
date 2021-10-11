@@ -4,6 +4,9 @@ static class Badge
 {
     public static string Print(int? id, string name, string? department)
     {
-        return $"[{id}] - {name} - {department?.ToUpper()}";
+        string idIdentifier = id.HasValue ? $"[{id}] - " : string.Empty;
+        string departementIdentifier = department != null ? $" - {department.ToUpper()}" : " - OWNER";
+
+        return $"{idIdentifier}{name}{departementIdentifier}";
     }
 }
