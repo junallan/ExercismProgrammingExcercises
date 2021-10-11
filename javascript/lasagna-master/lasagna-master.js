@@ -4,8 +4,8 @@
 export function cookingStatus(remainingCookingTime) {
 	switch (remainingCookingTime) {
 		case undefined: return 'You forgot to set the timer.';
-		case 0: return 'Lasagna is done.';
-		default: return 'Not done, please wait.';
+		case 0:			return 'Lasagna is done.';
+		default:		return 'Not done, please wait.';
 	}
 }
 
