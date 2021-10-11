@@ -28,3 +28,6 @@ export function quantities(layers) {
 	return { noodles: noodleQuantity, sauce: sauceQuantity};
 }
 
+export function addSecretIngredient(friendsList, myList) {
+	myList.push(friendsList[friendsList.length - 1]);
+}
