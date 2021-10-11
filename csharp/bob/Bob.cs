@@ -4,8 +4,8 @@ using System.Linq;
 public static class Bob
 {
     private static bool IsAskingQuestion(string statement)          => statement.TrimEnd().EndsWith("?");
-    private static bool IsShouting(string statement)                => statement == statement.ToUpper() && ContainsLetter(statement);
-    private static bool ContainsLetter(string statement)            => statement.Any(x => Char.IsLetter(x));
+    private static bool IsShouting(string statement)                => !statement.Any(c => Char.IsLower(c)) && ContainsLetter(statement);
+    private static bool ContainsLetter(string statement)            => statement.Any(c => Char.IsLetter(c));
 
     public static string Response(string statement)
     {
