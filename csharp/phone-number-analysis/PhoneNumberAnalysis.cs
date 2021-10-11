@@ -11,12 +11,8 @@ public static class PhoneNumber
     public static (bool IsNewYork, bool IsFake, string LocalNumber) Analyze(string phoneNumber)
     {
         string[] phoneNumberSplit = phoneNumber.Split("-");
-        (string AreaCode, string PrefixCode, string LocalNumber) phoneNumberParsed = (phoneNumberSplit[0], phoneNumberSplit[1], phoneNumberSplit[2]);
 
-        bool isNewYorkAreaCode = IsNewYorkAreaCode(phoneNumberParsed.AreaCode);
-        (bool IsNewYork, bool IsFake, string LocalNumber) phoneNumberInfo = (isNewYorkAreaCode, IsFakePrefixCode(phoneNumberParsed.PrefixCode), phoneNumberParsed.LocalNumber);
- 
-        return (isNewYorkAreaCode, IsFake(phoneNumberInfo), phoneNumberParsed.LocalNumber);
+        return (IsNewYorkAreaCode(phoneNumberSplit[0]), IsFakePrefixCode(phoneNumberSplit[1]), phoneNumberSplit[2]);
     }
 
     public static bool IsFake((bool IsNewYork, bool IsFake, string LocalNumber) phoneNumberInfo) => phoneNumberInfo.IsFake;
