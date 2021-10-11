@@ -8,3 +8,7 @@ export function cookingStatus(remainingCookingTime) {
 		default: return 'Not done, please wait.';
 	}
 }
+
+export function preparationTime(layers, preparationTime=2) {
+	return layers.length * preparationTime;
+}
