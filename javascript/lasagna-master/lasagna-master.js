@@ -22,7 +22,7 @@ export function quantities(layers) {
 	let sauceQuantity = 0;
 
 	for (let i = 0; i < layers.length; i++) {
-		if (layers[i] === 'sauce') sauceQuantity += LITERS_OF_SAUCE_PER_LAYER;
+		if		(layers[i] === 'sauce')	  sauceQuantity += LITERS_OF_SAUCE_PER_LAYER;
 		else if (layers[i] === 'noodles') noodleQuantity += GRAMS_OF_NOODLES_PER_LAYER;
 	}
 
