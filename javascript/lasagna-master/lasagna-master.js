@@ -3,6 +3,7 @@
 
 const GRAMS_OF_NOODLES_PER_LAYER = 50;
 const LITERS_OF_SAUCE_PER_LAYER = 0.2;
+const PORTIONS_FOR_RECIPE = 2;
 
 export function cookingStatus(remainingCookingTime) {
 	switch (remainingCookingTime) {
@@ -30,4 +31,14 @@ export function quantities(layers) {
 
 export function addSecretIngredient(friendsList, myList) {
 	myList.push(friendsList[friendsList.length - 1]);
+}
+
+export function scaleRecipe(recipe, portions=0) {
+	const recipeScaleFactor = portions / PORTIONS_FOR_RECIPE;
+	let recipeScaled = {};
+
+	for (const ingredient in recipe) 
+		recipeScaled[ingredient] = recipe[ingredient] * recipeScaleFactor;
+	
+	return recipeScaled;
 }
