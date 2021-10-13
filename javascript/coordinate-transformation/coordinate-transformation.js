@@ -4,6 +4,8 @@
 // the @ts-check directive. It will give you helpful autocompletion when
 // implementing this exercise.
 
+
+
 /**
  * Create a function which returns a function making use of a closure to
  * perform a repeatable 2d translation of a coordinate pair.
@@ -15,7 +17,10 @@
  *  translated coordinate pair in the form [x, y]
  */
 export function translate2d(dx, dy) {
-	return (dx, dy) => [dx, dy];
+
+	return function (x,y) {	
+		return [dx + x, dy + y]
+	}
 }
 
 /**
