@@ -14,7 +14,7 @@ class RemoteControlCar
 
     public string BatteryDisplay()
     {
-        throw new NotImplementedException("Please implement the RemoteControlCar.BatteryDisplay() method");
+        return "Battery at 100%";
     }
 
     public void Drive()
