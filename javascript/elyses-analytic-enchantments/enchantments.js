@@ -4,9 +4,7 @@
 // the @ts-check directive. It will give you helpful autocompletion when
 // implementing this exercise.
 
-function isOddCardNumber(card) {
-	return card % 2;
-}
+const isOddCardNumber = (cardNumber) => cardNumber % 2;
 
 /**
  * Get the position (index) of the card in the given stack
