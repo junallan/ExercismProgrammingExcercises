@@ -28,10 +28,7 @@ class RemoteControlCar
         _distance += _speed;
     }
 
-    public static RemoteControlCar Nitro()
-    {
-        return new RemoteControlCar(speed: 5, batteryDrain: 4);
-    }
+    public static RemoteControlCar Nitro() => new RemoteControlCar(speed: 5, batteryDrain: 4);
 }
 
 class RaceTrack
