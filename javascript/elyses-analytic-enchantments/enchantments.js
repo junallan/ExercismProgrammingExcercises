@@ -4,6 +4,10 @@
 // the @ts-check directive. It will give you helpful autocompletion when
 // implementing this exercise.
 
+function isOddCardNumber(card) {
+	return card % 2;
+}
+
 /**
  * Get the position (index) of the card in the given stack
  *
@@ -36,7 +40,7 @@ export function doesStackIncludeCard(stack, card) {
  * @returns {boolean} true if all cards are even, false otherwise
  */
 export function isEachCardEven(stack) {
-	return stack.every((x) => !(x % 2));
+	return stack.every((cardNumber) => !isOddCardNumber(cardNumber));
 }
 
 /**
@@ -47,7 +51,7 @@ export function isEachCardEven(stack) {
  * @returns {boolean} true if the array contains odd card, false otherwise
  */
 export function doesStackIncludeOddCard(stack) {
-  throw new Error('Implement the doesStackIncludesOddCard function');
+	return stack.some((cardNumber) => isOddCardNumber(cardNumber));
 }
 
 /**
