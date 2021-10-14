@@ -3,6 +3,7 @@ using System;
 class RemoteControlCar
 {
     private int _speed;
+    private int _batteryLevel = 100;
     private int _batteryDrain;
     private int _distance;
 
@@ -12,10 +13,7 @@ class RemoteControlCar
         _batteryDrain = batteryDrain;
     }
 
-    public bool BatteryDrained()
-    {
-        throw new NotImplementedException("Please implement the RemoteControlCar.BatteryDrained() method");
-    }
+    public bool BatteryDrained() => _batteryLevel <= 0;
 
     public int DistanceDriven()
     {
@@ -24,6 +22,9 @@ class RemoteControlCar
 
     public void Drive()
     {
+        if (BatteryDrained()) return;
+
+        _batteryLevel -= _batteryDrain;
         _distance += _speed;
     }
 
