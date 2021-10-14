@@ -19,6 +19,10 @@ export function isServiceOnline() {
 	return checkStatus((storeStatus) => storeStatus === "ONLINE");
 }
 
+//function action(err, data) {
+
+//}
+
 /**
  * Pick a fruit using the checkInventory API
  *
@@ -28,7 +32,8 @@ export function isServiceOnline() {
  * @return {AvailabilityAction} the result from checkInventory
  */
 export function pickFruit(variety, quantity, callback) {
-  throw new Error('Implement the pickFruit function');
+	
+  return checkInventory({ variety, quantity }, callback);
 }
 
 /**
