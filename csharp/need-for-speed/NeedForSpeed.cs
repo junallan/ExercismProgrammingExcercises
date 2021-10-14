@@ -30,7 +30,7 @@ class RemoteControlCar
 
     public static RemoteControlCar Nitro()
     {
-        throw new NotImplementedException("Please implement the (static) RemoteControlCar.Nitro() method");
+        return new RemoteControlCar(speed: 5, batteryDrain: 4);
     }
 }
 
