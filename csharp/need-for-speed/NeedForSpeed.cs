@@ -33,13 +33,14 @@ class RemoteControlCar
 class RaceTrack
 {
     private int _distance;
+    private const int MaxBatteryCharge = 100;
 
     public RaceTrack(int distance)
     {
         _distance = distance;
     }
 
-    public bool CarCanFinish(RemoteControlCar car) => BatteryDrainForDistance(car) <= 100;
+    public bool CarCanFinish(RemoteControlCar car) => BatteryDrainForDistance(car) <= MaxBatteryCharge;
 
     private float BatteryDrainForDistance(RemoteControlCar car) => DrivesForDistance(car) * car.BatteryDrain;
 
