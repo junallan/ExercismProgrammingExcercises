@@ -13,9 +13,9 @@ class RemoteControlCar
 
     public void Drive()
     {
-        if(_batteryPercentage != 0)
+        if(_batteryPercentage > 0)
         {
-            _batteryPercentage -= 1;
+            _batteryPercentage --;
             _metersDriven += 20;
         }     
     }
