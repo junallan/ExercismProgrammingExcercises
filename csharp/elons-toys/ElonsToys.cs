@@ -2,6 +2,9 @@ using System;
 
 class RemoteControlCar
 {
+    private int _batteryPercentage = 100;
+    private int _metersDriven = 0;
+
     public static RemoteControlCar Buy()
     {
         return new RemoteControlCar();
@@ -9,16 +12,17 @@ class RemoteControlCar
 
     public string DistanceDisplay()
     {
-        return "Driven 0 meters";
+        return $"Driven {_metersDriven} meters";
     }
 
     public string BatteryDisplay()
     {
-        return "Battery at 100%";
+        return $"Battery at {_batteryPercentage}%";
     }
 
     public void Drive()
     {
-        throw new NotImplementedException("Please implement the RemoteControlCar.Drive() method");
+        _metersDriven += 20;
+        _batteryPercentage -= 1;
     }
 }
