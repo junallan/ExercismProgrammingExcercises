@@ -65,6 +65,7 @@ export function resetQuery() {
  * @return {AvailabilityAction} return the result of the callback
  */
 export function checkInventory(query, callback) {
-  lastInventoryQuery = query;
+	lastInventoryQuery = query;
+
   return callback.apply(null, inventoryResponse);
 }
