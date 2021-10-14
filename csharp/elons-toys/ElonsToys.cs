@@ -17,12 +17,15 @@ class RemoteControlCar
 
     public string BatteryDisplay()
     {
-        return $"Battery at {_batteryPercentage}%";
+        return _batteryPercentage == 0 ? "Battery empty" : $"Battery at {_batteryPercentage}%";
     }
 
     public void Drive()
     {
-        _metersDriven += 20;
-        _batteryPercentage -= 1;
+        if(_batteryPercentage != 0)
+        {
+            _batteryPercentage -= 1;
+            _metersDriven += 20;
+        }     
     }
 }
