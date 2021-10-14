@@ -2,15 +2,17 @@ using System;
 
 class RemoteControlCar
 {
-    private int _speed;
+    public int Speed { get; }
+    public int BatteryDrain { get; }
+
     private int _batteryLevel = 100;
-    private int _batteryDrain;
+ 
     private int _distance;
 
     public RemoteControlCar(int speed, int batteryDrain)
     {
-        _speed = speed;
-        _batteryDrain = batteryDrain;
+        Speed = speed;
+        BatteryDrain = batteryDrain;
     }
 
     public bool BatteryDrained() => _batteryLevel <= 0;
@@ -21,8 +23,8 @@ class RemoteControlCar
     {
         if (BatteryDrained()) return;
 
-        _batteryLevel -= _batteryDrain;
-        _distance += _speed;
+        _batteryLevel -= BatteryDrain;
+        _distance += Speed;
     }
 
     public static RemoteControlCar Nitro() => new RemoteControlCar(speed: 50, batteryDrain: 4);
@@ -39,6 +41,11 @@ class RaceTrack
 
     public bool CarCanFinish(RemoteControlCar car)
     {
-        throw new NotImplementedException("Please implement the RaceTrack.CarCanFinish() method");
+        float drivesForDistance = DrivesForDistance(car);
+        float batteryDrainForDistance = drivesForDistance * car.BatteryDrain;
+
+        return batteryDrainForDistance <= 100;
     }
+
+    private float DrivesForDistance(RemoteControlCar car) => (float)_distance / car.Speed;
 }
