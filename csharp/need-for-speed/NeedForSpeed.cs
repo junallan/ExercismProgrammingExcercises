@@ -15,10 +15,7 @@ class RemoteControlCar
 
     public bool BatteryDrained() => _batteryLevel <= 0;
 
-    public int DistanceDriven()
-    {
-        return _distance;
-    }
+    public int DistanceDriven() => _distance;
 
     public void Drive()
     {
