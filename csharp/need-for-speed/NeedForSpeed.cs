@@ -41,9 +41,14 @@ class RaceTrack
 
     public bool CarCanFinish(RemoteControlCar car)
     {
-        float batteryDrainForDistance = DrivesForDistance(car) * car.BatteryDrain;
+        float batteryDrainForDistance = BatteryDrainForDistance(car);
 
         return batteryDrainForDistance <= 100;
+    }
+
+    private float BatteryDrainForDistance(RemoteControlCar car)
+    {
+        return DrivesForDistance(car) * car.BatteryDrain;
     }
 
     private float DrivesForDistance(RemoteControlCar car) => (float)_distance / car.Speed;
