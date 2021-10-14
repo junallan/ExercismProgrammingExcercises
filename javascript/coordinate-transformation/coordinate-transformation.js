@@ -71,8 +71,7 @@ export function memoizeTransform(f) {
 	return function (x, y) {
 		if (cache[`${x}:${y}`]) {
 			const cachedResult = cache[`${x}:${y}`];
-			delete cache[`${x}:${y}`];
-
+	
 			return cachedResult;
 		}
 
