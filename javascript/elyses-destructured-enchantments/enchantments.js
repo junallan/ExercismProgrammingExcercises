@@ -49,7 +49,9 @@ export function swapTopTwoCards(deck) {
  * deck and a new deck containing all the other cards
  */
 export function discardTopCard(deck) {
-  throw new Error('Implement the discardTopCard function');
+	const [firstCard, ...remainingCards] = deck;
+
+	return [firstCard, remainingCards];
 }
 
 /** @type Card[] **/
