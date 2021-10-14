@@ -2,10 +2,12 @@ using System;
 
 class RemoteControlCar
 {
+    public static int MaxBatteryCharge = 100;
+
     public int Speed { get; }
     public int BatteryDrain { get; }
 
-    private int _batteryLevel = 100;
+    private int _batteryLevel = MaxBatteryCharge;
  
     private int _distance;
 
@@ -33,8 +35,7 @@ class RemoteControlCar
 class RaceTrack
 {
     private int _distance;
-    private const int MaxBatteryCharge = 100;
-
+  
     public RaceTrack(int distance)
     {
         _distance = distance;
@@ -44,5 +45,5 @@ class RaceTrack
 
     private float BatteryDrainForDistance(RemoteControlCar car) => DrivesForDistance(car) * car.BatteryDrain;
 
-    public bool CarCanFinish(RemoteControlCar car) => BatteryDrainForDistance(car) <= MaxBatteryCharge; 
+    public bool CarCanFinish(RemoteControlCar car) => BatteryDrainForDistance(car) <= RemoteControlCar.MaxBatteryCharge; 
 }
