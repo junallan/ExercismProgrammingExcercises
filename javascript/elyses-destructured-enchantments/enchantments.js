@@ -22,7 +22,7 @@ export function getFirstCard(deck) {
  * @returns {Card} the second card in the deck
  */
 export function getSecondCard(deck) {
-	const [firstCard, secondCard, _] = deck;
+	const [, secondCard] = deck;
 
 	return secondCard;
 }
