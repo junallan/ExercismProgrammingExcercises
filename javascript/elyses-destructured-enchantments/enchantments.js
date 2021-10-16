@@ -9,7 +9,7 @@
  * @returns {Card} the first card in the deck
  */
 export function getFirstCard(deck) {
-	const [firstCard, _] = deck;
+	const [firstCard] = deck;
 
 	return firstCard;
 }
