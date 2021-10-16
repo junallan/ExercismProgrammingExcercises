@@ -2,19 +2,16 @@ using System;
 
 class RemoteControlCar
 {
-    public static int MaxBatteryCharge = 100;
-
-    public int Speed { get; }
-    public int BatteryDrain { get; }
-
+    private static int MaxBatteryCharge = 100;
     private int _batteryLevel = MaxBatteryCharge;
- 
+    private int _speed;
+    private int _batteryDrain;
     private int _distance;
 
     public RemoteControlCar(int speed, int batteryDrain)
     {
-        Speed = speed;
-        BatteryDrain = batteryDrain;
+        _speed = speed;
+        _batteryDrain = batteryDrain;
     }
 
     public bool BatteryDrained() => _batteryLevel <= 0;
@@ -25,8 +22,8 @@ class RemoteControlCar
     {
         if (BatteryDrained()) return;
 
-        _batteryLevel -= BatteryDrain;
-        _distance += Speed;
+        _batteryLevel -= _batteryDrain;
+        _distance += _speed;
     }
 
     public static RemoteControlCar Nitro() => new RemoteControlCar(speed: 50, batteryDrain: 4);
@@ -35,15 +32,18 @@ class RemoteControlCar
 class RaceTrack
 {
     private int _distance;
-  
-    public RaceTrack(int distance)
-    {
-        _distance = distance;
+
+    public RaceTrack(int distance) => _distance = distance;
+
+    public bool CarCanFinish(RemoteControlCar car)
+    { 
+        do
+        {
+            car.Drive();     
+        } while (!car.BatteryDrained());
+
+        int maxDistanceCarCanDrive = car.DistanceDriven();
+
+        return maxDistanceCarCanDrive >= _distance;
     }
-
-    private float DrivesForDistance(RemoteControlCar car) => (float)_distance / car.Speed;
-
-    private float BatteryDrainForDistance(RemoteControlCar car) => DrivesForDistance(car) * car.BatteryDrain;
-
-    public bool CarCanFinish(RemoteControlCar car) => BatteryDrainForDistance(car) <= RemoteControlCar.MaxBatteryCharge; 
 }
