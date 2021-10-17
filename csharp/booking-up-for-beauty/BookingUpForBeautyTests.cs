@@ -157,9 +157,9 @@ public class AppointmentTests
         Assert.Equal("You have an appointment on 9/9/2020 9:09:09 AM.", Appointment.Description(new DateTime(2020, 9, 9, 9, 9, 9)));
     }
 
-    //[Fact]
-    //public void Anniversary_date()
-    //{
-    //    Assert.Equal(new DateTime(DateTime.Now.Year, 9, 15), Appointment.AnniversaryDate());
-    //}
+    [Fact]
+    public void Anniversary_date()
+    {
+        Assert.Equal(new DateTime(DateTime.Now.Year, 9, 15), Appointment.AnniversaryDate());
+    }
 }
