@@ -1,6 +1,9 @@
 /// <reference path="./global.d.ts" />
 // @ts-check
 
+/** @type Card[] **/
+const FACE_CARDS = ['jack', 'queen', 'king'];
+
 /**
  * Get the first card in the given deck
  *
@@ -53,9 +56,6 @@ export function discardTopCard(deck) {
 
 	return [firstCard, remainingCards];
 }
-
-/** @type Card[] **/
-const FACE_CARDS = ['jack', 'queen', 'king'];
 
 /**
  * Insert face cards into the given deck
