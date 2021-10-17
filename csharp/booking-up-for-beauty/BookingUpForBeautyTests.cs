@@ -97,47 +97,47 @@ public class AppointmentTests
         Assert.False(Appointment.HasPassed(DateTime.Now.AddYears(2).AddMonths(3).AddDays(6)));
     }
 
-    //[Fact]
-    //public void Is_afternoon_appointment_for_early_morning_appointment()
-    //{
-    //    Assert.False(Appointment.IsAfternoonAppointment(new DateTime(2019, 6, 17, 8, 15, 0)));
-    //}
+    [Fact]
+    public void Is_afternoon_appointment_for_early_morning_appointment()
+    {
+        Assert.False(Appointment.IsAfternoonAppointment(new DateTime(2019, 6, 17, 8, 15, 0)));
+    }
 
-    //[Fact]
-    //public void Is_afternoon_appointment_for_late_morning_appointment()
-    //{
-    //    Assert.False(Appointment.IsAfternoonAppointment(new DateTime(2019, 2, 23, 11, 59, 59)));
-    //}
+    [Fact]
+    public void Is_afternoon_appointment_for_late_morning_appointment()
+    {
+        Assert.False(Appointment.IsAfternoonAppointment(new DateTime(2019, 2, 23, 11, 59, 59)));
+    }
 
-    //[Fact]
-    //public void Is_afternoon_appointment_for_noon_appointment()
-    //{
-    //    Assert.True(Appointment.IsAfternoonAppointment(new DateTime(2019, 8, 9, 12, 0, 0)));
-    //}
+    [Fact]
+    public void Is_afternoon_appointment_for_noon_appointment()
+    {
+        Assert.True(Appointment.IsAfternoonAppointment(new DateTime(2019, 8, 9, 12, 0, 0)));
+    }
 
-    //[Fact]
-    //public void Is_afternoon_appointment_for_early_afternoon_appointment()
-    //{
-    //    Assert.True(Appointment.IsAfternoonAppointment(new DateTime(2019, 8, 9, 12, 0, 1)));
-    //}
+    [Fact]
+    public void Is_afternoon_appointment_for_early_afternoon_appointment()
+    {
+        Assert.True(Appointment.IsAfternoonAppointment(new DateTime(2019, 8, 9, 12, 0, 1)));
+    }
 
-    //[Fact]
-    //public void Is_afternoon_appointment_for_late_afternoon_appointment()
-    //{
-    //    Assert.True(Appointment.IsAfternoonAppointment(new DateTime(2019, 9, 1, 17, 59, 59)));
-    //}
+    [Fact]
+    public void Is_afternoon_appointment_for_late_afternoon_appointment()
+    {
+        Assert.True(Appointment.IsAfternoonAppointment(new DateTime(2019, 9, 1, 17, 59, 59)));
+    }
 
-    //[Fact]
-    //public void Is_afternoon_appointment_for_early_evening_appointment()
-    //{
-    //    Assert.False(Appointment.IsAfternoonAppointment(new DateTime(2019, 9, 1, 18, 0, 0)));
-    //}
+    [Fact]
+    public void Is_afternoon_appointment_for_early_evening_appointment()
+    {
+        Assert.False(Appointment.IsAfternoonAppointment(new DateTime(2019, 9, 1, 18, 0, 0)));
+    }
 
-    //[Fact]
-    //public void Is_afternoon_appointment_for_late_evening_appointment()
-    //{
-    //    Assert.False(Appointment.IsAfternoonAppointment(new DateTime(2019, 9, 1, 23, 59, 59)));
-    //}
+    [Fact]
+    public void Is_afternoon_appointment_for_late_evening_appointment()
+    {
+        Assert.False(Appointment.IsAfternoonAppointment(new DateTime(2019, 9, 1, 23, 59, 59)));
+    }
 
     //[Fact]
     //public void Description_on_friday_afternoon()

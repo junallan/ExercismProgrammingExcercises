@@ -6,10 +6,7 @@ static class Appointment
 
     public static bool HasPassed(DateTime appointmentDate) => DateTime.Now.CompareTo(appointmentDate) > 0;
 
-    public static bool IsAfternoonAppointment(DateTime appointmentDate)
-    {
-        throw new NotImplementedException("Please implement the (static) Appointment.IsAfternoonAppointment() method");
-    }
+    public static bool IsAfternoonAppointment(DateTime appointmentDate) => 12 <= appointmentDate.Hour && appointmentDate.Hour < 18;
 
     public static string Description(DateTime appointmentDate)
     {
