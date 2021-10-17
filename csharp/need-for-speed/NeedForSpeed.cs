@@ -26,7 +26,7 @@ class RemoteControlCar
         _distance += _speed;
     }
 
-    public static RemoteControlCar Nitro() => new RemoteControlCar(speed: 50, batteryDrain: 4);
+    public static RemoteControlCar Nitro() => new RemoteControlCar(50, 4);
 }
 
 class RaceTrack
