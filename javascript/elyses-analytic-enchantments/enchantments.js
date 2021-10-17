@@ -15,7 +15,7 @@ const isOddCardNumber = (cardNumber) => cardNumber % 2;
  * @returns {number} position of the card in the stack
  */
 export function getCardPosition(stack, card) {
-	return stack.findIndex((x) => x == card);
+	return stack.indexOf(card);
 }
 
 /**
