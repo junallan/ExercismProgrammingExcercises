@@ -2,15 +2,9 @@ using System;
 
 static class Appointment
 {
-    public static DateTime Schedule(string appointmentDateDescription)
-    {
-        return DateTime.Parse(appointmentDateDescription);
-    }
+    public static DateTime Schedule(string appointmentDateDescription) => DateTime.Parse(appointmentDateDescription);
 
-    public static bool HasPassed(DateTime appointmentDate)
-    {
-        throw new NotImplementedException("Please implement the (static) Appointment.HasPassed() method");
-    }
+    public static bool HasPassed(DateTime appointmentDate) => DateTime.Now.CompareTo(appointmentDate) > 0;
 
     public static bool IsAfternoonAppointment(DateTime appointmentDate)
     {

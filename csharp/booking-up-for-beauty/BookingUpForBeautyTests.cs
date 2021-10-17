@@ -31,71 +31,71 @@ public class AppointmentTests
         Assert.Equal(new DateTime(2019, 12, 5, 9, 0, 0), Appointment.Schedule("Thursday, December 5, 2019 09:00:00"));
     }
 
-    //[Fact]
-    //public void Has_passed_with_appointment_one_year_ago()
-    //{
-    //    Assert.True(Appointment.HasPassed(DateTime.Now.AddYears(-1).AddHours(2)));
-    //}
+    [Fact]
+    public void Has_passed_with_appointment_one_year_ago()
+    {
+        Assert.True(Appointment.HasPassed(DateTime.Now.AddYears(-1).AddHours(2)));
+    }
 
-    //[Fact]
-    //public void Has_passed_with_appointment_months_ago()
-    //{
-    //    Assert.True(Appointment.HasPassed(DateTime.Now.AddMonths(-8)));
-    //}
+    [Fact]
+    public void Has_passed_with_appointment_months_ago()
+    {
+        Assert.True(Appointment.HasPassed(DateTime.Now.AddMonths(-8)));
+    }
 
-    //[Fact]
-    //public void Has_passed_with_appointment_days_ago()
-    //{
-    //    Assert.True(Appointment.HasPassed(DateTime.Now.AddDays(-23)));
-    //}
+    [Fact]
+    public void Has_passed_with_appointment_days_ago()
+    {
+        Assert.True(Appointment.HasPassed(DateTime.Now.AddDays(-23)));
+    }
 
-    //[Fact]
-    //public void Has_passed_with_appointment_hours_ago()
-    //{
-    //    Assert.True(Appointment.HasPassed(DateTime.Now.AddHours(-12)));
-    //}
+    [Fact]
+    public void Has_passed_with_appointment_hours_ago()
+    {
+        Assert.True(Appointment.HasPassed(DateTime.Now.AddHours(-12)));
+    }
 
-    //[Fact]
-    //public void Has_passed_with_appointment_minutes_ago()
-    //{
-    //    Assert.True(Appointment.HasPassed(DateTime.Now.AddMinutes(-55)));
-    //}
+    [Fact]
+    public void Has_passed_with_appointment_minutes_ago()
+    {
+        Assert.True(Appointment.HasPassed(DateTime.Now.AddMinutes(-55)));
+    }
 
-    //[Fact]
-    //public void Has_passed_with_appointment_one_minute_ago()
-    //{
-    //    Assert.True(Appointment.HasPassed(DateTime.Now.AddMinutes(-1)));
-    //}
+    [Fact]
+    public void Has_passed_with_appointment_one_minute_ago()
+    {
+        Assert.True(Appointment.HasPassed(DateTime.Now.AddMinutes(-1)));
+    }
 
-    //[Fact]
-    //public void Has_passed_with_appointment_in_one_minute()
-    //{
-    //    Assert.False(Appointment.HasPassed(DateTime.Now.AddMinutes(1)));
-    //}
+    [Fact]
+    public void Has_passed_with_appointment_in_one_minute()
+    {
+        Assert.False(Appointment.HasPassed(DateTime.Now.AddMinutes(1)));
+    }
 
-    //[Fact]
-    //public void Has_passed_with_appointment_in_minutes()
-    //{
-    //    Assert.False(Appointment.HasPassed(DateTime.Now.AddMinutes(5)));
-    //}
+    [Fact]
+    public void Has_passed_with_appointment_in_minutes()
+    {
+        Assert.False(Appointment.HasPassed(DateTime.Now.AddMinutes(5)));
+    }
 
-    //[Fact]
-    //public void Has_passed_with_appointment_in_days()
-    //{
-    //    Assert.False(Appointment.HasPassed(DateTime.Now.AddDays(19)));
-    //}
+    [Fact]
+    public void Has_passed_with_appointment_in_days()
+    {
+        Assert.False(Appointment.HasPassed(DateTime.Now.AddDays(19)));
+    }
 
-    //[Fact]
-    //public void Has_passed_with_appointment_in_months()
-    //{
-    //    Assert.False(Appointment.HasPassed(DateTime.Now.AddMonths(10)));
-    //}
+    [Fact]
+    public void Has_passed_with_appointment_in_months()
+    {
+        Assert.False(Appointment.HasPassed(DateTime.Now.AddMonths(10)));
+    }
 
-    //[Fact]
-    //public void Has_passed_with_appointment_in_years()
-    //{
-    //    Assert.False(Appointment.HasPassed(DateTime.Now.AddYears(2).AddMonths(3).AddDays(6)));
-    //}
+    [Fact]
+    public void Has_passed_with_appointment_in_years()
+    {
+        Assert.False(Appointment.HasPassed(DateTime.Now.AddYears(2).AddMonths(3).AddDays(6)));
+    }
 
     //[Fact]
     //public void Is_afternoon_appointment_for_early_morning_appointment()
