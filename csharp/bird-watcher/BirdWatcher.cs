@@ -18,5 +18,5 @@ class BirdCount
 
     public int CountForFirstDays(int numberOfDays) => this.birdsPerDay.Take(numberOfDays).Sum();
 
-    public int BusyDays() => this.birdsPerDay.Where(c => c >= BusyDayThreshold).Count();
+    public int BusyDays() => this.birdsPerDay.Count(birdCount => birdCount >= BusyDayThreshold);
 }
