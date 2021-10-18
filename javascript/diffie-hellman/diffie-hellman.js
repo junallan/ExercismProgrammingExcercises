@@ -1,0 +1,20 @@
+export class DiffieHellman {
+  isPrime(num) {
+    for (let i = 2; i < num; i++) 
+        if (num % i === 0) return false;
+    return num > 1;
+  }
+
+  constructor(p, g) {
+    if (!this.isPrime(p) || !this.isPrime(g))
+        throw new Error('Need to enter number that is prime');
+  }
+
+  getPublicKey(privateKey) {
+    throw new Error('Remove this statement and implement this function');
+  }
+
+  getSecret(theirPublicKey, myPrivateKey) {
+    throw new Error('Remove this statement and implement this function');
+  }
+}
