@@ -17,6 +17,8 @@ export class DiffieHellman {
   getPublicKey(privateKey) {
       if(!((1 < privateKey && privateKey < this.p) || (1 < privateKey && privateKey < this.g)))
           throw new Error('Private key entered is invalid');
+
+      return (this.g ** privateKey) % this.p;
   }
 
   getSecret(theirPublicKey, myPrivateKey) {

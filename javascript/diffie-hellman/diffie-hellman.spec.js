@@ -37,13 +37,13 @@ describe('diffie-hellman', () => {
       }).toThrow();
     });
 
-    xtest('throws an error if private key equals the modulus parameter p', () => {
+    test('throws an error if private key equals the modulus parameter p', () => {
       expect(() => {
         diffieHellman.getPublicKey(p);
       }).toThrow();
     });
 
-    xtest('throws an error if private key is greater than the modulus parameter p', () => {
+    test('throws an error if private key is greater than the modulus parameter p', () => {
       expect(() => {
         diffieHellman.getPublicKey(p + 1);
       }).toThrow();
@@ -59,13 +59,13 @@ describe('diffie-hellman', () => {
     const bobPrivateKey = 15;
     const bobPublicKey = 19;
 
-    xtest('can calculate public key using private key', () => {
+    test('can calculate public key using private key', () => {
       expect(diffieHellman.getPublicKey(alicePrivateKey)).toEqual(
         alicePublicKey
       );
     });
 
-    xtest('can calculate public key when given a different private key', () => {
+    test('can calculate public key when given a different private key', () => {
       expect(diffieHellman.getPublicKey(bobPrivateKey)).toEqual(bobPublicKey);
     });
   });
