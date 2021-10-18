@@ -14,7 +14,7 @@ class BirdCount
 
     public void IncrementTodaysCount() => this.birdsPerDay[^1]++;
 
-    public bool HasDayWithoutBirds() => this.birdsPerDay.Any(c => c == 0);
+    public bool HasDayWithoutBirds() => this.birdsPerDay.Any(birdCount => birdCount == 0);
 
     public int CountForFirstDays(int numberOfDays) => this.birdsPerDay[..numberOfDays].Sum();
 
