@@ -70,11 +70,11 @@ describe('diffie-hellman', () => {
     });
   });
 
-  xtest("can calculate secret using other party's public key", () => {
+  test("can calculate secret using other party's public key", () => {
     expect(new DiffieHellman(23, 5).getSecret(19, 6)).toEqual(2);
   });
 
-  xtest('key exchange', () => {
+  test('key exchange', () => {
     const diffieHellman = new DiffieHellman(23, 5);
 
     const alicePrivateKey = 6;
