@@ -20,14 +20,12 @@ class BirdCount
     public void IncrementTodaysCount()
     {
         for(int i=0; i<this.birdsPerDay.Length; i++)
-        {
             this.birdsPerDay[i]++;
-        }
     }
 
     public bool HasDayWithoutBirds()
     {
-        throw new NotImplementedException("Please implement the BirdCount.HasDayWithoutBirds() method");
+        return this.birdsPerDay.Any(c => c == 0);
     }
 
     public int CountForFirstDays(int numberOfDays)
