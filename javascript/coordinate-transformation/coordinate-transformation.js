@@ -66,8 +66,8 @@ export function composeTransform(f, g) {
  *  if the arguments are the same on subsequent calls, or compute a new result if they are different.
  */
 export function memoizeTransform(f) {
-	let previousParameters = '';
-	let previousResult = '';
+	let previousParameters;
+	let previousResult;
 
 	return function (x, y) {
 		if (previousParameters === `${x}:${y}`) {
