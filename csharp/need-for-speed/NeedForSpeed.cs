@@ -8,6 +8,9 @@ class RemoteControlCar
     private int _batteryDrain;
     private int _distance;
 
+    const int NitroCarSpeed = 50;
+    const int NitroCarDrain = 4;
+
     public RemoteControlCar(int speed, int batteryDrain)
     {
         _speed = speed;
@@ -26,7 +29,7 @@ class RemoteControlCar
         _distance += _speed;
     }
 
-    public static RemoteControlCar Nitro() => new RemoteControlCar(50, 4);
+    public static RemoteControlCar Nitro() => new RemoteControlCar(NitroCarSpeed, NitroCarDrain);
 }
 
 class RaceTrack
