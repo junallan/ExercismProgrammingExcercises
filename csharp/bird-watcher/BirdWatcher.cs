@@ -4,6 +4,7 @@ using System.Linq;
 class BirdCount
 {
     private int[] birdsPerDay;
+    private static readonly int BusyDayThreshold = 5;
 
     public BirdCount(int[] birdsPerDay) => this.birdsPerDay = birdsPerDay;
 
@@ -21,8 +22,5 @@ class BirdCount
 
     public int CountForFirstDays(int numberOfDays) => this.birdsPerDay[..numberOfDays].Sum();
 
-    public int BusyDays()
-    {
-        throw new NotImplementedException("Please implement the BirdCount.BusyDays() method");
-    }
+    public int BusyDays() => this.birdsPerDay.Where(c => c >= BusyDayThreshold).Count();
 }
