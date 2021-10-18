@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 class BirdCount
 {
@@ -14,10 +15,7 @@ class BirdCount
         return new [] { 0, 2, 5, 3, 7, 8, 4 };
     }
 
-    public int Today()
-    {
-        throw new NotImplementedException("Please implement the BirdCount.Today() method");
-    }
+    public int Today() => this.birdsPerDay.Last();
 
     public void IncrementTodaysCount()
     {
