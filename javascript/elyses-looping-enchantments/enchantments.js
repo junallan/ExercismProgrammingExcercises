@@ -1,7 +1,7 @@
 // @ts-check
 
-function isOfType(cardNumber, type) {
-	return (cardNumber % 2) === (type ? 0 : 1);
+function isOfType(cardNumber, typeFlag) {
+	return (cardNumber % 2) === typeFlag;
 }
 
 /**
@@ -32,8 +32,10 @@ export function cardTypeCheck(stack, card) {
 export function determineOddEvenCards(stack, type) {
 	let count = 0;
 
+	const typeFlag = type ? 0 : 1;
+
 	for (const card of stack)
-		if (isOfType(card, type)) count++;
+		if (isOfType(card, typeFlag)) count++;
 
 	return count;
 }
