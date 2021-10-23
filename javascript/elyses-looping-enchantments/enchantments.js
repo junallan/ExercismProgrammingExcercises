@@ -1,9 +1,5 @@
 // @ts-check
 
-function isOfType(cardNumber, typeFlag) {
-	return (cardNumber % 2) === typeFlag;
-}
-
 /**
  * Determine how many cards of a certain type there are in the deck
  *
@@ -32,10 +28,10 @@ export function cardTypeCheck(stack, card) {
 export function determineOddEvenCards(stack, type) {
 	let count = 0;
 
-	const typeFlag = type ? 0 : 1;
+	const isOddNumber = type ? 0 : 1;
 
 	for (const card of stack)
-		if (isOfType(card, typeFlag)) count++;
+		if ((card % 2) === isOddNumber) count++;
 
 	return count;
 }
