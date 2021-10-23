@@ -1,8 +1,11 @@
 export class DiffieHellman {
   
   isPrime(num) {
-    for (let i = 2; i < num; i++) 
+    const upperBound = Math.sqrt(num);
+      
+    for (let i = 2; i < upperBound; i++)
         if (num % i === 0) return false;
+
     return num > 1;
   }
 
