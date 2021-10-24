@@ -18,6 +18,19 @@ export function cardTypeCheck(stack, card) {
 	return countForCardType;
 }
 
+function determineOddOrEvenCard(type) {
+	if (type) {
+		return function (card) {
+			return card % 2 == 0;
+		}
+	}
+	else {
+		return function (card) {
+			return card % 2 === 1;
+		}
+	}
+}
+
 /**
  * Determine how many cards are odd or even
  *
@@ -28,10 +41,10 @@ export function cardTypeCheck(stack, card) {
 export function determineOddEvenCards(stack, type) {
 	let count = 0;
 
-	const isOddNumber = type ? 0 : 1;
+	const isOfType = determineOddOrEvenCard(type);
 
 	for (const card of stack)
-		if ((card % 2) === isOddNumber) count++;
+		if (isOfType(card)) count++;
 
 	return count;
 }
