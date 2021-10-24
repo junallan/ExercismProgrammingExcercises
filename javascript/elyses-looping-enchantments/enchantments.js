@@ -23,11 +23,11 @@ function remainderOf2(card) {
 }
 
 function isEven(card) {
-	return remainderOf2(card) === 0;
+	return !remainderOf2(card);
 }
 
 function isOdd(card) {
-	return remainderOf2(card) === 1;
+	return remainderOf2(card);
 }
 
 
