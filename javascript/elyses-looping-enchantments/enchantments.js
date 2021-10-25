@@ -18,22 +18,13 @@ export function cardTypeCheck(stack, card) {
 	return countForCardType;
 }
 
-function remainderOf2(card) {
-	return card % 2;
-}
-
 function isEven(card) {
-	return !remainderOf2(card);
+	return !(card % 2);
 }
 
 function isOdd(card) {
-	return remainderOf2(card);
+	return card % 2
 }
-
-
-//function determineOddOrEvenCard(type) {
-//	return type ? isEven : isOdd;
-//}
 
 /**
  * Determine how many cards are odd or even
