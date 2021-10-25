@@ -45,10 +45,10 @@ function isOdd(card) {
 export function determineOddEvenCards(stack, type) {
 	let count = 0;
 
-	const isOfType = type ? isEven.bind(null) : isOdd.bind(null);
+	const filterFn = type ? isEven : isOdd;
 
 	for (const card of stack)
-		if (isOfType(card)) count++;
+		if (filterFn(card)) count++;
 
 	return count;
 }
