@@ -4,6 +4,12 @@
 // the @ts-check directive. It will give you helpful autocompletion when
 // implementing this exercise.
 
+class Playlist {
+	constructor(playlist) {
+		this.collection = new Set(playlist);
+	}
+}
+
 /**
  * Removes duplicate tracks from a playlist.
  *
@@ -11,7 +17,7 @@
  * @returns {string[]} new playlist with unique entries
  */
 export function removeDuplicates(playlist) {
-	return Array.from(new Set(playlist));
+	return Array.from(new Playlist(playlist).collection);
 }
 
 /**
@@ -22,7 +28,7 @@ export function removeDuplicates(playlist) {
  * @returns {boolean} whether the track is in the playlist
  */
 export function hasTrack(playlist, track) {
-  throw new Error('Please implement the hasTrack function');
+	return new Playlist(playlist).collection.has(track);
 }
 
 /**
