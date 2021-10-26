@@ -34,8 +34,5 @@ public static class Languages
         return languages;
     }
 
-    public static bool IsUnique(List<string> languages)
-    {
-        throw new NotImplementedException("Please implement the static Languages.IsUnique() method");
-    }
+    public static bool IsUnique(List<string> languages) => new HashSet<string>(languages).Count == languages.Count;
 }
