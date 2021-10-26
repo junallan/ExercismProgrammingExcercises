@@ -1,4 +1,5 @@
 /// <reference path="./global.d.ts" />
+
 // @ts-check
 //
 // The lines above enable type checking for this file. Various IDEs interpret
@@ -40,8 +41,14 @@ export class TranslationService {
    * @param {string[]} texts
    * @returns {Promise<string[]>}
    */
-  batch(texts) {
-    throw new Error('Implement the batch function');
+    batch(texts) {
+        if (texts.length === 0) return Promise.reject(new BatchIsEmpty);
+            
+        let batchedTexts = [];
+
+        texts.forEach(text => batchedTexts.push(this.free(text)));
+
+        return Promise.all(batchedTexts);
   }
 
   /**
