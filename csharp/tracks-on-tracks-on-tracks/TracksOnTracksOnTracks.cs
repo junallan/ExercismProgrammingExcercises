@@ -20,7 +20,9 @@ public static class Languages
 
     public static List<string> ReverseList(List<string> languages)
     {
-        throw new NotImplementedException("Please implement the static Languages.ReverseList() method");
+        languages.Reverse();
+
+        return languages;
     }
 
     public static bool IsExciting(List<string> languages)
