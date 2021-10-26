@@ -6,22 +6,13 @@ abstract class Character
 
     protected bool _isVulnerable = false;
 
-    protected Character(string characterType)
-    {
-        _characterType = characterType;
-    }
+    protected Character(string characterType) => _characterType = characterType;
 
     public abstract int DamagePoints(Character target);
 
-    public virtual bool Vulnerable()
-    {
-        return _isVulnerable;
-    }
+    public virtual bool Vulnerable() => _isVulnerable;
 
-    public override string ToString()
-    {
-        return $"Character is a {_characterType}";
-    }
+    public override string ToString() => $"Character is a {_characterType}";
 }
 
 class Warrior : Character
@@ -33,30 +24,20 @@ class Warrior : Character
     {
     }
 
-    public override int DamagePoints(Character target)
-    {
-       return target.Vulnerable() ? DamagePointsWhenVulnurable : DamagePointsWhenNotVulnurable;
-    }
+    public override int DamagePoints(Character target) => target.Vulnerable() ? DamagePointsWhenVulnurable : DamagePointsWhenNotVulnurable;
 }
 
 class Wizard : Character
 {
     private bool _spellPrepared = false;
-
     private readonly int DamagePointsWhenSpellPrepared = 12;
     private readonly int DamagePointsWhenSpellNotPrepared = 3;
 
-    public Wizard() : base("Wizard")
-    {
-        _isVulnerable = true;
-    }
+    public Wizard() : base("Wizard") => _isVulnerable = true;
 
     public bool IsSpellPrepared => _spellPrepared;
 
-    public override int DamagePoints(Character target)
-    {
-       return IsSpellPrepared ? DamagePointsWhenSpellPrepared : DamagePointsWhenSpellNotPrepared;
-    }
+    public override int DamagePoints(Character target) => IsSpellPrepared ? DamagePointsWhenSpellPrepared : DamagePointsWhenSpellNotPrepared;
 
     public void PrepareSpell()
     {
