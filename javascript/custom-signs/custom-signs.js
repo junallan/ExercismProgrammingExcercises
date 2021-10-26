@@ -5,6 +5,8 @@
 // implementing this exercise.
 
 const OLD_AGE_THRESHOLD = 50;
+const SIGN_BASE_PRICE = 20;
+const SIGN_LETTER_COST = 2;
 
 /**
  * Build a sign that includes both of the parameters.
@@ -55,5 +57,5 @@ export function graduationFor(name, year) {
  */
 
 export function costOf(sign, currency) {
-	return `Your sign costs ${((sign.length*2) + 20).toFixed(2)} ${currency}.`;
+	return `Your sign costs ${((sign.length * SIGN_LETTER_COST) + SIGN_BASE_PRICE).toFixed(2)} ${currency}.`;
 }
