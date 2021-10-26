@@ -4,6 +4,8 @@
 // the @ts-check directive. It will give you helpful autocompletion when
 // implementing this exercise.
 
+const OLD_AGE_THRESHOLD = 50;
+
 /**
  * Build a sign that includes both of the parameters.
  *
@@ -26,7 +28,7 @@ export function buildSign(occasion, name) {
  */
 
 export function buildBirthdaySign(age) {
-  throw new Error('Implement the buildBirthdaySign function');
+	return `Happy Birthday! What a ${age < OLD_AGE_THRESHOLD ? 'young' : 'old'} fellow you are.`;
 }
 
 /**
