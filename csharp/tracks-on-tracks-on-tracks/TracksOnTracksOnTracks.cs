@@ -29,7 +29,9 @@ public static class Languages
 
     public static List<string> RemoveLanguage(List<string> languages, string language)
     {
-        throw new NotImplementedException("Please implement the static Languages.RemoveLanguage() method");
+        languages.Remove(language);
+
+        return languages;
     }
 
     public static bool IsUnique(List<string> languages)
