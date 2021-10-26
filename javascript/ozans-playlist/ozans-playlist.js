@@ -7,10 +7,17 @@
 class Playlist {
 	constructor(playlist) {
 		this.collection = new Set(playlist);
+		this.artists = new Set();
+
+		playlist.forEach(album => this.artists.add(album.split(' - ')[1]));
 	}
 
-	toArray() {
+	getColletion() {
 		return Array.from(this.collection);
+	}
+
+	getArtists() {
+		return Array.from(this.artists);
 	}
 }
 
@@ -44,9 +51,10 @@ export function hasTrack(playlist, track) {
  */
 export function addTrack(playlist, track) {
 	let playlistCollection = new Playlist(playlist);
+
 	playlistCollection.collection.add(track)
 
-	return playlistCollection.toArray();
+	return playlistCollection.getColletion();
 }
 
 /**
@@ -58,9 +66,10 @@ export function addTrack(playlist, track) {
  */
 export function deleteTrack(playlist, track) {
 	let playlistCollection = new Playlist(playlist);
+
 	playlistCollection.collection.delete(track)
 
-	return playlistCollection.toArray();
+	return playlistCollection.getColletion();
 }
 
 /**
@@ -70,5 +79,7 @@ export function deleteTrack(playlist, track) {
  * @returns {string[]} list of artists
  */
 export function listArtists(playlist) {
-  throw new Error('Please implement the listArtists function');
+	let playlistCollection = new Playlist(playlist);
+
+	return playlistCollection.getArtists();
 }
