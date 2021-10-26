@@ -3,6 +3,7 @@ using System;
 abstract class Character
 {
     private string _characterType;
+    protected bool _isVulnerable = false;
 
     protected Character(string characterType)
     {
@@ -13,7 +14,7 @@ abstract class Character
 
     public virtual bool Vulnerable()
     {
-        return false;
+        return _isVulnerable;
     }
 
     public override string ToString()
@@ -36,8 +37,11 @@ class Warrior : Character
 
 class Wizard : Character
 {
+    private bool _spellPrepared = false;
+
     public Wizard() : base("Wizard")
     {
+        _isVulnerable = true;
     }
 
     public override int DamagePoints(Character target)
@@ -47,6 +51,7 @@ class Wizard : Character
 
     public void PrepareSpell()
     {
-        throw new NotImplementedException("Please implement the Wizard.PrepareSpell() method");
+        _spellPrepared = true;
+        _isVulnerable = false;
     }
 }
