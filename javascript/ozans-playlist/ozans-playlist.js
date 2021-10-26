@@ -8,6 +8,10 @@ class Playlist {
 	constructor(playlist) {
 		this.collection = new Set(playlist);
 	}
+
+	toArray() {
+		return Array.from(this.collection);
+	}
 }
 
 /**
@@ -39,7 +43,10 @@ export function hasTrack(playlist, track) {
  * @returns {string[]} new playlist
  */
 export function addTrack(playlist, track) {
-  throw new Error('Please implement the addTrack function');
+	let playlistCollection = new Playlist(playlist);
+	playlistCollection.collection.add(track)
+
+	return playlistCollection.toArray();
 }
 
 /**
