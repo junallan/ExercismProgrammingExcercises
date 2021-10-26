@@ -10,9 +10,9 @@ public static class Languages
 
     public static List<string> GetExistingLanguages()
     {
-        throw new NotImplementedException("Please implement the static Languages.GetExistingLanguages() method");
+        return new List<string>{ "C#", "Clojure", "Elm"};
     }
-
+    
     public static List<string> AddLanguage(List<string> languages, string language)
     {
         throw new NotImplementedException("Please implement the static Languages.AddLanguage() method");
