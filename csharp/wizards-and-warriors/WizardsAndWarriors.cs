@@ -13,7 +13,7 @@ abstract class Character
 
     public virtual bool Vulnerable()
     {
-        throw new NotImplementedException("Please implement the Character.Vulnerable() method");
+        return false;
     }
 
     public override string ToString()
