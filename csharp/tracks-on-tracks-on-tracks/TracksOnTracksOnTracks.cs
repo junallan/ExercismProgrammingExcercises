@@ -3,19 +3,15 @@ using System.Collections.Generic;
 
 public static class Languages
 {
-    public static List<string> NewList()
-    {
-        return new List<string>();
-    }
+    public static List<string> NewList() => new List<string>();
 
-    public static List<string> GetExistingLanguages()
-    {
-        return new List<string>{ "C#", "Clojure", "Elm"};
-    }
-    
+    public static List<string> GetExistingLanguages() => new List<string> { "C#", "Clojure", "Elm" };
+
     public static List<string> AddLanguage(List<string> languages, string language)
     {
-        throw new NotImplementedException("Please implement the static Languages.AddLanguage() method");
+        languages.Add(language);
+
+        return languages;
     }
 
     public static int CountLanguages(List<string> languages)
