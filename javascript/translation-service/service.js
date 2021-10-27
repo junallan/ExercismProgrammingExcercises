@@ -43,12 +43,8 @@ export class TranslationService {
    */
     batch(texts) {
         if (texts.length === 0) return Promise.reject(new BatchIsEmpty);
-            
-        let batchedTexts = [];
 
-        texts.forEach(text => batchedTexts.push(this.free(text)));
-
-        return Promise.all(batchedTexts);
+        return Promise.all(texts.map(text => this.free(text)));
   }
 
   /**
