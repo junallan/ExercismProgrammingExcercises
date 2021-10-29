@@ -4,13 +4,11 @@ abstract class Character
 {
     private string _characterType;
 
-    protected bool _isVulnerable = false;
-
     protected Character(string characterType) => _characterType = characterType;
 
     public abstract int DamagePoints(Character target);
 
-    public virtual bool Vulnerable() => _isVulnerable;
+    public virtual bool Vulnerable() => false;
 
     public override string ToString() => $"Character is a {_characterType}";
 }
@@ -33,15 +31,15 @@ class Wizard : Character
     private readonly int DamagePointsWhenSpellPrepared = 12;
     private readonly int DamagePointsWhenSpellNotPrepared = 3;
 
-    public Wizard() : base("Wizard") => _isVulnerable = true;
+    public Wizard() : base("Wizard")
+    {
+    }
 
     public bool IsSpellPrepared => _spellPrepared;
 
+    public override bool Vulnerable() => !_spellPrepared;
+
     public override int DamagePoints(Character target) => IsSpellPrepared ? DamagePointsWhenSpellPrepared : DamagePointsWhenSpellNotPrepared;
 
-    public void PrepareSpell()
-    {
-        _spellPrepared = true;
-        _isVulnerable = false;
-    }
+    public void PrepareSpell() => _spellPrepared = true;
 }
