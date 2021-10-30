@@ -7,9 +7,6 @@
 class Playlist {
 	constructor(playlist) {
 		this.collection = new Set(playlist);
-		this.artists = new Set();
-
-		playlist.forEach(album => this.artists.add(album.split(' - ')[1]));
 	}
 
 	getColletion() {
@@ -17,7 +14,13 @@ class Playlist {
 	}
 
 	getArtists() {
-		return Array.from(this.artists);
+		let artists = new Set();
+
+		for (const album of this.collection) {
+			artists.add(album.split(' - ')[1])
+		}
+
+		return Array.from(artists);
 	}
 }
 
