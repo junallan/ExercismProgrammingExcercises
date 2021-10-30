@@ -29,7 +29,7 @@ public static class Languages
     {
         List<string> langs when langs.Count == 0 => false,
         List<string> langs when langs[0] == "C#" => true,
-        List<string> langs when langs.Count <= 3 && langs[1] == "C#" => false,
+        List<string> langs when langs.Count <= 3 && langs[1] == "C#" => true,
         _ => false
     };
 
