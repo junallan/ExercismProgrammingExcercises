@@ -27,7 +27,6 @@ public static class Languages
 
     public static bool IsExciting(List<string> languages) => (languages.Count > 0 && languages.Count <= 3)  && (languages[0] == "C#" || languages[1] == "C#");
 
-
     public static List<string> RemoveLanguage(List<string> languages, string language)
     {
         languages.Remove(language);
