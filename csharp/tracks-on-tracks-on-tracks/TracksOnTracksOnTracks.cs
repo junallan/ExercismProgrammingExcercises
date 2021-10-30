@@ -25,14 +25,7 @@ public static class Languages
         return languages;
     }
 
-    public static bool IsExciting(List<string> languages) => languages switch
-    {
-        List<string> langs when langs.Count == 0 => false,
-        List<string> langs when langs[0] == "C#" => true,
-        List<string> langs when langs.Count <= 3 && langs[1] == "C#" => true,
-        _ => false
-    };
-
+    public static bool IsExciting(List<string> languages) => (languages.Count > 0 && languages.Count <= 3)  && (languages[0] == "C#" || languages[1] == "C#");
 
 
     public static List<string> RemoveLanguage(List<string> languages, string language)
