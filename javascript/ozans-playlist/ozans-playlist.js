@@ -17,7 +17,7 @@ class Playlist {
 		let artists = new Set();
 
 		for (const album of this.collection) {
-			artists.add(album.split('-')[1].substring(1))
+			artists.add(album.split('-')[1].trimStart());
 		}
 
 		return Array.from(artists);
