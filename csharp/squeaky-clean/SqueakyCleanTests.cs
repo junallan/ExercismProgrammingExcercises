@@ -29,11 +29,11 @@ public class SqueakyCleanTests
         Assert.Equal("myCTRLId", Identifier.Clean("my\0Id"));
     }
 
-    //[Fact]
-    //public void Clean_string_with_no_letters()
-    //{
-    //    Assert.Equal(string.Empty, Identifier.Clean("😀😀😀"));
-    //}
+    [Fact]
+    public void Clean_string_with_no_letters()
+    {
+        Assert.Equal(string.Empty, Identifier.Clean("😀😀😀"));
+    }
 
     //[Fact]
     //public void Clean_empty_string()
