@@ -22,12 +22,12 @@ public class SqueakyCleanTests
         Assert.Equal("my___Id", Identifier.Clean("my   Id"));
     }
 
-    //[Fact]
-    //[Task(2)]
-    //public void Clean_string_with_control_char()
-    //{
-    //    Assert.Equal("myCTRLId", Identifier.Clean("my\0Id"));
-    //}
+    [Fact]
+    [Task(2)]
+    public void Clean_string_with_control_char()
+    {
+        Assert.Equal("myCTRLId", Identifier.Clean("my\0Id"));
+    }
 
     //[Fact]
     //public void Clean_string_with_no_letters()
