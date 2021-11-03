@@ -35,11 +35,11 @@ public class SqueakyCleanTests
         Assert.Equal(string.Empty, Identifier.Clean("😀😀😀"));
     }
 
-    //[Fact]
-    //public void Clean_empty_string()
-    //{
-    //    Assert.Equal(string.Empty, Identifier.Clean(string.Empty));
-    //}
+    [Fact]
+    public void Clean_empty_string()
+    {
+        Assert.Equal(string.Empty, Identifier.Clean(string.Empty));
+    }
 
     //[Fact]
     //[Task(3)]
