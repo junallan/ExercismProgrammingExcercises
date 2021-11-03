@@ -41,23 +41,23 @@ public class SqueakyCleanTests
         Assert.Equal(string.Empty, Identifier.Clean(string.Empty));
     }
 
-    //[Fact]
-    //[Task(3)]
-    //public void Convert_kebab_to_camel_case()
-    //{
-    //    Assert.Equal("àḂç", Identifier.Clean("à-ḃç"));
-    //}
+    [Fact]
+    [Task(3)]
+    public void Convert_kebab_to_camel_case()
+    {
+        Assert.Equal("àḂç", Identifier.Clean("à-ḃç"));
+    }
 
-    //[Fact]
-    //[Task(4)]
-    //public void Omit_lower_case_greek_letters()
-    //{
-    //    Assert.Equal("MyΟFinder", Identifier.Clean("MyΟβιεγτFinder"));
-    //}
+    [Fact]
+    [Task(4)]
+    public void Omit_lower_case_greek_letters()
+    {
+        Assert.Equal("MyΟFinder", Identifier.Clean("MyΟβιεγτFinder"));
+    }
 
-    //[Fact]
-    //public void Combine_conversions()
-    //{
-    //    Assert.Equal("_AbcĐCTRL", Identifier.Clean("9 -abcĐ😀ω\0"));
-    //}
+    [Fact]
+    public void Combine_conversions()
+    {
+        Assert.Equal("_AbcĐCTRL", Identifier.Clean("9 -abcĐ😀ω\0"));
+    }
 }
