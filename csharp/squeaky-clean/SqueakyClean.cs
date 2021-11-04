@@ -25,6 +25,4 @@ public static class Identifier
 
       return identifierFiltered.ToString();
     }
-
-  
 }
