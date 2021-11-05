@@ -17,7 +17,7 @@ public static class DialingCodes
         return existingDictionary;
     }
 
-    public static string GetCountryNameFromDictionary(Dictionary<int, string> existingDictionary, int countryCode) => existingDictionary.GetValueOrDefault(countryCode);
+    public static string GetCountryNameFromDictionary(Dictionary<int, string> existingDictionary, int countryCode) => existingDictionary.GetValueOrDefault(countryCode) ?? string.Empty;
     public static Dictionary<int, string> UpdateDictionary(
         Dictionary<int, string> existingDictionary, int countryCode, string countryName)
     {
