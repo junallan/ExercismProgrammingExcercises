@@ -3,15 +3,9 @@ using System.Collections.Generic;
 
 public static class DialingCodes
 {
-    public static Dictionary<int, string> GetEmptyDictionary()
-    {
-        return new Dictionary<int, string>();
-    }
+    public static Dictionary<int, string> GetEmptyDictionary() => new Dictionary<int, string>();
 
-    public static Dictionary<int, string> GetExistingDictionary()
-    {
-        throw new NotImplementedException($"Please implement the (static) GetExistingDictionary() method");
-    }
+    public static Dictionary<int, string> GetExistingDictionary() => new Dictionary<int, string> { [1] = "United States of America", [55] = "Brazil", [91] = "India" };
 
     public static Dictionary<int, string> AddCountryToEmptyDictionary(int countryCode, string countryName)
     {
