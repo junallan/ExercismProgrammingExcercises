@@ -21,7 +21,9 @@ public static class DialingCodes
     public static Dictionary<int, string> UpdateDictionary(
         Dictionary<int, string> existingDictionary, int countryCode, string countryName)
     {
-        throw new NotImplementedException($"Please implement the (static) UpdateDictionary() method");
+        existingDictionary[countryCode] = countryName;
+
+        return existingDictionary;
     }
 
     public static Dictionary<int, string> RemoveCountryFromDictionary(
