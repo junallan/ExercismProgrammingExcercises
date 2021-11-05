@@ -12,7 +12,8 @@ public static class DialingCodes
     public static Dictionary<int, string> AddCountryToExistingDictionary(
         Dictionary<int, string> existingDictionary, int countryCode, string CountryName)
     {
-        existingDictionary.Add(countryCode, CountryName);
+//        existingDictionary.Add(countryCode, CountryName);
+        existingDictionary[countryCode] = CountryName;
 
         return existingDictionary;
     }
