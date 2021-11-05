@@ -10,14 +10,14 @@ public static class Identifier
     { 
         var identifierFiltered = new StringBuilder();
 
-        for(int i=0; i< identifier.Length; i++)
+        for(int i=0; i < identifier.Length; i++)
         {
             identifierFiltered.Append(identifier[i] switch
             {
-                Char value when Char.IsWhiteSpace(value) => "_",
-                Char value when Char.IsControl(value) => "CTRL",
-                Char value when ShouldConvertToKebabCase(identifier, i)  => Char.ToUpper(value).ToString(),
-                Char value when Char.IsLetter(value) && !IsGreekLetter(value) => value,
+                _ when Char.IsWhiteSpace(identifier[i]) => "_",
+                _ when Char.IsControl(identifier[i]) => "CTRL",
+                _ when ShouldConvertToKebabCase(identifier, i)  => Char.ToUpper(identifier[i]).ToString(),
+                _ when Char.IsLetter(identifier[i]) && !IsGreekLetter(identifier[i]) => identifier[i],
                 _ => ""
             });
         }
