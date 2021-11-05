@@ -12,7 +12,9 @@ public static class DialingCodes
     public static Dictionary<int, string> AddCountryToExistingDictionary(
         Dictionary<int, string> existingDictionary, int countryCode, string CountryName)
     {
-        throw new NotImplementedException($"Please implement the (static) AddCountryToExistingDictionary() method");
+        existingDictionary.Add(countryCode, CountryName);
+
+        return existingDictionary;
     }
 
     public static string GetCountryNameFromDictionary(
