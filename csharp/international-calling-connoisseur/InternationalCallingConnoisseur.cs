@@ -17,11 +17,7 @@ public static class DialingCodes
         return existingDictionary;
     }
 
-    public static string GetCountryNameFromDictionary(
-        Dictionary<int, string> existingDictionary, int countryCode)
-    {
-        throw new NotImplementedException($"Please implement the (static) GetCountryNameFromDictionary() method");
-    }
+    public static string GetCountryNameFromDictionary(Dictionary<int, string> existingDictionary, int countryCode) => existingDictionary.GetValueOrDefault(countryCode);
     public static Dictionary<int, string> UpdateDictionary(
         Dictionary<int, string> existingDictionary, int countryCode, string countryName)
     {
