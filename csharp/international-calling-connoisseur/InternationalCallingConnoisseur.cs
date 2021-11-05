@@ -29,7 +29,9 @@ public static class DialingCodes
     public static Dictionary<int, string> RemoveCountryFromDictionary(
         Dictionary<int, string> existingDictionary, int countryCode)
     {
-        throw new NotImplementedException($"Please implement the (static) RemoveCountryFromDictionary() method");
+        existingDictionary.Remove(countryCode);
+
+        return existingDictionary;
     }
     public static bool CheckCodeExists(Dictionary<int, string> existingDictionary, int countryCode) => existingDictionary.ContainsKey(countryCode);
 
