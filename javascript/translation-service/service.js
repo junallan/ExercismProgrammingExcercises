@@ -1,5 +1,7 @@
 /// <reference path="./global.d.ts" />
 
+import { Untranslatable } from "./errors";
+
 // @ts-check
 //
 // The lines above enable type checking for this file. Various IDEs interpret
@@ -56,8 +58,23 @@ export class TranslationService {
    * @param {string} text
    * @returns {Promise<void>}
    */
-  request(text) {
-    throw new Error('Implement the request function');
+    request(text) {
+        
+        this.api.request(text, new Promise(function (resolve, reject) {
+            return resolve(this.api.free(text));
+
+            reject(Promise.reject);
+        }));
+        
+
+        //const myPromise = new Promise(function (resolve, reject) {
+        //    this.api.request(text, Promise.reject);
+        //});
+
+        //return myPromise;
+
+
+      //return this.api.request(text, Promise.reject).then();
   }
 
   /**

@@ -93,50 +93,50 @@ describe('Batch service', () => {
   });
 });
 
-//describe('Request service', () => {
-//  /** @type {TranslationService} */
-//  let service;
+describe('Request service', () => {
+  /** @type {TranslationService} */
+  let service;
 
-//  beforeEach(() => {
-//    const api = new ExternalApi()
-//      .register('majQa’', null)
-//      .register('majQa’', 'Well done!', 100)
-//      .register('jIyajbe’', null)
-//      .register('jIyajbe’', null)
-//      .register('jIyajbe’', null)
-//      .register('jIyajbe’', "I don't understand", 100)
-//      .register('ghobe’', null)
-//      .register('ghobe’', null)
-//      .register('ghobe’', null)
-//      .register('ghobe’', null)
-//      .register('ghobe’', 'No!', 100);
+  beforeEach(() => {
+    const api = new ExternalApi()
+      .register('majQa’', null)
+      .register('majQa’', 'Well done!', 100)
+      .register('jIyajbe’', null)
+      .register('jIyajbe’', null)
+      .register('jIyajbe’', null)
+      .register('jIyajbe’', "I don't understand", 100)
+      .register('ghobe’', null)
+      .register('ghobe’', null)
+      .register('ghobe’', null)
+      .register('ghobe’', null)
+      .register('ghobe’', 'No!', 100);
 
-//    service = new TranslationService(api);
-//  });
+    service = new TranslationService(api);
+  });
 
-//  test('it can request something that is not available, but eventually is', async () => {
-//    const actual = service.request('majQa’');
-//    await expect(actual).resolves.toBeUndefined();
-//  });
+  test('it can request something that is not available, but eventually is', async () => {
+    const actual = service.request('majQa’');
+    await expect(actual).resolves.toBeUndefined();
+  });
 
-//  test('it eventually rejects when something is not translatable', async () => {
-//    const actual = service.request('foo');
-//    const expected = Untranslatable;
+  test('it eventually rejects when something is not translatable', async () => {
+    const actual = service.request('foo');
+    const expected = Untranslatable;
 
-//    await expect(actual).rejects.toThrow(expected);
-//  });
+    await expect(actual).rejects.toThrow(expected);
+  });
 
-//  test('it requests up to three times (retries once or twice)', async () => {
-//    const actual = service.request('jIyajbe’');
-//    await expect(actual).resolves.toBeUndefined();
-//  });
+  test('it requests up to three times (retries once or twice)', async () => {
+    const actual = service.request('jIyajbe’');
+    await expect(actual).resolves.toBeUndefined();
+  });
 
-//  test('it requests at most three times (does not retry thrice or more)', async () => {
-//    const actual = service.request('ghobe’');
+  test('it requests at most three times (does not retry thrice or more)', async () => {
+    const actual = service.request('ghobe’');
 
-//    await expect(actual).rejects.toThrow(Error);
-//  });
-//});
+    await expect(actual).rejects.toThrow(Error);
+  });
+});
 
 //describe('Premium service', () => {
 //  /** @type {TranslationService} */

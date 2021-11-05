@@ -29,10 +29,7 @@ public static class DialingCodes
     {
         throw new NotImplementedException($"Please implement the (static) RemoveCountryFromDictionary() method");
     }
-    public static bool CheckCodeExists(Dictionary<int, string> existingDictionary, int countryCode)
-    {
-        throw new NotImplementedException($"Please implement the (static) CheckCodeExists() method");
-    }
+    public static bool CheckCodeExists(Dictionary<int, string> existingDictionary, int countryCode) => existingDictionary.ContainsKey(countryCode);
 
     public static string FindLongestCountryName(Dictionary<int, string> existingDictionary)
     {
