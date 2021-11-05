@@ -14,8 +14,8 @@ public static class Identifier
         {
             identifierFiltered.Append(identifier[i] switch
             {
-                Char value when value == ' ' => "_",
-                Char value when value == '\0' => "CTRL",
+                Char value when Char.IsWhiteSpace(value) => "_",
+                Char value when Char.IsControl(value) => "CTRL",
                 Char value when ShouldConvertToKebabCase(identifier, i)  => Char.ToUpper(value).ToString(),
                 Char value when Char.IsLetter(value) && !IsGreekLetter(value) => value,
                 _ => ""
