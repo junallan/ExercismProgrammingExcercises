@@ -37,6 +37,13 @@ public static class DialingCodes
 
     public static string FindLongestCountryName(Dictionary<int, string> existingDictionary)
     {
-        throw new NotImplementedException($"Please implement the (static) FindLongestCountryName() method");
+        var longestCountryName = string.Empty;
+
+        foreach(var country in existingDictionary)
+        {
+            if (country.Value.Length > longestCountryName.Length) longestCountryName = country.Value;
+        }
+
+        return longestCountryName;
     }
 }
