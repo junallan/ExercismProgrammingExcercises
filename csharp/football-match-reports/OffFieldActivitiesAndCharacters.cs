@@ -26,10 +26,9 @@ public class PlayAnalyzer
 
     public static string AnalyzeOffField(string commentary) => commentary;
 
-    public static string AnalyzeOffField(Incident incident)
-    {
-        return incident.GetDescription();
-    }
+    public static string AnalyzeOffField(Incident incident) => incident.GetDescription();
+
+    public static string AnalyzeOffField(Manager manager) => manager.ToString();
 }
 
 public class Manager
@@ -43,6 +42,8 @@ public class Manager
         this.Name = name;
         this.Club = club;
     }
+
+    public override string ToString() => string.IsNullOrWhiteSpace(this.Club) ? this.Name : $"{this.Name} ({this.Club})";
 }
 
 public class Incident

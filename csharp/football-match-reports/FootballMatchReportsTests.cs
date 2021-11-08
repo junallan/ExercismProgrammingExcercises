@@ -81,17 +81,17 @@ public class FootballMatchReportsTests
         Assert.Equal("Oh no! Player 3 is injured. Medics are on the field.", PlayAnalyzer.AnalyzeOffField(new Injury(3)));
     }
 
-    //[Fact]
-    //[Task(5)]
-    //public void AnalyzeOffField_manager_no_club()
-    //{
-    //    Assert.Equal("David Moyes", PlayAnalyzer.AnalyzeOffField(new Manager("David Moyes", null)));
-    //}
+    [Fact]
+    [Task(5)]
+    public void AnalyzeOffField_manager_no_club()
+    {
+        Assert.Equal("David Moyes", PlayAnalyzer.AnalyzeOffField(new Manager("David Moyes", null)));
+    }
 
-    //[Fact]
-    //[Task(5)]
-    //public void AnalyzeOffField_manager_with_club()
-    //{
-    //    Assert.Equal("Thomas Tuchel (Chelsea)", PlayAnalyzer.AnalyzeOffField(new Manager("Thomas Tuchel", "Chelsea")));
-    //}
+    [Fact]
+    [Task(5)]
+    public void AnalyzeOffField_manager_with_club()
+    {
+        Assert.Equal("Thomas Tuchel (Chelsea)", PlayAnalyzer.AnalyzeOffField(new Manager("Thomas Tuchel", "Chelsea")));
+    }
 }
