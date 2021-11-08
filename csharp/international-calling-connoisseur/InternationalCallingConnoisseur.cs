@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class DialingCodes
 {
@@ -11,10 +12,9 @@ public static class DialingCodes
 
     public static Dictionary<int, string> AddCountryToExistingDictionary(
         Dictionary<int, string> existingDictionary, int countryCode, string CountryName)
-    {
-//        existingDictionary.Add(countryCode, CountryName);
-        existingDictionary[countryCode] = CountryName;
-
+    { 
+        existingDictionary.Add(countryCode, CountryName);
+  
         return existingDictionary;
     }
 
@@ -38,15 +38,5 @@ public static class DialingCodes
     
     public static bool CheckCodeExists(Dictionary<int, string> existingDictionary, int countryCode) => existingDictionary.ContainsKey(countryCode);
 
-    public static string FindLongestCountryName(Dictionary<int, string> existingDictionary)
-    {
-        var longestCountryName = string.Empty;
-
-        foreach(var country in existingDictionary)
-        {
-            if (country.Value.Length > longestCountryName.Length) longestCountryName = country.Value;
-        }
-
-        return longestCountryName;
-    }
+    public static string FindLongestCountryName(Dictionary<int, string> existingDictionary) => existingDictionary.Aggregate(string.Empty, (longestCountryName, country) => longestCountryName.Length > country.Value.Length ? longestCountryName : country.Value);
 }
