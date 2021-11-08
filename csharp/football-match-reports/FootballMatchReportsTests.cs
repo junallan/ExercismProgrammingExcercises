@@ -60,26 +60,26 @@ public class FootballMatchReportsTests
         Assert.Equal("They think it's all over!", PlayAnalyzer.AnalyzeOffField("They think it's all over!"));
     }
 
-    //[Fact]
-    //[Task(4)]
-    //public void AnalyzeOffField_incident()
-    //{
-    //    Assert.Equal("An incident happened.", PlayAnalyzer.AnalyzeOffField(new Incident()));
-    //}
+    [Fact]
+    [Task(4)]
+    public void AnalyzeOffField_incident()
+    {
+        Assert.Equal("An incident happened.", PlayAnalyzer.AnalyzeOffField(new Incident()));
+    }
 
-    //[Fact]
-    //[Task(4)]
-    //public void AnalyzeOffField_foul()
-    //{
-    //    Assert.Equal("The referee deemed a foul.", PlayAnalyzer.AnalyzeOffField(new Foul()));
-    //}
+    [Fact]
+    [Task(4)]
+    public void AnalyzeOffField_foul()
+    {
+        Assert.Equal("The referee deemed a foul.", PlayAnalyzer.AnalyzeOffField(new Foul()));
+    }
 
-    //[Fact]
-    //[Task(4)]
-    //public void AnalyzeOffField_injury()
-    //{
-    //    Assert.Equal("Oh no! Player 3 is injured. Medics are on the field.", PlayAnalyzer.AnalyzeOffField(new Injury(3)));
-    //}
+    [Fact]
+    [Task(4)]
+    public void AnalyzeOffField_injury()
+    {
+        Assert.Equal("Oh no! Player 3 is injured. Medics are on the field.", PlayAnalyzer.AnalyzeOffField(new Injury(3)));
+    }
 
     //[Fact]
     //[Task(5)]

@@ -25,6 +25,11 @@ public class PlayAnalyzer
     public static string AnalyzeOffField(int supporters) => $"There are {supporters} supporters at the match.";
 
     public static string AnalyzeOffField(string commentary) => commentary;
+
+    public static string AnalyzeOffField(Incident incident)
+    {
+        return incident.GetDescription();
+    }
 }
 
 public class Manager
@@ -59,5 +64,6 @@ public class Injury : Incident
         this.player = player;
     }
 
-    public override string GetDescription() => $"Player {player} is injured.";
+   // Oh no! Player 3 is injured.Medics are on the field.
+    public override string GetDescription() => $"Oh no! Player {player} is injured. Medics are on the field.";
 }
