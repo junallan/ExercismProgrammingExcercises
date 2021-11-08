@@ -46,12 +46,12 @@ public class FootballMatchReportsTests
         Assert.Equal("There are 4200 supporters at the match.", PlayAnalyzer.AnalyzeOffField(4200));
     }
 
-    //[Fact]
-    //[Task(3)]
-    //public void AnalyzeOffField_throws_unknown_type()
-    //{
-    //    Assert.Throws<ArgumentException>(() => PlayAnalyzer.AnalyzeOffField(90.0f));
-    //}
+    [Fact]
+    [Task(3)]
+    public void AnalyzeOffField_throws_unknown_type()
+    {
+        Assert.Throws<ArgumentException>(() => PlayAnalyzer.AnalyzeOffField(90.0f));
+    }
 
     [Fact]
     [Task(3)]
