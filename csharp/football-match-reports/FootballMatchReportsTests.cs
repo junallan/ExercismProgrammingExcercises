@@ -38,14 +38,14 @@ public class FootballMatchReportsTests
     {
         Assert.Throws<ArgumentOutOfRangeException>(() => PlayAnalyzer.AnalyzeOnField(1729));
     }
-    
-    //[Fact]
-    //[Task(3)]
-    //public void AnalyzeOffField_number()
-    //{
-    //    Assert.Equal("There are 4200 supporters at the match.", PlayAnalyzer.AnalyzeOffField(4200));
-    //}
-    
+
+    [Fact]
+    [Task(3)]
+    public void AnalyzeOffField_number()
+    {
+        Assert.Equal("There are 4200 supporters at the match.", PlayAnalyzer.AnalyzeOffField(4200));
+    }
+
     //[Fact]
     //[Task(3)]
     //public void AnalyzeOffField_throws_unknown_type()
@@ -53,12 +53,12 @@ public class FootballMatchReportsTests
     //    Assert.Throws<ArgumentException>(() => PlayAnalyzer.AnalyzeOffField(90.0f));
     //}
 
-    //[Fact]
-    //[Task(3)]
-    //public void AnalyzeOffField_text()
-    //{
-    //    Assert.Equal("They think it's all over!", PlayAnalyzer.AnalyzeOffField("They think it's all over!"));
-    //}
+    [Fact]
+    [Task(3)]
+    public void AnalyzeOffField_text()
+    {
+        Assert.Equal("They think it's all over!", PlayAnalyzer.AnalyzeOffField("They think it's all over!"));
+    }
 
     //[Fact]
     //[Task(4)]

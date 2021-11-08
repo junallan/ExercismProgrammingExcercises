@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class PlayAnalyzer
 { 
@@ -20,6 +21,10 @@ public class PlayAnalyzer
             default: throw new ArgumentOutOfRangeException();
         }
     }
+
+    public static string AnalyzeOffField(int supporters) => $"There are {supporters} supporters at the match.";
+
+    public static string AnalyzeOffField(string commentary) => commentary;
 }
 
 public class Manager
