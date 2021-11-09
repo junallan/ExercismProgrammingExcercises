@@ -25,6 +25,5 @@ public static class MatchingBrackets
 
         return IsPaired(bracketsLeftToProcess);
     }
-
 }
 
