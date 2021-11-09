@@ -3,62 +3,28 @@ using System.Linq;
 
 public static class MatchingBrackets
 {
+    private const string BracketsPair = "[]";
+    private const string BracesPair = "{}";
+    private const string ParenthesesPair = "()";
+
+    private static bool UnevenBrackets(string brackets) => brackets.Length % 2 != 0;
+    private static bool NoBrackets(string brackets) => brackets.Length == 0;
+
     public static bool IsPaired(string input)
     {
-        var bracketValues = "[]{}()";
-      
+        var bracketValues = string.Concat(BracketsPair, BracesPair, ParenthesesPair);
+
         var brackets = String.Concat(input.Where(character => bracketValues.Contains(character)));
 
-        if (brackets.Length == 0) return true;
-        if (brackets.Length % 2 != 0) return false;
+        if (NoBrackets(brackets)) return true;
+        if (UnevenBrackets(brackets)) return false;
 
-        var startPosition = 0;
-        var bracketsToProcess = brackets;
+        var bracketsLeftToProcess = brackets.Replace(BracketsPair, string.Empty).Replace(BracesPair, string.Empty).Replace(ParenthesesPair, string.Empty);
 
-        do
-        {
-            var bracketSubset = FindBracketSubset(startPosition, bracketsToProcess);
+        if (bracketsLeftToProcess.Length == brackets.Length) return false;
 
-            //inputHasBracketSubset = !;
-            if (string.IsNullOrEmpty(bracketSubset)) return false;
-
-      
-                for(var i=0; i<bracketSubset.Length/2; i++)
-                {
-                    if (!isPair(String.Concat(bracketSubset[i], bracketSubset[bracketSubset.Length-i-1]))) return false;
-                }
-         
-            bracketsToProcess = bracketsToProcess.Substring(bracketSubset.Length);
-
-        } while (!string.IsNullOrEmpty(bracketsToProcess));
-
-
-        return true;
+        return IsPaired(bracketsLeftToProcess);
     }
 
-    private static bool isPair(string input) => input.Contains("[]") || input.Contains("{}") || input.Contains("()");
-
-    private static string FindBracketSubset(int startPosition, string brackets)
-    {
-        var openBracketValues = "[{(";
-        var closedBracketValues = "]})";
- 
-        var isOpenBracket = openBracketValues.Contains(brackets[startPosition]);
-        if (!isOpenBracket) return string.Empty;
-
-        for (var i = startPosition + 1; i < brackets.Length; i++)
-        {
-            if (closedBracketValues.Contains(brackets[i]))
-            {
-                var nestingLevels = i - startPosition; //- 1;
-
-                if((i+nestingLevels) > brackets.Length) return string.Empty;
-
-                return brackets.Substring(startPosition, i - startPosition + nestingLevels);
-            }
-        }
-
-        return string.Empty;
-    }
 }
 
