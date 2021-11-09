@@ -51,7 +51,7 @@ public class MatchingBracketsTests
         Assert.False(MatchingBrackets.IsPaired(value));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Simple_nested_brackets()
     {
         var value = "{[]}";

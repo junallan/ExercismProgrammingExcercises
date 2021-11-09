@@ -23,9 +23,9 @@ public static class MatchingBrackets
             if (string.IsNullOrEmpty(bracketSubset)) return false;
 
       
-                for(var i=0; i<bracketSubset.Length; i+=2)
+                for(var i=0; i<bracketSubset.Length/2; i++)
                 {
-                    if (!isPair(bracketSubset.Substring(i, 2))) return false;
+                    if (!isPair(String.Concat(bracketSubset[i], bracketSubset[bracketSubset.Length-i-1]))) return false;
                 }
          
             bracketsToProcess = bracketsToProcess.Substring(bracketSubset.Length);
