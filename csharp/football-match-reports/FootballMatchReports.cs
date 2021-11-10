@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FootballMatchReports
 {
-    public class PlayAnalyzer
+    public static class PlayAnalyzer
     {
         public static string AnalyzeOnField(int position) => position switch
         {
