@@ -16,13 +16,19 @@ public static class RunLengthEncoding
             if(input[i-1] == input[i])
             {
                 numberOfRepeatedInput++;
+
+                if (i == input.Length - 1) encodedInput.Append($"{numberOfRepeatedInput}{input[i]}");
             }
             else
             {              
-                encodedInput.Append($"{((numberOfRepeatedInput == 1) ? string.Empty : numberOfRepeatedInput.ToString())}{input[i-1]}");
+                encodedInput.Append($"{((numberOfRepeatedInput == 1) ? string.Empty : numberOfRepeatedInput)}{input[i-1]}");
+
+                if (i == input.Length - 1) encodedInput.Append(input[i].ToString());
+
+                numberOfRepeatedInput = 1;
             }
 
-            if (i == input.Length - 1) encodedInput.Append(input[i].ToString());
+           
         }
 
         return encodedInput.ToString();
