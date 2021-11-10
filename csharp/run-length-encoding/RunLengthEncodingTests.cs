@@ -20,25 +20,25 @@ public class RunLengthEncodingTests
         Assert.Equal("2A3B4C", RunLengthEncoding.Encode("AABBBCCCC"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Run_length_encode_a_string_single_characters_mixed_with_repeated_characters()
     {
         Assert.Equal("12WB12W3B24WB", RunLengthEncoding.Encode("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Run_length_encode_a_string_multiple_whitespace_mixed_in_string()
     {
         Assert.Equal("2 hs2q q2w2 ", RunLengthEncoding.Encode("  hsqq qww  "));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Run_length_encode_a_string_lowercase_characters()
     {
         Assert.Equal("2a3b4c", RunLengthEncoding.Encode("aabbbcccc"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Run_length_decode_a_string_empty_string()
     {
         Assert.Equal("", RunLengthEncoding.Decode(""));
