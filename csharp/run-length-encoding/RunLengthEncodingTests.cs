@@ -8,7 +8,7 @@ public class RunLengthEncodingTests
         Assert.Equal("", RunLengthEncoding.Encode(""));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Run_length_encode_a_string_single_characters_only_are_encoded_without_count()
     {
         Assert.Equal("XYZ", RunLengthEncoding.Encode("XYZ"));
