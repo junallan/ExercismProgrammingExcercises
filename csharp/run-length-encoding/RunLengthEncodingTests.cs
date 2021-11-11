@@ -44,13 +44,13 @@ public class RunLengthEncodingTests
         Assert.Equal("", RunLengthEncoding.Decode(""));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Run_length_decode_a_string_single_characters_only()
     {
         Assert.Equal("XYZ", RunLengthEncoding.Decode("XYZ"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Run_length_decode_a_string_string_with_no_single_characters()
     {
         Assert.Equal("AABBBCCCC", RunLengthEncoding.Decode("2A3B4C"));

@@ -46,6 +46,42 @@ public static class RunLengthEncoding
     {
         if (input.Length == 0) return string.Empty;
 
-        throw new NotImplementedException("You need to implement this function.");
+        StringBuilder decodedInput = new StringBuilder();
+        int startPositionOfNumber = 0;
+
+        for(int i=0; i<input.Length; i++)
+        {
+            if (Char.IsLetter(input[i]))
+            {
+                if(i==0)
+                {
+                    decodedInput.Append(input[i]);
+                    startPositionOfNumber++;
+                }       
+                else
+                {
+                    if(Char.IsNumber(input[i-1]))
+                    {
+                        int numberOfRepetitionOfLetter = int.Parse(input.Substring(startPositionOfNumber, i - startPositionOfNumber));
+                        decodedInput.Insert(decodedInput.Length, input[i].ToString(), numberOfRepetitionOfLetter);
+                        startPositionOfNumber = i + 1;
+                    }
+                    else
+                    {
+                        decodedInput.Append(input[i]);
+                    }
+
+                 
+                }
+            }
+            //else
+            //{
+            //    startPositionOfNumber = i;
+            //}
+           
+            
+        }
+
+        return decodedInput.ToString();
     }
 }
