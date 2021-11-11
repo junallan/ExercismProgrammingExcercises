@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 public static class RunLengthEncoding
 {
@@ -35,33 +36,20 @@ public static class RunLengthEncoding
 
     public static string Decode(string input)
     {
-        if (input.Length == 0) return string.Empty;
-        if (input.Length == 1) return input;
-
         StringBuilder decodedInput = new StringBuilder();
-        int startPositionOfNumber = 0;
 
-        if (input.First().IsLetterOrWhiteSpace() && input[1].IsLetterOrWhiteSpace()) decodedInput.Append(input.First());
-        
-        for(int i=0; i<input.Length-1; i++)
-        {    
-            if(input[i].IsLetterOrWhiteSpace() && input[i+1].IsLetterOrWhiteSpace())
-            {
-                decodedInput.Append(input[i+1]);
-                startPositionOfNumber++;
-            }
-            else if(Char.IsNumber(input[i]) && input[i+1].IsLetterOrWhiteSpace())
-            {            
-                int numberOfRepetitionOfLetter = int.Parse(input.Substring(startPositionOfNumber, i - startPositionOfNumber + 1));
+        string pattern = @"(\d+)?(\D)";//"(\\d+)*([a-zA-Z ]+)";
 
-                if(numberOfRepetitionOfLetter == 0)
-                    decodedInput.Insert(decodedInput.Length, input[i + 1].ToString(), int.Parse(input[i].ToString()));
-                else
-                    decodedInput.Insert(decodedInput.Length, input[i + 1].ToString(), numberOfRepetitionOfLetter);
+        Regex regex = new Regex(pattern);
+        foreach (Match match in regex.Matches(input))
+        {
+            var numberGroupValue = match.Groups[1].Value;
+            var letterGroupValue = match.Groups[2].Value;
 
-                startPositionOfNumber = i + 2;
-            }
+            if (string.IsNullOrEmpty(numberGroupValue)) decodedInput.Append(letterGroupValue);
+            else decodedInput.Insert(decodedInput.Length, letterGroupValue, int.Parse(numberGroupValue));
         }
+
 
         return decodedInput.ToString();
     }
