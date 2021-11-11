@@ -7,27 +7,14 @@ public static class RunLengthEncoding
 {
     public static string Encode(string input)
     {
-        if (input.Length == 0) return string.Empty;
-
         StringBuilder encodedInput = new StringBuilder();
-        int numberOfRepeatedInput = 1;
+        string pattern = @"(.)\1{0,}";
+        Regex regex = new Regex(pattern);
 
-        for(int i=1; i<input.Length; i++)
+        foreach(Match match in regex.Matches(input))
         {
-            if(input[i-1] == input[i])
-                numberOfRepeatedInput++;
-            else
-            {              
-                encodedInput.Append($"{((numberOfRepeatedInput == 1) ? string.Empty : numberOfRepeatedInput)}{input[i-1]}");
-
-                numberOfRepeatedInput = 1;
-            }
+            encodedInput.Append(match.Value.Length == 1 ? match.Value : $"{match.Value.Length}{match.Value.First()}");
         }
-
-        if(input.ElementAt(input.Length -2) == input.Last())
-            encodedInput.Append($"{numberOfRepeatedInput}{input.Last()}");
-        else
-            encodedInput.Append(input.Last());
 
         return encodedInput.ToString();
     }
@@ -37,10 +24,9 @@ public static class RunLengthEncoding
     public static string Decode(string input)
     {
         StringBuilder decodedInput = new StringBuilder();
-
-        string pattern = @"(\d+)?(\D)";//"(\\d+)*([a-zA-Z ]+)";
-
+        string pattern = @"(\d+)?(\D)";
         Regex regex = new Regex(pattern);
+
         foreach (Match match in regex.Matches(input))
         {
             var numberGroupValue = match.Groups[1].Value;
