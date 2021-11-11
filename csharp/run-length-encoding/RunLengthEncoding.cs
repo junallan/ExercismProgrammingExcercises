@@ -32,8 +32,7 @@ public static class RunLengthEncoding
             var numberGroupValue = match.Groups[1].Value;
             var letterGroupValue = match.Groups[2].Value;
 
-            if (string.IsNullOrEmpty(numberGroupValue)) decodedInput.Append(letterGroupValue);
-            else decodedInput.Insert(decodedInput.Length, letterGroupValue, int.Parse(numberGroupValue));
+            decodedInput.Append(new String(letterGroupValue.First(), string.IsNullOrEmpty(numberGroupValue) ? 1 : int.Parse(numberGroupValue)));
         }
 
         return decodedInput.ToString();
