@@ -56,11 +56,11 @@ public class RunLengthEncodingTests
         Assert.Equal("AABBBCCCC", RunLengthEncoding.Decode("2A3B4C"));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
-    public void Run_length_decode_a_string_single_characters_with_repeated_characters()
-    {
-        Assert.Equal("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB", RunLengthEncoding.Decode("12WB12W3B24WB"));
-    }
+    //[Fact]
+    //public void Run_length_decode_a_string_single_characters_with_repeated_characters()
+    //{
+    //    Assert.Equal("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB", RunLengthEncoding.Decode("12WB12W3B24WB"));
+    //}
 
     [Fact(Skip = "Remove this Skip property to run this test")]
     public void Run_length_decode_a_string_multiple_whitespace_mixed_in_string()

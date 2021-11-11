@@ -45,43 +45,68 @@ public static class RunLengthEncoding
     public static string Decode(string input)
     {
         if (input.Length == 0) return string.Empty;
+        if (input.Length == 1) return input;
 
         StringBuilder decodedInput = new StringBuilder();
-        int startPositionOfNumber = 0;
+       // int startPositionNumber = 0;
 
-        for(int i=0; i<input.Length; i++)
+        for(int i=0; i<input.Length-1; i++)
         {
-            if (Char.IsLetter(input[i]))
+            if(Char.IsLetter(input[i]) && Char.IsLetter(input[i+1]))
             {
-                if(i==0)
-                {
-                    decodedInput.Append(input[i]);
-                    startPositionOfNumber++;
-                }       
-                else
-                {
-                    if(Char.IsNumber(input[i-1]))
-                    {
-                        int numberOfRepetitionOfLetter = int.Parse(input.Substring(startPositionOfNumber, i - startPositionOfNumber));
-                        decodedInput.Insert(decodedInput.Length, input[i].ToString(), numberOfRepetitionOfLetter);
-                        startPositionOfNumber = i + 1;
-                    }
-                    else
-                    {
-                        decodedInput.Append(input[i]);
-                    }
-
-                 
-                }
+                //if(startPositionNumber == i)
+                decodedInput.Append(input[i]);
             }
-            //else
-            //{
-            //    startPositionOfNumber = i;
-            //}
-           
-            
+            else if(Char.IsNumber(input[i]) && Char.IsLetter(input[i+1]))
+            {
+                decodedInput.Insert(decodedInput.Length, input[i + 1].ToString(), int.Parse(input[i].ToString()));
+            }
         }
 
-        return decodedInput.ToString();
+        if(Char.IsLetter(input[input.Length -2]) && Char.IsLetter((input.Last())))
+        {
+            decodedInput.Append(input.Last());
+        }
+        else if (Char.IsNumber(input[input.Length - 2]) && Char.IsLetter((input.Last())))
+        {
+            //decodedInput.Insert(decodedInput.Length, input.Last().ToString(), int.Parse(input[input.Length - 2].ToString()));
+        }
+            //StringBuilder decodedInput = new StringBuilder();
+            //int startPositionOfNumber = 0;
+
+            //for(int i=0; i<input.Length; i++)
+            //{
+            //    if (Char.IsLetter(input[i]))
+            //    {
+            //        if(i==0)
+            //        {
+            //            decodedInput.Append(input[i]);
+            //            startPositionOfNumber++;
+            //        }       
+            //        else
+            //        {
+            //            if(Char.IsNumber(input[i-1]))
+            //            {
+            //                int numberOfRepetitionOfLetter = int.Parse(input.Substring(startPositionOfNumber, i - startPositionOfNumber));
+            //                decodedInput.Insert(decodedInput.Length, input[i].ToString(), numberOfRepetitionOfLetter);
+            //                startPositionOfNumber = i + 1;
+            //            }
+            //            else
+            //            {
+            //                decodedInput.Append(input[i]);
+            //            }
+
+
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if(Char.IsLetter(input[i-1])) startPositionOfNumber = i;
+            //    }
+
+
+            //}
+
+            return decodedInput.ToString();
     }
 }
