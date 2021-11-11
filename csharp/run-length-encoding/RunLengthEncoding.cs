@@ -8,7 +8,7 @@ public static class RunLengthEncoding
     public static string Encode(string input)
     {
         StringBuilder encodedInput = new StringBuilder();
-        string pattern = @"(.)\1{0,}";
+        string pattern = @"(.)\1*";
         Regex regex = new Regex(pattern);
 
         foreach(Match match in regex.Matches(input))
