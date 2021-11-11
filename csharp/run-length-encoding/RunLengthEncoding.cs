@@ -42,6 +42,8 @@ public static class RunLengthEncoding
         //return input.Aggregate(string.Empty, (encodedInput, element) => encodedInput.Last() == element ? )
     }
 
+    private static bool IsLetterOrWhiteSpace(char input) => Char.IsLetter(input) || Char.IsWhiteSpace(input);
+
     public static string Decode(string input)
     {
         if (input.Length == 0) return string.Empty;
@@ -50,16 +52,17 @@ public static class RunLengthEncoding
         StringBuilder decodedInput = new StringBuilder();
         int startPositionOfNumber = 0;
 
-        if (Char.IsLetter(input.First()) && Char.IsLetter(input[1])) decodedInput.Append(input.First());
-
+        if (IsLetterOrWhiteSpace(input.First()) && IsLetterOrWhiteSpace(input[1])) decodedInput.Append(input.First());
+        
         for(int i=0; i<input.Length-1; i++)
         {
-            if(Char.IsLetter(input[i]) && Char.IsLetter(input[i+1]))
+           
+            if(IsLetterOrWhiteSpace(input[i]) && IsLetterOrWhiteSpace(input[i+1]))
             {
                 decodedInput.Append(input[i+1]);
                 startPositionOfNumber++;
             }
-            else if(Char.IsNumber(input[i]) && Char.IsLetter(input[i+1]))
+            else if(Char.IsNumber(input[i]) && IsLetterOrWhiteSpace(input[i+1]))
             {
                 
                 int numberOfRepetitionOfLetter = int.Parse(input.Substring(startPositionOfNumber, i - startPositionOfNumber + 1));
