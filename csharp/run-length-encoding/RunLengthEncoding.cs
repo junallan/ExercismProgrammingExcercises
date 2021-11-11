@@ -36,7 +36,6 @@ public static class RunLengthEncoding
             else decodedInput.Insert(decodedInput.Length, letterGroupValue, int.Parse(numberGroupValue));
         }
 
-
         return decodedInput.ToString();
     }
 }
