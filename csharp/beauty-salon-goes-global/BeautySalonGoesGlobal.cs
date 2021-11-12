@@ -17,15 +17,18 @@ public enum AlertLevel
 
 public static class Appointment
 {
-    public static DateTime ShowLocalTime(DateTime dtUtc)
-    {
-        return dtUtc.ToLocalTime();
-    }
+    public static DateTime ShowLocalTime(DateTime dtUtc) => dtUtc.ToLocalTime();
 
-    public static DateTime Schedule(string appointmentDateDescription, Location location)
-    {
-        throw new NotImplementedException("Please implement the (static) Appointment.Schedule() method");
-    }
+    public static DateTime Schedule(string appointmentDateDescription, Location location) 
+                            =>  TimeZoneInfo.ConvertTime(DateTime.Parse(appointmentDateDescription),
+                                                         TimeZoneInfo.FindSystemTimeZoneById(location switch
+                                                         {
+                                                            Location.NewYork => "Eastern Standard Time",
+                                                            Location.London => "GMT Standard Time",
+                                                            Location.Paris => "W. Europe Standard Time",
+                                                            _ => throw new NotImplementedException()
+                                                         }),
+                                                         TimeZoneInfo.Utc);
 
     public static DateTime GetAlertTime(DateTime appointment, AlertLevel alertLevel)
     {
