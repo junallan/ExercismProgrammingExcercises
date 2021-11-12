@@ -30,10 +30,13 @@ public static class Appointment
                                                          }),
                                                          TimeZoneInfo.Utc);
 
-    public static DateTime GetAlertTime(DateTime appointment, AlertLevel alertLevel)
+    public static DateTime GetAlertTime(DateTime appointment, AlertLevel alertLevel) => alertLevel switch
     {
-        throw new NotImplementedException("Please implement the (static) Appointment.GetAlertTime() method");
-    }
+        AlertLevel.Early => appointment.AddDays(-1),
+        AlertLevel.Standard => appointment.AddHours(-1).AddMinutes(-45),
+        AlertLevel.Late => appointment.AddMinutes(-30),
+        _ => throw new NotImplementedException()
+    };
 
     public static bool HasDaylightSavingChanged(DateTime dt, Location location)
     {
