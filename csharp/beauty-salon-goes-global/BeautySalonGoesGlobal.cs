@@ -17,17 +17,22 @@ public enum AlertLevel
 
 public static class Appointment
 {
+    private static TimeZoneInfo GetLocationTimeZone(Location location)
+    {
+        return TimeZoneInfo.FindSystemTimeZoneById(location switch
+        {
+            Location.NewYork => "Eastern Standard Time",
+            Location.London => "GMT Standard Time",
+            Location.Paris => "W. Europe Standard Time",
+            _ => throw new NotImplementedException()
+        });
+    }
+
     public static DateTime ShowLocalTime(DateTime dtUtc) => dtUtc.ToLocalTime();
 
     public static DateTime Schedule(string appointmentDateDescription, Location location) 
                             =>  TimeZoneInfo.ConvertTime(DateTime.Parse(appointmentDateDescription),
-                                                         TimeZoneInfo.FindSystemTimeZoneById(location switch
-                                                         {
-                                                            Location.NewYork => "Eastern Standard Time",
-                                                            Location.London => "GMT Standard Time",
-                                                            Location.Paris => "W. Europe Standard Time",
-                                                            _ => throw new NotImplementedException()
-                                                         }),
+                                                         GetLocationTimeZone(location),
                                                          TimeZoneInfo.Utc);
 
     public static DateTime GetAlertTime(DateTime appointment, AlertLevel alertLevel) => alertLevel switch
@@ -40,7 +45,13 @@ public static class Appointment
 
     public static bool HasDaylightSavingChanged(DateTime dt, Location location)
     {
-        throw new NotImplementedException("Please implement the (static) Appointment.HasDaylightSavingChanged() method");
+        //var locationTimeZone = GetLocationTimeZone(location);
+
+        //return locationTimeZone.IsDaylightSavingTime(new DateTimeOffset(dt, TimeSpan.FromDays(7)));
+        return TimeZoneInfo.ConvertTimeFromUtc(dt, GetLocationTimeZone(location)).IsDaylightSavingTime();
+
+
+        //return Schedule(dt.ToString(), location).IsDaylightSavingTime();
     }
 
     public static DateTime NormalizeDateTime(string dtStr, Location location)
