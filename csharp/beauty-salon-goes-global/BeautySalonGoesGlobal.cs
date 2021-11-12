@@ -1,5 +1,5 @@
 using System;
-
+using System.Globalization;
 
 public enum Location
 {
@@ -27,6 +27,14 @@ public static class Appointment
             _ => throw new NotImplementedException()
         });
     }
+
+    private static CultureInfo GetLocationCulture(Location location) => location switch
+    {
+        Location.NewYork => new CultureInfo("en-US"),
+        Location.London => new CultureInfo("en-GB"),
+        Location.Paris => new CultureInfo("fr-FR"),
+        _ => throw new NotImplementedException(),
+    };
 
     public static DateTime ShowLocalTime(DateTime dtUtc) => dtUtc.ToLocalTime();
 
@@ -56,6 +64,8 @@ public static class Appointment
 
     public static DateTime NormalizeDateTime(string dtStr, Location location)
     {
-        throw new NotImplementedException("Please implement the (static) Appointment.NormalizeDateTime() method");
+        DateTime.TryParse(dtStr, GetLocationCulture(location).DateTimeFormat, DateTimeStyles.None, out DateTime localDate);
+
+        return localDate;
     }
 }
