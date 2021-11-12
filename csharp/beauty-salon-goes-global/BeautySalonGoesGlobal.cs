@@ -17,16 +17,15 @@ public enum AlertLevel
 
 public static class Appointment
 {
-    private static TimeZoneInfo GetLocationTimeZone(Location location)
+    private static readonly int DayRangeInThePastToEvaluateDaylightSavingsTime = -7;
+
+    private static TimeZoneInfo GetLocationTimeZone(Location location) => TimeZoneInfo.FindSystemTimeZoneById(location switch
     {
-        return TimeZoneInfo.FindSystemTimeZoneById(location switch
-        {
-            Location.NewYork => "Eastern Standard Time",
-            Location.London => "GMT Standard Time",
-            Location.Paris => "W. Europe Standard Time",
-            _ => throw new NotImplementedException()
-        });
-    }
+        Location.NewYork => "Eastern Standard Time",
+        Location.London => "GMT Standard Time",
+        Location.Paris => "W. Europe Standard Time",
+        _ => throw new NotImplementedException()
+    });
 
     private static CultureInfo GetLocationCulture(Location location) => location switch
     {
@@ -53,13 +52,9 @@ public static class Appointment
 
     public static bool HasDaylightSavingChanged(DateTime dt, Location location)
     {
-        //var locationTimeZone = GetLocationTimeZone(location);
+        var locationTimeZone = GetLocationTimeZone(location);
 
-        //return locationTimeZone.IsDaylightSavingTime(new DateTimeOffset(dt, TimeSpan.FromDays(7)));
-        return TimeZoneInfo.ConvertTimeFromUtc(dt, GetLocationTimeZone(location)).IsDaylightSavingTime();
-
-
-        //return Schedule(dt.ToString(), location).IsDaylightSavingTime();
+        return locationTimeZone.IsDaylightSavingTime(dt.AddDays(DayRangeInThePastToEvaluateDaylightSavingsTime)) != locationTimeZone.IsDaylightSavingTime(dt);
     }
 
     public static DateTime NormalizeDateTime(string dtStr, Location location)
