@@ -1,5 +1,7 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 
 public enum Location
 {
@@ -18,15 +20,14 @@ public enum AlertLevel
 public static class Appointment
 {
     private static readonly int DayRangeInThePastToEvaluateDaylightSavingsTime = -7;
-
-    private static TimeZoneInfo GetLocationTimeZone(Location location) => TimeZoneInfo.FindSystemTimeZoneById(location switch
+    private static readonly ReadOnlyCollection<TimeZoneInfo> TimeZones = TimeZoneInfo.GetSystemTimeZones();
+    private static TimeZoneInfo GetLocationTimeZone(Location location) => location switch
     {
-        Location.NewYork => "Eastern Standard Time",
-        Location.London => "GMT Standard Time",
-        Location.Paris => "W. Europe Standard Time",
+        Location.NewYork => TimeZones.Where(timeZone => timeZone.Id == "Eastern Standard Time" || timeZone.Id == "America/New_York").Single(),
+        Location.London => TimeZones.Where(timeZone => timeZone.Id == "GMT Standard Time" || timeZone.Id == "Europe/London").Single(),
+        Location.Paris => TimeZones.Where(timeZone => timeZone.Id == "W. Europe Standard Time" || timeZone.Id == "Europe/Paris").Single(),
         _ => throw new NotImplementedException()
-    });
-
+    };
     private static CultureInfo GetLocationCulture(Location location) => location switch
     {
         Location.NewYork => new CultureInfo("en-US"),
