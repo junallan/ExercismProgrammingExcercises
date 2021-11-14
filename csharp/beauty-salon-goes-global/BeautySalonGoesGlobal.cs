@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 public enum Location
 {
@@ -20,12 +21,12 @@ public enum AlertLevel
 public static class Appointment
 {
     private static readonly int DayRangeInThePastToEvaluateDaylightSavingsTime = -7;
-    private static readonly ReadOnlyCollection<TimeZoneInfo> TimeZones = TimeZoneInfo.GetSystemTimeZones();
+    private static readonly bool IsWindowsOperatingSystem = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
     private static TimeZoneInfo GetLocationTimeZone(Location location) => location switch
     {
-        Location.NewYork => TimeZones.Where(timeZone => timeZone.Id == "Eastern Standard Time" || timeZone.Id == "America/New_York").Single(),
-        Location.London => TimeZones.Where(timeZone => timeZone.Id == "GMT Standard Time" || timeZone.Id == "Europe/London").Single(),
-        Location.Paris => TimeZones.Where(timeZone => timeZone.Id == "W. Europe Standard Time" || timeZone.Id == "Europe/Paris").Single(),
+        Location.NewYork => TimeZoneInfo.FindSystemTimeZoneById(IsWindowsOperatingSystem ? "Eastern Standard Time" : "America/New_York"),
+        Location.London => TimeZoneInfo.FindSystemTimeZoneById(IsWindowsOperatingSystem ? "GMT Standard Time" : "Europe/London"),
+        Location.Paris => TimeZoneInfo.FindSystemTimeZoneById(IsWindowsOperatingSystem ? "W. Europe Standard Time" : "Europe/Paris"),
         _ => throw new NotImplementedException()
     };
     private static CultureInfo GetLocationCulture(Location location) => location switch
