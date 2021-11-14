@@ -17,6 +17,7 @@ static class LogLine
     {
         string lineInfo when lineInfo.StartsWith("[WRN]") => LogLevel.Warning,
         string lineInfo when lineInfo.StartsWith("[ERR]") => LogLevel.Error,
+        string lineInfo when lineInfo.StartsWith("[FTL]") => LogLevel.Fatal,
         _ => LogLevel.Unknown
     };
 
