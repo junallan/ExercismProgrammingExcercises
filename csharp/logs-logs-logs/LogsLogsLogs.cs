@@ -13,14 +13,11 @@ public enum LogLevel
 
 static class LogLine
 {
-    public static LogLevel ParseLogLevel(string logLine)
+    public static LogLevel ParseLogLevel(string logLine) => logLine.TrimStart() switch
     {
-        return logLine.TrimStart() switch
-        {
-            string lineInfo when lineInfo.StartsWith("[WRN]") => LogLevel.Warning,
-            _ => LogLevel.Unknown
-        };
-    }
+        string lineInfo when lineInfo.StartsWith("[WRN]") => LogLevel.Warning,
+        _ => LogLevel.Unknown
+    };
 
     public static string OutputForShortLog(LogLevel logLevel, string message)
     {
