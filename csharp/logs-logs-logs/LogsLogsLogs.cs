@@ -16,6 +16,7 @@ static class LogLine
     public static LogLevel ParseLogLevel(string logLine) => logLine.TrimStart() switch
     {
         string lineInfo when lineInfo.StartsWith("[WRN]") => LogLevel.Warning,
+        string lineInfo when lineInfo.StartsWith("[ERR]") => LogLevel.Error,
         _ => LogLevel.Unknown
     };
 
