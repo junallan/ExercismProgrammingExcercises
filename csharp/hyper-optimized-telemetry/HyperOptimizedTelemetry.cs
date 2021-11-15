@@ -47,6 +47,13 @@ public static class TelemetryBuffer
 
     public static long FromBuffer(byte[] buffer)
     {
-        throw new NotImplementedException("Please implement the static TelemetryBuffer.FromBuffer() method");
+        var allowedPrefixes = new List<int>{ -LongByteCount, -IntByteCount, -ShortByteCount, ShortByteCount, IntByteCount, 0 };
+        
+        if (!allowedPrefixes.Contains((int)buffer[0]))
+        {
+            return 0;
+        }
+
+        return 1;
     }
 }

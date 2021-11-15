@@ -133,13 +133,13 @@ public class TelemetryBufferTests
         Assert.Equal(new byte[] { 0xf8, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x80 }, bytes);
     }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_Invalid()
-    //{
-    //    Assert.Equal(0,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 22, 0xff, 0xff, 0xff, 0x7f, 0, 0, 0, 0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_Invalid()
+    {
+        Assert.Equal(0,
+            TelemetryBuffer.FromBuffer(new byte[] { 22, 0xff, 0xff, 0xff, 0x7f, 0, 0, 0, 0 }));
+    }
 
     //[Fact]
     //[Task(2)]
