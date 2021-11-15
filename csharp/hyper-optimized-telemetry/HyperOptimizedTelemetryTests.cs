@@ -20,13 +20,13 @@ public class TelemetryBufferTests
         Assert.Equal(new byte[] { 0xf8, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0 }, bytes);
     }
 
-    //[Fact]
-    //[Task(1)]
-    //public void ToBuffer_upper_uint()
-    //{
-    //    var bytes = TelemetryBuffer.ToBuffer(UInt32.MaxValue);
-    //    Assert.Equal(new byte[] { 0x4, 0xff, 0xff, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0 }, bytes);
-    //}
+    [Fact]
+    [Task(1)]
+    public void ToBuffer_upper_uint()
+    {
+        var bytes = TelemetryBuffer.ToBuffer(UInt32.MaxValue);
+        Assert.Equal(new byte[] { 0x4, 0xff, 0xff, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0 }, bytes);
+    }
 
     //[Fact]
     //[Task(1)]

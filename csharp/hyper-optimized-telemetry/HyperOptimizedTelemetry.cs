@@ -16,13 +16,18 @@ public static class TelemetryBuffer
 
         List<byte> result = new List<byte>();
 
-        if (reading <= Int64.MaxValue)
+        if (UInt32.MaxValue < reading && reading <= Int64.MaxValue)
         {
             result.Add(256 - 8);
-            var payload = BitConverter.GetBytes(reading);
-            result.AddRange(payload);
+        }
+        else
+        {
+            result.Add(4);
         }
 
+        var payload = BitConverter.GetBytes(reading);
+        result.AddRange(payload);
+        
         return result.ToArray();
     }
 
