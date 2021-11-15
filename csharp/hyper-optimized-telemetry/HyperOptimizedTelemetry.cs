@@ -40,6 +40,11 @@ public static class TelemetryBuffer
         }
 
       
+        if(reading >= 0)
+        {
+            var payload = BitConverter.GetBytes(reading);
+            payload.CopyTo(result, 1);
+        }
         //result += payload;
         //result.AddRange(payload);
         
