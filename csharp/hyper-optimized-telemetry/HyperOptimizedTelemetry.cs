@@ -38,10 +38,16 @@ public static class TelemetryBuffer
             var payload = BitConverter.GetBytes((short) reading);
             payload.CopyTo(result, 1);
         }
-        else
+        else if(Int32.MinValue <= reading)
         {
             result[0] = 256 - 4;
             var payload = BitConverter.GetBytes((int)reading);
+            payload.CopyTo(result, 1);
+        }
+        else
+        {
+            result[0] = 256 - 8;
+            var payload = BitConverter.GetBytes((long)reading);
             payload.CopyTo(result, 1);
         }
 
