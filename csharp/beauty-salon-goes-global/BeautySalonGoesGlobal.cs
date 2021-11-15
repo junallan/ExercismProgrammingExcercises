@@ -52,17 +52,7 @@ public static class Appointment
         _ => throw new NotImplementedException()
     };
 
-    public static bool HasDaylightSavingChanged(DateTime dt, Location location)
-    {
-        var locationTimeZone = GetLocationTimeZone(location);
+    public static bool HasDaylightSavingChanged(DateTime dt, Location location) => GetLocationTimeZone(location).IsDaylightSavingTime(dt.AddDays(DayRangeInThePastToEvaluateDaylightSavingsTime)) != GetLocationTimeZone(location).IsDaylightSavingTime(dt);
 
-        return locationTimeZone.IsDaylightSavingTime(dt.AddDays(DayRangeInThePastToEvaluateDaylightSavingsTime)) != locationTimeZone.IsDaylightSavingTime(dt);
-    }
-
-    public static DateTime NormalizeDateTime(string dtStr, Location location)
-    {
-        DateTime.TryParse(dtStr, GetLocationCulture(location).DateTimeFormat, DateTimeStyles.None, out DateTime localDate);
-
-        return localDate;
-    }
+    public static DateTime NormalizeDateTime(string dtStr, Location location) => DateTime.TryParse(dtStr, GetLocationCulture(location).DateTimeFormat, DateTimeStyles.None, out DateTime localDate) ? localDate : localDate;
 }
