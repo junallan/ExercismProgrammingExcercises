@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class TelemetryBuffer
 {
@@ -47,13 +48,29 @@ public static class TelemetryBuffer
 
     public static long FromBuffer(byte[] buffer)
     {
-        var allowedPrefixes = new List<int>{ -LongByteCount, -IntByteCount, -ShortByteCount, ShortByteCount, IntByteCount, 0 };
+        var allowedPrefixes = new List<int>{ BitsInByte - LongByteCount, BitsInByte - IntByteCount, BitsInByte - ShortByteCount, ShortByteCount, IntByteCount, 0 };
         
         if (!allowedPrefixes.Contains((int)buffer[0]))
         {
             return 0;
         }
 
-        return 1;
+        //buffer[0] = 0;
+        //buffer[0] = 0xff;
+        //     buffer[1] = 0;
+        //buffer[2] = 0;
+        //buffer[3] = 0;
+        //buffer[4] = 0;
+        //buffer[5] = 0;
+        //buffer[6] = 0;
+        //buffer[7] = 0;
+        //buffer[8] = 0;
+        //Array.Reverse(buffer);
+        var reading = BitConverter.ToInt64(buffer,1) ;
+       // reading = reading >>1;
+        //if// (UInt32.MinValue < reading && reading <= Int64.MaxValue) //result[0] = BitsInByte - LongByteCount;
+        //    return 5; //+ LongByteCount;;
+
+        return reading;
     }
 }

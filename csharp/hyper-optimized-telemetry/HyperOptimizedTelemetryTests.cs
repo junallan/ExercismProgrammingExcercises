@@ -141,13 +141,13 @@ public class TelemetryBufferTests
             TelemetryBuffer.FromBuffer(new byte[] { 22, 0xff, 0xff, 0xff, 0x7f, 0, 0, 0, 0 }));
     }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_upper_long()
-    //{
-    //    Assert.Equal(Int64.MaxValue,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0xf8, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x7f }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_upper_long()
+    {
+        Assert.Equal(Int64.MaxValue,
+            TelemetryBuffer.FromBuffer(new byte[] { 0xf8, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x7f }));
+    }
 
     //[Fact]
     //[Task(2)]
