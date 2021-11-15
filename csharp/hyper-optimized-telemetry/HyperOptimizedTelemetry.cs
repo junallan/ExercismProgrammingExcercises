@@ -20,9 +20,13 @@ public static class TelemetryBuffer
         {
             result.Add(256 - 8);
         }
-        else
+        else if(Int32.MaxValue < reading)
         {
             result.Add(4);
+        }
+        else
+        {
+            result.Add(256 - 4);
         }
 
         var payload = BitConverter.GetBytes(reading);
