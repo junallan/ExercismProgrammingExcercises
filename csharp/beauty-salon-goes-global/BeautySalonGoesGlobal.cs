@@ -34,7 +34,6 @@ public static class Appointment
         Location.NewYork => new CultureInfo("en-US"),
         Location.London => new CultureInfo("en-GB"),
         Location.Paris => new CultureInfo("fr-FR"),
-        _ => throw new NotImplementedException(),
     };
 
     public static DateTime ShowLocalTime(DateTime dtUtc) => dtUtc.ToLocalTime();
@@ -49,7 +48,6 @@ public static class Appointment
         AlertLevel.Early => appointment.AddDays(-1),
         AlertLevel.Standard => appointment.AddHours(-1).AddMinutes(-45),
         AlertLevel.Late => appointment.AddMinutes(-30),
-        _ => throw new NotImplementedException()
     };
 
     public static bool HasDaylightSavingChanged(DateTime dt, Location location) => GetLocationTimeZone(location).IsDaylightSavingTime(dt.AddDays(DayRangeInThePastToEvaluateDaylightSavingsTime)) != GetLocationTimeZone(location).IsDaylightSavingTime(dt);
