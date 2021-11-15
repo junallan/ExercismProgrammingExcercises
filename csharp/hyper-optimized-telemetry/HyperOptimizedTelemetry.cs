@@ -14,33 +14,36 @@ public static class TelemetryBuffer
 
         //return result.ToArray  byte[] allBytes = new byte[9];
 
-        List<byte> result = new List<byte>();
+        byte[] result = new byte[9];
 
         if (UInt32.MaxValue < reading && reading <= Int64.MaxValue)
         {
-            result.Add(256 - 8);
+            result[0] = 256 - 8;
         }
         else if(Int32.MaxValue < reading)
         {
-            result.Add(4);
+            result[0] = 4;
         }
         else if(UInt16.MaxValue < reading)
         {
-            result.Add(256 - 4);
+            result[0] = 256 - 4;
         }
         else if(Int16.MaxValue < reading)
         {
-            result.Add(2);
+            result[0] =2;
         }
         else
         {
-            result.Add(256 - 2);
+            result[0] = 256 - 2;
+            var payload = BitConverter.GetBytes((short) reading);
+            payload.CopyTo(result, 1);
         }
 
-        var payload = BitConverter.GetBytes(reading);
-        result.AddRange(payload);
+      
+        //result += payload;
+        //result.AddRange(payload);
         
-        return result.ToArray();
+        return result;
     }
 
     public static long FromBuffer(byte[] buffer)

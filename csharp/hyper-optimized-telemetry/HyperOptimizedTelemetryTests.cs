@@ -76,21 +76,21 @@ public class TelemetryBufferTests
         Assert.Equal(new byte[] { 0xfe, 0xff, 0x7f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }, bytes);
     }
 
-    //[Fact]
-    //[Task(1)]
-    //public void ToBuffer_Zero()
-    //{
-    //    var bytes = TelemetryBuffer.ToBuffer(0);
-    //    Assert.Equal(new byte[] { 0xfe, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }, bytes);
-    //}
+    [Fact]
+    [Task(1)]
+    public void ToBuffer_Zero()
+    {
+        var bytes = TelemetryBuffer.ToBuffer(0);
+        Assert.Equal(new byte[] { 0xfe, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }, bytes);
+    }
 
-    //[Fact]
-    //[Task(1)]
-    //public void ToBuffer_upper_neg_short()
-    //{
-    //    var bytes = TelemetryBuffer.ToBuffer(-1);
-    //    Assert.Equal(new byte[] { 0xfe, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }, bytes);
-    //}
+    [Fact]
+    [Task(1)]
+    public void ToBuffer_upper_neg_short()
+    {
+        var bytes = TelemetryBuffer.ToBuffer(-1);
+        Assert.Equal(new byte[] { 0xfe, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }, bytes);
+    }
 
     //[Fact]
     //[Task(1)]
