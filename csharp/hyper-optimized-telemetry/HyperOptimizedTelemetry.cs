@@ -49,8 +49,8 @@ public static class TelemetryBuffer
     public static long FromBuffer(byte[] buffer)
     {
         var allowedPrefixes = new List<int>{ BitsInByte - LongByteCount, BitsInByte - IntByteCount, BitsInByte - ShortByteCount, ShortByteCount, IntByteCount, 0 };
-        
-        if (!allowedPrefixes.Contains((int)buffer[0]))
+        var prefixBuffer = (int)buffer[0];
+        if (!allowedPrefixes.Contains(prefixBuffer))
         {
             return 0;
         }
@@ -66,11 +66,17 @@ public static class TelemetryBuffer
         //buffer[7] = 0;
         //buffer[8] = 0;
         //Array.Reverse(buffer);
-        var reading = BitConverter.ToInt64(buffer,1) ;
-       // reading = reading >>1;
+
+        if ((BitsInByte - ShortByteCount) == prefixBuffer)
+            return BitConverter.ToInt16(buffer, 1);
+        else if ((BitsInByte - IntByteCount) == prefixBuffer)
+            return BitConverter.ToInt32(buffer, 1);
+        else return BitConverter.ToInt64(buffer, 1);
+
+        // reading = reading >>1;
         //if// (UInt32.MinValue < reading && reading <= Int64.MaxValue) //result[0] = BitsInByte - LongByteCount;
         //    return 5; //+ LongByteCount;;
 
-        return reading;
+        // return reading;
     }
 }

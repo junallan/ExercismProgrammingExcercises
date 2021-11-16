@@ -157,115 +157,115 @@ public class TelemetryBufferTests
             TelemetryBuffer.FromBuffer(new byte[] { 0xf8, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0 }));
     }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_upper_uint()
-    //{
-    //    Assert.Equal(UInt32.MaxValue,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0x4, 0xff, 0xff, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_upper_uint()
+    {
+        Assert.Equal(UInt32.MaxValue,
+            TelemetryBuffer.FromBuffer(new byte[] { 0x4, 0xff, 0xff, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0 }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_lower_uint()
-    //{
-    //    Assert.Equal((long)Int32.MaxValue + 1,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0x4, 0x0, 0x0, 0x0, 0x80, 0x0, 0x0, 0x0, 0x0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_lower_uint()
+    {
+        Assert.Equal((long)Int32.MaxValue + 1,
+            TelemetryBuffer.FromBuffer(new byte[] { 0x4, 0x0, 0x0, 0x0, 0x80, 0x0, 0x0, 0x0, 0x0 }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_upper_int()
-    //{
-    //    Assert.Equal(Int32.MaxValue,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0xfc, 0xff, 0xff, 0xff, 0x7f, 0x0, 0x0, 0x0, 0x0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_upper_int()
+    {
+        Assert.Equal(Int32.MaxValue,
+            TelemetryBuffer.FromBuffer(new byte[] { 0xfc, 0xff, 0xff, 0xff, 0x7f, 0x0, 0x0, 0x0, 0x0 }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_lower_int()
-    //{
-    //    Assert.Equal(UInt16.MaxValue + 1,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0xfc, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_lower_int()
+    {
+        Assert.Equal(UInt16.MaxValue + 1,
+            TelemetryBuffer.FromBuffer(new byte[] { 0xfc, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0 }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_upper_ushort()
-    //{
-    //    Assert.Equal(UInt16.MaxValue,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0x2, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_upper_ushort()
+    {
+        Assert.Equal(UInt16.MaxValue,
+            TelemetryBuffer.FromBuffer(new byte[] { 0x2, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_lower_ushort()
-    //{
-    //    Assert.Equal(Int16.MaxValue + 1,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0x2, 0x0, 0x80, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_lower_ushort()
+    {
+        Assert.Equal(Int16.MaxValue + 1,
+            TelemetryBuffer.FromBuffer(new byte[] { 0x2, 0x0, 0x80, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_upper_short()
-    //{
-    //    Assert.Equal(Int16.MaxValue,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0xfe, 0xff, 0x7f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_upper_short()
+    {
+        Assert.Equal(Int16.MaxValue,
+            TelemetryBuffer.FromBuffer(new byte[] { 0xfe, 0xff, 0x7f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_Zero()
-    //{
-    //    Assert.Equal(0,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0xfe, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_Zero()
+    {
+        Assert.Equal(0,
+            TelemetryBuffer.FromBuffer(new byte[] { 0xfe, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_upper_neg_short()
-    //{
-    //    Assert.Equal(-1,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0xfe, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_upper_neg_short()
+    {
+        Assert.Equal(-1,
+            TelemetryBuffer.FromBuffer(new byte[] { 0xfe, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_lower_neg_short()
-    //{
-    //    Assert.Equal(Int16.MinValue,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0xfe, 0x0, 0x80, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_lower_neg_short()
+    {
+        Assert.Equal(Int16.MinValue,
+            TelemetryBuffer.FromBuffer(new byte[] { 0xfe, 0x0, 0x80, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_upper_neg_int()
-    //{
-    //    Assert.Equal(Int16.MinValue - 1,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0xfc, 0xff, 0x7f, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_upper_neg_int()
+    {
+        Assert.Equal(Int16.MinValue - 1,
+            TelemetryBuffer.FromBuffer(new byte[] { 0xfc, 0xff, 0x7f, 0xff, 0xff, 0x0, 0x0, 0x0, 0x0 }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_lower_neg_int()
-    //{
-    //    Assert.Equal(Int32.MinValue,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0xfc, 0x0, 0x0, 0x0, 0x80, 0x0, 0x0, 0x0, 0x0 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_lower_neg_int()
+    {
+        Assert.Equal(Int32.MinValue,
+            TelemetryBuffer.FromBuffer(new byte[] { 0xfc, 0x0, 0x0, 0x0, 0x80, 0x0, 0x0, 0x0, 0x0 }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_upper_neg_long()
-    //{
-    //    Assert.Equal((long)Int32.MinValue - 1,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0xf8, 0xff, 0xff, 0xff, 0x7f, 0xff, 0xff, 0xff, 0xff }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_upper_neg_long()
+    {
+        Assert.Equal((long)Int32.MinValue - 1,
+            TelemetryBuffer.FromBuffer(new byte[] { 0xf8, 0xff, 0xff, 0xff, 0x7f, 0xff, 0xff, 0xff, 0xff }));
+    }
 
-    //[Fact]
-    //[Task(2)]
-    //public void FromBuffer_lower_neg_long()
-    //{
-    //    Assert.Equal(Int64.MinValue,
-    //        TelemetryBuffer.FromBuffer(new byte[] { 0xf8, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x80 }));
-    //}
+    [Fact]
+    [Task(2)]
+    public void FromBuffer_lower_neg_long()
+    {
+        Assert.Equal(Int64.MinValue,
+            TelemetryBuffer.FromBuffer(new byte[] { 0xf8, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x80 }));
+    }
 }
