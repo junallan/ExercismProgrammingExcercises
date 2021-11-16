@@ -51,5 +51,5 @@ public static class Appointment
 
     public static bool HasDaylightSavingChanged(DateTime dt, Location location) => GetLocationTimeZone(location).IsDaylightSavingTime(dt.AddDays(DayRangeInThePastToEvaluateDaylightSavingsTime)) != GetLocationTimeZone(location).IsDaylightSavingTime(dt);
 
-    public static DateTime NormalizeDateTime(string dtStr, Location location) => DateTime.TryParse(dtStr, GetLocationCulture(location).DateTimeFormat, DateTimeStyles.None, out DateTime localDate) ? localDate : localDate;
+    public static DateTime NormalizeDateTime(string dtStr, Location location) => DateTime.TryParse(dtStr, GetLocationCulture(location).DateTimeFormat, DateTimeStyles.None, out DateTime localDate) ? localDate : default;
 }
