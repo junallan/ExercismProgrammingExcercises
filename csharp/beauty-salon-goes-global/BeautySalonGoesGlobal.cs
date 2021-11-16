@@ -26,14 +26,13 @@ public static class Appointment
     {
         Location.NewYork => TimeZoneInfo.FindSystemTimeZoneById(IsWindowsOperatingSystem ? "Eastern Standard Time" : "America/New_York"),
         Location.London => TimeZoneInfo.FindSystemTimeZoneById(IsWindowsOperatingSystem ? "GMT Standard Time" : "Europe/London"),
-        Location.Paris => TimeZoneInfo.FindSystemTimeZoneById(IsWindowsOperatingSystem ? "W. Europe Standard Time" : "Europe/Paris"),
-        _ => throw new NotImplementedException()
+        _ => TimeZoneInfo.FindSystemTimeZoneById(IsWindowsOperatingSystem ? "W. Europe Standard Time" : "Europe/Paris"),
     };
     private static CultureInfo GetLocationCulture(Location location) => location switch
     {
         Location.NewYork => new CultureInfo("en-US"),
         Location.London => new CultureInfo("en-GB"),
-        Location.Paris => new CultureInfo("fr-FR"),
+        _ => new CultureInfo("fr-FR")
     };
 
     public static DateTime ShowLocalTime(DateTime dtUtc) => dtUtc.ToLocalTime();
@@ -47,7 +46,7 @@ public static class Appointment
     {
         AlertLevel.Early => appointment.AddDays(-1),
         AlertLevel.Standard => appointment.AddHours(-1).AddMinutes(-45),
-        AlertLevel.Late => appointment.AddMinutes(-30),
+        _ => appointment.AddMinutes(-30),
     };
 
     public static bool HasDaylightSavingChanged(DateTime dt, Location location) => GetLocationTimeZone(location).IsDaylightSavingTime(dt.AddDays(DayRangeInThePastToEvaluateDaylightSavingsTime)) != GetLocationTimeZone(location).IsDaylightSavingTime(dt);
