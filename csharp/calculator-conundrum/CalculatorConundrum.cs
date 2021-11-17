@@ -10,7 +10,8 @@ public static class SimpleCalculator
         {
             "+" => $"{expression} = {operand1 + operand2}",
             "*" => $"{expression} = {operand1 * operand2}",
-            "/" => $"{expression} = {operand1 / operand2}"
+            "/" => $"{expression} = {operand1 / operand2}" ,
+            _ => throw new ArgumentNullException()
         };
     }
 }
