@@ -11,6 +11,7 @@ public static class SimpleCalculator
             "+" => $"{expression} = {operand1 + operand2}",
             "*" => $"{expression} = {operand1 * operand2}",
             "/" => operand2 != 0 ? $"{expression} = {operand1 / operand2}" : "Division by zero is not allowed.",
+            string oper when oper.Length > 0 => throw new ArgumentOutOfRangeException(),
             _ => throw new ArgumentNullException()
         };
     }
