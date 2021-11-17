@@ -9,7 +9,8 @@ public static class SimpleCalculator
         return operation switch
         {
             "+" => $"{expression} = {operand1 + operand2}",
-            "*" => $"{expression} = {operand1 * operand2}"
+            "*" => $"{expression} = {operand1 * operand2}",
+            "/" => $"{expression} = {operand1 / operand2}"
         };
     }
 }
