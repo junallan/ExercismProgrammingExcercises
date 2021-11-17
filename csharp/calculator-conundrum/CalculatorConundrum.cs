@@ -10,10 +10,10 @@ public static class SimpleCalculator
         {
             "+" => $"{expression} = {operand1 + operand2}",
             "*" => $"{expression} = {operand1 * operand2}",
-            "/" => operand2 != 0 ? $"{expression} = {operand1 / operand2}" : "Division by zero is not allowed.",
-            string oper when oper.Length > 0 => throw new ArgumentOutOfRangeException(),
-            string oper when oper.Length == 0 => throw new ArgumentException(),
-            _ => throw new ArgumentNullException()
+            "/" => operand2 != 0 ? $"{expression} = {operand1 / operand2}" : "Division by zero is not allowed.",          
+            "" => throw new ArgumentException(),
+            null => throw new ArgumentNullException(),
+            _ => throw new ArgumentOutOfRangeException(),
         };
     }
 }
