@@ -20,7 +20,7 @@ public static class TelemetryBuffer
         if (UInt32.MaxValue < reading && reading <= Int64.MaxValue) result[0] = LongSignedPrefixByte;
         else if(Int32.MaxValue < reading) result[0] = IntByteCount;
         else if(UInt16.MaxValue < reading) result[0] = IntSignedPrefixByte;
-        else if(Int16.MaxValue < reading) result[0] = ShortByteCount;
+        else if(0 <= reading) result[0] = ShortByteCount;
         else if(Int16.MinValue <= reading)
         {
             result[0] = ShortSignedPrefixByte;

@@ -2,7 +2,7 @@ using System;
 using Xunit;
 using Exercism.Tests;
 
-public class TelemetryBufferTests
+public class HyperOptimizedTelemetryTests
 {
     [Fact]
     [Task(1)]
@@ -73,7 +73,7 @@ public class TelemetryBufferTests
     public void ToBuffer_upper_short()
     {
         var bytes = TelemetryBuffer.ToBuffer(Int16.MaxValue);
-        Assert.Equal(new byte[] { 0xfe, 0xff, 0x7f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }, bytes);
+        Assert.Equal(new byte[] { 0x2, 0xff, 0x7f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }, bytes);
     }
 
     [Fact]
@@ -81,7 +81,7 @@ public class TelemetryBufferTests
     public void ToBuffer_Zero()
     {
         var bytes = TelemetryBuffer.ToBuffer(0);
-        Assert.Equal(new byte[] { 0xfe, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }, bytes);
+        Assert.Equal(new byte[] { 0x2, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }, bytes);
     }
 
     [Fact]
