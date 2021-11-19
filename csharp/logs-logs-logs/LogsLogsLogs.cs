@@ -13,14 +13,14 @@ public enum LogLevel
 
 static class LogLine
 {
-    public static LogLevel ParseLogLevel(string logLine) => logLine.TrimStart() switch
+    public static LogLevel ParseLogLevel(string logLine) => logLine.Split(":")[0] switch
     {
-        string lineInfo when lineInfo.StartsWith("[TRC]") => LogLevel.Trace,
-        string lineInfo when lineInfo.StartsWith("[DBG]") => LogLevel.Debug,
-        string lineInfo when lineInfo.StartsWith("[INF]") => LogLevel.Info,
-        string lineInfo when lineInfo.StartsWith("[WRN]") => LogLevel.Warning,
-        string lineInfo when lineInfo.StartsWith("[ERR]") => LogLevel.Error,
-        string lineInfo when lineInfo.StartsWith("[FTL]") => LogLevel.Fatal,
+        string command when command.EndsWith("[TRC]") => LogLevel.Trace,
+        string command when command.EndsWith("[DBG]") => LogLevel.Debug,
+        string command when command.EndsWith("[INF]") => LogLevel.Info,
+        string command when command.EndsWith("[WRN]") => LogLevel.Warning,
+        string command when command.EndsWith("[ERR]") => LogLevel.Error,
+        string command when command.EndsWith("[FTL]") => LogLevel.Fatal,
         _ => LogLevel.Unknown
     };
 
