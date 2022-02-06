@@ -54,11 +54,13 @@ public static class TelemetryBuffer
     public static long FromBuffer(byte[] buffer)
     {
         var allowedPrefixes = new List<byte> { LongSignedPrefixByte, IntSignedPrefixByte, ShortSignedPrefixByte, ShortByteCount, IntByteCount, 0 };
-       
-        if (!allowedPrefixes.Contains(buffer[0])) return 0;
-        else if (ShortSignedPrefixByte == buffer[0]) return BitConverter.ToInt16(buffer, 1);
-        else if (IntSignedPrefixByte == buffer[0]) return BitConverter.ToInt32(buffer, 1);
-        else return BitConverter.ToInt64(buffer, 1);
+      
+        return buffer[0] switch {
+            byte bufferContent when !allowedPrefixes.Contains(bufferContent) => 0,
+            BitsInByte - ShortByteCount => BitConverter.ToInt16(buffer, 1),
+            BitsInByte - IntByteCount => BitConverter.ToInt32(buffer, 1),
+            _ => BitConverter.ToInt64(buffer, 1)
+        };
     }
 
   
