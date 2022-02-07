@@ -57,8 +57,8 @@ public static class TelemetryBuffer
       
         return buffer[0] switch {
             byte bufferContent when !allowedPrefixes.Contains(bufferContent) => 0,
-            BitsInByte - ShortByteCount => BitConverter.ToInt16(buffer, 1),
-            BitsInByte - IntByteCount => BitConverter.ToInt32(buffer, 1),
+            byte bufferContent when ShortSignedPrefixByte == bufferContent => BitConverter.ToInt16(buffer, 1),
+            byte bufferContent when IntSignedPrefixByte == bufferContent => BitConverter.ToInt32(buffer, 1),
             _ => BitConverter.ToInt64(buffer, 1)
         };
     }
