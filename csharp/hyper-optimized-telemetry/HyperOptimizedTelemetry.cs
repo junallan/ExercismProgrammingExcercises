@@ -9,9 +9,9 @@ public static class TelemetryBuffer
     private const int IntByteCount = 4;
     private const int LongByteCount = 8;
 
-    private static byte ShortSignedPrefixByte = BitsInByte - ShortByteCount;
-    private static byte IntSignedPrefixByte = BitsInByte - IntByteCount;
-    private static byte LongSignedPrefixByte = BitsInByte - LongByteCount;
+    private const byte ShortSignedPrefixByte = BitsInByte - ShortByteCount;
+    private const byte IntSignedPrefixByte = BitsInByte - IntByteCount;
+    private const byte LongSignedPrefixByte = BitsInByte - LongByteCount;
 
     public static byte[] ToBuffer(long reading)
     {
@@ -48,8 +48,8 @@ public static class TelemetryBuffer
       
         return buffer[0] switch {
             byte bufferContent when !allowedPrefixes.Contains(bufferContent) => 0,
-            byte bufferContent when ShortSignedPrefixByte == bufferContent => BitConverter.ToInt16(buffer, 1),
-            byte bufferContent when IntSignedPrefixByte == bufferContent => BitConverter.ToInt32(buffer, 1),
+            ShortSignedPrefixByte => BitConverter.ToInt16(buffer, 1),
+            IntSignedPrefixByte  => BitConverter.ToInt32(buffer, 1),
             _ => BitConverter.ToInt64(buffer, 1)
         };
     }
