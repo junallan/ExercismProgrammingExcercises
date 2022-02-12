@@ -17,36 +17,27 @@ public static class TelemetryBuffer
     {
         byte[] result = new byte[9];
 
-        if (UInt32.MaxValue < reading && reading <= Int64.MaxValue) result[0] = LongSignedPrefixByte;
-        else if(Int32.MaxValue < reading) result[0] = IntByteCount;
-        else if(UInt16.MaxValue < reading) result[0] = IntSignedPrefixByte;
-        else if(0 <= reading) result[0] = ShortByteCount;
-        else if(Int16.MinValue <= reading)
+        result[0] = reading switch
         {
-            result[0] = ShortSignedPrefixByte;
-            var payload = BitConverter.GetBytes((short) reading);
-            payload.CopyTo(result, 1);
-        }
-        else if(Int32.MinValue <= reading)
-        {
-            result[0] = IntSignedPrefixByte;
-            var payload = BitConverter.GetBytes((int)reading);
-            payload.CopyTo(result, 1);
-        }
-        else
-        {
-            result[0] = LongSignedPrefixByte;
-            var payload = BitConverter.GetBytes((long)reading);
-            payload.CopyTo(result, 1);
-        }
+            long bufferContent when UInt32.MaxValue < bufferContent && bufferContent <= Int64.MaxValue => LongSignedPrefixByte,
+            > Int32.MaxValue => IntByteCount,
+            > UInt16.MaxValue => IntSignedPrefixByte,
+            >= 0 => ShortByteCount,
+            >= Int16.MinValue => ShortSignedPrefixByte,
+            >= Int32.MinValue => IntSignedPrefixByte,
+            _ => LongSignedPrefixByte
+        };
 
-        if (reading >= 0)
+        var payload = reading switch
         {
-            var payload = BitConverter.GetBytes(reading);
-            payload.CopyTo(result, 1);
-        }
-     
-        
+            >= 0 => BitConverter.GetBytes(reading),
+            >= Int16.MinValue => BitConverter.GetBytes((short)reading),
+            >= Int32.MinValue => BitConverter.GetBytes((int)reading),
+            _ => BitConverter.GetBytes((long)reading)
+        };
+
+        payload.CopyTo(result, 1);
+
         return result;
     }
    
