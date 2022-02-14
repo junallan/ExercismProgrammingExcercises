@@ -6,7 +6,7 @@ public class SecurityPassMaker
     {
         if(support is not Staff) return "Too Important for a Security Pass";
       
-        if (support is Security && !(support is SecurityJunior || support is SecurityIntern || support is PoliceLiaison)) return $"{support.Title} Priority Personnel";
+        if (support.GetType() == typeof(Security)) return $"{support.Title} Priority Personnel";
         else return support.Title;
     }
 }
