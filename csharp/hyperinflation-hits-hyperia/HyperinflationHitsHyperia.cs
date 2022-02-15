@@ -4,7 +4,6 @@ public static class CentralBank
 {
     public static string DisplayDenomination(long @base, long multiplier)
     {
-       // string denomination = string.Empty;
         try
         {
             return checked(@base * multiplier).ToString();
