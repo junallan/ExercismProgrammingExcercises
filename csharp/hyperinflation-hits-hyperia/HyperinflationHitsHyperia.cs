@@ -16,9 +16,9 @@ public static class CentralBank
 
     public static string DisplayGDP(float @base, float multiplier)
     {
-        var gdp = (@base * multiplier).ToString();
+        var gdp = @base * multiplier;
 
-        return gdp == "Infinity" ? "*** Too Big ***" : gdp;
+        return gdp == float.PositiveInfinity ? "*** Too Big ***" : gdp.ToString();
     }
 
     public static string DisplayChiefEconomistSalary(decimal salaryBase, decimal multiplier)
