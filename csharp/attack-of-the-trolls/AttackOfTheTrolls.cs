@@ -21,30 +21,34 @@ static class Permissions
 {
     public static Permission Default(AccountType accountType)
     {
-        if(accountType == AccountType.Guest) return Permission.Read;
-        if(accountType == AccountType.User) return Permission.Read | Permission.Write;
-        if(accountType == AccountType.Moderator) return Permission.All;
-        return Permission.None;
+        return accountType switch
+        {
+            AccountType.Guest => Permission.Read,
+            AccountType.User => Permission.Read | Permission.Write,
+            AccountType.Moderator => Permission.All,
+            _ => Permission.None
+        };
     }
 
-    public static Permission Grant(Permission current, Permission grant)
-    {
-        return current | grant;
-    }
+    public static Permission Grant(Permission current, Permission grant) => current | grant;
 
     public static Permission Revoke(Permission current, Permission revoke)
     {
-        if(revoke == Permission.None) return current;
-        if(revoke == Permission.All) return Permission.None;
+        if (revoke == Permission.None) return current;
+        if (revoke == Permission.All) return Permission.None;
 
         Permission newPermission = current;
 
-        if(((revoke & Permission.Read) == Permission.Read) && ((current & Permission.Read) == Permission.Read)) newPermission = newPermission - (byte)Permission.Read;
-        if(((revoke & Permission.Write) == Permission.Write) && ((current & Permission.Write) == Permission.Write)) newPermission = newPermission - (byte)Permission.Write;
-        if(((revoke & Permission.Delete) == Permission.Delete) && ((current & Permission.Delete) == Permission.Delete)) newPermission = newPermission - (byte)Permission.Delete;
+        if (IsPermissionToBeRemoved(current, revoke, Permission.Read)) newPermission = newPermission - (byte)Permission.Read;
+        if (IsPermissionToBeRemoved(current, revoke, Permission.Write)) newPermission = newPermission - (byte)Permission.Write;
+        if (IsPermissionToBeRemoved(current, revoke, Permission.Delete)) newPermission = newPermission - (byte)Permission.Delete;
 
         return newPermission;
     }
+
+    private static bool IsPermissionToBeRemoved(Permission current, Permission revoke, Permission permissionToRemove) 
+                                    => ((revoke & permissionToRemove) == permissionToRemove) 
+                                        && ((current & permissionToRemove) == permissionToRemove);
 
     public static bool Check(Permission current, Permission check)
     {
