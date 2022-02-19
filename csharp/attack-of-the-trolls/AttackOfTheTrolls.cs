@@ -29,7 +29,7 @@ static class Permissions
 
     public static Permission Grant(Permission current, Permission grant)
     {
-        throw new NotImplementedException("Please implement the (static) Permissions.Grant() method");
+        return current | grant;
     }
 
     public static Permission Revoke(Permission current, Permission revoke)
