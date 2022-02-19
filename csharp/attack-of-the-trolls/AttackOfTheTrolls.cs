@@ -7,13 +7,14 @@ public enum AccountType
     Moderator
 }
 
+[Flags]
 public enum Permission
 {
-    Read,
-    Write,
-    Delete,
-    All,
-    None
+    Read = 0b00000001,
+    Write = 0b00000010,
+    Delete = 0b00000100,
+    All = 0b00000111,
+    None = 0b00000000
 }
 
 static class Permissions
