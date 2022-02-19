@@ -47,11 +47,7 @@ static class Permissions
     }
 
     private static bool IsPermissionToBeRemoved(Permission current, Permission revoke, Permission permissionToRemove) 
-                                    => ((revoke & permissionToRemove) == permissionToRemove) 
-                                        && ((current & permissionToRemove) == permissionToRemove);
+                                    => Check(revoke, permissionToRemove) && Check(current, permissionToRemove);
 
-    public static bool Check(Permission current, Permission check)
-    {
-        return (current & check) == check;
-    }
+    public static bool Check(Permission current, Permission check) => (current & check) == check;
 }
