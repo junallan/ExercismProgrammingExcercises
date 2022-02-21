@@ -10,11 +10,11 @@ public enum AccountType
 [Flags]
 public enum Permission
 {
-    Read = 0b00000001,
-    Write = 0b00000010,
-    Delete = 0b00000100,
-    All = 0b00000111,
-    None = 0b00000000
+    Read = 0b_0000_0001,
+    Write = 0b_0000_0010,
+    Delete = 0b_0000_0100,
+    All = Read | Write | Delete,
+    None = 0b_0000_0000
 }
 
 static class Permissions
