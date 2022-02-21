@@ -34,16 +34,17 @@ static class Permissions
 
     public static Permission Revoke(Permission current, Permission revoke)
     {
-        if (revoke == Permission.None) return current;
-        if (revoke == Permission.All) return Permission.None;
+        return current & (~revoke);
+        // if (revoke == Permission.None) return current;
+        // if (revoke == Permission.All) return Permission.None;
 
-        Permission newPermission = current;
+        // Permission newPermission = current;
 
-        if (IsPermissionToBeRemoved(current, revoke, Permission.Read)) newPermission = newPermission - (byte)Permission.Read;
-        if (IsPermissionToBeRemoved(current, revoke, Permission.Write)) newPermission = newPermission - (byte)Permission.Write;
-        if (IsPermissionToBeRemoved(current, revoke, Permission.Delete)) newPermission = newPermission - (byte)Permission.Delete;
+        // if (IsPermissionToBeRemoved(current, revoke, Permission.Read)) newPermission = newPermission - (byte)Permission.Read;
+        // if (IsPermissionToBeRemoved(current, revoke, Permission.Write)) newPermission = newPermission - (byte)Permission.Write;
+        // if (IsPermissionToBeRemoved(current, revoke, Permission.Delete)) newPermission = newPermission - (byte)Permission.Delete;
 
-        return newPermission;
+        // return newPermission;
     }
 
     private static bool IsPermissionToBeRemoved(Permission current, Permission revoke, Permission permissionToRemove) 
