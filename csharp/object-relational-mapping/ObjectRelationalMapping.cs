@@ -37,12 +37,7 @@ public class Orm : IDisposable
         {
             Dispose();
         }
-
     }
 
-    public void Dispose()
-    {
-        Orm orm = this;
-        orm.database.Dispose();
-    }
+    public void Dispose() => this.database.Dispose();
 }
