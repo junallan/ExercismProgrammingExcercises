@@ -8,8 +8,8 @@ public static class HighSchoolSweethearts
 
     public static string DisplaySingleLine(string studentA, string studentB) => $"{studentA,LinePaddingLength} ♡ {studentB,-LinePaddingLength}";
 
-
-    public static string DisplayBanner(string studentA, string studentB) => $@"
+    public static string DisplayBanner(string studentA, string studentB) =>
+    $@"
      ******       ******
    **      **   **      **
  **         ** **         **
@@ -25,7 +25,6 @@ public static class HighSchoolSweethearts
              ***
               *
 ";
-
     public static string DisplayGermanExchangeStudents(string studentA
         , string studentB, DateTime start, float hours)
     {
