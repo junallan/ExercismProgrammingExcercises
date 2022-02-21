@@ -32,20 +32,7 @@ static class Permissions
 
     public static Permission Grant(Permission current, Permission grant) => current | grant;
 
-    public static Permission Revoke(Permission current, Permission revoke)
-    {
-        return current & (~revoke);
-        // if (revoke == Permission.None) return current;
-        // if (revoke == Permission.All) return Permission.None;
-
-        // Permission newPermission = current;
-
-        // if (IsPermissionToBeRemoved(current, revoke, Permission.Read)) newPermission = newPermission - (byte)Permission.Read;
-        // if (IsPermissionToBeRemoved(current, revoke, Permission.Write)) newPermission = newPermission - (byte)Permission.Write;
-        // if (IsPermissionToBeRemoved(current, revoke, Permission.Delete)) newPermission = newPermission - (byte)Permission.Delete;
-
-        // return newPermission;
-    }
+    public static Permission Revoke(Permission current, Permission revoke) => current & ~revoke;
 
     private static bool IsPermissionToBeRemoved(Permission current, Permission revoke, Permission permissionToRemove) 
                                     => Check(revoke, permissionToRemove) && Check(current, permissionToRemove);
