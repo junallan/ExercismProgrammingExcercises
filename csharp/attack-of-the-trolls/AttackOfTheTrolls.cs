@@ -49,5 +49,5 @@ static class Permissions
     private static bool IsPermissionToBeRemoved(Permission current, Permission revoke, Permission permissionToRemove) 
                                     => Check(revoke, permissionToRemove) && Check(current, permissionToRemove);
 
-    public static bool Check(Permission current, Permission check) => (current & check) == check;
+    public static bool Check(Permission current, Permission check) => current.HasFlag(check);
 }
