@@ -2,7 +2,6 @@ using System;
 
 public class Orm : IDisposable
 {
-
     private Database database;
 
     public Orm(Database database)
@@ -27,17 +26,7 @@ public class Orm : IDisposable
         }
     }
 
-    public void Commit()
-    {
-        try
-        {
-            this.database.EndTransaction();
-        }
-        catch(Exception)
-        {
-            Dispose();
-        }
-    }
+    public void Commit() => Dispose();
 
     public void Dispose() => this.database.Dispose();
 }
