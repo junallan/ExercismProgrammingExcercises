@@ -16,7 +16,7 @@ public static class HighSchoolSweethearts
  **         ** **         **
 **            *            **
 **                         **
-**{studentA.TrimEnd(),BannerPaddingLength}  +  {studentB.TrimStart(),-BannerPaddingLength}**
+{DisplayBannerContent(studentA, studentB)}
  **                       **
    **                   **
      **               **
@@ -27,5 +27,9 @@ public static class HighSchoolSweethearts
               *
 ";
     public static string DisplayGermanExchangeStudents(string studentA, string studentB, DateTime start, float hours) 
-                            => $"{studentA} and {studentB} have been dating since {start.ToString("d", GermanCulture)} - that's {hours.ToString("N", GermanCulture)} hours";
+                            => $"{studentA} and {studentB} have been dating since {start.ToString("d", GermanCulture)} - that's {hours.ToString("N2", GermanCulture)} hours";
+
+    private static string DisplayBannerContent(string studentA, string studentB)
+                            => $"**{studentA.TrimEnd(),BannerPaddingLength}  +  {studentB.TrimStart(),-BannerPaddingLength}**";
+    
 }     
