@@ -23,12 +23,23 @@ public class CalculatorTestHarness
 
     public string TestMultiplication(int x, int y)
     {
-        throw new CalculationException(x,y,string.Empty,new Exception());
+        try
+        {
+            this.calculator.Multiply(x, y);
+
+            return "Multiply succeeded";
+        }
+        catch(Exception ex)
+        {
+            throw new CalculationException(x,y,string.Empty, ex);
+        }
+       
     }
 
     public void Multiply(int x, int y)
     {
-         throw new CalculationException(x,y,string.Empty,new Exception());
+        TestMultiplication(x,y);
+         //throw new CalculationException(x,y,string.Empty,new Exception());
     }
 }
 
