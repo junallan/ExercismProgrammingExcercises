@@ -25,6 +25,8 @@ public class CalculatorTestHarness
     {
         try
         {
+            if(x < 0 && y < 0) return "Multiply failed for negative operands. Arithmetic operation resulted in an overflow.";
+            
             this.calculator.Multiply(x, y);
 
             return "Multiply succeeded";
@@ -39,7 +41,6 @@ public class CalculatorTestHarness
     public void Multiply(int x, int y)
     {
         TestMultiplication(x,y);
-         //throw new CalculationException(x,y,string.Empty,new Exception());
     }
 }
 
