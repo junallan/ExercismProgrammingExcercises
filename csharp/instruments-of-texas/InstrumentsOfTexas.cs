@@ -2,7 +2,7 @@ using System;
 
 public class CalculationException : Exception
 {
-    public CalculationException(int operand1, int operand2, string message, Exception inner)
+    public CalculationException(int operand1, int operand2, Exception inner) : base(inner.Message)
     {
         Operand1 = operand1;
         Operand2 = operand2;
@@ -22,25 +22,37 @@ public class CalculatorTestHarness
     }
 
     public string TestMultiplication(int x, int y)
-    {
-        try
-        {
-            if(x < 0 && y < 0) return "Multiply failed for negative operands. Arithmetic operation resulted in an overflow.";
-            
-            this.calculator.Multiply(x, y);
+    {  
+            try
+            {
+                this.calculator.Multiply(x, y);
+            }
+            catch(OverflowException _) when (x < 0 && y < 0)
+            {
+                return "Multiply failed for negative operands. Arithmetic operation resulted in an overflow.";
+            }
+            catch(OverflowException _) when (x > 0 || y > 0)
+            {
+                return "Multiply failed for mixed or positive operands. Arithmetic operation resulted in an overflow.";
+            }
+            catch(CalculationException ex)
+            {
+                return ex.Message;
+            }
 
             return "Multiply succeeded";
-        }
-        catch(Exception ex)
-        {
-            throw new CalculationException(x,y,string.Empty, ex);
-        }
-       
     }
 
     public void Multiply(int x, int y)
     {
-        TestMultiplication(x,y);
+        try
+        {
+            calculator.Multiply(x, y);
+        }
+        catch(OverflowException ex)
+        {
+             throw new CalculationException(x,y, ex);
+        }
     }
 }
 
