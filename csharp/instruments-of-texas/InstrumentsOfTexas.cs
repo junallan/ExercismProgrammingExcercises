@@ -23,24 +23,20 @@ public class CalculatorTestHarness
 
     public string TestMultiplication(int x, int y)
     {  
-        var hasNegativeOperands = x < 0 && y < 0;
-        var hasAPositveOperand = x > 0 || y > 0;
+        try
+        {
+            this.Multiply(x, y);
+        }
+        catch(CalculationException _) when (x < 0 && y < 0)
+        {
+            return "Multiply failed for negative operands. Arithmetic operation resulted in an overflow.";
+        }
+        catch(CalculationException _)
+        {
+            return "Multiply failed for mixed or positive operands. Arithmetic operation resulted in an overflow.";
+        }
 
-            try
-            {
-                this.Multiply(x, y);
-            }
-            catch(CalculationException _) when (hasNegativeOperands || hasAPositveOperand)
-            {
-                return hasNegativeOperands ? "Multiply failed for negative operands. Arithmetic operation resulted in an overflow."
-                                            : "Multiply failed for mixed or positive operands. Arithmetic operation resulted in an overflow.";
-            }
-            catch(CalculationException ex)
-            {
-                return ex.Message;
-            }
-
-            return "Multiply succeeded";
+        return "Multiply succeeded";
     }
 
     public void Multiply(int x, int y)
