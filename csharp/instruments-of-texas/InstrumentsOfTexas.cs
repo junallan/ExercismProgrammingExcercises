@@ -27,11 +27,11 @@ public class CalculatorTestHarness
         {
             this.Multiply(x, y);
         }
-        catch(CalculationException _) when (x < 0 && y < 0)
+        catch(CalculationException cex) when (cex.Operand1 < 0 && cex.Operand2 < 0)
         {
             return "Multiply failed for negative operands. Arithmetic operation resulted in an overflow.";
         }
-        catch(CalculationException _)
+        catch(CalculationException)
         {
             return "Multiply failed for mixed or positive operands. Arithmetic operation resulted in an overflow.";
         }
