@@ -28,9 +28,12 @@ public class Identity
 
 public class Authenticator
 {
+    public readonly string AdminEmail = "admin@exerc.ism";
+    public readonly FacialFeatures AdminFacialFeatures = new FacialFeatures("green", 0.9m);
+
     public static bool AreSameFace(FacialFeatures faceA, FacialFeatures faceB) => faceA.EyeColor.Equals(faceB.EyeColor) && faceA.PhiltrumWidth.Equals(faceB.PhiltrumWidth);
 
-    public bool IsAdmin(Identity identity) => identity.Email.Equals("admin@exerc.ism") && AreSameFace(identity.FacialFeatures, new FacialFeatures("green", 0.9m));
+    public bool IsAdmin(Identity identity) => identity.Email.Equals(AdminEmail) && AreSameFace(identity.FacialFeatures, AdminFacialFeatures);
 
     public bool Register(Identity identity)
     {
