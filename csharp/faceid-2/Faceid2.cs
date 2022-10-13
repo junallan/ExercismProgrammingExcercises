@@ -43,17 +43,15 @@ public class Authenticator
 
     public bool Register(Identity identity)
     {
-        if(_registeredApplicants.Contains(identity.GetHashCode())) return false;
+        if(IsRegistered(identity)) return false;
 
         _registeredApplicants.Add(identity.GetHashCode());
 
         return true;
     }
 
-    public bool IsRegistered(Identity identity)
-    {
-        throw new NotImplementedException("Please implement the Authenticator.IsRegistered() method");
-    }
+    public bool IsRegistered(Identity identity) => _registeredApplicants.Contains(identity.GetHashCode());
+
 
     public static bool AreSameObject(Identity identityA, Identity identityB)
     {
