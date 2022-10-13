@@ -13,6 +13,18 @@ public class FacialFeatures
     }
 
     public override int GetHashCode() => HashCode.Combine(EyeColor, PhiltrumWidth);
+
+    public override bool Equals(object obj)
+    {
+        return Equals(obj as FacialFeatures);
+    }
+
+    public bool Equals(FacialFeatures other)
+    {
+        return other != null &&
+                    EyeColor == other.EyeColor &&
+                    PhiltrumWidth == other.PhiltrumWidth;
+    }
 }
 
 public class Identity
@@ -27,13 +39,27 @@ public class Identity
     }
 
     public override int GetHashCode() => HashCode.Combine(Email, FacialFeatures.GetHashCode());
+
+    public override bool Equals(object obj)
+    {
+        return Equals(obj as Identity);
+    }
+
+    public bool Equals(Identity other)
+    {
+        return other != null && 
+                        other.FacialFeatures != null &&
+                        Email == other.Email &&
+                        FacialFeatures.EyeColor == other.FacialFeatures.EyeColor &&
+                        FacialFeatures.PhiltrumWidth == other.FacialFeatures.PhiltrumWidth;
+    }
 }
 
 public class Authenticator
 {
     private readonly Identity Admin = new Identity("admin@exerc.ism", new FacialFeatures("green", 0.9m));
 
-    private HashSet<int> _registeredApplicants = new HashSet<int>();
+    private HashSet<Identity> _registeredApplicants = new HashSet<Identity>();
 
     public static bool AreSameFace(FacialFeatures faceA, FacialFeatures faceB) => faceA.EyeColor.Equals(faceB.EyeColor) && faceA.PhiltrumWidth.Equals(faceB.PhiltrumWidth);
 
@@ -43,12 +69,12 @@ public class Authenticator
     {
         if(IsRegistered(identity)) return false;
 
-        _registeredApplicants.Add(identity.GetHashCode());
+        _registeredApplicants.Add(identity);
 
         return true;
     }
 
-    public bool IsRegistered(Identity identity) => _registeredApplicants.Contains(identity.GetHashCode());
+    public bool IsRegistered(Identity identity) => _registeredApplicants.Contains(identity);
 
     public static bool AreSameObject(Identity identityA, Identity identityB) => identityA == identityB;
 }
