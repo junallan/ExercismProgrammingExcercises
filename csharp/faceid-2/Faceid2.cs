@@ -61,9 +61,9 @@ public class Authenticator
 
     private HashSet<Identity> _registeredApplicants = new HashSet<Identity>();
 
-    public static bool AreSameFace(FacialFeatures faceA, FacialFeatures faceB) => faceA.EyeColor.Equals(faceB.EyeColor) && faceA.PhiltrumWidth.Equals(faceB.PhiltrumWidth);
+    public static bool AreSameFace(FacialFeatures faceA, FacialFeatures faceB) => faceA.Equals(faceB);
 
-    public bool IsAdmin(Identity identity) => identity.GetHashCode() == Admin.GetHashCode();
+    public bool IsAdmin(Identity identity) => identity.Equals(Admin);
 
     public bool Register(Identity identity)
     {
