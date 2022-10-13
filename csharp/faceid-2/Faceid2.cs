@@ -32,7 +32,7 @@ public class Identity
 
 public class Authenticator
 {
-    public readonly Identity Admin = new Identity("admin@exerc.ism", new FacialFeatures("green", 0.9m));
+    private readonly Identity Admin = new Identity("admin@exerc.ism", new FacialFeatures("green", 0.9m));
 
     public static bool AreSameFace(FacialFeatures faceA, FacialFeatures faceB) => faceA.EyeColor.Equals(faceB.EyeColor) && faceA.PhiltrumWidth.Equals(faceB.PhiltrumWidth);
 
