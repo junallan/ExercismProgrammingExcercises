@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public class FacialFeatures
 {
@@ -34,13 +35,19 @@ public class Authenticator
 {
     private readonly Identity Admin = new Identity("admin@exerc.ism", new FacialFeatures("green", 0.9m));
 
+    private HashSet<int> _registeredApplicants = new HashSet<int>();
+
     public static bool AreSameFace(FacialFeatures faceA, FacialFeatures faceB) => faceA.EyeColor.Equals(faceB.EyeColor) && faceA.PhiltrumWidth.Equals(faceB.PhiltrumWidth);
 
     public bool IsAdmin(Identity identity) => identity.GetHashCode() == Admin.GetHashCode();
 
     public bool Register(Identity identity)
     {
-        throw new NotImplementedException("Please implement the Authenticator.Register() method");
+        if(_registeredApplicants.Contains(identity.GetHashCode())) return false;
+
+        _registeredApplicants.Add(identity.GetHashCode());
+
+        return true;
     }
 
     public bool IsRegistered(Identity identity)
