@@ -50,9 +50,5 @@ public class Authenticator
 
     public bool IsRegistered(Identity identity) => _registeredApplicants.Contains(identity.GetHashCode());
 
-
-    public static bool AreSameObject(Identity identityA, Identity identityB)
-    {
-        throw new NotImplementedException("Please implement the Authenticator.AreSameObject() method");
-    }
+    public static bool AreSameObject(Identity identityA, Identity identityB) => identityA == identityB;
 }
