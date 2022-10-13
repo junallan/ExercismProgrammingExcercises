@@ -11,7 +11,8 @@ public class FacialFeatures
         EyeColor = eyeColor;
         PhiltrumWidth = philtrumWidth;
     }
-    // TODO: implement equality and GetHashCode() methods
+
+    public override int GetHashCode() => HashCode.Combine(EyeColor, PhiltrumWidth);
 }
 
 public class Identity
@@ -25,10 +26,7 @@ public class Identity
         FacialFeatures = facialFeatures;
     }
 
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(Email, FacialFeatures.EyeColor, FacialFeatures.PhiltrumWidth);
-    }
+    public override int GetHashCode() => HashCode.Combine(Email, FacialFeatures.GetHashCode());
 }
 
 public class Authenticator
