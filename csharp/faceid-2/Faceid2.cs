@@ -38,7 +38,7 @@ public class Identity
         FacialFeatures = facialFeatures;
     }
 
-    public override int GetHashCode() => HashCode.Combine(Email, FacialFeatures.GetHashCode());
+    public override int GetHashCode() => HashCode.Combine(Email, FacialFeatures);
 
     public override bool Equals(object obj)
     {
