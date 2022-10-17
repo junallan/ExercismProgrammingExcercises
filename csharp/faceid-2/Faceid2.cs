@@ -65,14 +65,7 @@ public class Authenticator
 
     public bool IsAdmin(Identity identity) => identity.Equals(Admin);
 
-    public bool Register(Identity identity)
-    {
-        if(IsRegistered(identity)) return false;
-
-        _registeredApplicants.Add(identity);
-
-        return true;
-    }
+    public bool Register(Identity identity) => _registeredApplicants.Add(identity);
 
     public bool IsRegistered(Identity identity) => _registeredApplicants.Contains(identity);
 
