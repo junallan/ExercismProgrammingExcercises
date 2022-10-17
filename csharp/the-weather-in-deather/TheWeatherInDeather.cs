@@ -82,17 +82,7 @@ public class WeatherStation
         }
     }
 
-    public State RunSelfTest()
-    {
-        if (reading.Equals(new Reading()))
-        {
-            return State.Bad;
-        }
-        else
-        {
-            return State.Good;
-        }
-    }
+    public State RunSelfTest() => reading.Equals(new Reading()) ? State.Bad :  State.Good;
 }
 
 /*** Please do not modify this struct ***/
