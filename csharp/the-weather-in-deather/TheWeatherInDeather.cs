@@ -3,34 +3,34 @@ using System.Collections.Generic;
 
 public class WeatherStation
 {
-    private Reading reading;
-    private List<DateTime> recordDates = new List<DateTime>();
+    private Reading _reading;
+    private List<DateTime> _recordDates = new List<DateTime>();
     private List<decimal> temperatures = new List<decimal>();
 
     public void AcceptReading(Reading reading)
     {
-        this.reading = reading;
-        recordDates.Add(DateTime.Now);
+        _reading = reading;
+        _recordDates.Add(DateTime.Now);
         temperatures.Add(reading.Temperature);
     }
 
     public void ClearAll()
     {
-        reading = new Reading();
-        recordDates.Clear();
+        _reading = new Reading();
+        _recordDates.Clear();
         temperatures.Clear();
     }
 
-    public decimal LatestTemperature => reading.Temperature;
+    public decimal LatestTemperature => _reading.Temperature;
   
-    public decimal LatestPressure => reading.Pressure;
+    public decimal LatestPressure => _reading.Pressure;
 
-    public decimal LatestRainfall=> reading.Rainfall;
+    public decimal LatestRainfall=> _reading.Rainfall;
 
-    public bool HasHistory => recordDates.Count > 1;
+    public bool HasHistory => _recordDates.Count > 1;
 
     public Outlook ShortTermOutlook =>
-        reading switch
+        _reading switch
         {  
             { 
                 Pressure: decimal pressure, 
@@ -61,7 +61,7 @@ public class WeatherStation
     
 
     public Outlook LongTermOutlook =>
-        reading switch {
+        _reading switch {
             { 
                 WindDirection: WindDirection windDirection, 
                 Temperature: decimal temperature 
@@ -80,7 +80,7 @@ public class WeatherStation
                 Temperature: decimal temperature 
             }
             when windDirection == WindDirection.Easterly 
-                    && reading.Temperature <= 20
+                    && _reading.Temperature <= 20
             => Outlook.Warm,
             { 
                 WindDirection: WindDirection windDirection 
@@ -91,7 +91,7 @@ public class WeatherStation
             => throw new ArgumentException()
         };
 
-    public State RunSelfTest() => reading.Equals(new Reading()) ? State.Bad :  State.Good;
+    public State RunSelfTest() => _reading.Equals(new Reading()) ? State.Bad :  State.Good;
 }
 
 /*** Please do not modify this struct ***/
