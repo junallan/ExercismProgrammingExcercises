@@ -11,10 +11,7 @@ static class GameMaster
         
         return $"You're traveling to your destination {methodOfTravel} {travelMethod.ToString().ToLower()}.";
     }
-    public static string Describe(Character character, Destination destination, TravelMethod travelMethod)
-    {
-        throw new NotImplementedException("Please implement the (static) GameMaster.Describe(Character, Destination, TravelMethod) method");
-    }
+    public static string Describe(Character character, Destination destination, TravelMethod travelMethod) => $"{Describe(character)} {Describe(travelMethod)} {Describe(destination)}";
 
     public static string Describe(Character character, Destination destination)
     {
