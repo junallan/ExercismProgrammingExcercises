@@ -5,20 +5,20 @@ public class WeatherStation
 {
     private Reading _reading;
     private List<DateTime> _recordDates = new List<DateTime>();
-    private List<decimal> temperatures = new List<decimal>();
+    private List<decimal> _temperatures = new List<decimal>();
 
     public void AcceptReading(Reading reading)
     {
         _reading = reading;
         _recordDates.Add(DateTime.Now);
-        temperatures.Add(reading.Temperature);
+        _temperatures.Add(reading.Temperature);
     }
 
     public void ClearAll()
     {
         _reading = new Reading();
         _recordDates.Clear();
-        temperatures.Clear();
+        _temperatures.Clear();
     }
 
     public decimal LatestTemperature => _reading.Temperature;
@@ -29,34 +29,33 @@ public class WeatherStation
 
     public bool HasHistory => _recordDates.Count > 1;
 
-    public Outlook ShortTermOutlook =>
-        _reading switch
-        {  
-            { 
-                Pressure: decimal pressure, 
-                Temperature: decimal temperature, 
-                Rainfall: decimal rainfall, 
-                WindDirection: WindDirection windDirection
-            } 
-            when pressure == default(decimal) 
-                    && temperature == default(decimal)
-                    && rainfall == default(decimal)
-                    && windDirection == WindDirection.Unknown   
-            => throw new ArgumentException(),
-            { 
-                Pressure: var pressure, 
-                Temperature: var temperature 
-            } 
-            when pressure < 10m && temperature < 30m           
-            => Outlook.Cool,
-            { 
-                Temperature: var temperature 
-            } 
-            when temperature > 50m                              
-            => Outlook.Good,
-            _                                                   
-            => Outlook.Warm
-        };
+    public Outlook ShortTermOutlook 
+    {
+        get 
+        {
+            if (_reading.Equals(new Reading())) throw new ArgumentException();
+
+            var shortTermOutlook =_reading switch
+                {  
+                    { 
+                        Pressure: var pressure, 
+                        Temperature: var temperature 
+                    } 
+                    when pressure < 10m && temperature < 30m           
+                    => Outlook.Cool,
+                    { 
+                        Temperature: var temperature 
+                    } 
+                    when temperature > 50m                              
+                    => Outlook.Good,
+                    _                                                   
+                    => Outlook.Warm
+                };
+
+            return shortTermOutlook;
+        }
+    }
+        
               
     
 
