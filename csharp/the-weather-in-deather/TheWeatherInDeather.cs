@@ -35,24 +35,12 @@ public class WeatherStation
         {
             if (_reading.Equals(new Reading())) throw new ArgumentException();
 
-            var shortTermOutlook =_reading switch
-                {  
-                    { 
-                        Pressure: var pressure, 
-                        Temperature: var temperature 
-                    } 
-                    when pressure < 10m && temperature < 30m           
-                    => Outlook.Cool,
-                    { 
-                        Temperature: var temperature 
-                    } 
-                    when temperature > 50m                              
-                    => Outlook.Good,
-                    _                                                   
-                    => Outlook.Warm
-                };
-
-            return shortTermOutlook;
+            return _reading switch
+            {  
+                Reading r when r.Pressure < 10m && r.Temperature < 30m  => Outlook.Cool,
+                Reading r when r.Temperature > 50m                      => Outlook.Good,
+                _                                                       => Outlook.Warm
+            };
         }
     }
         
@@ -60,34 +48,16 @@ public class WeatherStation
     
 
     public Outlook LongTermOutlook =>
-        _reading switch {
-            { 
-                WindDirection: WindDirection windDirection, 
-                Temperature: decimal temperature 
-            } 
-            when windDirection == WindDirection.Southerly 
-                    || windDirection == WindDirection.Easterly
-                    && temperature > 20
-            => Outlook.Good,
-            { 
-                WindDirection: WindDirection windDirection 
-            }
-            when windDirection == WindDirection.Northerly
-            => Outlook.Cool,
-            { 
-                WindDirection: WindDirection windDirection, 
-                Temperature: decimal temperature 
-            }
-            when windDirection == WindDirection.Easterly 
-                    && _reading.Temperature <= 20
-            => Outlook.Warm,
-            { 
-                WindDirection: WindDirection windDirection 
-            }
-            when windDirection == WindDirection.Westerly
-            => Outlook.Rainy,
-            _ 
-            => throw new ArgumentException()
+        _reading switch 
+        {
+            Reading r when r.WindDirection == WindDirection.Southerly 
+                            || r.WindDirection == WindDirection.Easterly 
+                            && r.Temperature > 20                           => Outlook.Good,
+            Reading r when r.WindDirection == WindDirection.Northerly       => Outlook.Cool,
+            Reading r when r.WindDirection == WindDirection.Easterly 
+                            && r.Temperature <= 20                          => Outlook.Warm,
+            Reading r when r.WindDirection == WindDirection.Westerly        => Outlook.Rainy,
+            _                                                               => throw new ArgumentException()
         };
 
     public State RunSelfTest() => _reading.Equals(new Reading()) ? State.Bad :  State.Good;
