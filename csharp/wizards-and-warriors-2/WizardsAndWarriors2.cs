@@ -2,15 +2,9 @@ using System;
 
 static class GameMaster
 {
-    public static string Describe(Character character)
-    {
-        return $"You're a level {character.Level} {character.Class} with {character.HitPoints} hit points.";
-    }
+    public static string Describe(Character character) => $"You're a level {character.Level} {character.Class} with {character.HitPoints} hit points.";
 
-    public static string Describe(Destination destination)
-    {
-        throw new NotImplementedException("Please implement the (static) GameMaster.Describe(Destination) method");
-    }
+    public static string Describe(Destination destination) => $"You've arrived at {destination.Name}, which has {destination.Inhabitants} inhabitants.";
 
     public static string Describe(TravelMethod travelMethod)
     {
