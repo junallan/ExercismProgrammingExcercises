@@ -13,10 +13,7 @@ static class GameMaster
     }
     public static string Describe(Character character, Destination destination, TravelMethod travelMethod) => $"{Describe(character)} {Describe(travelMethod)} {Describe(destination)}";
 
-    public static string Describe(Character character, Destination destination)
-    {
-        throw new NotImplementedException("Please implement the (static) GameMaster.Describe(Character, Destination) method");
-    }
+    public static string Describe(Character character, Destination destination) => $"{Describe(character)} {Describe(TravelMethod.Walking)} {Describe(destination)}";
 }
 
 class Character
