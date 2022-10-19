@@ -11,9 +11,7 @@ static class GameMaster
         
         return $"You're traveling to your destination {methodOfTravel} {travelMethod.ToString().ToLower()}.";
     }
-    public static string Describe(Character character, Destination destination, TravelMethod travelMethod) => $"{Describe(character)} {Describe(travelMethod)} {Describe(destination)}";
-
-    public static string Describe(Character character, Destination destination) => $"{Describe(character)} {Describe(TravelMethod.Walking)} {Describe(destination)}";
+    public static string Describe(Character character, Destination destination, TravelMethod travelMethod = TravelMethod.Walking) => $"{Describe(character)} {Describe(travelMethod)} {Describe(destination)}";
 }
 
 class Character
