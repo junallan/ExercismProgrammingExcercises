@@ -35,7 +35,7 @@ public class Authenticator
                                                 }, 
                             NameAndAddress= new List<string>
                                                 {
-                                                    "Bertand", 
+                                                    "Bertrand", 
                                                     "Paris", 
                                                     "France"
                                                 }
