@@ -46,7 +46,7 @@ public class HyperiaForexTests
         Assert.Throws<ArgumentException>(() => amount1 != amount2);
     }
 
-   /*  [Property]
+    [Property]
     [Task(2)]
     public Property LessThan_with_same_currency(decimal value1, decimal value2)
     {
@@ -85,7 +85,7 @@ public class HyperiaForexTests
 
         Assert.Throws<ArgumentException>(() => amount1 > amount2);
     }
-*/
+
     [Property]
     [Task(3)]
     public void Addition_with_same_currency(decimal value1, decimal value2)
@@ -137,7 +137,7 @@ public class HyperiaForexTests
 
         Assert.Throws<ArgumentException>(() => amount1 - amount2);
     }
-/*
+
     [Property]
     [Task(4)]
     public void Multiplication(decimal value, decimal factor)
@@ -164,7 +164,7 @@ public class HyperiaForexTests
             () => Assert.True(new CurrencyAmount(value, "HD") / divisor ==
                               new CurrencyAmount(value / divisor, "HD")));
     }
-
+/*
     [Property]
     [Task(5)]
     public void Cast_to_double(decimal value)

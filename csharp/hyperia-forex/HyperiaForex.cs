@@ -18,12 +18,19 @@ public struct CurrencyAmount
         return new CurrencyAmount(a.amount + b.amount, a.currency);
     } 
 
-     public static CurrencyAmount operator - (CurrencyAmount a, CurrencyAmount b)
+    public static CurrencyAmount operator - (CurrencyAmount a, CurrencyAmount b)
     {
         if(a.currency != b.currency) throw new ArgumentException();
 
         return new CurrencyAmount(a.amount - b.amount, a.currency);
-    } 
+    }
+
+    public static CurrencyAmount operator *(CurrencyAmount a, decimal factor) => new CurrencyAmount(a.amount * factor, a.currency);
+
+    public static CurrencyAmount operator * (decimal factor, CurrencyAmount a) => new CurrencyAmount(a.amount * factor, a.currency);
+    
+    public static CurrencyAmount operator / (CurrencyAmount a, decimal divisor) => new CurrencyAmount(a.amount / divisor, a.currency);
+
 
     public static bool operator > (CurrencyAmount a, CurrencyAmount b)
     {
