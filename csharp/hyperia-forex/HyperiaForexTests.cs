@@ -164,7 +164,7 @@ public class HyperiaForexTests
             () => Assert.True(new CurrencyAmount(value, "HD") / divisor ==
                               new CurrencyAmount(value / divisor, "HD")));
     }
-/*
+
     [Property]
     [Task(5)]
     public void Cast_to_double(decimal value)
@@ -178,5 +178,5 @@ public class HyperiaForexTests
     {
         decimal actual = new CurrencyAmount(value, "HD");
         Assert.Equal(value, actual);
-    } */
+    } 
 }

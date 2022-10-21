@@ -35,20 +35,12 @@ public struct CurrencyAmount
 
     public static implicit operator decimal(CurrencyAmount a) => a.amount;
 
-    public static bool operator > (CurrencyAmount a, CurrencyAmount b)
-    {
-        if(a.currency != b.currency) throw new ArgumentException();
+    public static bool operator > (CurrencyAmount a, CurrencyAmount b) => a.currency == b.currency ? a.amount > b.amount : throw new ArgumentException();    
 
-        return a.amount > b.amount;
-    }
-    public static bool operator < (CurrencyAmount a, CurrencyAmount b)
-    {
-        if(a.currency != b.currency) throw new ArgumentException();
-
-        return a.amount < b.amount;
-    }
+    public static bool operator < (CurrencyAmount a, CurrencyAmount b) => a.currency == b.currency ? a.amount < b.amount : throw new ArgumentException();
 
     public static bool operator == (CurrencyAmount a, CurrencyAmount b) => a.Equals(b);
+   
     public static bool operator != (CurrencyAmount a, CurrencyAmount b) => !a.Equals(b);
 
     public override int GetHashCode() => HashCode.Combine(this.amount, this.currency);
