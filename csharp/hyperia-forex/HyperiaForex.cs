@@ -31,6 +31,9 @@ public struct CurrencyAmount
     
     public static CurrencyAmount operator / (CurrencyAmount a, decimal divisor) => new CurrencyAmount(a.amount / divisor, a.currency);
 
+    public static explicit operator double(CurrencyAmount a) => Convert.ToDouble(a.amount);
+
+    public static implicit operator decimal(CurrencyAmount a) => a.amount;
 
     public static bool operator > (CurrencyAmount a, CurrencyAmount b)
     {
@@ -58,6 +61,4 @@ public struct CurrencyAmount
 
         return this.amount == other.amount && this.currency == other.currency;
     }
-
-    // TODO: implement type conversion operators
 }
