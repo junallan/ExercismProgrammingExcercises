@@ -116,7 +116,7 @@ public class HyperiaForexTests
 
         Assert.Throws<ArgumentException>(() => amount1 + amount2);
     }
-/*
+
     [Property]
     [Task(3)]
     public void Subtraction_with_same_currency(decimal value1, decimal value2)
@@ -137,7 +137,7 @@ public class HyperiaForexTests
 
         Assert.Throws<ArgumentException>(() => amount1 - amount2);
     }
-
+/*
     [Property]
     [Task(4)]
     public void Multiplication(decimal value, decimal factor)

@@ -18,6 +18,13 @@ public struct CurrencyAmount
         return new CurrencyAmount(a.amount + b.amount, a.currency);
     } 
 
+     public static CurrencyAmount operator - (CurrencyAmount a, CurrencyAmount b)
+    {
+        if(a.currency != b.currency) throw new ArgumentException();
+
+        return new CurrencyAmount(a.amount - b.amount, a.currency);
+    } 
+
     public static bool operator == (CurrencyAmount a, CurrencyAmount b) => a.Equals(b);
     public static bool operator != (CurrencyAmount a, CurrencyAmount b) => !a.Equals(b);
 
