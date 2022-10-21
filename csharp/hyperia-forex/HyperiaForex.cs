@@ -11,7 +11,14 @@ public struct CurrencyAmount
         this.currency = currency; 
     }
 
-    public static bool operator ==(CurrencyAmount a, CurrencyAmount b) => a.Equals(b);
+    public static CurrencyAmount operator + (CurrencyAmount a, CurrencyAmount b)
+    {
+        if(a.currency != b.currency) throw new ArgumentException();
+
+        return new CurrencyAmount(a.amount + b.amount, a.currency);
+    } 
+
+    public static bool operator == (CurrencyAmount a, CurrencyAmount b) => a.Equals(b);
     public static bool operator != (CurrencyAmount a, CurrencyAmount b) => !a.Equals(b);
 
     public override int GetHashCode() => HashCode.Combine(this.amount, this.currency);
@@ -22,7 +29,7 @@ public struct CurrencyAmount
     {
         if(this.currency != other.currency) throw new ArgumentException();
 
-        return other != null && this.amount == other.amount && this.currency == other.currency;
+        return this.amount == other.amount && this.currency == other.currency;
     }
 
     
