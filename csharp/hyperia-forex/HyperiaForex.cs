@@ -11,19 +11,9 @@ public struct CurrencyAmount
         this.currency = currency; 
     }
 
-    public static CurrencyAmount operator + (CurrencyAmount a, CurrencyAmount b)
-    {
-        if(a.currency != b.currency) throw new ArgumentException();
+    public static CurrencyAmount operator + (CurrencyAmount a, CurrencyAmount b) => a.currency == b.currency ? new CurrencyAmount(a.amount + b.amount, a.currency) : throw new ArgumentException();
 
-        return new CurrencyAmount(a.amount + b.amount, a.currency);
-    } 
-
-    public static CurrencyAmount operator - (CurrencyAmount a, CurrencyAmount b)
-    {
-        if(a.currency != b.currency) throw new ArgumentException();
-
-        return new CurrencyAmount(a.amount - b.amount, a.currency);
-    }
+    public static CurrencyAmount operator - (CurrencyAmount a, CurrencyAmount b)=> a.currency == b.currency ? new CurrencyAmount(a.amount - b.amount, a.currency) : throw new ArgumentException();
 
     public static CurrencyAmount operator *(CurrencyAmount a, decimal factor) => new CurrencyAmount(a.amount * factor, a.currency);
 
@@ -47,10 +37,5 @@ public struct CurrencyAmount
 
     public override bool Equals(object obj) => Equals((CurrencyAmount)obj);
 
-    public bool Equals(CurrencyAmount other) 
-    {
-        if(this.currency != other.currency) throw new ArgumentException();
-
-        return this.amount == other.amount && this.currency == other.currency;
-    }
+    public bool Equals(CurrencyAmount other) => this.currency == other.currency ? this.amount == other.amount && this.currency == other.currency : throw new ArgumentException();
 }
