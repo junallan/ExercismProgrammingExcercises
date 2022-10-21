@@ -25,6 +25,19 @@ public struct CurrencyAmount
         return new CurrencyAmount(a.amount - b.amount, a.currency);
     } 
 
+    public static bool operator > (CurrencyAmount a, CurrencyAmount b)
+    {
+        if(a.currency != b.currency) throw new ArgumentException();
+
+        return a.amount > b.amount;
+    }
+    public static bool operator < (CurrencyAmount a, CurrencyAmount b)
+    {
+        if(a.currency != b.currency) throw new ArgumentException();
+
+        return a.amount < b.amount;
+    }
+
     public static bool operator == (CurrencyAmount a, CurrencyAmount b) => a.Equals(b);
     public static bool operator != (CurrencyAmount a, CurrencyAmount b) => !a.Equals(b);
 
@@ -38,11 +51,6 @@ public struct CurrencyAmount
 
         return this.amount == other.amount && this.currency == other.currency;
     }
-
-    
-    // TODO: implement comparison operators
-
-    // TODO: implement arithmetic operators
 
     // TODO: implement type conversion operators
 }
