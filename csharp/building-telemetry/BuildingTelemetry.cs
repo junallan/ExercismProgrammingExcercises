@@ -22,8 +22,24 @@ public class RemoteControlCar
 
     public bool GetTelemetryData(ref int serialNum,
         out int batteryPercentage, out int distanceDrivenInMeters)
-    {
-        throw new NotImplementedException("Please implement the RemoteControlCar.GetTelemetryData() method");
+    { 
+        batteryPercentage = this.batteryPercentage;
+        distanceDrivenInMeters = this.distanceDrivenInMeters;
+
+        if(serialNum >= this.latestSerialNum)
+        {
+            this.latestSerialNum = serialNum;
+            
+            return true;
+        }  
+        else
+        {
+            serialNum = this.latestSerialNum;
+            batteryPercentage = -1;
+            distanceDrivenInMeters =-1;
+           
+            return false;
+        }
     }
 
     public static RemoteControlCar Buy()
