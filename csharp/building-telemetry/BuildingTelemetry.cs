@@ -58,7 +58,8 @@ public class TelemetryClient
     }
 
     public string GetBatteryUsagePerMeter(int serialNum)
-    {
-        throw new NotImplementedException("Please implement the TelemetryClient.GetBatteryUsagePerMeter() method");
-    }
+        => this.car.GetTelemetryData(ref serialNum, out int batteryPercentage, out int distanceDrivenInMeters) && distanceDrivenInMeters > 0 
+                ? $"usage-per-meter={(100 - batteryPercentage) / distanceDrivenInMeters}" 
+                : "no data";
+    
 }
