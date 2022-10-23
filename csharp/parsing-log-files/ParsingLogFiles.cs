@@ -5,10 +5,7 @@ public class LogParser
 {
     public bool IsValidLine(string text)=> Regex.Match(text, @"^\[(TRC|DBG|INF|WRN|ERR|FTL)\]").Success;
 
-    public string[] SplitLogLine(string text)
-    {
-        throw new NotImplementedException($"Please implement the LogParser.SplitLogLine() method");
-    }
+    public string[] SplitLogLine(string text)=> Regex.Split(text,@"<[\^*=-]*>");
 
     public int CountQuotedPasswords(string lines)
     {
