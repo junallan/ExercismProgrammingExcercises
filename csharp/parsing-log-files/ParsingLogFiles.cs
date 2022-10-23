@@ -9,10 +9,7 @@ public class LogParser
 
     public int CountQuotedPasswords(string lines) => Regex.Matches(lines, @"\""((.)*password(.)*)\""", RegexOptions.IgnoreCase).Count; 
 
-    public string RemoveEndOfLineText(string line)
-    {
-        throw new NotImplementedException($"Please implement the LogParser.RemoveEndOfLineText() method");
-    }
+    public string RemoveEndOfLineText(string line) => Regex.Replace(line, @"end-of-line(\d)*", string.Empty);
 
     public string[] ListLinesWithPasswords(string[] lines)
     {
