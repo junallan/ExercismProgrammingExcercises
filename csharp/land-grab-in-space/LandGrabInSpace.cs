@@ -43,10 +43,7 @@ public class ClaimsHandler
         Plot.C3.X == plot.C3.X && Plot.C3.Y == plot.C3.Y &&
         Plot.C4.X == plot.C4.X && Plot.C4.Y == plot.C4.Y;
 
-    public bool IsLastClaim(Plot plot)
-    {
-        throw new NotImplementedException("Please implement the ClaimsHandler.IsLastClaim() method");
-    }
+    public bool IsLastClaim(Plot plot) => IsClaimStaked(plot);
 
     public Plot GetClaimWithLongestSide()
     {
