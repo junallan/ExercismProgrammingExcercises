@@ -38,7 +38,7 @@ public class OrmInOneGoTests
         Assert.Equal((Exception.InvalidOperationExceptionThrown, Database.State.Closed, "bad write"),
             (result, Database.DbState, Database.lastData));
     }
-/*
+
     [Fact]
     [Task(1)]
     public void Commit_bad()
@@ -83,7 +83,7 @@ public class OrmInOneGoTests
         var db = new Database();
         var orm = new Orm(db);
         Assert.False(orm.WriteSafely("bad commit"));
-    } */
+    } 
 }
 
 // **** please do not modify the Database class ****
