@@ -45,7 +45,6 @@ public class ClaimsHandler
                                                                 section.TopRight.X == plot.TopRight.X && section.TopRight.Y == plot.TopRight.Y &&
                                                                 section.BottomRight.X == plot.BottomRight.X && section.BottomRight.Y == plot.BottomRight.Y);
 
-
     public bool IsLastClaim(Plot plot)
     {
         var lastPlotItem = Plots.Last();
