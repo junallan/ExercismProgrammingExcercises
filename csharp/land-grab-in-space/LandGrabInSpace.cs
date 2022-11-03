@@ -16,16 +16,17 @@ public struct Coord
 
 public struct Plot
 {
-    public Coord C1{ get; set; }
-    public Coord C2{ get; set; }
-    public Coord C3{ get; set; }
-    public Coord C4{ get; set; }
-    public Plot(Coord c1, Coord c2, Coord c3, Coord c4)
+    public Coord TopLeft{ get; set; }
+    public Coord BottomLeft{ get; set; }
+    public Coord TopRight{ get; set; }
+    public Coord BottomRight{ get; set; }
+
+    public Plot(Coord topLeft, Coord bottomLeft, Coord topRight, Coord bottomRight)
     {
-        C1 = c1;
-        C2 = c2;
-        C3 = c3;
-        C4 = c4;       
+        TopLeft = topLeft;
+        BottomLeft = bottomLeft;
+        TopRight = topRight;
+        BottomRight = bottomRight;       
     }
 }
 
@@ -39,31 +40,17 @@ public class ClaimsHandler
         Plots.Add(plot);
     }
 
-    public bool IsClaimStaked(Plot plot)
-    {
-        bool isStaked = false;
+    public bool IsClaimStaked(Plot plot) => Plots.Any(section => section.TopLeft.X == plot.TopLeft.X && section.TopLeft.Y == plot.TopLeft.Y &&
+                                                                section.BottomLeft.X == plot.BottomLeft.X && section.BottomLeft.Y == plot.BottomLeft.Y &&
+                                                                section.TopRight.X == plot.TopRight.X && section.TopRight.Y == plot.TopRight.Y &&
+                                                                section.BottomRight.X == plot.BottomRight.X && section.BottomRight.Y == plot.BottomRight.Y);
 
-        foreach(var section in Plots)
-        {
-            if(section.C1.X == plot.C1.X && section.C1.Y == plot.C1.Y && 
-                section.C2.X == plot.C2.X && section.C2.Y == plot.C2.Y && 
-                section.C3.X == plot.C3.X && section.C3.Y == plot.C3.Y &&
-                section.C4.X == plot.C4.X && section.C4.Y == plot.C4.Y)
-            {
-                isStaked = true;
-                break;
-            }
-        }
-
-        return isStaked;
-    }
-        
 
     public bool IsLastClaim(Plot plot)
     {
         var lastPlotItem = Plots.Last();
-        return GetCoordinateLength(lastPlotItem.C1, plot.C1) == 0 && GetCoordinateLength(lastPlotItem.C2, plot.C2) == 0
-             && GetCoordinateLength(lastPlotItem.C3, plot.C3) == 0 && GetCoordinateLength(lastPlotItem.C4, plot.C4) == 0;
+        return GetCoordinateLength(lastPlotItem.TopLeft, plot.TopLeft) == 0 && GetCoordinateLength(lastPlotItem.BottomLeft, plot.BottomLeft) == 0
+             && GetCoordinateLength(lastPlotItem.TopRight, plot.TopRight) == 0 && GetCoordinateLength(lastPlotItem.BottomRight, plot.BottomRight) == 0;
     } 
 
     public Plot GetClaimWithLongestSide()
@@ -73,9 +60,9 @@ public class ClaimsHandler
 
         for(int i=0; i<Plots.Count; i++)
         {
-            if(currentLongestLength == 0) currentLongestLength = GetCoordinateLength(Plots[i].C1, Plots[i].C2);
+            if(currentLongestLength == 0) currentLongestLength = GetCoordinateLength(Plots[i].TopLeft, Plots[i].BottomLeft);
             
-            double coordinateLength = GetCoordinateLength(Plots[i].C1, Plots[i].C2);
+            double coordinateLength = GetCoordinateLength(Plots[i].TopLeft, Plots[i].BottomLeft);
             
             if(currentLongestLength < coordinateLength)
             {
@@ -84,7 +71,7 @@ public class ClaimsHandler
                 continue;
             }
 
-            coordinateLength = GetCoordinateLength(Plots[i].C1, Plots[i].C3);
+            coordinateLength = GetCoordinateLength(Plots[i].TopLeft, Plots[i].TopRight);
 
             if(currentLongestLength < coordinateLength)
             {
@@ -93,7 +80,7 @@ public class ClaimsHandler
                 continue;
             }
 
-            coordinateLength = GetCoordinateLength(Plots[i].C1, Plots[i].C4);
+            coordinateLength = GetCoordinateLength(Plots[i].TopLeft, Plots[i].BottomRight);
 
             if(currentLongestLength < coordinateLength)
             {
@@ -102,7 +89,7 @@ public class ClaimsHandler
                 continue;
             }
 
-            coordinateLength = GetCoordinateLength(Plots[i].C2, Plots[i].C3);
+            coordinateLength = GetCoordinateLength(Plots[i].BottomLeft, Plots[i].TopRight);
 
             if(currentLongestLength < coordinateLength)
             {
@@ -111,7 +98,7 @@ public class ClaimsHandler
                 continue;
             }
 
-            coordinateLength = GetCoordinateLength(Plots[i].C2, Plots[i].C4);
+            coordinateLength = GetCoordinateLength(Plots[i].BottomLeft, Plots[i].BottomRight);
 
             if(currentLongestLength < coordinateLength)
             {
@@ -120,7 +107,7 @@ public class ClaimsHandler
                 continue;
             }
 
-            coordinateLength = GetCoordinateLength(Plots[i].C3, Plots[i].C4);
+            coordinateLength = GetCoordinateLength(Plots[i].TopRight, Plots[i].BottomRight);
 
             if(currentLongestLength < coordinateLength)
             {
