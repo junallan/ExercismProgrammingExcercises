@@ -63,15 +63,10 @@ public class ClaimsHandler
         return longestSidePlot;
     }
 
-    private double GetLongestSide(Plot plot)
-    {
-        var topSide = GetCoordinateLength(plot.TopLeft, plot.TopRight);
-        var bottomSide = GetCoordinateLength(plot.BottomLeft, plot.BottomRight);
-        var leftSide = GetCoordinateLength(plot.TopLeft, plot.BottomLeft);
-        var rightSide = GetCoordinateLength(plot.TopRight, plot.BottomRight);
-
-        return new[]{ topSide, bottomSide, leftSide, rightSide}.Max();
-    }
+    private double GetLongestSide(Plot plot) => new[]{  GetCoordinateLength(plot.TopLeft, plot.TopRight),
+                                                        GetCoordinateLength(plot.BottomLeft, plot.BottomRight),
+                                                        GetCoordinateLength(plot.TopLeft, plot.BottomLeft),
+                                                        GetCoordinateLength(plot.TopRight, plot.BottomRight)}.Max();
 
     private double GetCoordinateLength(Coord coord1, Coord coord2)
     {
