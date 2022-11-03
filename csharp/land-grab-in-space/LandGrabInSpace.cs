@@ -46,69 +46,31 @@ public class ClaimsHandler
 
     public Plot GetClaimWithLongestSide()
     {  
-        int longestSideIndex = 0;
+        Plot longestSidePlot = Plots.First();
         double currentLongestLength = 0;
 
-        for(int i=0; i<Plots.Count; i++)
+        foreach(var plot in Plots)
         {
-            if(currentLongestLength == 0) currentLongestLength = GetCoordinateLength(Plots.ElementAt(i).TopLeft, Plots.ElementAt(i).BottomLeft);
-            
-            double coordinateLength = GetCoordinateLength(Plots.ElementAt(i).TopLeft, Plots.ElementAt(i).BottomLeft);
-            
-            if(currentLongestLength < coordinateLength)
+            double plotLongestSide = GetLongestSide(plot);
+
+            if((currentLongestLength == 0) || (currentLongestLength < plotLongestSide))
             {
-                currentLongestLength = coordinateLength;
-                longestSideIndex = i;
-                continue;
-            }
-
-            coordinateLength = GetCoordinateLength(Plots.ElementAt(i).TopLeft, Plots.ElementAt(i).TopRight);
-
-            if(currentLongestLength < coordinateLength)
-            {
-                currentLongestLength = coordinateLength;
-                longestSideIndex = i;
-                continue;
-            }
-
-            coordinateLength = GetCoordinateLength(Plots.ElementAt(i).TopLeft, Plots.ElementAt(i).BottomRight);
-
-            if(currentLongestLength < coordinateLength)
-            {
-                currentLongestLength = coordinateLength;
-                longestSideIndex = i;
-                continue;
-            }
-
-            coordinateLength = GetCoordinateLength(Plots.ElementAt(i).BottomLeft, Plots.ElementAt(i).TopRight);
-
-            if(currentLongestLength < coordinateLength)
-            {
-                currentLongestLength = coordinateLength;
-                longestSideIndex = i;
-                continue;
-            }
-
-            coordinateLength = GetCoordinateLength(Plots.ElementAt(i).BottomLeft, Plots.ElementAt(i).BottomRight);
-
-            if(currentLongestLength < coordinateLength)
-            {
-                currentLongestLength = coordinateLength;
-                longestSideIndex = i;
-                continue;
-            }
-
-            coordinateLength = GetCoordinateLength(Plots.ElementAt(i).TopRight, Plots.ElementAt(i).BottomRight);
-
-            if(currentLongestLength < coordinateLength)
-            {
-                currentLongestLength = coordinateLength;
-                longestSideIndex = i;
-                continue;
+                currentLongestLength = plotLongestSide;
+                longestSidePlot = plot;
             }
         }
        
-        return Plots.ElementAt(longestSideIndex);
+        return longestSidePlot;
+    }
+
+    private double GetLongestSide(Plot plot)
+    {
+        var topSide = GetCoordinateLength(plot.TopLeft, plot.TopRight);
+        var bottomSide = GetCoordinateLength(plot.BottomLeft, plot.BottomRight);
+        var leftSide = GetCoordinateLength(plot.TopLeft, plot.BottomLeft);
+        var rightSide = GetCoordinateLength(plot.TopRight, plot.BottomRight);
+
+        return new[]{ topSide, bottomSide, leftSide, rightSide}.Max();
     }
 
     private double GetCoordinateLength(Coord coord1, Coord coord2)
