@@ -68,11 +68,5 @@ public class ClaimsHandler
                                                         GetCoordinateLength(plot.TopLeft, plot.BottomLeft),
                                                         GetCoordinateLength(plot.TopRight, plot.BottomRight)}.Max();
 
-    private double GetCoordinateLength(Coord coord1, Coord coord2)
-    {
-        int xPlane = coord2.X-coord1.X;
-        int yPlane = coord2.Y-coord1.Y;
-
-        return Math.Sqrt(Math.Pow(xPlane, 2) + Math.Pow(yPlane, 2));
-    }
+    private double GetCoordinateLength(Coord coord1, Coord coord2) => Math.Sqrt(Math.Pow(coord2.X - coord1.X, 2) + Math.Pow(coord2.Y - coord1.Y, 2));
 }
