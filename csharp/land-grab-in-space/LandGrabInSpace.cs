@@ -53,7 +53,7 @@ public class ClaimsHandler
         {
             double plotLongestSide = GetLongestSide(plot);
 
-            if((currentLongestLength == 0) || (currentLongestLength < plotLongestSide))
+            if(currentLongestLength < plotLongestSide)
             {
                 currentLongestLength = plotLongestSide;
                 longestSidePlot = plot;
