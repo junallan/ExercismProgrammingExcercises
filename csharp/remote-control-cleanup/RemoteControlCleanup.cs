@@ -1,7 +1,7 @@
 public class RemoteControlCar
 {
     public string CurrentSponsor { get; private set; }
-    public TelemetryControl Telemetry => new TelemetryControl(this);
+    internal TelemetryControl Telemetry => new TelemetryControl(this);
 
     private Speed currentSpeed;
    
