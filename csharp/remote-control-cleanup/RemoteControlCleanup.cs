@@ -57,33 +57,37 @@ public class RemoteControlCar
     {
         currentSpeed = speed;
     }
-}
 
-public enum SpeedUnits
-{
-    MetersPerSecond,
-    CentimetersPerSecond
-}
-
-public struct Speed
-{
-    public decimal Amount { get; }
-    public SpeedUnits SpeedUnits { get; }
-
-    public Speed(decimal amount, SpeedUnits speedUnits)
+    protected struct Speed
     {
-        Amount = amount;
-        SpeedUnits = speedUnits;
-    }
+        public decimal Amount { get; }
+        public SpeedUnits SpeedUnits { get; }
 
-    public override string ToString()
-    {
-        string unitsString = "meters per second";
-        if (SpeedUnits == SpeedUnits.CentimetersPerSecond)
+        public Speed(decimal amount, SpeedUnits speedUnits)
         {
-            unitsString = "centimeters per second";
+            Amount = amount;
+            SpeedUnits = speedUnits;
         }
 
-        return Amount + " " + unitsString;
+        public override string ToString()
+        {
+            string unitsString = "meters per second";
+            if (SpeedUnits == SpeedUnits.CentimetersPerSecond)
+            {
+                unitsString = "centimeters per second";
+            }
+
+            return Amount + " " + unitsString;
+        }
+    }
+
+    protected enum SpeedUnits
+    {
+        MetersPerSecond,
+        CentimetersPerSecond
     }
 }
+
+
+
+
