@@ -19,10 +19,8 @@ public class RemoteControlCar
 
         }
 
-        public bool SelfTest()
-        {
-            return true;
-        }
+        public bool SelfTest() => true;
+        
 
         public void ShowSponsor(string sponsorName)
         {
@@ -31,11 +29,7 @@ public class RemoteControlCar
 
         public void SetSpeed(decimal amount, string unitsString)
         {
-            SpeedUnits speedUnits = SpeedUnits.MetersPerSecond;
-            if (unitsString == "cps")
-            {
-                speedUnits = SpeedUnits.CentimetersPerSecond;
-            }
+            SpeedUnits speedUnits = unitsString == "cps" ? SpeedUnits.CentimetersPerSecond : SpeedUnits.MetersPerSecond;
 
             _remoteControlCar.SetSpeed(new Speed(amount, speedUnits));
         }
@@ -80,12 +74,12 @@ public class RemoteControlCar
             return Amount + " " + unitsString;
         }
     }
+}
 
-    protected enum SpeedUnits
-    {
-        MetersPerSecond,
-        CentimetersPerSecond
-    }
+public enum SpeedUnits
+{
+    MetersPerSecond,
+    CentimetersPerSecond
 }
 
 
