@@ -18,7 +18,7 @@ public class Authenticator
 
     private Identity admin;
 
-    private IDictionary<string, Identity> developers
+    private readonly IDictionary<string, Identity> developers
         = new Dictionary<string, Identity>
         {
             ["Bertrand"] = new Identity
