@@ -42,7 +42,7 @@ public class Authenticator
 
     public IDictionary<string, Identity> GetDevelopers()
     {
-        return developers;
+        return developers.Clone();;
     }
 }
 
