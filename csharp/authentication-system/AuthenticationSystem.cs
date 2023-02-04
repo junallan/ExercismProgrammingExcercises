@@ -13,7 +13,7 @@ public class Authenticator
 
     public Authenticator(Identity admin)
     {
-        this.admin = admin;
+        this.admin = admin.Clone();
     }
 
     private Identity admin;
