@@ -4,11 +4,11 @@ public class Authenticator
 {
     private class EyeColor
     {
-        public string Blue = "blue";
-        public string Green = "green";
-        public string Brown = "brown";
-        public string Hazel = "hazel";
-        public string Brey = "grey";
+        public const string Blue = "blue";
+        public const string Green = "green";
+        public const string Brown = "brown";
+        public const string Hazel = "hazel";
+        public const string Brey = "grey";
     }
 
     public Authenticator(Identity admin)
