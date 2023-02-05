@@ -5,12 +5,16 @@ type Approval =
     | No
     | Maybe
 
-// TODO: please define the 'Cuisine' discriminated union type
 type Cuisine =
     | Korean
     | Turkish
 
 // TODO: please define the 'Genre' discriminated union type
+type Genre =
+    | Crime
+    | Horror
+    | Romance
+    | Thriller
 
 // TODO: please define the 'Activity' discriminated union type
 
