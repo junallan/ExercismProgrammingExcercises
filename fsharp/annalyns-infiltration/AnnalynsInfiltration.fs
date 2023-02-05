@@ -9,4 +9,4 @@ let canSignalPrisoner (archerIsAwake: bool) (prisonerIsAwake: bool): bool =
     prisonerIsAwake && not archerIsAwake
 
 let canFreePrisoner (knightIsAwake: bool) (archerIsAwake: bool) (prisonerIsAwake: bool) (petDogIsPresent: bool): bool =
-    failwith "Please implement the 'canFreePrisoner' function"
+    (petDogIsPresent && not archerIsAwake) || (not petDogIsPresent && prisonerIsAwake && not knightIsAwake && not archerIsAwake)
