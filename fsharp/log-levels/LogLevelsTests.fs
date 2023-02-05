@@ -24,7 +24,7 @@ let ``Message with leading and trailing white space``() =
     message "[WARNING]:   \tTimezone not set  \r\n"
     |> should equal "Timezone not set"
 
-(*[<Fact>]
+[<Fact>]
 [<Task(2)>]
 let ``Error log level``() = logLevel "[ERROR]: Disk full" |> should equal "error"
 
@@ -36,7 +36,7 @@ let ``Warning log level``() = logLevel "[WARNING]: Unsafe password" |> should eq
 [<Task(2)>]
 let ``Info log level``() = logLevel "[INFO]: Timezone changed" |> should equal "info"
 
-[<Fact>]
+(*[<Fact>]
 [<Task(3)>]
 let ``Error reformat``() = reformat "[ERROR]: Segmentation fault" |> should equal "Segmentation fault (error)"
 
