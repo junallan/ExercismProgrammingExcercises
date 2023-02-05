@@ -24,12 +24,12 @@ type Activity =
 
 let rateActivity (activity: Activity): Approval = 
     match activity with
-    | BoardGame                       -> No
-    | Chill                           -> No
-    | Movie Genre.Romance             -> Yes
-    | Movie _                         -> No
-    | Restaurant Cuisine.Korean       -> Yes
-    | Restaurant Cuisine.Turkish      -> Maybe
-    | Walk activity when activity < 3 -> Yes
-    | Walk activity when activity < 5 -> Maybe
-    | _                               -> No 
+    | BoardGame           -> No
+    | Chill               -> No
+    | Movie Romance       -> Yes
+    | Movie _             -> No
+    | Restaurant Korean   -> Yes
+    | Restaurant Turkish  -> Maybe
+    | Walk km when km < 3 -> Yes
+    | Walk km when km < 5 -> Maybe
+    | _                   -> No 
