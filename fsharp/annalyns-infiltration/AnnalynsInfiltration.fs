@@ -3,7 +3,7 @@ module AnnalynsInfiltration
 let canFastAttack (knightIsAwake: bool): bool = not knightIsAwake
 
 let canSpy (knightIsAwake: bool) (archerIsAwake: bool) (prisonerIsAwake: bool): bool =
-    failwith "Please implement the 'canSpy' function"
+    knightIsAwake || archerIsAwake || prisonerIsAwake
 
 let canSignalPrisoner (archerIsAwake: bool) (prisonerIsAwake: bool): bool =
     failwith "Please implement the 'canSignalPrisoner' function"
