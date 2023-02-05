@@ -9,12 +9,12 @@ open LuciansLusciousLasagna
 [<Fact>]
 [<Task(1)>]
 let ``Expected minutes in oven`` () = expectedMinutesInOven |> should equal 40
-(*
+
 [<Fact>]
 [<Task(2)>]
  let ``Remaining minutes in oven`` () =
     remainingMinutesInOven 25 |> should equal 15
-
+(*
 [<Fact>]
 [<Task(3)>]
 let ``Preparation time in minutes for one layer`` () =
