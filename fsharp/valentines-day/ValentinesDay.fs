@@ -1,13 +1,14 @@
 module ValentinesDay
 
-// TODO: please define the 'Approval' discriminated union type
 type Approval =
     | Yes
     | No
     | Maybe
 
-
 // TODO: please define the 'Cuisine' discriminated union type
+type Cuisine =
+    | Korean
+    | Turkish
 
 // TODO: please define the 'Genre' discriminated union type
 
