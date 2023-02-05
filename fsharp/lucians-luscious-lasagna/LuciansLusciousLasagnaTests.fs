@@ -14,7 +14,7 @@ let ``Expected minutes in oven`` () = expectedMinutesInOven |> should equal 40
 [<Task(2)>]
  let ``Remaining minutes in oven`` () =
     remainingMinutesInOven 25 |> should equal 15
-(*
+
 [<Fact>]
 [<Task(3)>]
 let ``Preparation time in minutes for one layer`` () =
@@ -24,7 +24,7 @@ let ``Preparation time in minutes for one layer`` () =
 [<Task(3)>]
 let ``Preparation time in minutes for multiple layers`` () =
     preparationTimeInMinutes 4 |> should equal 8
-
+(*
 [<Fact>]
 [<Task(4)>]
 let ``Elapsed time in minutes for one layer`` () =
