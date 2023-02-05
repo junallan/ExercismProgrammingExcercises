@@ -24,7 +24,7 @@ let ``Preparation time in minutes for one layer`` () =
 [<Task(3)>]
 let ``Preparation time in minutes for multiple layers`` () =
     preparationTimeInMinutes 4 |> should equal 8
-(*
+
 [<Fact>]
 [<Task(4)>]
 let ``Elapsed time in minutes for one layer`` () =
@@ -33,4 +33,4 @@ let ``Elapsed time in minutes for one layer`` () =
 [<Fact>]
 [<Task(4)>]
 let ``Elapsed time in minutes for multiple layers`` () =
-    elapsedTimeInMinutes 4 8 |> should equal 16 *)
+    elapsedTimeInMinutes 4 8 |> should equal 16 

@@ -7,4 +7,4 @@ let remainingMinutesInOven mintesInOven = expectedMinutesInOven - mintesInOven
 // TODO: define the 'preparationTimeInMinutes' function
 let preparationTimeInMinutes numberOfLayers = numberOfLayers * 2
 // TODO: define the 'elapsedTimeInMinutes' function
-let elapsedTimeInMinutes = 0
+let elapsedTimeInMinutes numberOfLayers numberOfMinutes= preparationTimeInMinutes numberOfLayers + numberOfMinutes
