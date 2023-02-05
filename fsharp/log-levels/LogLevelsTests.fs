@@ -36,7 +36,7 @@ let ``Warning log level``() = logLevel "[WARNING]: Unsafe password" |> should eq
 [<Task(2)>]
 let ``Info log level``() = logLevel "[INFO]: Timezone changed" |> should equal "info"
 
-(*[<Fact>]
+[<Fact>]
 [<Task(3)>]
 let ``Error reformat``() = reformat "[ERROR]: Segmentation fault" |> should equal "Segmentation fault (error)"
 
@@ -54,4 +54,4 @@ let ``Info reformat``() = reformat "[INFO]: Disk defragmented" |> should equal "
 let ``Reformat with leading and trailing white space``() =
     reformat "[ERROR]: \t Corrupt disk\t \t \r\n"
     |> should equal "Corrupt disk (error)"
- *)
+ 
