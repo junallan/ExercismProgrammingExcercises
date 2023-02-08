@@ -1,4 +1,4 @@
-public static class RedRemoteControlCarTeam
+namespace RedRemoteControlCarTeam
 {
     public class RemoteControlCar
     {
@@ -29,7 +29,7 @@ public static class RedRemoteControlCarTeam
     }
 }
 
-public static class BlueRemoteControlCarTeam
+namespace BlueRemoteControlCarTeam
 {
     public class RemoteControlCar
     {
