@@ -33,7 +33,7 @@ let ``Leucine RNA sequence 2`` () =
 let ``Serine RNA sequence 1`` () =
     proteins "UCU" |> should equal ["Serine"]
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Serine RNA sequence 2`` () =
     proteins "UCC" |> should equal ["Serine"]
 
