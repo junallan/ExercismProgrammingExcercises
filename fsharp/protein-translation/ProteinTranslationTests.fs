@@ -21,7 +21,7 @@ let ``Phenylalanine RNA sequence 1`` () =
 let ``Phenylalanine RNA sequence 2`` () =
     proteins "UUC" |> should equal ["Phenylalanine"]
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Leucine RNA sequence 1`` () =
     proteins "UUA" |> should equal ["Leucine"]
 
