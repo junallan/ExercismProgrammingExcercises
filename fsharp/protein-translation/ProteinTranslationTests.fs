@@ -57,7 +57,7 @@ let ``Tyrosine RNA sequence 2`` () =
 let ``Cysteine RNA sequence 1`` () =
     proteins "UGU" |> should equal ["Cysteine"]
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Cysteine RNA sequence 2`` () =
     proteins "UGC" |> should equal ["Cysteine"]
 
