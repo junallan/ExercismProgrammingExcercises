@@ -13,7 +13,7 @@ let ``Empty RNA sequence results in no proteins`` () =
 let ``Methionine RNA sequence`` () =
     proteins "AUG" |> should equal ["Methionine"]
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Phenylalanine RNA sequence 1`` () =
     proteins "UUU" |> should equal ["Phenylalanine"]
 
