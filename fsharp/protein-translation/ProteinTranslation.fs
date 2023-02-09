@@ -6,4 +6,5 @@ let proteins rna = match rna with
                    | "UUA" | "UUG" -> ["Leucine"]
                    | "UCU" | "UCC" | "UCA" | "UCG" -> ["Serine"]
                    | "UAU" | "UAC" -> ["Tyrosine"]
+                   | "UGU" -> ["Cysteine"]
                    | _ -> []
