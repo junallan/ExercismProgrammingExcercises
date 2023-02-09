@@ -2,5 +2,5 @@ module ProteinTranslation
 
 let proteins rna = match rna with
                    | "AUG" -> ["Methionine"]
-                   | "UUU" -> ["Phenylalanine"]
+                   | "UUU" | "UUC" -> ["Phenylalanine"]
                    | _ -> []
