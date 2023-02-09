@@ -1,6 +1,3 @@
-using Red = RedRemoteControlCarTeam;
-using Blue = BlueRemoteControlCarTeam;
-
 namespace RedRemoteControlCarTeam
 {
     public class RemoteControlCar
@@ -32,8 +29,6 @@ namespace RedRemoteControlCarTeam
     }
 }
 
-
-
 namespace BlueRemoteControlCarTeam
 {
     public class RemoteControlCar
@@ -62,6 +57,9 @@ namespace BlueRemoteControlCarTeam
 
 namespace Combined
 {
+    using Red = RedRemoteControlCarTeam;
+    using Blue = BlueRemoteControlCarTeam;
+
     public static class CarBuilder
     {
         public static Red.RemoteControlCar BuildRed()
@@ -83,5 +81,4 @@ namespace Combined
             );
         }
     }
-
 }
