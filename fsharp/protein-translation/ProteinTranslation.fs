@@ -1,3 +1,5 @@
 module ProteinTranslation
 
-let proteins rna = ""
+let proteins rna = match rna with
+                   | "AUG" -> ["Methionine"]
+                   | _ -> []

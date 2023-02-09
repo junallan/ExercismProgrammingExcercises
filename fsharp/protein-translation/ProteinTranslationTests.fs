@@ -9,7 +9,7 @@ open ProteinTranslation
 let ``Empty RNA sequence results in no proteins`` () =
     proteins "" |> should be Empty
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Methionine RNA sequence`` () =
     proteins "AUG" |> should equal ["Methionine"]
 
