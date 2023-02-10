@@ -2,6 +2,9 @@ using System;
 
 public class DndCharacter
 {
+    public const int InitialHitPoint = 10;
+    public const int MinScore = 3;
+    public const int MaxScore = 18;
     public int Strength { get; }
     public int Dexterity { get; }
     public int Constitution { get; }
@@ -18,12 +21,12 @@ public class DndCharacter
         Intelligence = Ability();
         Wisdom = Ability();
         Charisma = Ability();
-        Hitpoints = 10 + Modifier(Constitution);
+        Hitpoints = InitialHitPoint + Modifier(Constitution);
     }
     public static int Modifier(int score)
     {
       decimal converstedScore = score;
-      decimal value = Decimal.Divide(converstedScore - 10m,  2m);
+      decimal value = Decimal.Divide(converstedScore - InitialHitPoint,  2m);
       MidpointRounding roundType = value > 0 ? MidpointRounding.ToZero : MidpointRounding.AwayFromZero;
       
       return (int)decimal.Round(value, roundType);
@@ -31,7 +34,7 @@ public class DndCharacter
 
     public static int Ability() 
     {
-        return new Random().Next(3,19);
+        return new Random().Next(MinScore, MaxScore);
     }
 
     public static DndCharacter Generate()
