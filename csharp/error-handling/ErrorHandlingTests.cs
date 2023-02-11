@@ -25,7 +25,7 @@ public class ErrorHandlingTests
 
     // Read more about out parameters here:
     // https://msdn.microsoft.com/en-us/library/t3c3bfhx.aspx?f=255&MSPPError=-2147217396
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void ReturnWithOutParameter()
     {
         int result;
