@@ -15,6 +15,7 @@ public static class ErrorHandling
 
     public static void DisposableResourcesAreDisposedWhenExceptionIsThrown(IDisposable disposableObject)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        disposableObject.Dispose();
+        throw new Exception();
     }
 }
