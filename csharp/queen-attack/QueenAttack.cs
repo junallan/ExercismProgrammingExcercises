@@ -21,6 +21,7 @@ public static class QueenAttack
 
     public static Queen Create(int row, int column)
     {
+        if(row < 0 || column < 0) throw new ArgumentOutOfRangeException();
         return new Queen(row, column);
     }
 }

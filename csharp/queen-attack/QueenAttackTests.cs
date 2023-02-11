@@ -9,7 +9,7 @@ public class QueenAttackTests
         var actual = QueenAttack.Create(2, 2);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Queen_must_have_positive_row()
     {
         Assert.Throws<ArgumentOutOfRangeException>(() => QueenAttack.Create(-2, 2));
