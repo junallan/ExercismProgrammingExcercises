@@ -18,7 +18,12 @@ public static class QueenAttack
 {
     public static bool CanAttack(Queen white, Queen black)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return (white, black) switch
+        {
+            (Queen w, Queen b) when w.Column == b.Column || w.Row == b.Row                   => true,
+            (Queen w, Queen b) when Math.Abs(w.Column - b.Column) == Math.Abs(w.Row - b.Row) => true,
+            _                                                                                => false
+        };
     }
 
     public static Queen Create(int row, int column)
