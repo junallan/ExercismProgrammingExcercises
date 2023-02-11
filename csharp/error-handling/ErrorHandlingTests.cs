@@ -13,7 +13,7 @@ public class ErrorHandlingTests
 
     // Read more about nullable types here:
     // https://msdn.microsoft.com/en-us/library/1t3y8s4s.aspx?f=255&MSPPError=-2147217396
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void ReturnNullableType()
     {
         var successfulResult = ErrorHandling.HandleErrorByReturningNullableType("1");
