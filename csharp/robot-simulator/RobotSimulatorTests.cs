@@ -150,7 +150,7 @@ public class RobotSimulatorTests
         Assert.Equal(4, sut.Y);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Follow_series_of_instructions_moving_west_and_north()
     {
         var sut = new RobotSimulator(Direction.North, 0, 0);
@@ -160,7 +160,7 @@ public class RobotSimulatorTests
         Assert.Equal(1, sut.Y);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Follow_series_of_instructions_moving_west_and_south()
     {
         var sut = new RobotSimulator(Direction.East, 2, -7);
@@ -170,7 +170,7 @@ public class RobotSimulatorTests
         Assert.Equal(-8, sut.Y);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Follow_series_of_instructions_moving_east_and_north()
     {
         var sut = new RobotSimulator(Direction.South, 8, 4);

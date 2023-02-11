@@ -47,37 +47,24 @@ public class RobotSimulator
 
     public void Move(string instructions)
     {
-        if(instructions.Equals("R") || instructions.Equals("L"))
+        foreach(char movement in instructions)
         {
-            _direction = instructions switch {
-                "R" when _direction == Direction.North =>  Direction.East,
-                "R" when _direction == Direction.East =>  Direction.South,
-                "R" when _direction == Direction.South =>  Direction.West,
-                "R" when _direction == Direction.West =>  Direction.North,
-                "L" when _direction == Direction.North =>  Direction.West,
-                "L" when _direction == Direction.East =>  Direction.North,
-                "L" when _direction == Direction.South =>  Direction.East,
-                "L" when _direction == Direction.West =>  Direction.South,
-                _ => _direction
+            (_direction, _x, _y) = movement switch{
+                'R' when _direction == Direction.North  =>  (Direction.East, _x, _y),
+                'R' when _direction == Direction.East   => (Direction.South, _x, _y),
+                'R' when _direction == Direction.South  =>  (Direction.West, _x, _y),
+                'R' when _direction == Direction.West   =>  (Direction.North, _x, _y),
+                'L' when _direction == Direction.North  =>  (Direction.West, _x, _y),
+                'L' when _direction == Direction.East   =>  (Direction.North, _x, _y),
+                'L' when _direction == Direction.South  =>  (Direction.East, _x, _y),
+                'L' when _direction == Direction.West   =>  (Direction.South, _x, _y),
+                'A' when _direction == Direction.North  => (_direction, _x, _y + 1),
+                'A' when _direction == Direction.South  => (_direction, _x, _y - 1),
+                'A' when _direction == Direction.East   => (_direction, _x + 1, _y),
+                'A' when _direction == Direction.West   => (_direction, _x - 1, _y),
+                _                                       =>  (_direction, _x, _y)           
             };
-        }
-        else
-        {
-            switch (_direction)
-            {
-                case Direction.North:
-                    _y += 1;    
-                    break;
-                case Direction.South:
-                    _y -= 1;
-                    break;
-                case Direction.East:
-                    _x += 1;
-                    break;
-                case Direction.West:
-                    _x -= 1;
-                    break;
-            }
+
         }
     }
 }
