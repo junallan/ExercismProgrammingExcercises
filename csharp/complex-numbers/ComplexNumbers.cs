@@ -45,7 +45,13 @@ public struct ComplexNumber
 
     public ComplexNumber Sub(ComplexNumber other)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        var c = other.Real();
+        var d = other.Imaginary();
+
+        var real = _a - c;
+        var imaginary = _b - d;
+
+        return new ComplexNumber(real, imaginary);
     }
 
     public ComplexNumber Div(ComplexNumber other)
