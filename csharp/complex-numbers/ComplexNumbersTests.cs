@@ -197,32 +197,32 @@ public class ComplexNumbersTests
         Assert.Equal(5, sut.Abs());
     }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Conjugate_a_purely_real_number()
-    // {
-    //     var sut = new ComplexNumber(5, 0);
-    //     var expected = new ComplexNumber(5, 0);
-    //     Assert.Equal(expected.Real(), sut.Conjugate().Real(), precision: 7);
-    //     Assert.Equal(expected.Imaginary(), sut.Conjugate().Imaginary(), precision: 7);
-    // }
+    [Fact]
+    public void Conjugate_a_purely_real_number()
+    {
+        var sut = new ComplexNumber(5, 0);
+        var expected = new ComplexNumber(5, 0);
+        Assert.Equal(expected.Real(), sut.Conjugate().Real(), precision: 7);
+        Assert.Equal(expected.Imaginary(), sut.Conjugate().Imaginary(), precision: 7);
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Conjugate_a_purely_imaginary_number()
-    // {
-    //     var sut = new ComplexNumber(0, 5);
-    //     var expected = new ComplexNumber(0, -5);
-    //     Assert.Equal(expected.Real(), sut.Conjugate().Real(), precision: 7);
-    //     Assert.Equal(expected.Imaginary(), sut.Conjugate().Imaginary(), precision: 7);
-    // }
+    [Fact]
+    public void Conjugate_a_purely_imaginary_number()
+    {
+        var sut = new ComplexNumber(0, 5);
+        var expected = new ComplexNumber(0, -5);
+        Assert.Equal(expected.Real(), sut.Conjugate().Real(), precision: 7);
+        Assert.Equal(expected.Imaginary(), sut.Conjugate().Imaginary(), precision: 7);
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Conjugate_a_number_with_real_and_imaginary_part()
-    // {
-    //     var sut = new ComplexNumber(1, 1);
-    //     var expected = new ComplexNumber(1, -1);
-    //     Assert.Equal(expected.Real(), sut.Conjugate().Real(), precision: 7);
-    //     Assert.Equal(expected.Imaginary(), sut.Conjugate().Imaginary(), precision: 7);
-    // }
+    [Fact]
+    public void Conjugate_a_number_with_real_and_imaginary_part()
+    {
+        var sut = new ComplexNumber(1, 1);
+        var expected = new ComplexNumber(1, -1);
+        Assert.Equal(expected.Real(), sut.Conjugate().Real(), precision: 7);
+        Assert.Equal(expected.Imaginary(), sut.Conjugate().Imaginary(), precision: 7);
+    }
 
     // [Fact(Skip = "Remove this Skip property to run this test")]
     // public void Eulers_identity_formula()

@@ -68,11 +68,7 @@ public struct ComplexNumber
 
     public double Abs() => Math.Sqrt(Math.Pow(_a,2) + Math.Pow(_b,2));
     
-
-    public ComplexNumber Conjugate()
-    {
-        throw new NotImplementedException("You need to implement this function.");
-    }
+    public ComplexNumber Conjugate() => new ComplexNumber(_a, -_b);
     
     public ComplexNumber Exp()
     {
