@@ -10,40 +10,40 @@ public class ComplexNumbersTests
         Assert.Equal(1, sut.Real());
     }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Real_part_of_a_purely_imaginary_number()
-    // {
-    //     var sut = new ComplexNumber(0, 1);
-    //     Assert.Equal(0, sut.Real());
-    // }
+    [Fact]
+    public void Real_part_of_a_purely_imaginary_number()
+    {
+        var sut = new ComplexNumber(0, 1);
+        Assert.Equal(0, sut.Real());
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Real_part_of_a_number_with_real_and_imaginary_part()
-    // {
-    //     var sut = new ComplexNumber(1, 2);
-    //     Assert.Equal(1, sut.Real());
-    // }
+    [Fact]
+    public void Real_part_of_a_number_with_real_and_imaginary_part()
+    {
+        var sut = new ComplexNumber(1, 2);
+        Assert.Equal(1, sut.Real());
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Imaginary_part_of_a_purely_real_number()
-    // {
-    //     var sut = new ComplexNumber(1, 0);
-    //     Assert.Equal(0, sut.Imaginary());
-    // }
+    [Fact]
+    public void Imaginary_part_of_a_purely_real_number()
+    {
+        var sut = new ComplexNumber(1, 0);
+        Assert.Equal(0, sut.Imaginary());
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Imaginary_part_of_a_purely_imaginary_number()
-    // {
-    //     var sut = new ComplexNumber(0, 1);
-    //     Assert.Equal(1, sut.Imaginary());
-    // }
+    [Fact]
+    public void Imaginary_part_of_a_purely_imaginary_number()
+    {
+        var sut = new ComplexNumber(0, 1);
+        Assert.Equal(1, sut.Imaginary());
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Imaginary_part_of_a_number_with_real_and_imaginary_part()
-    // {
-    //     var sut = new ComplexNumber(1, 2);
-    //     Assert.Equal(2, sut.Imaginary());
-    // }
+    [Fact]
+    public void Imaginary_part_of_a_number_with_real_and_imaginary_part()
+    {
+        var sut = new ComplexNumber(1, 2);
+        Assert.Equal(2, sut.Imaginary());
+    }
 
     // [Fact(Skip = "Remove this Skip property to run this test")]
     // public void Imaginary_unit()

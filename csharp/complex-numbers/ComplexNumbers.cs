@@ -18,7 +18,7 @@ public struct ComplexNumber
 
     public double Imaginary()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return _imaginary;
     }
 
     public ComplexNumber Mul(ComplexNumber other)
