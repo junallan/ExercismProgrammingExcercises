@@ -135,32 +135,32 @@ public class ComplexNumbersTests
         Assert.Equal(expected.Imaginary(), sut.Mul(new ComplexNumber(3, 4)).Imaginary(), precision: 7);
     }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Divide_purely_real_numbers()
-    // {
-    //     var sut = new ComplexNumber(1, 0);
-    //     var expected = new ComplexNumber(0.5, 0);
-    //     Assert.Equal(expected.Real(), sut.Div(new ComplexNumber(2, 0)).Real(), precision: 7);
-    //     Assert.Equal(expected.Imaginary(), sut.Div(new ComplexNumber(2, 0)).Imaginary(), precision: 7);
-    // }
+    [Fact]
+    public void Divide_purely_real_numbers()
+    {
+        var sut = new ComplexNumber(1, 0);
+        var expected = new ComplexNumber(0.5, 0);
+        Assert.Equal(expected.Real(), sut.Div(new ComplexNumber(2, 0)).Real(), precision: 7);
+        Assert.Equal(expected.Imaginary(), sut.Div(new ComplexNumber(2, 0)).Imaginary(), precision: 7);
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Divide_purely_imaginary_numbers()
-    // {
-    //     var sut = new ComplexNumber(0, 1);
-    //     var expected = new ComplexNumber(0.5, 0);
-    //     Assert.Equal(expected.Real(), sut.Div(new ComplexNumber(0, 2)).Real(), precision: 7);
-    //     Assert.Equal(expected.Imaginary(), sut.Div(new ComplexNumber(0, 2)).Imaginary(), precision: 7);
-    // }
+    [Fact]
+    public void Divide_purely_imaginary_numbers()
+    {
+        var sut = new ComplexNumber(0, 1);
+        var expected = new ComplexNumber(0.5, 0);
+        Assert.Equal(expected.Real(), sut.Div(new ComplexNumber(0, 2)).Real(), precision: 7);
+        Assert.Equal(expected.Imaginary(), sut.Div(new ComplexNumber(0, 2)).Imaginary(), precision: 7);
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Divide_numbers_with_real_and_imaginary_part()
-    // {
-    //     var sut = new ComplexNumber(1, 2);
-    //     var expected = new ComplexNumber(0.44, 0.08);
-    //     Assert.Equal(expected.Real(), sut.Div(new ComplexNumber(3, 4)).Real(), precision: 7);
-    //     Assert.Equal(expected.Imaginary(), sut.Div(new ComplexNumber(3, 4)).Imaginary(), precision: 7);
-    // }
+    [Fact]
+    public void Divide_numbers_with_real_and_imaginary_part()
+    {
+        var sut = new ComplexNumber(1, 2);
+        var expected = new ComplexNumber(0.44, 0.08);
+        Assert.Equal(expected.Real(), sut.Div(new ComplexNumber(3, 4)).Real(), precision: 7);
+        Assert.Equal(expected.Imaginary(), sut.Div(new ComplexNumber(3, 4)).Imaginary(), precision: 7);
+    }
 
     // [Fact(Skip = "Remove this Skip property to run this test")]
     // public void Absolute_value_of_a_positive_purely_real_number()

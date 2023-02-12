@@ -56,7 +56,14 @@ public struct ComplexNumber
 
     public ComplexNumber Div(ComplexNumber other)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        var c = other.Real();
+        var d = other.Imaginary();
+
+        var divisor = (Math.Pow(c,2) + Math.Pow(d,2));
+        var real = (_a * c + _b * d) / divisor;
+        var imaginary = (_b * c - _a * d) / divisor;
+
+        return new ComplexNumber(real, imaginary);
     }
 
     public double Abs()
