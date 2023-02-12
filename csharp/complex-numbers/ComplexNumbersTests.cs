@@ -54,32 +54,32 @@ public class ComplexNumbersTests
         Assert.Equal(expected.Imaginary(), sut.Mul(new ComplexNumber(0, 1)).Imaginary(), precision: 7);
     }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Add_purely_real_numbers()
-    // {
-    //     var sut = new ComplexNumber(1, 0);
-    //     var expected = new ComplexNumber(3, 0);
-    //     Assert.Equal(expected.Real(), sut.Add(new ComplexNumber(2, 0)).Real(), precision: 7);
-    //     Assert.Equal(expected.Imaginary(), sut.Add(new ComplexNumber(2, 0)).Imaginary(), precision: 7);
-    // }
+    [Fact]
+    public void Add_purely_real_numbers()
+    {
+        var sut = new ComplexNumber(1, 0);
+        var expected = new ComplexNumber(3, 0);
+        Assert.Equal(expected.Real(), sut.Add(new ComplexNumber(2, 0)).Real(), precision: 7);
+        Assert.Equal(expected.Imaginary(), sut.Add(new ComplexNumber(2, 0)).Imaginary(), precision: 7);
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Add_purely_imaginary_numbers()
-    // {
-    //     var sut = new ComplexNumber(0, 1);
-    //     var expected = new ComplexNumber(0, 3);
-    //     Assert.Equal(expected.Real(), sut.Add(new ComplexNumber(0, 2)).Real(), precision: 7);
-    //     Assert.Equal(expected.Imaginary(), sut.Add(new ComplexNumber(0, 2)).Imaginary(), precision: 7);
-    // }
+    [Fact]
+    public void Add_purely_imaginary_numbers()
+    {
+        var sut = new ComplexNumber(0, 1);
+        var expected = new ComplexNumber(0, 3);
+        Assert.Equal(expected.Real(), sut.Add(new ComplexNumber(0, 2)).Real(), precision: 7);
+        Assert.Equal(expected.Imaginary(), sut.Add(new ComplexNumber(0, 2)).Imaginary(), precision: 7);
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Add_numbers_with_real_and_imaginary_part()
-    // {
-    //     var sut = new ComplexNumber(1, 2);
-    //     var expected = new ComplexNumber(4, 6);
-    //     Assert.Equal(expected.Real(), sut.Add(new ComplexNumber(3, 4)).Real(), precision: 7);
-    //     Assert.Equal(expected.Imaginary(), sut.Add(new ComplexNumber(3, 4)).Imaginary(), precision: 7);
-    // }
+    [Fact]
+    public void Add_numbers_with_real_and_imaginary_part()
+    {
+        var sut = new ComplexNumber(1, 2);
+        var expected = new ComplexNumber(4, 6);
+        Assert.Equal(expected.Real(), sut.Add(new ComplexNumber(3, 4)).Real(), precision: 7);
+        Assert.Equal(expected.Imaginary(), sut.Add(new ComplexNumber(3, 4)).Imaginary(), precision: 7);
+    }
 
     // [Fact(Skip = "Remove this Skip property to run this test")]
     // public void Subtract_purely_real_numbers()
