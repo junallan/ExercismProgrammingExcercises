@@ -1,6 +1,7 @@
 module CarsAssemble
 
 let CarsProductedPerHour = 221
+let MinutesInHour = 60
 
 let successRate (speed: int): float =
     if speed = 0 then
@@ -15,7 +16,8 @@ let successRate (speed: int): float =
         0.77
 
 let productionRatePerHour (speed: int): float =
-    float speed * float CarsProductedPerHour
+    float speed * float CarsProductedPerHour * successRate speed
 
 let workingItemsPerMinute (speed: int): int =
-    failwith "Please implement the 'workingItemsPerMinute' function"
+    int (productionRatePerHour speed) / MinutesInHour
+
