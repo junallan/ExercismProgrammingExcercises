@@ -162,40 +162,40 @@ public class ComplexNumbersTests
         Assert.Equal(expected.Imaginary(), sut.Div(new ComplexNumber(3, 4)).Imaginary(), precision: 7);
     }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Absolute_value_of_a_positive_purely_real_number()
-    // {
-    //     var sut = new ComplexNumber(5, 0);
-    //     Assert.Equal(5, sut.Abs());
-    // }
+    [Fact]
+    public void Absolute_value_of_a_positive_purely_real_number()
+    {
+        var sut = new ComplexNumber(5, 0);
+        Assert.Equal(5, sut.Abs());
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Absolute_value_of_a_negative_purely_real_number()
-    // {
-    //     var sut = new ComplexNumber(-5, 0);
-    //     Assert.Equal(5, sut.Abs());
-    // }
+    [Fact]
+    public void Absolute_value_of_a_negative_purely_real_number()
+    {
+        var sut = new ComplexNumber(-5, 0);
+        Assert.Equal(5, sut.Abs());
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Absolute_value_of_a_purely_imaginary_number_with_positive_imaginary_part()
-    // {
-    //     var sut = new ComplexNumber(0, 5);
-    //     Assert.Equal(5, sut.Abs());
-    // }
+    [Fact]
+    public void Absolute_value_of_a_purely_imaginary_number_with_positive_imaginary_part()
+    {
+        var sut = new ComplexNumber(0, 5);
+        Assert.Equal(5, sut.Abs());
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Absolute_value_of_a_purely_imaginary_number_with_negative_imaginary_part()
-    // {
-    //     var sut = new ComplexNumber(0, -5);
-    //     Assert.Equal(5, sut.Abs());
-    // }
+    [Fact]
+    public void Absolute_value_of_a_purely_imaginary_number_with_negative_imaginary_part()
+    {
+        var sut = new ComplexNumber(0, -5);
+        Assert.Equal(5, sut.Abs());
+    }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Absolute_value_of_a_number_with_real_and_imaginary_part()
-    // {
-    //     var sut = new ComplexNumber(3, 4);
-    //     Assert.Equal(5, sut.Abs());
-    // }
+    [Fact]
+    public void Absolute_value_of_a_number_with_real_and_imaginary_part()
+    {
+        var sut = new ComplexNumber(3, 4);
+        Assert.Equal(5, sut.Abs());
+    }
 
     // [Fact(Skip = "Remove this Skip property to run this test")]
     // public void Conjugate_a_purely_real_number()
