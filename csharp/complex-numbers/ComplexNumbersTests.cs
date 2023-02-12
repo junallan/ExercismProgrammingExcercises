@@ -45,14 +45,14 @@ public class ComplexNumbersTests
         Assert.Equal(2, sut.Imaginary());
     }
 
-    // [Fact(Skip = "Remove this Skip property to run this test")]
-    // public void Imaginary_unit()
-    // {
-    //     var sut = new ComplexNumber(0, 1);
-    //     var expected = new ComplexNumber(-1, 0);
-    //     Assert.Equal(expected.Real(), sut.Mul(new ComplexNumber(0, 1)).Real(), precision: 7);
-    //     Assert.Equal(expected.Imaginary(), sut.Mul(new ComplexNumber(0, 1)).Imaginary(), precision: 7);
-    // }
+    [Fact]
+    public void Imaginary_unit()
+    {
+        var sut = new ComplexNumber(0, 1);
+        var expected = new ComplexNumber(-1, 0);
+        Assert.Equal(expected.Real(), sut.Mul(new ComplexNumber(0, 1)).Real(), precision: 7);
+        Assert.Equal(expected.Imaginary(), sut.Mul(new ComplexNumber(0, 1)).Imaginary(), precision: 7);
+    }
 
     // [Fact(Skip = "Remove this Skip property to run this test")]
     // public void Add_purely_real_numbers()

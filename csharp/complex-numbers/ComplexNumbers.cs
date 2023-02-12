@@ -2,28 +2,34 @@ using System;
 
 public struct ComplexNumber
 {
-    private readonly double _real;
-    private readonly double _imaginary;
+    private readonly double _a;
+    private readonly double _b;
 
     public ComplexNumber(double real, double imaginary)
     {
-        _real = real;
-        _imaginary = imaginary;
+        _a= real;
+        _b = imaginary;
     }
 
     public double Real()
     {
-        return _real;
+        return _a;
     }
 
     public double Imaginary()
     {
-        return _imaginary;
+        return _b;
     }
 
     public ComplexNumber Mul(ComplexNumber other)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        var c = other.Real();
+        var d = other.Imaginary();
+        
+        var real = _a * c - _b * d;
+        var imaginary = _b * c + _a * d;
+
+        return new ComplexNumber(real, imaginary);
     }
 
     public ComplexNumber Add(ComplexNumber other)
