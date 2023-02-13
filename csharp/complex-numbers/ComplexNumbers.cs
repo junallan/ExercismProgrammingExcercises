@@ -32,7 +32,18 @@ public struct ComplexNumber
         return new ComplexNumber(real, imaginary);
     }
 
-    public ComplexNumber Add(ComplexNumber other)
+    public ComplexNumber Add(int increment)
+    {
+        var c = increment;
+        var d = 0;
+
+        var real = _a + c;
+        var imaginary = _b + d;
+
+        return new ComplexNumber(real, imaginary);
+    }
+
+      public ComplexNumber Add(ComplexNumber other)
     {
         var c = other.Real();
         var d = other.Imaginary();
