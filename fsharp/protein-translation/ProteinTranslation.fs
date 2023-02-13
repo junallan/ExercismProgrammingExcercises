@@ -8,8 +8,9 @@ let matchFound = function   | "AUG" ->"Methionine"
                             | "UGU" | "UGC" -> "Cysteine"
                             | "UGG" -> "Tryptophan"
                             | _ -> ""
+let LengthOfRNASequence = 3
 
-let proteins (rna : string) = rna |> Seq.chunkBySize 3 
+let proteins (rna : string) = rna |> Seq.chunkBySize LengthOfRNASequence 
                                   |> Seq.map (fun element -> matchFound (new System.String(element)))
                                   |> Seq.takeWhile (fun element -> String.length element > 0)
                                   |> Seq.toList      
