@@ -70,8 +70,5 @@ public struct ComplexNumber
     
     public ComplexNumber Conjugate() => new ComplexNumber(_a, -_b);
     
-    public ComplexNumber Exp()
-    {
-        throw new NotImplementedException("You need to implement this function.");
-    }
+    public ComplexNumber Exp() => new ComplexNumber(Math.Exp(_a) * Math.Cos(_b), Math.Exp(_a) * Math.Sin(_b));
 }
