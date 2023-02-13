@@ -1,23 +1,20 @@
 module ProteinTranslation
 
-let matchFound = function   | "AUG" -> ["Methionine"]
-                            | "UUU" | "UUC" -> ["Phenylalanine"]
-                            | "UUA" | "UUG" -> ["Leucine"]
-                            | "UCU" | "UCC" | "UCA" | "UCG" -> ["Serine"]
-                            | "UAU" | "UAC" -> ["Tyrosine"]
-                            | "UGU" | "UGC" -> ["Cysteine"]
-                            | "UGG" -> ["Tryptophan"]
-                            | _ -> []
+let matchFound = function   | "AUG" ->"Methionine"
+                            | "UUU" | "UUC" -> "Phenylalanine"
+                            | "UUA" | "UUG" -> "Leucine"
+                            | "UCU" | "UCC" | "UCA" | "UCG" -> "Serine"
+                            | "UAU" | "UAC" -> "Tyrosine"
+                            | "UGU" | "UGC" -> "Cysteine"
+                            | "UGG" -> "Tryptophan"
+                            | _ -> ""
 
-let rec proteins (rna : string) =
-    if rna.Equals("") then
-        []
-    else        
-        let startElement = rna.[..2]
-        let endElements = rna.[3..]
-        let proteinResult = matchFound startElement
-        if List.isEmpty proteinResult then
-            []
-        else
-            proteinResult @ proteins endElements
 
+
+let proteins (rna : string) = 
+    let rnaChunks = rna |> Seq.chunkBySize 3 |> Seq.map(fun element -> new System.String(element)) 
+    let result = Seq.takeWhile (fun element -> 
+                        String.length (matchFound element) > 0
+                         ) rnaChunks
+    result |> Seq.map(fun result -> matchFound result) |> Seq.toList
+    
