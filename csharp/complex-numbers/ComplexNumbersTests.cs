@@ -287,12 +287,12 @@ public class ComplexNumbersTests
         Assert.Equal(expected.Imaginary(), sut.Mul(5).Imaginary(), precision: 7);
     }
 
-    // [Fact]
-    // public void Divide_complex_number_by_real_number()
-    // {
-    //     var sut = new ComplexNumber(10, 100);
-    //     var expected = new ComplexNumber(1, 10);
-    //     Assert.Equal(expected.Real(), sut.Div(10).Real(), precision: 7);
-    //     Assert.Equal(expected.Imaginary(), sut.Div(10).Imaginary(), precision: 7);
-    // }
+    [Fact]
+    public void Divide_complex_number_by_real_number()
+    {
+        var sut = new ComplexNumber(10, 100);
+        var expected = new ComplexNumber(1, 10);
+        Assert.Equal(expected.Real(), sut.Div(10).Real(), precision: 7);
+        Assert.Equal(expected.Imaginary(), sut.Div(10).Imaginary(), precision: 7);
+    }
 }

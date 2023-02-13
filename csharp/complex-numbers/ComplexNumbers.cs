@@ -88,6 +88,18 @@ public struct ComplexNumber
         return new ComplexNumber(real, imaginary);
     }
 
+    public ComplexNumber Div(int factor)
+    {
+        var c = factor;
+        var d = 0;
+
+        var divisor = (Math.Pow(c,2) + Math.Pow(d,2));
+        var real = (_a * c + _b * d) / divisor;
+        var imaginary = (_b * c - _a * d) / divisor;
+
+        return new ComplexNumber(real, imaginary);
+    }
+
     public double Abs() => Math.Sqrt(Math.Pow(_a,2) + Math.Pow(_b,2));
     
     public ComplexNumber Conjugate() => new ComplexNumber(_a, -_b);
