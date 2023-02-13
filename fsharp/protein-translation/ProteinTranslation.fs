@@ -9,12 +9,8 @@ let matchFound = function   | "AUG" ->"Methionine"
                             | "UGG" -> "Tryptophan"
                             | _ -> ""
 
-
-
-let proteins (rna : string) = 
-    let rnaChunks = rna |> Seq.chunkBySize 3 |> Seq.map(fun element -> new System.String(element)) 
-    let result = Seq.takeWhile (fun element -> 
-                        String.length (matchFound element) > 0
-                         ) rnaChunks
-    result |> Seq.map(fun result -> matchFound result) |> Seq.toList
+let proteins (rna : string) = rna |> Seq.chunkBySize 3 
+                                  |> Seq.map (fun element -> matchFound (new System.String(element)))
+                                  |> Seq.takeWhile (fun element -> String.length element > 0)
+                                  |> Seq.toList      
     
