@@ -32,9 +32,20 @@ public struct ComplexNumber
         return new ComplexNumber(real, imaginary);
     }
 
-    public ComplexNumber Add(int increment)
+    public ComplexNumber Mul(int factor)
     {
-        var c = increment;
+        var c = factor;
+        var d = 0;
+        
+        var real = _a * c - _b * d;
+        var imaginary = _b * c + _a * d;
+
+        return new ComplexNumber(real, imaginary);
+    }
+
+    public ComplexNumber Add(int factor)
+    {
+        var c = factor;
         var d = 0;
 
         var real = _a + c;
