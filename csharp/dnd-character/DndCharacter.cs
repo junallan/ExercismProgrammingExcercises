@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public class DndCharacter
 {
     public const int InitialHitPoint = 10;
-    public const int MinScore = 3;
-    public const int MaxScore = 18;
+    public const int MinScore = 1;
+    public const int MaxScore = 6;
     public int Strength { get; }
     public int Dexterity { get; }
     public int Constitution { get; }
@@ -34,7 +36,14 @@ public class DndCharacter
 
     public static int Ability() 
     {
-        return new Random().Next(MinScore, MaxScore);
+        var diceRole1 = new Random().Next(MinScore, MaxScore);
+        var diceRole2 = new Random().Next(MinScore, MaxScore);
+        var diceRole3 = new Random().Next(MinScore, MaxScore);
+        var diceRole4 = new Random().Next(MinScore, MaxScore);
+        
+        var diceRoles = new []{ diceRole1, diceRole2, diceRole3, diceRole4 };
+       
+        return diceRoles.OrderByDescending(x => x).Take(diceRoles.Count()-1).Count(); 
     }
 
     public static DndCharacter Generate()
