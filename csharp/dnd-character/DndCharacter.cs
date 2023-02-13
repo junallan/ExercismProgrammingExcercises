@@ -36,10 +36,10 @@ public class DndCharacter
 
     public static int Ability() 
     {
-        var diceRole1 = new Random().Next(MinScore, MaxScore);
-        var diceRole2 = new Random().Next(MinScore, MaxScore);
-        var diceRole3 = new Random().Next(MinScore, MaxScore);
-        var diceRole4 = new Random().Next(MinScore, MaxScore);
+        var diceRole1 = new Random().Next(MinScore, MaxScore+1);
+        var diceRole2 = new Random().Next(MinScore, MaxScore+1);
+        var diceRole3 = new Random().Next(MinScore, MaxScore+1);
+        var diceRole4 = new Random().Next(MinScore, MaxScore+1);
         
         var diceRoles = new []{ diceRole1, diceRole2, diceRole3, diceRole4 };
        
