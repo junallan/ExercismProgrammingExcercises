@@ -8,6 +8,8 @@ let matchFound = function   | "AUG" ->"Methionine"
                             | "UGU" | "UGC" -> "Cysteine"
                             | "UGG" -> "Tryptophan"
                             | _ -> ""
+
+[<Literal>]
 let LengthOfRNASequence = 3
 
 let proteins (rna : string) = rna |> Seq.chunkBySize LengthOfRNASequence 
