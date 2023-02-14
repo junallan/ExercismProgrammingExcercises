@@ -2,107 +2,107 @@ using System;
 
 public struct ComplexNumber
 {
-    private readonly double _a;
-    private readonly double _b;
+    private readonly double _real;
+    private readonly double _imaginary;
 
     public ComplexNumber(double real, double imaginary)
     {
-        _a= real;
-        _b = imaginary;
+        _real= real;
+        _imaginary = imaginary;
     }
 
     public double Real()
     {
-        return _a;
+        return _real;
     }
 
     public double Imaginary()
     {
-        return _b;
+        return _imaginary;
     }
 
     public ComplexNumber Mul(ComplexNumber other)
     {
-        var c = other.Real();
-        var d = other.Imaginary();
+        var otherReal = other.Real();
+        var otherImaginary = other.Imaginary();
         
-        var real = _a * c - _b * d;
-        var imaginary = _b * c + _a * d;
+        var real = _real * otherReal - _imaginary * otherImaginary;
+        var imaginary = _imaginary * otherReal + _real * otherImaginary;
 
         return new ComplexNumber(real, imaginary);
     }
 
     public ComplexNumber Mul(int factor)
     {
-        var c = factor;
-        var d = 0;
+        var otherReal = factor;
+        var otherImaginary = 0;
         
-        var real = _a * c - _b * d;
-        var imaginary = _b * c + _a * d;
+        var real = _real * otherReal - _imaginary * otherImaginary;
+        var imaginary = _imaginary * otherReal + _real * otherImaginary;
 
         return new ComplexNumber(real, imaginary);
     }
 
     public ComplexNumber Add(int factor)
     {
-        var c = factor;
-        var d = 0;
+        var otherReal = factor;
+        var otherImaginary = 0;
 
-        var real = _a + c;
-        var imaginary = _b + d;
+        var real = _real + otherReal;
+        var imaginary = _imaginary + otherImaginary;
 
         return new ComplexNumber(real, imaginary);
     }
 
-      public ComplexNumber Add(ComplexNumber other)
+    public ComplexNumber Add(ComplexNumber other)
     {
-        var c = other.Real();
-        var d = other.Imaginary();
+        var otherReal = other.Real();
+        var otherImaginary = other.Imaginary();
 
-        var real = _a + c;
-        var imaginary = _b + d;
+        var real = _real + otherReal;
+        var imaginary = _imaginary + otherImaginary;
 
         return new ComplexNumber(real, imaginary);
     }
 
     public ComplexNumber Sub(ComplexNumber other)
     {
-        var c = other.Real();
-        var d = other.Imaginary();
+        var otherReal = other.Real();
+        var otherImaginary = other.Imaginary();
 
-        var real = _a - c;
-        var imaginary = _b - d;
+        var real = _real - otherReal;
+        var imaginary = _imaginary - otherImaginary;
 
         return new ComplexNumber(real, imaginary);
     }
 
     public ComplexNumber Div(ComplexNumber other)
     {
-        var c = other.Real();
-        var d = other.Imaginary();
+        var otherReal = other.Real();
+        var otherImaginary = other.Imaginary();
 
-        var divisor = (Math.Pow(c,2) + Math.Pow(d,2));
-        var real = (_a * c + _b * d) / divisor;
-        var imaginary = (_b * c - _a * d) / divisor;
+        var divisor = (Math.Pow(otherReal,2) + Math.Pow(otherImaginary,2));
+        var real = (_real * otherReal + _imaginary * otherImaginary) / divisor;
+        var imaginary = (_imaginary * otherReal - _real * otherImaginary) / divisor;
 
         return new ComplexNumber(real, imaginary);
     }
 
     public ComplexNumber Div(int factor)
     {
-        var c = factor;
-        var d = 0;
+        var otherReal = factor;
+        var otherImaginary = 0;
 
-        var divisor = (Math.Pow(c,2) + Math.Pow(d,2));
-        var real = (_a * c + _b * d) / divisor;
-        var imaginary = (_b * c - _a * d) / divisor;
+        var divisor = (Math.Pow(otherReal,2) + Math.Pow(otherImaginary,2));
+        var real = (_real * otherReal + _imaginary * otherImaginary) / divisor;
+        var imaginary = (_imaginary * otherReal - _real * otherImaginary) / divisor;
 
         return new ComplexNumber(real, imaginary);
     }
 
-    public double Abs() => Math.Sqrt(Math.Pow(_a,2) + Math.Pow(_b,2));
+    public double Abs() => Math.Sqrt(Math.Pow(_real,2) + Math.Pow(_imaginary,2));
     
-    public ComplexNumber Conjugate() => new ComplexNumber(_a, -_b);
+    public ComplexNumber Conjugate() => new ComplexNumber(_real, -_imaginary);
     
-    public ComplexNumber Exp() => new ComplexNumber(Math.Exp(_a) * Math.Cos(_b), Math.Exp(_a) * Math.Sin(_b));
+    public ComplexNumber Exp() => new ComplexNumber(Math.Exp(_real) * Math.Cos(_imaginary), Math.Exp(_real) * Math.Sin(_imaginary));
 }
