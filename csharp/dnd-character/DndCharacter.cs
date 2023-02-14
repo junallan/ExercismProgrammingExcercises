@@ -25,6 +25,7 @@ public class DndCharacter
         Charisma = Ability();
         Hitpoints = InitialHitPoint + Modifier(Constitution);
     }
+
     public static int Modifier(int score)
     {
       decimal converstedScore = score;
@@ -43,14 +44,8 @@ public class DndCharacter
         
         var diceRoles = new []{ diceRole1, diceRole2, diceRole3, diceRole4 };
        
-        return diceRoles.OrderByDescending(x => x).Take(diceRoles.Count()-1).Count(); 
+        return diceRoles.OrderByDescending(x => x).Take(diceRoles.Count()-1).Sum(x => x); 
     }
 
-    public static DndCharacter Generate()
-    {
-        DndCharacter character = new DndCharacter();
-        
-
-        return character;
-    }
+    public static DndCharacter Generate() =>new DndCharacter();
 }
