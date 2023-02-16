@@ -26,10 +26,8 @@ public static class QueenAttack
         };
     }
 
-    public static Queen Create(int row, int column)
-    {
-        if(row < 0 || row > Queen.MaxDimension || column < 0 || column > Queen.MaxDimension) throw new ArgumentOutOfRangeException();
-        
-        return new Queen(row, column);
-    }
+    public static Queen Create(int row, int column) =>
+        (row < 0 || row > Queen.MaxDimension || column < 0 || column > Queen.MaxDimension) 
+            ? throw new ArgumentOutOfRangeException() : new Queen(row, column);
+    
 }
