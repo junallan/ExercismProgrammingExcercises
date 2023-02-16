@@ -13,15 +13,15 @@ let ``Empty strands`` () =
 let ``Single letter identical strands`` () =
     distance "A" "A" |> should equal (Some 0)
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Single letter different strands`` () =
     distance "G" "T" |> should equal (Some 1)
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Long identical strands`` () =
     distance "GGACTGAAATCTG" "GGACTGAAATCTG" |> should equal (Some 0)
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Long different strands`` () =
     distance "GGACGGATTCTG" "AGGACGGATTCT" |> should equal (Some 9)
 
