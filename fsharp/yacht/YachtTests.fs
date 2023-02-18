@@ -9,19 +9,19 @@ open Yacht
 let ``Yacht`` () =
     score Category.Yacht [Die.Five; Die.Five; Die.Five; Die.Five; Die.Five] |> should equal 50
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Not Yacht`` () =
     score Category.Yacht [Die.One; Die.Three; Die.Three; Die.Two; Die.Five] |> should equal 0
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Ones`` () =
     score Category.Ones [Die.One; Die.One; Die.One; Die.Three; Die.Five] |> should equal 3
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Ones, out of order`` () =
     score Category.Ones [Die.Three; Die.One; Die.One; Die.Five; Die.One] |> should equal 3
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``No ones`` () =
     score Category.Ones [Die.Four; Die.Three; Die.Six; Die.Five; Die.Five] |> should equal 0
 
