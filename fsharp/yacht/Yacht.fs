@@ -55,6 +55,7 @@ let numberCategoryScore category dice = dice |> List.filter((=) (mappedCategoryN
 
 let fullHouseScore dice =
     let distinctDiceRoles = List.distinct dice
+
     if distinctDiceRoles.Length <> 2 then
         0
     else
@@ -63,14 +64,34 @@ let fullHouseScore dice =
         let firstElementCount = dice |> List.filter ((=) firstDistinctElement) |> List.length
         let secondElementCount = dice |> List.filter((=) secondDistinctElement) |> List.length 
         if (firstElementCount = 2 && secondElementCount = 3) || (firstElementCount = 2 && secondElementCount = 3) then
-            mappedDice firstDistinctElement * firstElementCount + mappedDice secondDistinctElement * secondElementCount
+           mappedDice firstDistinctElement * firstElementCount + mappedDice secondDistinctElement * secondElementCount
         else
             0        
+
+let fourOfAKindScore dice =
+    let distinctDiceRoles = List.distinct dice
+
+    if distinctDiceRoles.Length > 2 then
+        0
+    elif distinctDiceRoles.Length = 1 then
+        mappedDice distinctDiceRoles.Head * 4
+    else
+        let firstDistinctElement = distinctDiceRoles.[0]
+        let secondDistinctElement = distinctDiceRoles.[1]
+        let firstElementCount = dice |> List.filter ((=) firstDistinctElement) |> List.length
+        let secondElementCount = dice |> List.filter((=) secondDistinctElement) |> List.length 
+        let fourOfAKindElement = if firstElementCount > secondElementCount then firstDistinctElement else secondDistinctElement
+
+        if (firstElementCount = 4 && secondElementCount = 1) || (firstElementCount = 1 && secondElementCount = 4) then
+            mappedDice fourOfAKindElement * 4
+        else
+            0
 
 let score category dice =
     match (category, dice) with
     | _ when List.length dice <> 5 -> failwith "Incorrect number of dice roles"
     | _ when category = Ones || category = Twos || category = Threes || category = Fours || category = Fives || category = Sixes -> numberCategoryScore category dice
     | _ when category = FullHouse -> fullHouseScore dice
+    | _ when category = FourOfAKind -> fourOfAKindScore dice
     | (_, dh::dt) when category = Yacht && dt |> List.forall ((=) dh) -> 50
     | _ -> 0
