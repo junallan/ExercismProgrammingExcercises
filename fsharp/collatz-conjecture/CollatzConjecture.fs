@@ -2,7 +2,7 @@ module CollatzConjecture
 
 let steps (number: int): int option =
     let rec computeSteps number steps =
-        if number = 0 then
+        if number <= 0 then
             None
         elif number = 1 then
             Some steps
