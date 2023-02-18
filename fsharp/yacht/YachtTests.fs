@@ -29,23 +29,23 @@ let ``No ones`` () =
 let ``Twos`` () =
     score Category.Twos [Die.Two; Die.Three; Die.Four; Die.Five; Die.Six] |> should equal 2
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Fours`` () =
     score Category.Fours [Die.One; Die.Four; Die.One; Die.Four; Die.One] |> should equal 8
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Yacht counted as threes`` () =
     score Category.Threes [Die.Three; Die.Three; Die.Three; Die.Three; Die.Three] |> should equal 15
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Yacht of 3s counted as fives`` () =
     score Category.Fives [Die.Three; Die.Three; Die.Three; Die.Three; Die.Three] |> should equal 0
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Fives`` () =
     score Category.Fives [Die.One; Die.Five; Die.Three; Die.Five; Die.Three] |> should equal 10
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Sixes`` () =
     score Category.Sixes [Die.Two; Die.Three; Die.Four; Die.Five; Die.Six] |> should equal 6
 
