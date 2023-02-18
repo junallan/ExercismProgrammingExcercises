@@ -31,6 +31,28 @@ let mappedDice dice =
     | Five -> 5
     | Six -> 6
 
+let mappedNumberCategory category =
+    match category with
+    | Ones -> 1
+    | Twos -> 2
+    | Threes -> 3
+    | Fours -> 4
+    | Fives -> 5
+    | Sixes -> 6
+    | _ -> failwith "Not a category number"
+
+let mappedCategoryNumberToDice category =
+    match category with
+    | Ones -> One
+    | Twos -> Two
+    | Threes -> Three
+    | Fours -> Four
+    | Fives -> Five
+    | Sixes -> Six
+    | _ -> failwith "Not a category number"
+
+let numberCategoryScore category dice = dice |> List.filter((=) (mappedCategoryNumberToDice category)) |> (fun x -> List.length x * mappedNumberCategory category)
+
 let fullHouseScore dice =
     let distinctDiceRoles = List.distinct dice
     if distinctDiceRoles.Length <> 2 then
@@ -43,19 +65,12 @@ let fullHouseScore dice =
         if (firstElementCount = 2 && secondElementCount = 3) || (firstElementCount = 2 && secondElementCount = 3) then
             mappedDice firstDistinctElement * firstElementCount + mappedDice secondDistinctElement * secondElementCount
         else
-            0
-        
-
+            0        
 
 let score category dice =
     match (category, dice) with
     | _ when List.length dice <> 5 -> failwith "Incorrect number of dice roles"
-    | _ when category = Ones -> dice |> List.filter((=) One) |> List.length 
-    | _ when category = Twos -> dice |> List.filter((=) Two) |> (fun twosDiceRole -> List.length twosDiceRole * mappedDice Two)
-    | _ when category = Threes -> dice |> List.filter((=) Three) |> (fun threesDiceRole -> List.length threesDiceRole * mappedDice Three)
-    | _ when category = Fours -> dice |> List.filter((=) Four) |> (fun foursDiceRole -> List.length foursDiceRole * mappedDice Four)
-    | _ when category = Fives -> dice |> List.filter((=) Five) |> (fun fivesDiceRole -> List.length fivesDiceRole * mappedDice Five)
-    | _ when category = Sixes -> dice |> List.filter((=) Six) |> (fun sixesDiceRole -> List.length sixesDiceRole * mappedDice Six)
+    | _ when category = Ones || category = Twos || category = Threes || category = Fours || category = Fives || category = Sixes -> numberCategoryScore category dice
     | _ when category = FullHouse -> fullHouseScore dice
     | (_, dh::dt) when category = Yacht && dt |> List.forall ((=) dh) -> 50
     | _ -> 0
