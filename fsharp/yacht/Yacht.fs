@@ -25,6 +25,7 @@ type Die =
 let score category dice =
     match (category, dice) with
     | _ when List.length dice <> 5 -> failwith "Incorrect number of dice roles"
-    | (c, d) when c = Ones -> d |> List.filter((=) One) |> List.length 
-    | (c, dh::dt) when c = Yacht && dt |> List.forall ((=) dh) -> 50
+    | _ when category = Ones -> dice |> List.filter((=) One) |> List.length 
+    | _ when category = Twos -> dice |> List.filter((=) Two) |> (fun twosDiceRole -> List.length twosDiceRole * 2) 
+    | (_, dh::dt) when category = Yacht && dt |> List.forall ((=) dh) -> 50
     | _ -> 0
