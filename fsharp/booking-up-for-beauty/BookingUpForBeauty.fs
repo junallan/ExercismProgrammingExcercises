@@ -11,4 +11,4 @@ let isAfternoonAppointment (appointmentDate: DateTime): bool = 12 <= appointment
 
 let description (appointmentDate: DateTime): string = $"""You have an appointment on {appointmentDate.ToString("M/d/yyyy h:mm:ss tt")}.""";
 
-let anniversaryDate(): DateTime = failwith "Please implement the 'anniversaryDate' function"
+let anniversaryDate(): DateTime = new DateTime(DateTime.Today.Year, 9, 15)
