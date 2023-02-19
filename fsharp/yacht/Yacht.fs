@@ -15,21 +15,12 @@ type Category =
     | Yacht
 
 type Die =
-    | One 
-    | Two 
-    | Three
-    | Four 
-    | Five 
-    | Six
-
-let mappedDice dice =
-    match dice with
-    | One -> 1
-    | Two -> 2
-    | Three -> 3
-    | Four -> 4
-    | Five -> 5
-    | Six -> 6
+    | One = 1
+    | Two = 2
+    | Three = 3
+    | Four = 4 
+    | Five = 5
+    | Six = 6
 
 let mappedNumberCategory category =
     match category with
@@ -43,12 +34,12 @@ let mappedNumberCategory category =
 
 let mappedCategoryNumberToDice category =
     match category with
-    | Ones -> One
-    | Twos -> Two
-    | Threes -> Three
-    | Fours -> Four
-    | Fives -> Five
-    | Sixes -> Six
+    | Ones -> Die.One
+    | Twos -> Die.Two
+    | Threes -> Die.Three
+    | Fours -> Die.Four
+    | Fives -> Die.Five
+    | Sixes -> Die.Six
     | _ -> failwith "Not a category number"
 
 let yachtScore dice =
@@ -71,7 +62,7 @@ let fullHouseScore dice =
         let secondElementCount = dice |> List.filter((=) secondDistinctElement) |> List.length
 
         if (firstElementCount = 2 && secondElementCount = 3) || (firstElementCount = 2 && secondElementCount = 3) then
-           mappedDice firstDistinctElement * firstElementCount + mappedDice secondDistinctElement * secondElementCount
+           int firstDistinctElement * firstElementCount + int secondDistinctElement * secondElementCount
         else
             0        
 
@@ -81,7 +72,7 @@ let fourOfAKindScore dice =
     if distinctDiceRoles.Length > 2 then
         0
     elif distinctDiceRoles.Length = 1 then
-        mappedDice distinctDiceRoles.Head * 4
+        int distinctDiceRoles.Head * 4
     else
         let firstDistinctElement = distinctDiceRoles.[0]
         let secondDistinctElement = distinctDiceRoles.[1]
@@ -91,7 +82,7 @@ let fourOfAKindScore dice =
         if (firstElementCount = 4 && secondElementCount = 1) || (firstElementCount = 1 && secondElementCount = 4) then
             let fourOfAKindElement = if firstElementCount > secondElementCount then firstDistinctElement else secondDistinctElement
 
-            mappedDice fourOfAKindElement * 4
+            int fourOfAKindElement * 4
         else
             0
 
@@ -100,7 +91,7 @@ let straightScore dice minDice maxDice =
         30
     else 0
 
-let choiceScore (dice) = dice |> List.map (fun d -> mappedDice d) |> List.sum
+let choiceScore (dice) = dice |> List.map (fun d -> int d) |> List.sum
 
 let score category dice =
     match (category, dice) with
@@ -108,8 +99,8 @@ let score category dice =
     | _ when category = Ones || category = Twos || category = Threes || category = Fours || category = Fives || category = Sixes -> numberCategoryScore category dice
     | _ when category = FullHouse -> fullHouseScore dice
     | _ when category = FourOfAKind -> fourOfAKindScore dice
-    | _ when category = LittleStraight -> straightScore dice One Five
-    | _ when category = BigStraight -> straightScore dice Two Six
+    | _ when category = LittleStraight -> straightScore dice Die.One Die.Five
+    | _ when category = BigStraight -> straightScore dice Die.Two Die.Six
     | _ when category = Yacht -> yachtScore dice
     | _ when category = Choice -> choiceScore dice
     | _ -> 0
