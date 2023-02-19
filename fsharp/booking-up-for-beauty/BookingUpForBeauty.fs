@@ -5,7 +5,7 @@ open System
 
 let schedule (appointmentDateDescription: string): DateTime = DateTime.Parse appointmentDateDescription
 
-let hasPassed (appointmentDate: DateTime): bool = failwith "Please implement the 'hasPassed' function"
+let hasPassed (appointmentDate: DateTime): bool = appointmentDate.CompareTo DateTime.Now < 0
 
 let isAfternoonAppointment (appointmentDate: DateTime): bool =
     failwith "Please implement the 'isAfternoonAppointment' function"
