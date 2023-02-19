@@ -22,33 +22,13 @@ type Die =
     | Five = 5
     | Six = 6
 
-//let mappedNumberCategory category =
-//    match category with
-//    | Ones -> 1
-//    | Twos -> 2
-//    | Threes -> 3
-//    | Fours -> 4
-//    | Fives -> 5
-//    | Sixes -> 6
-//    | _ -> failwith "Not a category number"
-
-//let mappedCategoryNumberToDice category =
-//    match category with
-//    | Ones -> Die.One
-//    | Twos -> Die.Two
-//    | Threes -> Die.Three
-//    | Fours -> Die.Four
-//    | Fives -> Die.Five
-//    | Sixes -> Die.Six
-//    | _ -> failwith "Not a category number"
-
 let yachtScore dice =
     let firstDice = List.head dice
     let isYachtScore = List.tail dice |> List.forall ((=) firstDice);
 
     if isYachtScore then 50 else 0
 
-let numberCategoryScore category dice = dice |> List.filter((=) category) |> (fun x -> List.length x * int category)
+let numberCategoryScore category dice = dice |> List.filter((=) category) |> List.length |> (*) (int category)
 
 let fullHouseScore dice =
     let distinctDiceRoles = List.distinct dice
