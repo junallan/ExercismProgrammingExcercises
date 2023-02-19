@@ -9,6 +9,6 @@ let hasPassed (appointmentDate: DateTime): bool = appointmentDate.CompareTo Date
 
 let isAfternoonAppointment (appointmentDate: DateTime): bool = 12 <= appointmentDate.Hour && appointmentDate.Hour < 18
 
-let description (appointmentDate: DateTime): string = failwith "Please implement the 'description' function"
+let description (appointmentDate: DateTime): string = $"""You have an appointment on {appointmentDate.ToString("M/d/yyyy h:mm:ss tt")}.""";
 
 let anniversaryDate(): DateTime = failwith "Please implement the 'anniversaryDate' function"
