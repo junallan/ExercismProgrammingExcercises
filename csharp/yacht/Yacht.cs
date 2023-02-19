@@ -24,6 +24,7 @@ public static class YachtGame
         var result = category switch
         {
             YachtCategory.Yacht => YachtScore(dice),
+            YachtCategory.Ones or YachtCategory.Twos or YachtCategory.Threes or YachtCategory.Fours or YachtCategory.Fives or YachtCategory.Sixes  => NumberScore(dice, category),
             _ => 0
         };
 
@@ -31,5 +32,7 @@ public static class YachtGame
     }
 
     private static int YachtScore(int[] dice)=> dice.Distinct().Count() == 1 ? 50 : 0;
+
+    private static int NumberScore(int[] dice, YachtCategory category) => dice.Where(diceNumber => diceNumber == (int)category).Sum();
 }
 

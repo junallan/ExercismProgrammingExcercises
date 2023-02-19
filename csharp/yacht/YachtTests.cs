@@ -14,55 +14,55 @@ public class YachtTests
         Assert.Equal(0, YachtGame.Score(new[] { 1, 3, 3, 2, 5 }, YachtCategory.Yacht));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Ones()
     {
         Assert.Equal(3, YachtGame.Score(new[] { 1, 1, 1, 3, 5 }, YachtCategory.Ones));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Ones_out_of_order()
     {
         Assert.Equal(3, YachtGame.Score(new[] { 3, 1, 1, 5, 1 }, YachtCategory.Ones));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void No_ones()
     {
         Assert.Equal(0, YachtGame.Score(new[] { 4, 3, 6, 5, 5 }, YachtCategory.Ones));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Twos()
     {
         Assert.Equal(2, YachtGame.Score(new[] { 2, 3, 4, 5, 6 }, YachtCategory.Twos));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Fours()
     {
         Assert.Equal(8, YachtGame.Score(new[] { 1, 4, 1, 4, 1 }, YachtCategory.Fours));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Yacht_counted_as_threes()
     {
         Assert.Equal(15, YachtGame.Score(new[] { 3, 3, 3, 3, 3 }, YachtCategory.Threes));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Yacht_of_3s_counted_as_fives()
     {
         Assert.Equal(0, YachtGame.Score(new[] { 3, 3, 3, 3, 3 }, YachtCategory.Fives));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Fives()
     {
         Assert.Equal(10, YachtGame.Score(new[] { 1, 5, 3, 5, 3 }, YachtCategory.Fives));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Sixes()
     {
         Assert.Equal(6, YachtGame.Score(new[] { 2, 3, 4, 5, 6 }, YachtCategory.Sixes));
