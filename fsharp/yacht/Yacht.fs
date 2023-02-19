@@ -51,6 +51,12 @@ let mappedCategoryNumberToDice category =
     | Sixes -> Six
     | _ -> failwith "Not a category number"
 
+let yachtScore dice =
+    let firstDice = List.head dice
+    let isYachtScore = List.tail dice |> List.forall ((=) firstDice);
+
+    if isYachtScore then 50 else 0
+
 let numberCategoryScore category dice = dice |> List.filter((=) (mappedCategoryNumberToDice category)) |> (fun x -> List.length x * mappedNumberCategory category)
 
 let fullHouseScore dice =
@@ -102,5 +108,5 @@ let score category dice =
     | _ when category = FullHouse -> fullHouseScore dice
     | _ when category = FourOfAKind -> fourOfAKindScore dice
     | _ when category = LittleStraight -> littleStraightScore dice
-    | (_, dh::dt) when category = Yacht && dt |> List.forall ((=) dh) -> 50
+    | _ when category = Yacht -> yachtScore dice
     | _ -> 0
