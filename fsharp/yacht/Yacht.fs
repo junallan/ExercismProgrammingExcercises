@@ -100,6 +100,8 @@ let straightScore dice minDice maxDice =
         30
     else 0
 
+let choiceScore (dice) = dice |> List.map (fun d -> mappedDice d) |> List.sum
+
 let score category dice =
     match (category, dice) with
     | _ when List.length dice <> 5 -> failwith "Incorrect number of dice roles"
@@ -109,4 +111,5 @@ let score category dice =
     | _ when category = LittleStraight -> straightScore dice One Five
     | _ when category = BigStraight -> straightScore dice Two Six
     | _ when category = Yacht -> yachtScore dice
+    | _ when category = Choice -> choiceScore dice
     | _ -> 0
