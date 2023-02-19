@@ -24,10 +24,11 @@ public static class YachtGame
         var result = category switch
         {
             YachtCategory.Yacht => YachtScore(dice),
-            YachtCategory.Ones or YachtCategory.Twos or YachtCategory.Threes or YachtCategory.Fours or YachtCategory.Fives or YachtCategory.Sixes  => NumberScore(dice, category),
+            YachtCategory.Ones or YachtCategory.Twos or YachtCategory.Threes or YachtCategory.Fours or YachtCategory.Fives or YachtCategory.Sixes => NumberScore(dice, category),
             YachtCategory.FullHouse => FullHouseScore(dice),
+            YachtCategory.FourOfAKind => FourOfAKindScore(dice),
             _ => 0
-        };
+        }; ;
 
         return result;
     }
@@ -49,6 +50,28 @@ public static class YachtGame
 
         if ((firstDistinctNumberScoreCount == 2 && secondDistinctNumberScoreCount == 3) || (firstDistinctNumberScoreCount == 3 && secondDistinctNumberScoreCount == 5))
             return firstDistictNumberScore * firstDistinctNumberScoreCount + secondDistinctNumberScore * secondDistinctNumberScoreCount;
+        else
+            return 0;
+    }
+
+    private static int FourOfAKindScore(int[] dice)
+    {
+        var diceNumberVariations = dice.Distinct();
+
+        if (diceNumberVariations.Count() > 2) return 0;
+
+        if (diceNumberVariations.Count() == 1) return diceNumberVariations.Single() * 4;
+
+        var firstDistictNumberScore = diceNumberVariations.First();
+        var secondDistinctNumberScore = diceNumberVariations.Last();
+
+        var firstDistinctNumberScoreCount = dice.Count(diceNumber => diceNumber == firstDistictNumberScore);
+        var secondDistinctNumberScoreCount = dice.Count(diceNumber => diceNumber == secondDistinctNumberScore);
+
+        var scoreToTotal = firstDistinctNumberScoreCount > secondDistinctNumberScoreCount ? firstDistictNumberScore : secondDistinctNumberScore;
+
+        if ((firstDistinctNumberScoreCount == 1 && secondDistinctNumberScoreCount == 4) || (firstDistinctNumberScoreCount == 4 && secondDistinctNumberScoreCount == 1))
+            return scoreToTotal * 4;
         else
             return 0;
     }
