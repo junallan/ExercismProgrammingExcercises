@@ -101,15 +101,15 @@ let ``No pairs but not a little straight`` () =
 let ``Minimum is 1, maximum is 5, but not a little straight`` () =
     score Category.LittleStraight [Die.One; Die.One; Die.Three; Die.Four; Die.Five] |> should equal 0
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Big Straight`` () =
     score Category.BigStraight [Die.Four; Die.Six; Die.Two; Die.Five; Die.Three] |> should equal 30
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Big Straight as little straight`` () =
     score Category.LittleStraight [Die.Six; Die.Five; Die.Four; Die.Three; Die.Two] |> should equal 0
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``No pairs but not a big straight`` () =
     score Category.BigStraight [Die.Six; Die.Five; Die.Four; Die.Three; Die.One] |> should equal 0
 

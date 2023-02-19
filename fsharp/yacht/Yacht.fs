@@ -95,11 +95,10 @@ let fourOfAKindScore dice =
         else
             0
 
-let littleStraightScore dice =
-    if List.length dice = List.length (List.distinct dice) && List.min dice = One && List.max dice = Five then
+let straightScore dice minDice maxDice =
+    if List.length dice = List.length (List.distinct dice) && List.min dice = minDice && List.max dice = maxDice then
         30
     else 0
-
 
 let score category dice =
     match (category, dice) with
@@ -107,6 +106,7 @@ let score category dice =
     | _ when category = Ones || category = Twos || category = Threes || category = Fours || category = Fives || category = Sixes -> numberCategoryScore category dice
     | _ when category = FullHouse -> fullHouseScore dice
     | _ when category = FourOfAKind -> fourOfAKindScore dice
-    | _ when category = LittleStraight -> littleStraightScore dice
+    | _ when category = LittleStraight -> straightScore dice One Five
+    | _ when category = BigStraight -> straightScore dice Two Six
     | _ when category = Yacht -> yachtScore dice
     | _ -> 0
