@@ -62,7 +62,8 @@ let fullHouseScore dice =
         let firstDistinctElement = distinctDiceRoles.[0]
         let secondDistinctElement = distinctDiceRoles.[1]
         let firstElementCount = dice |> List.filter ((=) firstDistinctElement) |> List.length
-        let secondElementCount = dice |> List.filter((=) secondDistinctElement) |> List.length 
+        let secondElementCount = dice |> List.filter((=) secondDistinctElement) |> List.length
+
         if (firstElementCount = 2 && secondElementCount = 3) || (firstElementCount = 2 && secondElementCount = 3) then
            mappedDice firstDistinctElement * firstElementCount + mappedDice secondDistinctElement * secondElementCount
         else
@@ -80,12 +81,19 @@ let fourOfAKindScore dice =
         let secondDistinctElement = distinctDiceRoles.[1]
         let firstElementCount = dice |> List.filter ((=) firstDistinctElement) |> List.length
         let secondElementCount = dice |> List.filter((=) secondDistinctElement) |> List.length 
-        let fourOfAKindElement = if firstElementCount > secondElementCount then firstDistinctElement else secondDistinctElement
 
         if (firstElementCount = 4 && secondElementCount = 1) || (firstElementCount = 1 && secondElementCount = 4) then
+            let fourOfAKindElement = if firstElementCount > secondElementCount then firstDistinctElement else secondDistinctElement
+
             mappedDice fourOfAKindElement * 4
         else
             0
+
+let littleStraightScore dice =
+    if List.length dice = List.length (List.distinct dice) && List.min dice = One && List.max dice = Five then
+        30
+    else 0
+
 
 let score category dice =
     match (category, dice) with
@@ -93,5 +101,6 @@ let score category dice =
     | _ when category = Ones || category = Twos || category = Threes || category = Fours || category = Fives || category = Sixes -> numberCategoryScore category dice
     | _ when category = FullHouse -> fullHouseScore dice
     | _ when category = FourOfAKind -> fourOfAKindScore dice
+    | _ when category = LittleStraight -> littleStraightScore dice
     | (_, dh::dt) when category = Yacht && dt |> List.forall ((=) dh) -> 50
     | _ -> 0
