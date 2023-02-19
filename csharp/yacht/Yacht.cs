@@ -51,10 +51,8 @@ public static class YachtGame
         var firstDistinctNumberScoreCount = dice.Count(diceNumber => diceNumber == firstDistictNumberScore);
         var secondDistinctNumberScoreCount = dice.Count(diceNumber => diceNumber == secondDistinctNumberScore);
 
-        if ((firstDistinctNumberScoreCount == 2 && secondDistinctNumberScoreCount == 3) || (firstDistinctNumberScoreCount == 3 && secondDistinctNumberScoreCount == 5))
-            return firstDistictNumberScore * firstDistinctNumberScoreCount + secondDistinctNumberScore * secondDistinctNumberScoreCount;
-        else
-            return 0;
+        return ((firstDistinctNumberScoreCount == 2 && secondDistinctNumberScoreCount == 3) || (firstDistinctNumberScoreCount == 3 && secondDistinctNumberScoreCount == 5))
+                ? firstDistictNumberScore * firstDistinctNumberScoreCount + secondDistinctNumberScore * secondDistinctNumberScoreCount : 0;
     }
 
     private static int FourOfAKindScore(int[] dice)
@@ -73,24 +71,13 @@ public static class YachtGame
 
         var scoreToTotal = firstDistinctNumberScoreCount > secondDistinctNumberScoreCount ? firstDistictNumberScore : secondDistinctNumberScore;
 
-        if ((firstDistinctNumberScoreCount == 1 && secondDistinctNumberScoreCount == 4) || (firstDistinctNumberScoreCount == 4 && secondDistinctNumberScoreCount == 1))
-            return scoreToTotal * 4;
-        else
-            return 0;
+        return ((firstDistinctNumberScoreCount == 1 && secondDistinctNumberScoreCount == 4) || (firstDistinctNumberScoreCount == 4 && secondDistinctNumberScoreCount == 1))
+                    ? scoreToTotal * 4 : 0;
     }
 
-    private static int StraightScore(int[] dice, int minDiceNumber, int maxDiceNumber)
-    {
-        var isAllDistinctNumbers = dice.Count() == dice.Distinct().Count();
-        if (isAllDistinctNumbers && dice.Min() == minDiceNumber && dice.Max() == maxDiceNumber)
-            return 30;
-        else
-            return 0;
-    }
+    private static int StraightScore(int[] dice, int minDiceNumber, int maxDiceNumber) =>
+        (dice.Count() == dice.Distinct().Count() && dice.Min() == minDiceNumber && dice.Max() == maxDiceNumber) ? 30 : 0;
 
-    private static int ChoiceScore(int[] dice)
-    {
-        return dice.Sum();
-    }
+    private static int ChoiceScore(int[] dice) => dice.Sum();
 }
 
