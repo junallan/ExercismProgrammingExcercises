@@ -22,25 +22,25 @@ type Die =
     | Five = 5
     | Six = 6
 
-let mappedNumberCategory category =
-    match category with
-    | Ones -> 1
-    | Twos -> 2
-    | Threes -> 3
-    | Fours -> 4
-    | Fives -> 5
-    | Sixes -> 6
-    | _ -> failwith "Not a category number"
+//let mappedNumberCategory category =
+//    match category with
+//    | Ones -> 1
+//    | Twos -> 2
+//    | Threes -> 3
+//    | Fours -> 4
+//    | Fives -> 5
+//    | Sixes -> 6
+//    | _ -> failwith "Not a category number"
 
-let mappedCategoryNumberToDice category =
-    match category with
-    | Ones -> Die.One
-    | Twos -> Die.Two
-    | Threes -> Die.Three
-    | Fours -> Die.Four
-    | Fives -> Die.Five
-    | Sixes -> Die.Six
-    | _ -> failwith "Not a category number"
+//let mappedCategoryNumberToDice category =
+//    match category with
+//    | Ones -> Die.One
+//    | Twos -> Die.Two
+//    | Threes -> Die.Three
+//    | Fours -> Die.Four
+//    | Fives -> Die.Five
+//    | Sixes -> Die.Six
+//    | _ -> failwith "Not a category number"
 
 let yachtScore dice =
     let firstDice = List.head dice
@@ -48,7 +48,7 @@ let yachtScore dice =
 
     if isYachtScore then 50 else 0
 
-let numberCategoryScore category dice = dice |> List.filter((=) (mappedCategoryNumberToDice category)) |> (fun x -> List.length x * mappedNumberCategory category)
+let numberCategoryScore category dice = dice |> List.filter((=) category) |> (fun x -> List.length x * int category)
 
 let fullHouseScore dice =
     let distinctDiceRoles = List.distinct dice
@@ -98,12 +98,12 @@ let score category dice =
        failwith "Incorrect number of dice roles"
     else
         match category with
-        | Ones
-        | Twos
-        | Threes
-        | Fours 
-        | Fives
-        | Sixes -> numberCategoryScore category dice
+        | Ones -> numberCategoryScore Die.One dice
+        | Twos -> numberCategoryScore Die.Two dice
+        | Threes -> numberCategoryScore Die.Three dice
+        | Fours -> numberCategoryScore Die.Four dice
+        | Fives -> numberCategoryScore Die.Five dice
+        | Sixes -> numberCategoryScore Die.Six dice
         | FullHouse -> fullHouseScore dice
         | FourOfAKind -> fourOfAKindScore dice
         | LittleStraight -> straightScore dice Die.One Die.Five
