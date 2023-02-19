@@ -94,13 +94,19 @@ let straightScore dice minDice maxDice =
 let choiceScore (dice) = dice |> List.map (fun d -> int d) |> List.sum
 
 let score category dice =
-    match (category, dice) with
-    | _ when List.length dice <> 5 -> failwith "Incorrect number of dice roles"
-    | _ when category = Ones || category = Twos || category = Threes || category = Fours || category = Fives || category = Sixes -> numberCategoryScore category dice
-    | _ when category = FullHouse -> fullHouseScore dice
-    | _ when category = FourOfAKind -> fourOfAKindScore dice
-    | _ when category = LittleStraight -> straightScore dice Die.One Die.Five
-    | _ when category = BigStraight -> straightScore dice Die.Two Die.Six
-    | _ when category = Yacht -> yachtScore dice
-    | _ when category = Choice -> choiceScore dice
-    | _ -> 0
+    if List.length dice <> 5 then
+       failwith "Incorrect number of dice roles"
+    else
+        match category with
+        | Ones
+        | Twos
+        | Threes
+        | Fours 
+        | Fives
+        | Sixes -> numberCategoryScore category dice
+        | FullHouse -> fullHouseScore dice
+        | FourOfAKind -> fourOfAKindScore dice
+        | LittleStraight -> straightScore dice Die.One Die.Five
+        | BigStraight -> straightScore dice Die.Two Die.Six
+        | Yacht -> yachtScore dice
+        | Choice -> choiceScore dice
