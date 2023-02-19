@@ -27,6 +27,9 @@ public static class YachtGame
             YachtCategory.Ones or YachtCategory.Twos or YachtCategory.Threes or YachtCategory.Fours or YachtCategory.Fives or YachtCategory.Sixes => NumberScore(dice, category),
             YachtCategory.FullHouse => FullHouseScore(dice),
             YachtCategory.FourOfAKind => FourOfAKindScore(dice),
+            YachtCategory.LittleStraight => StraightScore(dice, (int)YachtCategory.Ones, (int)YachtCategory.Fives),
+            YachtCategory.BigStraight => StraightScore(dice, (int)YachtCategory.Twos, (int)YachtCategory.Sixes),
+            YachtCategory.Choice => ChoiceScore(dice),
             _ => 0
         }; ;
 
@@ -74,6 +77,20 @@ public static class YachtGame
             return scoreToTotal * 4;
         else
             return 0;
+    }
+
+    private static int StraightScore(int[] dice, int minDiceNumber, int maxDiceNumber)
+    {
+        var isAllDistinctNumbers = dice.Count() == dice.Distinct().Count();
+        if (isAllDistinctNumbers && dice.Min() == minDiceNumber && dice.Max() == maxDiceNumber)
+            return 30;
+        else
+            return 0;
+    }
+
+    private static int ChoiceScore(int[] dice)
+    {
+        return dice.Sum();
     }
 }
 
