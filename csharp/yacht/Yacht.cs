@@ -42,38 +42,18 @@ public static class YachtGame
 
     private static int FullHouseScore(int[] dice)
     {
-        var diceNumberVariations = dice.Distinct();
+        var diceNumberVariations = dice.GroupBy(d => d);
 
         if (diceNumberVariations.Count() != 2) return 0;
 
-        var firstDistictNumberScore = diceNumberVariations.First();
-        var secondDistinctNumberScore = diceNumberVariations.Last();
-        var firstDistinctNumberScoreCount = dice.Count(diceNumber => diceNumber == firstDistictNumberScore);
-        var secondDistinctNumberScoreCount = dice.Count(diceNumber => diceNumber == secondDistinctNumberScore);
+        var firstDistinctNumberScoreCount = dice.Count(diceNumber => diceNumber == diceNumberVariations.First().Key);
+        var secondDistinctNumberScoreCount = dice.Count(diceNumber => diceNumber == diceNumberVariations.Last().Key);
 
         return ((firstDistinctNumberScoreCount == 2 && secondDistinctNumberScoreCount == 3) || (firstDistinctNumberScoreCount == 3 && secondDistinctNumberScoreCount == 5))
-                ? firstDistictNumberScore * firstDistinctNumberScoreCount + secondDistinctNumberScore * secondDistinctNumberScoreCount : 0;
+                    ? diceNumberVariations.Select(dv => dv.Count() * dv.Key).Sum() : 0;
     }
 
-    private static int FourOfAKindScore(int[] dice)
-    {
-        var diceNumberVariations = dice.Distinct();
-
-        if (diceNumberVariations.Count() > 2) return 0;
-
-        if (diceNumberVariations.Count() == 1) return diceNumberVariations.Single() * 4;
-
-        var firstDistictNumberScore = diceNumberVariations.First();
-        var secondDistinctNumberScore = diceNumberVariations.Last();
-
-        var firstDistinctNumberScoreCount = dice.Count(diceNumber => diceNumber == firstDistictNumberScore);
-        var secondDistinctNumberScoreCount = dice.Count(diceNumber => diceNumber == secondDistinctNumberScore);
-
-        var scoreToTotal = firstDistinctNumberScoreCount > secondDistinctNumberScoreCount ? firstDistictNumberScore : secondDistinctNumberScore;
-
-        return ((firstDistinctNumberScoreCount == 1 && secondDistinctNumberScoreCount == 4) || (firstDistinctNumberScoreCount == 4 && secondDistinctNumberScoreCount == 1))
-                    ? scoreToTotal * 4 : 0;
-    }
+    private static int FourOfAKindScore(int[] dice) => dice.GroupBy(d => d).Where(d => d.Count() > 3).Sum(d => d.Key * 4);
 
     private static int StraightScore(int[] dice, int minDiceNumber, int maxDiceNumber) =>
         (dice.Count() == dice.Distinct().Count() && dice.Min() == minDiceNumber && dice.Max() == maxDiceNumber) ? 30 : 0;
