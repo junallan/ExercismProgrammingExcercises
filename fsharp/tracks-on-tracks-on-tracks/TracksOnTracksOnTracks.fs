@@ -8,6 +8,6 @@ let addLanguage (language: string) (languages: string list): string list = langu
 
 let countLanguages (languages: string list): int = languages.Length
 
-let reverseList(languages: string list): string list = failwith "Please implement the 'reverseList' function"
+let reverseList(languages: string list): string list = List.rev languages
 
 let excitingList (languages: string list): bool = failwith "Please implement the 'excitingList' function"
