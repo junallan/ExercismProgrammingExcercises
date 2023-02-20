@@ -45,13 +45,9 @@ public class RobotSimulator
         }
     }
 
-    public void Move(string instructions)
+    public void Move(string instructions) 
     {
-        if(instructions.Length == 0) return;
-
-        MoveDirection(instructions[0]);
-
-        if(instructions.Length > 1) Move(instructions.Substring(1));
+        foreach (var movement in instructions) MoveDirection(movement);
     }
 
     private void MoveDirection(char movement)
