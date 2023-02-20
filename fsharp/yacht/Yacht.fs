@@ -23,10 +23,10 @@ type Die =
     | Six = 6
 
 let yachtScore dice =
-    let firstDice = List.head dice
-    let isYachtScore = List.tail dice |> List.forall ((=) firstDice);
-
-    if isYachtScore then 50 else 0
+    if List.distinct dice |> List.length <> 1 then
+        0
+    else
+        50
 
 let numberCategoryScore category dice = dice |> List.filter((=) category) |> List.length |> (*) (int category)
 
@@ -72,5 +72,5 @@ let score category dice =
         | FourOfAKind -> fourOfAKindScore diceTotals
         | LittleStraight -> straightScore dice Die.One Die.Five
         | BigStraight -> straightScore dice Die.Two Die.Six
-        | Yacht -> yachtScore dice
+        | Yacht -> yachtScore diceTotals
         | Choice -> choiceScore dice
