@@ -14,4 +14,8 @@ let incrementTodaysCount(counts: int[]): int[] =
     [| todaysCountIncremented; yield! Array.tail reversedCounts |] |> Array.rev
 
 let oddWeek(counts: int[]): bool =
-  failwith "Please implement the 'oddWeek' function"
+  match counts with
+  | [| _; 0; _; 0; _; 0; _; |] -> true
+  | [| _; 10; _; 10; _; 10; _; |] -> true
+  | [| 5; _; 5; _; 5; _; 5; |] -> true
+  | _ -> false
