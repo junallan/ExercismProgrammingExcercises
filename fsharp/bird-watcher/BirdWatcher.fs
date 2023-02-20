@@ -9,7 +9,9 @@ let total(counts: int[]): int = Array.sum counts
 let dayWithoutBirds(counts: int[]): bool = counts |> Array.exists((=) 0)
 
 let incrementTodaysCount(counts: int[]): int[] =
- failwith "Please implement the 'incrementTodaysCount' function"
+    let reversedCounts = Array.rev counts
+    let todaysCountIncremented = Array.head reversedCounts + 1
+    [| todaysCountIncremented; yield! Array.tail reversedCounts |] |> Array.rev
 
 let oddWeek(counts: int[]): bool =
   failwith "Please implement the 'oddWeek' function"
