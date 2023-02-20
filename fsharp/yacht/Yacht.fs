@@ -47,12 +47,12 @@ let fourOfAKindScore diceTotals  =
     else
         fst diceTotals.Head * 4
 
-let straightScore (diceTotals : (int * int) list) (firstDiceNumber : int) =
+let straightScore (diceTotals : (int * int) list) (minDiceNumber : int) (maxDiceNumber) =
     let diceTotalsOrderedByDie = diceTotals |> List.sortBy fst
-    let isDieInSequence = (diceTotalsOrderedByDie |> List.last |> fst) - (diceTotalsOrderedByDie |> List.head |> fst) = 4
+    
     if (List.distinct diceTotals |> List.length) <> 5 then
         0
-    elif not isDieInSequence || (diceTotalsOrderedByDie |> List.head |> fst <> firstDiceNumber) then
+    elif diceTotalsOrderedByDie |> List.head |> fst <> minDiceNumber || diceTotalsOrderedByDie |> List.last |> fst <> maxDiceNumber then
         0
     else
         30
@@ -74,7 +74,7 @@ let score category dice =
         | Sixes -> numberCategoryScore Die.Six dice
         | FullHouse -> fullHouseScore diceTotals
         | FourOfAKind -> fourOfAKindScore diceTotals
-        | LittleStraight -> straightScore diceTotals 1
-        | BigStraight -> straightScore diceTotals 2
+        | LittleStraight -> straightScore diceTotals 1 5
+        | BigStraight -> straightScore diceTotals 2 6
         | Yacht -> yachtScore diceTotals
         | Choice -> choiceScore diceTotals
