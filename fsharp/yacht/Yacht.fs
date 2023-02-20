@@ -31,40 +31,22 @@ let yachtScore dice =
 let numberCategoryScore category dice = dice |> List.filter((=) category) |> List.length |> (*) (int category)
 
 let fullHouseScore dice =
-    let distinctDiceRoles = List.distinct dice
-
-    if distinctDiceRoles.Length <> 2 then
+    let secondDice = List.last dice
+    if List.distinct dice |> List.length <> 2 then
+        0
+    elif snd dice.Head > 3 then
         0
     else
-        let firstDistinctElement = distinctDiceRoles.[0]
-        let secondDistinctElement = distinctDiceRoles.[1]
-        let firstElementCount = dice |> List.filter ((=) firstDistinctElement) |> List.length
-        let secondElementCount = dice |> List.filter((=) secondDistinctElement) |> List.length
+        fst dice.Head * snd dice.Head + fst secondDice * snd secondDice
 
-        if (firstElementCount = 2 && secondElementCount = 3) || (firstElementCount = 2 && secondElementCount = 3) then
-           int firstDistinctElement * firstElementCount + int secondDistinctElement * secondElementCount
-        else
-            0        
-
-let fourOfAKindScore dice =
-    let distinctDiceRoles = List.distinct dice
-
-    if distinctDiceRoles.Length > 2 then
+let fourOfAKindScore dice  =
+    if List.distinct dice |> List.length > 2 then
         0
-    elif distinctDiceRoles.Length = 1 then
-        int distinctDiceRoles.Head * 4
+    elif snd dice.Head < 4 then
+        0
     else
-        let firstDistinctElement = distinctDiceRoles.[0]
-        let secondDistinctElement = distinctDiceRoles.[1]
-        let firstElementCount = dice |> List.filter ((=) firstDistinctElement) |> List.length
-        let secondElementCount = dice |> List.filter((=) secondDistinctElement) |> List.length 
+        fst dice.Head * 4
 
-        if (firstElementCount = 4 && secondElementCount = 1) || (firstElementCount = 1 && secondElementCount = 4) then
-            let fourOfAKindElement = if firstElementCount > secondElementCount then firstDistinctElement else secondDistinctElement
-
-            int fourOfAKindElement * 4
-        else
-            0
 
 let straightScore dice minDice maxDice =
     if List.length dice = List.length (List.distinct dice) && List.min dice = minDice && List.max dice = maxDice then
@@ -77,6 +59,8 @@ let score category dice =
     if List.length dice <> 5 then
        failwith "Incorrect number of dice roles"
     else
+        let diceTotals = dice |> List.countBy int |> List.sortByDescending snd
+
         match category with
         | Ones -> numberCategoryScore Die.One dice
         | Twos -> numberCategoryScore Die.Two dice
@@ -84,8 +68,8 @@ let score category dice =
         | Fours -> numberCategoryScore Die.Four dice
         | Fives -> numberCategoryScore Die.Five dice
         | Sixes -> numberCategoryScore Die.Six dice
-        | FullHouse -> fullHouseScore dice
-        | FourOfAKind -> fourOfAKindScore dice
+        | FullHouse -> fullHouseScore diceTotals
+        | FourOfAKind -> fourOfAKindScore diceTotals
         | LittleStraight -> straightScore dice Die.One Die.Five
         | BigStraight -> straightScore dice Die.Two Die.Six
         | Yacht -> yachtScore dice
