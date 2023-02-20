@@ -22,38 +22,42 @@ type Die =
     | Five = 5
     | Six = 6
 
-let yachtScore dice =
-    if List.distinct dice |> List.length <> 1 then
+let yachtScore diceTotals =
+    if List.distinct diceTotals |> List.length <> 1 then
         0
     else
         50
 
 let numberCategoryScore category dice = dice |> List.filter((=) category) |> List.length |> (*) (int category)
 
-let fullHouseScore dice =
-    let secondDice = List.last dice
-    if List.distinct dice |> List.length <> 2 then
+let fullHouseScore diceTotals =
+    let secondDice = List.last diceTotals
+    if List.distinct diceTotals |> List.length <> 2 then
         0
-    elif snd dice.Head > 3 then
-        0
-    else
-        fst dice.Head * snd dice.Head + fst secondDice * snd secondDice
-
-let fourOfAKindScore dice  =
-    if List.distinct dice |> List.length > 2 then
-        0
-    elif snd dice.Head < 4 then
+    elif snd diceTotals.Head > 3 then
         0
     else
-        fst dice.Head * 4
+        fst diceTotals.Head * snd diceTotals.Head + fst secondDice * snd secondDice
 
+let fourOfAKindScore diceTotals  =
+    if List.distinct diceTotals |> List.length > 2 then
+        0
+    elif snd diceTotals.Head < 4 then
+        0
+    else
+        fst diceTotals.Head * 4
 
-let straightScore dice minDice maxDice =
-    if List.length dice = List.length (List.distinct dice) && List.min dice = minDice && List.max dice = maxDice then
+let straightScore (diceTotals : (int * int) list) (firstDiceNumber : int) =
+    let diceTotalsOrderedByDie = diceTotals |> List.sortBy fst
+    let isDieInSequence = (diceTotalsOrderedByDie |> List.last |> fst) - (diceTotalsOrderedByDie |> List.head |> fst) = 4
+    if (List.distinct diceTotals |> List.length) <> 5 then
+        0
+    elif not isDieInSequence || (diceTotalsOrderedByDie |> List.head |> fst <> firstDiceNumber) then
+        0
+    else
         30
-    else 0
-
-let choiceScore (dice) = dice |> List.map (fun d -> int d) |> List.sum
+        
+let choiceScore diceTotals = diceTotals |> List.map (fun (diceNumber, total) -> diceNumber * total) |>  List.sum
 
 let score category dice =
     if List.length dice <> 5 then
@@ -70,7 +74,7 @@ let score category dice =
         | Sixes -> numberCategoryScore Die.Six dice
         | FullHouse -> fullHouseScore diceTotals
         | FourOfAKind -> fourOfAKindScore diceTotals
-        | LittleStraight -> straightScore dice Die.One Die.Five
-        | BigStraight -> straightScore dice Die.Two Die.Six
+        | LittleStraight -> straightScore diceTotals 1
+        | BigStraight -> straightScore diceTotals 2
         | Yacht -> yachtScore diceTotals
-        | Choice -> choiceScore dice
+        | Choice -> choiceScore diceTotals
