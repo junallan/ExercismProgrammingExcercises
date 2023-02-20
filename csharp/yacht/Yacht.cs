@@ -46,11 +46,7 @@ public static class YachtGame
 
         if (diceNumberVariations.Count() != 2) return 0;
 
-        var firstDistinctNumberScoreCount = dice.Count(diceNumber => diceNumber == diceNumberVariations.First().Key);
-        var secondDistinctNumberScoreCount = dice.Count(diceNumber => diceNumber == diceNumberVariations.Last().Key);
-
-        return ((firstDistinctNumberScoreCount == 2 && secondDistinctNumberScoreCount == 3) || (firstDistinctNumberScoreCount == 3 && secondDistinctNumberScoreCount == 5))
-                    ? diceNumberVariations.Select(dv => dv.Count() * dv.Key).Sum() : 0;
+        return diceNumberVariations.Any(d => d.Count() == 2) ? dice.Sum() : 0;
     }
 
     private static int FourOfAKindScore(int[] dice) => dice.GroupBy(d => d).Where(d => d.Count() > 3).Sum(d => d.Key * 4);
