@@ -12,4 +12,7 @@ let interest (balance: decimal): decimal = balance * (decimal (interestRate bala
 let annualBalanceUpdate(balance: decimal): decimal = balance + interest balance
 
 let amountToDonate(balance: decimal) (taxFreePercentage: float): int =
-   failwith "Please implement the 'amountToDonate' function"
+    if balance > 0.0m then
+        int (balance * decimal (taxFreePercentage / 100.0) * 2m)
+    else
+        0
