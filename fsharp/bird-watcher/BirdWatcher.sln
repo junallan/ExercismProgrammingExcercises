@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1704.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BirdWatcher", "BirdWatcher.fsproj", "{E49DA53E-0BE4-4D20-982E-27AA329A47D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E49DA53E-0BE4-4D20-982E-27AA329A47D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E49DA53E-0BE4-4D20-982E-27AA329A47D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E49DA53E-0BE4-4D20-982E-27AA329A47D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E49DA53E-0BE4-4D20-982E-27AA329A47D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {275DF8D3-2293-44CB-AC87-DFF86B84D1A7}
+	EndGlobalSection
+EndGlobal
