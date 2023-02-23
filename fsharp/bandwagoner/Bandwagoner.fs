@@ -13,7 +13,8 @@ let createStats(wins: int) (losses: int): Stats =
    stats
 
 let createTeam(name: string) (coach: Coach)(stats: Stats): Team =
-  failwith "Please implement the 'createTeam' function"
+  let team: Team = { Name = name; Coach = coach; Stats = stats }
+  team
 
 let replaceCoach(team: Team) (coach: Coach): Team =
    failwith "Please implement the 'replaceCoach' function"
