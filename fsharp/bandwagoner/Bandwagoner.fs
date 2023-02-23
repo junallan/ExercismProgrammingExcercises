@@ -9,7 +9,8 @@ let createCoach (name: string) (formerPlayer: bool): Coach =
     coach
 
 let createStats(wins: int) (losses: int): Stats =
-   failwith "Please implement the 'createStats' function"
+   let stats: Stats = { Wins = wins; Losses = losses }
+   stats
 
 let createTeam(name: string) (coach: Coach)(stats: Stats): Team =
   failwith "Please implement the 'createTeam' function"
