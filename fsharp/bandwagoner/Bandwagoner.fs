@@ -17,7 +17,8 @@ let createTeam(name: string) (coach: Coach)(stats: Stats): Team =
   team
 
 let replaceCoach(team: Team) (coach: Coach): Team =
-   failwith "Please implement the 'replaceCoach' function"
+   let team: Team = { team with Coach = coach }
+   team
 
 let isSameTeam(homeTeam: Team) (awayTeam: Team): bool =
    failwith "Please implement the 'isSameTeam' function"
