@@ -21,7 +21,7 @@ let replaceCoach(team: Team) (coach: Coach): Team =
    team
 
 let isSameTeam(homeTeam: Team) (awayTeam: Team): bool =
-   failwith "Please implement the 'isSameTeam' function"
+   homeTeam = awayTeam
 
 let rootForTeam(team: Team): bool =
    failwith "Please implement the 'rootForTeam' function"
