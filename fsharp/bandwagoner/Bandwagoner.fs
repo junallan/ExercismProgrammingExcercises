@@ -24,4 +24,10 @@ let isSameTeam(homeTeam: Team) (awayTeam: Team): bool =
    homeTeam = awayTeam
 
 let rootForTeam(team: Team): bool =
-   failwith "Please implement the 'rootForTeam' function"
+   match team with
+   | { Coach = {Name = "Gregg Popovich"} } -> true
+   | { Coach = { FormerPlayer = true } } -> true
+   | { Name = "Chicago Bulls" } -> true
+   | _ when team.Stats.Wins >= 60 -> true
+   | _ when team.Stats.Wins < team.Stats.Losses -> true
+   | _ -> false
