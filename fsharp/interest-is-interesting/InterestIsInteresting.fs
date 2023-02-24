@@ -1,11 +1,14 @@
 module InterestIsInteresting
 
 let interestRate (balance: decimal): single =
-    match balance with
-    | _ when balance < 0m -> 3.213f
-    | _ when balance < 1000m -> 0.5f
-    | _ when balance < 5000m -> 1.621f
-    | _ -> 2.475f
+    if balance < 0m then
+        3.213f
+    elif balance < 1000m then
+        0.5f
+    elif balance < 5000m then
+        1.621f
+    else
+        2.475f
 
 let interest (balance: decimal): decimal = balance * (decimal (interestRate balance) / 100m)
 
