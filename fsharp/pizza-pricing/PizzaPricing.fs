@@ -22,4 +22,4 @@ let orderPrice(pizzas: Pizza list): int =
         | 2 -> 2
         | _ -> 0
 
-    List.map (fun pizza -> pizzaPrice pizza) pizzas |> List.sum |> (+) fee
+    List.fold (fun acc pizza -> acc + pizzaPrice pizza) fee pizzas
