@@ -16,11 +16,10 @@ let rec pizzaPrice (pizza: Pizza): int =
         | ExtraToppings p -> 2 + pizzaPrice p
 
 let orderPrice(pizzas: Pizza list): int =
-    if pizzas.Length = 0 then
-        0
-    elif pizzas.Length = 1 then
-        3 + pizzaPrice pizzas.Head
-    elif pizzas.Length = 2 then
-        2 + pizzaPrice pizzas.Head + pizzaPrice pizzas.[1]
-    else 
-        List.map (fun pizza -> pizzaPrice pizza) pizzas |> List.sum
+    let fee =
+        match List.length pizzas with
+        | 1 -> 3
+        | 2 -> 2
+        | _ -> 0
+
+    List.map (fun pizza -> pizzaPrice pizza) pizzas |> List.sum |> (+) fee
