@@ -35,6 +35,7 @@ public static class PalindromeProducts
             }
         }
 
+        if (!largestPalindromeProduct.HasValue) throw new ArgumentException();
         return (largestPalindromeProduct.Value, palindromeProducts);
     }
 
@@ -58,6 +59,7 @@ public static class PalindromeProducts
             }
         }
 
+        if (!smallestPalindromeProduct.HasValue) throw new ArgumentException();
         return (smallestPalindromeProduct.Value, palindromeProducts);
     }
 
