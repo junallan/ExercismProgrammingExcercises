@@ -63,10 +63,10 @@ public static class PalindromeProducts
 
     private static bool IsPalindromProduct(int firstNumber, int secondNumber)
     {
-        var product = firstNumber * secondNumber;
-        var parsedProduct = product.ToString().ToCharArray();
+        var product = (firstNumber * secondNumber).ToString();
+        var parsedProduct = product.ToCharArray();
         Array.Reverse(parsedProduct);
 
-        return product.ToString() == new String(parsedProduct);    
+        return product == new String(parsedProduct);    
     }
 }
