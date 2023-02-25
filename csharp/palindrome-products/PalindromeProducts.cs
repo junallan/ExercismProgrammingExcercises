@@ -6,7 +6,7 @@ public static class PalindromeProducts
 {
     public static (int, IEnumerable<(int,int)>) Largest(int minFactor, int maxFactor)
     {
-        int? largestPalindromeProduct = null;
+        var largestPalindromeProduct = int.MinValue;
         var palindromeProducts = new List<(int FirstNumber, int SecondNumber)>();
 
         for (int i = maxFactor; i >= minFactor; i--)
@@ -15,31 +15,29 @@ public static class PalindromeProducts
             {
                 if (IsPalindromProduct(j, i))
                 {
-                    if (!largestPalindromeProduct.HasValue) largestPalindromeProduct = i * j;
-                    else if (largestPalindromeProduct.Value != i * j)
-                    {
-                        if (largestPalindromeProduct.Value > i * j) continue;
-                        else
-                        {
-                            largestPalindromeProduct = i * j;
-                            palindromeProducts.Clear();
-                            palindromeProducts.Add((j, i));
-                        }
-                    }
-
-                    if (!palindromeProducts.Any(n => (n.FirstNumber == i && n.SecondNumber == j) || (n.FirstNumber == j && n.SecondNumber == i)))
+                    if (largestPalindromeProduct < i * j)
+                    { 
+                        largestPalindromeProduct = i * j;
+                        palindromeProducts.Clear();
                         palindromeProducts.Add((j, i));
+                    }
+                    else if (largestPalindromeProduct == i * j)
+                    {
+                        if (!palindromeProducts.Any(n => (n.FirstNumber == i && n.SecondNumber == j) || (n.FirstNumber == j && n.SecondNumber == i)))
+                            palindromeProducts.Add((j, i));
+                    }
                 }
             }
         }
 
-        if (!largestPalindromeProduct.HasValue) throw new ArgumentException();
-        return (largestPalindromeProduct.Value, palindromeProducts);
+        if (largestPalindromeProduct == int.MinValue) throw new ArgumentException();
+
+        return (largestPalindromeProduct, palindromeProducts);
     }
 
     public static (int, IEnumerable<(int,int)>) Smallest(int minFactor, int maxFactor)
     {
-        int? smallestPalindromeProduct = null;
+        var smallestPalindromeProduct = int.MaxValue;
         var palindromeProducts = new List<(int FirstNumber, int SecondNumber)>();
 
         for (int i = minFactor; i <= maxFactor; i++)
@@ -48,8 +46,8 @@ public static class PalindromeProducts
             {
                 if (IsPalindromProduct(i, j))
                 {
-                    if (!smallestPalindromeProduct.HasValue) smallestPalindromeProduct = i * j;
-                    else if(smallestPalindromeProduct.Value != i * j) return (smallestPalindromeProduct.Value, palindromeProducts);
+                    if (smallestPalindromeProduct == int.MaxValue) smallestPalindromeProduct = i * j;
+                    else if(smallestPalindromeProduct < i * j) return (smallestPalindromeProduct, palindromeProducts);
 
                     if (!palindromeProducts.Any(n => (n.FirstNumber == i && n.SecondNumber == j) || (n.FirstNumber == j && n.SecondNumber == i)))
                         palindromeProducts.Add((j, i));
@@ -57,8 +55,8 @@ public static class PalindromeProducts
             }
         }
 
-        if (!smallestPalindromeProduct.HasValue) throw new ArgumentException();
-        return (smallestPalindromeProduct.Value, palindromeProducts);
+        if (smallestPalindromeProduct == int.MaxValue) throw new ArgumentException();
+        return (smallestPalindromeProduct, palindromeProducts);
     }
 
     private static bool IsPalindromProduct(int firstNumber, int secondNumber)
