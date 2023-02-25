@@ -20,15 +20,29 @@ public class WordSearch
             wordCoordintates.Add(word, null);
             for (var i = 0; i < _grid.Length; i++)
             {
+                // row word search
                 var startIndexOfWord = _grid[i].IndexOf(word);
 
                 if (startIndexOfWord >= 0)
                 {
                     wordCoordintates[word] = ((startIndexOfWord + 1, i + 1), (startIndexOfWord + word.Length, i + 1));
+                    break;
                 }
+
+                // reverse row word search
+                var reservedWord = new String(word.Reverse().ToArray());
+                var startIndexOfReverseWord = _grid[i].IndexOf(reservedWord);
+
+                if (startIndexOfReverseWord >= 0)
+                {
+                    wordCoordintates[word] = ((word.Length - startIndexOfReverseWord, i + 1), (startIndexOfReverseWord +1, i + 1));
+                }
+
             }
         }
 
         return wordCoordintates;
     }
+
+    
 }
