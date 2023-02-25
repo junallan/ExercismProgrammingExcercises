@@ -9,13 +9,16 @@ let convertCoordinate (coordinate: string): int * char =
     let numberCoordinate = List.take coordinatesLastIndex coordinateParsed
     (int (string numberCoordinate.[0]),letterCoordinate)
 
-    
-
 let compareRecords (azarasData: string * string) (ruisData: string * (int * char) * string) : bool = 
     let (_, coordinatesAzara) = azarasData
     let (_, coordinatesRui, _) = ruisData
     convertCoordinate coordinatesAzara = coordinatesRui
 
-
 let createRecord (azarasData: string * string) (ruisData: string * (int * char) * string) : (string * string * string * string) =
-    failwith "Please implement the 'createRecord' function"
+    if compareRecords azarasData ruisData then
+        let (treasure, coordinate) = azarasData
+        let (location, _, quadrant) = ruisData
+        (coordinate, location, quadrant, treasure)
+    else
+        ("","","","")
+     
