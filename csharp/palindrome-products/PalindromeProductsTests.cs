@@ -21,7 +21,7 @@ public class PalindromeProductsTests
         Assert.Equal(expected.Item2, actual.Item2);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Find_the_smallest_palindrome_from_double_digit_factors()
     {
         var actual = PalindromeProducts.Smallest(10, 99);
@@ -30,7 +30,7 @@ public class PalindromeProductsTests
         Assert.Equal(expected.Item2, actual.Item2);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Find_the_largest_palindrome_from_double_digit_factors()
     {
         var actual = PalindromeProducts.Largest(10, 99);
@@ -39,7 +39,7 @@ public class PalindromeProductsTests
         Assert.Equal(expected.Item2, actual.Item2);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Find_the_smallest_palindrome_from_triple_digit_factors()
     {
         var actual = PalindromeProducts.Smallest(100, 999);
@@ -48,7 +48,7 @@ public class PalindromeProductsTests
         Assert.Equal(expected.Item2, actual.Item2);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Find_the_largest_palindrome_from_triple_digit_factors()
     {
         var actual = PalindromeProducts.Largest(100, 999);
