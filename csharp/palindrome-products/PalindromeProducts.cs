@@ -13,19 +13,18 @@ public static class PalindromeProducts
         {
             for (int j = maxFactor; j >= minFactor; j--)
             {
-                if (IsPalindromProduct(j, i))
+                if (!IsPalindromProduct(j, i)) continue;
+
+                if (largestPalindromeProduct < i * j)
+                { 
+                    largestPalindromeProduct = i * j;
+                    palindromeProducts.Clear();
+                    palindromeProducts.Add((j, i));
+                }
+                else if (largestPalindromeProduct == i * j)
                 {
-                    if (largestPalindromeProduct < i * j)
-                    { 
-                        largestPalindromeProduct = i * j;
-                        palindromeProducts.Clear();
+                    if (!palindromeProducts.Any(n => (n.FirstNumber == i && n.SecondNumber == j) || (n.FirstNumber == j && n.SecondNumber == i)))
                         palindromeProducts.Add((j, i));
-                    }
-                    else if (largestPalindromeProduct == i * j)
-                    {
-                        if (!palindromeProducts.Any(n => (n.FirstNumber == i && n.SecondNumber == j) || (n.FirstNumber == j && n.SecondNumber == i)))
-                            palindromeProducts.Add((j, i));
-                    }
                 }
             }
         }
@@ -44,14 +43,12 @@ public static class PalindromeProducts
         {
             for (int j = i; j <= maxFactor; j++)
             {
-                if (IsPalindromProduct(i, j))
-                {
-                    if (smallestPalindromeProduct == int.MaxValue) smallestPalindromeProduct = i * j;
-                    else if(smallestPalindromeProduct < i * j) return (smallestPalindromeProduct, palindromeProducts);
-
-                    if (!palindromeProducts.Any(n => (n.FirstNumber == i && n.SecondNumber == j) || (n.FirstNumber == j && n.SecondNumber == i)))
-                        palindromeProducts.Add((j, i));
-                }
+                if (!IsPalindromProduct(i, j)) continue;
+                if (smallestPalindromeProduct < i * j) return (smallestPalindromeProduct, palindromeProducts);
+                if (smallestPalindromeProduct == int.MaxValue) smallestPalindromeProduct = i * j;
+   
+                if (!palindromeProducts.Any(n => (n.FirstNumber == i && n.SecondNumber == j) || (n.FirstNumber == j && n.SecondNumber == i)))
+                    palindromeProducts.Add((j, i));           
             }
         }
 
