@@ -27,8 +27,6 @@ public static class PalindromeProducts
                         }
                     }
 
-
-
                     if (!palindromeProducts.Any(n => (n.FirstNumber == i && n.SecondNumber == j) || (n.FirstNumber == j && n.SecondNumber == i)))
                         palindromeProducts.Add((j, i));
                 }
