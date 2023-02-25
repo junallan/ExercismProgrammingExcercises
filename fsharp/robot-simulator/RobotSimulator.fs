@@ -6,7 +6,7 @@ type Position = int * int
 let create direction position = (direction, position)
 
 let move (instructions:string) (robot:Direction*(int*int))  =
-    (robot, instructions.ToCharArray()) ||> Seq.fold (fun robot instruction ->
+    (robot, Seq.toList instructions) ||> Seq.fold (fun robot instruction ->
         match instruction, robot with
           | ('R', (Direction.North,p)) -> (Direction.East, p)
           | ('R', (Direction.East,p)) -> (Direction.South, p)
