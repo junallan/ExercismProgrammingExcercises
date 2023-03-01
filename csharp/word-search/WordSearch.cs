@@ -92,6 +92,31 @@ public class WordSearch
 
         if (!isDifference) return (true, (y+2, x + 1));
 
+        x = point.X;
+        y = point.Y;
+
+        isDifference = false;
+
+        wordCounter = 0;
+
+        for (int i = 0; i < word.Length; i++)
+        {
+            // Top to bottom search
+            if (x == _rowSize)
+            {
+                isDifference = true;
+                break;
+            }
+
+            if (word[wordCounter++] != _grid[x++][y])
+            {
+                isDifference = true;
+                break;
+            }
+        }
+
+        if (!isDifference) return (true, (y + 1, x));
+
         return (false, null);
 
     }
