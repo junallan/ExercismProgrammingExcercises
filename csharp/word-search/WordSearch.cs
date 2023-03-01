@@ -5,83 +5,53 @@ using System.Linq;
 public class WordSearch
 {
     private readonly string[] _grid;
-    private readonly string[] _transposedGrid;
+    private readonly int _rowSize;
+    private readonly int _columnSize;
 
     public WordSearch(string grid)
     {
         _grid = grid.Split('\n');
-        _transposedGrid = TransposeGrid();
+        _rowSize = _grid.Length;
+        _columnSize = _grid.ElementAt(0).Length;
     }
 
     public Dictionary<string, ((int, int), (int, int))?> Search(string[] wordsToSearchFor)
     {
-        var wordCoordintates = new Dictionary<string, ((int, int), (int, int))?>();
+        var wordCoordinates = new Dictionary<string, ((int, int), (int, int))?>();
 
-        // Row search
         foreach (var word in wordsToSearchFor)
         {
-            wordCoordintates.Add(word, null);
-            for (var i = 0; i < _grid.Length; i++)
+            wordCoordinates.Add(word, null);
+
+            for (var i = 0; i < _rowSize; i++)
             {
-                // row word search
-                var startIndexOfWord = _grid[i].IndexOf(word);
+                if (wordCoordinates[word] != null) break;
 
-                if (startIndexOfWord >= 0)
+                for (var j = 0; j < _columnSize; j++)
                 {
-                    wordCoordintates[word] = ((startIndexOfWord + 1, i + 1), (startIndexOfWord + word.Length, i + 1));
-                    break;
-                }
-
-                // reverse row word search
-                var reservedWord = new String(word.Reverse().ToArray());
-                var startIndexOfReverseWord = _grid[i].IndexOf(reservedWord);
-
-                if (startIndexOfReverseWord >= 0)
-                {
-                    wordCoordintates[word] = ((word.Length - startIndexOfReverseWord, i + 1), (startIndexOfReverseWord +1, i + 1));
-                    break;
-                }
-            }
-
-            for (var i = 0; i < _transposedGrid.Length; i++)
-            {
-                // row word search
-                var startIndexOfWord = _transposedGrid[i].IndexOf(word);
-
-                if (startIndexOfWord >= 0)
-                {
-                    //wordCoordintates[word] = ((startIndexOfWord + 1, i + 1), (startIndexOfWord + word.Length, i + 1));
-                    wordCoordintates[word] = ((i + 1, startIndexOfWord + 1), (i + 1, startIndexOfWord + word.Length));
-                    break;
-                }
-
-                // reverse row word search
-                var reservedWord = new String(word.Reverse().ToArray());
-                var startIndexOfReverseWord = _transposedGrid[i].IndexOf(reservedWord);
-
-                if (startIndexOfReverseWord >= 0)
-                {
-                    //wordCoordintates[word] = ((word.Length - startIndexOfReverseWord, i + 1), (startIndexOfReverseWord + 1, i + 1));
-                    wordCoordintates[word] = ((i + 1, word.Length + startIndexOfReverseWord), (i + 1, startIndexOfReverseWord + 1));
+                    var result = WordToSearch(word, (i, j));
+                    if (result.IsMatch)
+                    {
+                        wordCoordinates[word] = ((i,j), result.endPoint.Value);
+                    }
                 }
             }
         }
 
-        return wordCoordintates;
+        return wordCoordinates;
     }
 
-    private string[] TransposeGrid()
+    private (bool IsMatch, (int X, int Y)? endPoint) WordToSearch(string word, (int X, int Y) point)
     {
-        var transposedGrid = new string[_grid[0].Length];
+        var x = point.X;
+        var y = point.Y;
 
-        for (var i = 0; i < _grid.Length; i++)
+        // Left to right search
+        for (int i = 0; i < word.Length; i++)
         {
-            for (var j = 0; j < _grid[i].Length; j++)
-            {
-                transposedGrid[j] += _grid[i][j];
-            }
+            if (word[i] != _grid[x][y++]) return (false, null);
         }
 
-        return transposedGrid;
+        return (false, null);
     }
 }
