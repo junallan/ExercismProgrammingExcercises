@@ -205,7 +205,7 @@ public class WordSearchTests
         Assert.Equal(expected["fortran"], actual["fortran"]);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Should_locate_a_single_word_written_right_to_left()
     {
         var wordsToSearchFor = new[] { "elixir" };
@@ -219,7 +219,7 @@ public class WordSearchTests
         Assert.Equal(expected["elixir"], actual["elixir"]);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Should_locate_multiple_words_written_in_different_horizontal_directions()
     {
         var wordsToSearchFor = new[] { "elixir", "clojure" };
