@@ -32,7 +32,7 @@ public class WordSearch
                     var result = WordToSearch(word, (i, j));
                     if (result.IsMatch)
                     {
-                        wordCoordinates[word] = ((i,j), result.endPoint.Value);
+                        wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
                     }
                 }
             }
@@ -46,12 +46,14 @@ public class WordSearch
         var x = point.X;
         var y = point.Y;
 
-        // Left to right search
         for (int i = 0; i < word.Length; i++)
         {
+            // Left to right search
+            if (y == _columnSize) return (false, null);
             if (word[i] != _grid[x][y++]) return (false, null);
+           
         }
 
-        return (false, null);
+        return (true, (y, x+1));
     }
 }
