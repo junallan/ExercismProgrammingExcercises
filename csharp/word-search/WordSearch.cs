@@ -46,14 +46,28 @@ public class WordSearch
         var x = point.X;
         var y = point.Y;
 
+        var isDifference = false;
+
+        var wordCounter = 0;
         for (int i = 0; i < word.Length; i++)
         {
             // Left to right search
-            if (y == _columnSize) return (false, null);
-            if (word[i] != _grid[x][y++]) return (false, null);
-           
+            if (y == _columnSize)
+            {
+                isDifference = true;
+                break;
+            }
+
+            if (word[wordCounter++] != _grid[x][y++])
+            {
+                isDifference = true;
+                break;
+            }
         }
 
-        return (true, (y, x+1));
+        if(!isDifference) return (true, (y, x + 1));
+
+        return (false, null);
+
     }
 }
