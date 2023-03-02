@@ -67,65 +67,28 @@ public class WordSearch
         return wordCoordinates;
     }
 
-    private (bool IsMatch, (int X, int Y)? endPoint) WordToSearch(string word, (int X, int Y) point, int xMove, int yMove)
+    private (bool IsMatch, (int X, int Y)? endPoint) WordToSearch(string word, (int X, int Y) startPoint, int xMove, int yMove)
     {
-        var x = point.X;
-        var y = point.Y;
+        var x = startPoint.X;
+        var y = startPoint.Y;
 
-        var isDifference = false;
-
-        var wordCounter = 0;
         for (int i = 0; i < word.Length; i++)
         {
-            // Left to right search
-            if (0 > y || y == _columnSize || 0 > x || x == _rowSize)
-            {
-                isDifference = true;
-                break;
-            }
+            if (0 > y || y == _columnSize || 0 > x || x == _rowSize) return (false, null); 
+            if (word[i] != _grid[x][y]) return (false, null);
             
-            if (word[wordCounter++] != _grid[x][y])
-            {
-                isDifference = true;
-                break;
-            }
-
             x += xMove;
             y += yMove;
         }
 
         if (xMove == 0 && yMove == 1) x += 1;
-        else if (xMove == 0 && yMove == -1)
-        {
-            x += 1;
-            y += 2;
-        }
-        else if (xMove == 1 && yMove == 0)
-        {
-            y += 1;
-        }
-        else if (xMove == -1 && yMove == 0)
-        {
-            x += 2;
-            y += 1;
-        }
-        else if (xMove == -1 && yMove == -1)
-        {
-            x += 2;
-            y += 2;
-        }
-        else if (xMove == -1 && yMove == 1)
-        {
-            x += 2;
-        }
-        else if (xMove == 1 && yMove == -1)
-        {
-            y += 2;
-        }
-
-        if (!isDifference) return (true, (y, x));
-
-        return (false, null);
-
+        else if (xMove == 0 && yMove == -1) { x += 1; y += 2; }
+        else if (xMove == 1 && yMove == 0) y += 1;
+        else if (xMove == -1 && yMove == 0) { x += 2; y += 1; }
+        else if (xMove == -1 && yMove == -1) { x += 2; y += 2; }
+        else if (xMove == -1 && yMove == 1) x += 2;
+        else if (xMove == 1 && yMove == -1) y += 2;
+        
+        return (true, (y, x));
     }
 }

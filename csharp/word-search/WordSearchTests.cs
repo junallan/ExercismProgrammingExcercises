@@ -443,7 +443,7 @@ public class WordSearchTests
         Assert.Equal(expected["ruby"], actual["ruby"]);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Should_fail_to_locate_a_word_that_is_not_in_the_puzzle()
     {
         var wordsToSearchFor = new[] { "clojure", "elixir", "ecmascript", "rust", "java", "lua", "lisp", "ruby", "haskell" };
@@ -483,7 +483,7 @@ public class WordSearchTests
         Assert.Equal(expected["haskell"], actual["haskell"]);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Should_fail_to_locate_words_that_are_not_on_horizontal_vertical_or_diagonal_lines()
     {
         var wordsToSearchFor = new[] { "aef", "ced", "abf", "cbd" };
@@ -505,7 +505,7 @@ public class WordSearchTests
         Assert.Equal(expected["cbd"], actual["cbd"]);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Should_not_concatenate_different_lines_to_find_a_horizontal_word()
     {
         var wordsToSearchFor = new[] { "elixir" };
@@ -521,7 +521,7 @@ public class WordSearchTests
         Assert.Equal(expected["elixir"], actual["elixir"]);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Should_not_wrap_around_horizontally_to_find_a_word()
     {
         var wordsToSearchFor = new[] { "lisp" };
@@ -535,7 +535,7 @@ public class WordSearchTests
         Assert.Equal(expected["lisp"], actual["lisp"]);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Should_not_wrap_around_vertically_to_find_a_word()
     {
         var wordsToSearchFor = new[] { "rust" };
