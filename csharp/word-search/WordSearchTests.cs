@@ -405,7 +405,7 @@ public class WordSearchTests
         Assert.Equal(expected["lisp"], actual["lisp"]);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Should_locate_words_written_top_right_to_bottom_left()
     {
         var wordsToSearchFor = new[] { "clojure", "elixir", "ecmascript", "rust", "java", "lua", "lisp", "ruby" };

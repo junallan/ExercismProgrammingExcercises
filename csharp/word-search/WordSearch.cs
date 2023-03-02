@@ -56,6 +56,10 @@ public class WordSearch
                     // bottom left to top right search
                     result = WordToSearch(word, (i, j), -1, 1);
                     if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
+
+                    // top right to bottom left search
+                    result = WordToSearch(word, (i, j), 1, -1);
+                    if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
                 }
             }
         }
@@ -114,91 +118,14 @@ public class WordSearch
         {
             x += 2;
         }
+        else if (xMove == 1 && yMove == -1)
+        {
+            y += 2;
+        }
 
         if (!isDifference) return (true, (y, x));
 
         return (false, null);
 
     }
-/*
-    private (bool IsMatch, (int X, int Y)? endPoint) WordToSearch(string word, (int X, int Y) point)
-    {
-        var x = point.X;
-        var y = point.Y;
-
-        var isDifference = false;
-
-        var wordCounter = 0;
-        for (int i = 0; i < word.Length; i++)
-        {
-            // Left to right search
-            if (y == _columnSize)
-            {
-                isDifference = true;
-                break;
-            }
-
-            if (word[wordCounter++] != _grid[x][y++])
-            {
-                isDifference = true;
-                break;
-            }
-        }
-
-        if(!isDifference) return (true, (y, x + 1));
-
-        x = point.X;
-        y = point.Y;
-
-        isDifference = false;
-
-        wordCounter = 0;
-
-        for (int i = 0; i < word.Length; i++)
-        {
-            // Right to left search
-            if (0 > y)
-            {
-                isDifference = true;
-                break;
-            }
-
-            if (word[wordCounter++] != _grid[x][y--])
-            {
-                isDifference = true;
-                break;
-            }
-        }
-
-        if (!isDifference) return (true, (y+2, x + 1));
-
-        x = point.X;
-        y = point.Y;
-
-        isDifference = false;
-
-        wordCounter = 0;
-
-        for (int i = 0; i < word.Length; i++)
-        {
-            // Top to bottom search
-            if (x == _rowSize)
-            {
-                isDifference = true;
-                break;
-            }
-
-            if (word[wordCounter++] != _grid[x++][y])
-            {
-                isDifference = true;
-                break;
-            }
-        }
-
-        if (!isDifference) return (true, (y + 1, x));
-
-        return (false, null);
-
-    }
-*/
 }
