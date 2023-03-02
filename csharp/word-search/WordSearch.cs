@@ -77,7 +77,7 @@ public class WordSearch
         for (int i = 0; i < word.Length; i++)
         {
             // Right to left search
-            if (0 > y || 0 > wordCounter)
+            if (0 > y /*|| 0 > wordCounter*/)
             {
                 isDifference = true;
                 break;
