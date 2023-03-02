@@ -273,7 +273,7 @@ public class WordSearchTests
         Assert.Equal(expected["ecmascript"], actual["ecmascript"]);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Should_locate_words_written_bottom_to_top()
     {
         var wordsToSearchFor = new[] { "clojure", "elixir", "ecmascript", "rust" };

@@ -40,6 +40,10 @@ public class WordSearch
                     // top to bottom search
                     result = WordToSearch(word, (i, j), 1, 0);
                     if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
+
+                    // bottom to top search
+                    result = WordToSearch(word, (i, j), -1, 0);
+                    if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
                 }
             }
         }
@@ -82,6 +86,11 @@ public class WordSearch
         }
         else if (xMove == 1 && yMove == 0)
         {
+            y += 1;
+        }
+        else if (xMove == -1 && yMove == 0)
+        {
+            x += 2;
             y += 1;
         }
 
