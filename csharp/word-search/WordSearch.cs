@@ -38,35 +38,35 @@ public class WordSearch
                 for (var j = 0; j < _columnSize; j++)
                 {
                     // left to right search
-                    var result = WordToSearch(word, (i, j), 0, 1);
+                    var result = WordToSearch(word, (i, j), Movement.Stay, Movement.Right);
                     if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
 
                     // right to left search
-                    result = WordToSearch(word, (i, j), 0, -1);
+                    result = WordToSearch(word, (i, j), Movement.Stay, Movement.Left);
                     if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
 
                     // top to bottom search
-                    result = WordToSearch(word, (i, j), 1, 0);
+                    result = WordToSearch(word, (i, j), Movement.Down, Movement.Stay);
                     if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
 
                     // bottom to top search
-                    result = WordToSearch(word, (i, j), -1, 0);
+                    result = WordToSearch(word, (i, j), Movement.Up, Movement.Stay);
                     if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
 
                     // top left to bottom right search
-                    result = WordToSearch(word, (i, j), 1, 1);
+                    result = WordToSearch(word, (i, j), Movement.Down, Movement.Right);
                     if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
 
                     // bottom right to top left search
-                    result = WordToSearch(word, (i, j), -1, -1);
+                    result = WordToSearch(word, (i, j), Movement.Up, Movement.Left);
                     if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
 
                     // bottom left to top right search
-                    result = WordToSearch(word, (i, j), -1, 1);
+                    result = WordToSearch(word, (i, j), Movement.Up, Movement.Right);
                     if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
 
                     // top right to bottom left search
-                    result = WordToSearch(word, (i, j), 1, -1);
+                    result = WordToSearch(word, (i, j), Movement.Down, Movement.Left);
                     if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
                 }
             }
@@ -75,7 +75,7 @@ public class WordSearch
         return wordCoordinates;
     }
 
-    private (bool IsMatch, (int X, int Y)? endPoint) WordToSearch(string word, (int X, int Y) startPoint, int xMove, int yMove)
+    private (bool IsMatch, (int X, int Y)? endPoint) WordToSearch(string word, (int X, int Y) startPoint, Movement xMove, Movement yMove)
     {
         var x = startPoint.X;
         var y = startPoint.Y;
@@ -85,19 +85,19 @@ public class WordSearch
             if (0 > y || y == _columnSize || 0 > x || x == _rowSize) return (false, null); 
             if (word[i] != _grid[x][y]) return (false, null);
             
-            x += xMove;
-            y += yMove;
+            x += (int)xMove;
+            y += (int)yMove;
         }
 
         (x, y) = (xMove, yMove) switch
         {
-            (0,1) => (x+1,y),
-            (0,-1) => (x+1, y+2),
-            (1, 0) => (x, y+1),
-            (-1, 0) => (x+2, y+1),
-            (-1,-1) => (x+2, y+2),
-            (-1, 1) => (x+2, y),
-            (1, -1) => (x, y+2),
+            (Movement.Stay,Movement.Right) => (x+1,y),
+            (Movement.Stay,Movement.Left) => (x+1, y+2),
+            (Movement.Down, Movement.Stay) => (x, y+1),
+            (Movement.Up, Movement.Stay) => (x+2, y+1),
+            (Movement.Up,Movement.Left) => (x+2, y+2),
+            (Movement.Up, Movement.Right) => (x+2, y),
+            (Movement.Down, Movement.Left) => (x, y+2),
             _     => (x, y)
         };
 
