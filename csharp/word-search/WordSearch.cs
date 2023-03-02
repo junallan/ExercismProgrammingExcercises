@@ -4,6 +4,14 @@ using System.Linq;
 
 public class WordSearch
 {
+    public enum Movement
+    {
+        Up = -1,
+        Down = 1,
+        Left = -1,
+        Right = 1,
+        Stay = 0
+    }
     private readonly string[] _grid;
     private readonly int _rowSize;
     private readonly int _columnSize;
@@ -81,14 +89,18 @@ public class WordSearch
             y += yMove;
         }
 
-        if (xMove == 0 && yMove == 1) x += 1;
-        else if (xMove == 0 && yMove == -1) { x += 1; y += 2; }
-        else if (xMove == 1 && yMove == 0) y += 1;
-        else if (xMove == -1 && yMove == 0) { x += 2; y += 1; }
-        else if (xMove == -1 && yMove == -1) { x += 2; y += 2; }
-        else if (xMove == -1 && yMove == 1) x += 2;
-        else if (xMove == 1 && yMove == -1) y += 2;
-        
+        (x, y) = (xMove, yMove) switch
+        {
+            (0,1) => (x+1,y),
+            (0,-1) => (x+1, y+2),
+            (1, 0) => (x, y+1),
+            (-1, 0) => (x+2, y+1),
+            (-1,-1) => (x+2, y+2),
+            (-1, 1) => (x+2, y),
+            (1, -1) => (x, y+2),
+            _     => (x, y)
+        };
+
         return (true, (y, x));
     }
 }
