@@ -15,65 +15,67 @@ public class WordSearch
     private readonly string[] _grid;
     private readonly int _rowSize;
     private readonly int _columnSize;
+    private Dictionary<string, ((int, int), (int, int))?> _wordCoordinates;
 
     public WordSearch(string grid)
     {
         _grid = grid.Split('\n');
         _rowSize = _grid.Length;
         _columnSize = _grid.ElementAt(0).Length;
+        _wordCoordinates = new Dictionary<string, ((int, int), (int, int))?>();
     }
 
     public Dictionary<string, ((int, int), (int, int))?> Search(string[] wordsToSearchFor)
     {
-        var wordCoordinates = new Dictionary<string, ((int, int), (int, int))?>();
-
         foreach (var word in wordsToSearchFor)
         {
-            wordCoordinates.Add(word, null);
+            _wordCoordinates.Add(word, null);
 
             for (var i = 0; i < _rowSize; i++)
             {
-                if (wordCoordinates[word] != null) break;
+                if (_wordCoordinates[word] != null) break;
 
                 for (var j = 0; j < _columnSize; j++)
                 {
                     // left to right search
                     var result = WordToSearch(word, (i, j), Movement.Stay, Movement.Right);
-                    if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
+                    if (result.IsMatch) AddWordCoordinates(word, j, i, result.endPoint.Value);
 
                     // right to left search
                     result = WordToSearch(word, (i, j), Movement.Stay, Movement.Left);
-                    if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
+                    if (result.IsMatch) AddWordCoordinates(word, j, i, result.endPoint.Value);
 
                     // top to bottom search
                     result = WordToSearch(word, (i, j), Movement.Down, Movement.Stay);
-                    if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
+                    if (result.IsMatch) AddWordCoordinates(word, j, i, result.endPoint.Value);
 
                     // bottom to top search
                     result = WordToSearch(word, (i, j), Movement.Up, Movement.Stay);
-                    if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
+                    if (result.IsMatch) AddWordCoordinates(word, j, i, result.endPoint.Value);
 
                     // top left to bottom right search
                     result = WordToSearch(word, (i, j), Movement.Down, Movement.Right);
-                    if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
+                    if (result.IsMatch) AddWordCoordinates(word, j, i, result.endPoint.Value);
 
                     // bottom right to top left search
                     result = WordToSearch(word, (i, j), Movement.Up, Movement.Left);
-                    if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
+                    if (result.IsMatch) AddWordCoordinates(word, j, i, result.endPoint.Value);
 
                     // bottom left to top right search
                     result = WordToSearch(word, (i, j), Movement.Up, Movement.Right);
-                    if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
+                    if (result.IsMatch) AddWordCoordinates(word, j, i, result.endPoint.Value);
 
                     // top right to bottom left search
                     result = WordToSearch(word, (i, j), Movement.Down, Movement.Left);
-                    if (result.IsMatch) wordCoordinates[word] = ((j + 1, i + 1), result.endPoint.Value);
+                    if (result.IsMatch) AddWordCoordinates(word, j, i, result.endPoint.Value);
                 }
             }
         }
 
-        return wordCoordinates;
+        return _wordCoordinates;
     }
+
+    private void AddWordCoordinates(string word, int j, int i, (int X, int Y) endPoint) =>_wordCoordinates[word] = (((j+1), (i+1)), endPoint);
 
     private (bool IsMatch, (int X, int Y)? endPoint) WordToSearch(string word, (int X, int Y) startPoint, Movement xMove, Movement yMove)
     {
