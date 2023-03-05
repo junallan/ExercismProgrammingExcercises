@@ -1,13 +1,10 @@
 package sieve
 
 func Sieve(limit int) []int {
-	primeFactors := []int{}
-
 	if limit < 2 {
-		return primeFactors
+		return []int{}
 	} else if limit == 2 {
-		primeFactors = append(primeFactors, limit)
-		return primeFactors
+		return []int{2}
 	}
 
 	mapNumberSequences := make(map[int]bool)
@@ -24,6 +21,8 @@ func Sieve(limit int) []int {
 			mapNumberSequences[i*j] = false
 		}
 	}
+
+	primeFactors := []int{}
 
 	for n := 2; n <= limit; n++ {
 		if mapNumberSequences[n] {
