@@ -13,7 +13,7 @@ public static class PalindromeProducts
         {
             for (int j = maxFactor; j >= minFactor; j--)
             {
-                if (!IsPalindromProduct(j, i)) continue;
+                if (!IsPalindrome(j * i)) continue;
 
                 var product = i * j;
 
@@ -45,7 +45,7 @@ public static class PalindromeProducts
         {
             for (int j = i; j <= maxFactor; j++)
             {
-                if (!IsPalindromProduct(i, j)) continue;
+                if (!IsPalindrome( i * j)) continue;
 
                 var product = i * j;
 
@@ -61,12 +61,9 @@ public static class PalindromeProducts
         return (smallestPalindromeProduct, palindromeProducts);
     }
 
-    private static bool IsPalindromProduct(int firstNumber, int secondNumber)
+    private static bool IsPalindrome(int number)
     {
-        var product = (firstNumber * secondNumber).ToString();
-        var parsedProduct = product.ToCharArray();
-        Array.Reverse(parsedProduct);
-
-        return product == new String(parsedProduct);    
+        var numberFormatted = number.ToString();
+        return numberFormatted == new String(numberFormatted.Reverse().ToArray());
     }
 }
