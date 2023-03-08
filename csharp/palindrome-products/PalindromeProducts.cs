@@ -9,15 +9,11 @@ public static class PalindromeProducts
         var largestPalindromeProduct = int.MinValue;
         var palindromeProducts = new List<(int FirstNumber, int SecondNumber)>();
 
-        //for (int i = maxFactor; i >= minFactor; i--)
-        //{
-        //    for (int j = maxFactor; j >= minFactor; j--)
-        //    {
         foreach (var (i, j) in GeneratePairs(minFactor, maxFactor))
         {
-            if (!IsPalindrome(j * i)) continue;
-
             var product = i * j;
+
+            if (!IsPalindrome(product)) continue;
 
             if (largestPalindromeProduct < product)
             {
@@ -31,8 +27,6 @@ public static class PalindromeProducts
                     palindromeProducts.Add((j, i));
             }
         }
-        //    }
-        //}
 
         if (largestPalindromeProduct == int.MinValue) throw new ArgumentException();
 
@@ -46,9 +40,9 @@ public static class PalindromeProducts
 
         foreach (var (i, j) in GeneratePairs(minFactor, maxFactor))
         {
-            if (!IsPalindrome(i * j)) continue;
-
             var product = i * j;
+
+            if (!IsPalindrome(product)) continue;
 
             if (smallestPalindromeProduct < product) return (smallestPalindromeProduct, palindromeProducts);
             if (smallestPalindromeProduct == int.MaxValue) smallestPalindromeProduct = product;
