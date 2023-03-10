@@ -7,26 +7,26 @@ func Sieve(limit int) []int {
 		return []int{2}
 	}
 
-	mapNumberSequences := make(map[int]bool)
+	mapNumberSequences := make([]bool, limit-1)
 
-	for i := 2; i <= limit; i++ {
+	for i := 0; i < limit-1; i++ {
 		mapNumberSequences[i] = true
 	}
 
 	for i := 2; i <= limit/2; i++ {
-		for j := i; j <= limit/2; j++ {
+		for j := 2; j <= limit/2; j++ {
 			if i*j > limit {
 				break
 			}
-			mapNumberSequences[i*j] = false
+			mapNumberSequences[i*j-2] = false
 		}
 	}
 
 	primeFactors := []int{}
 
-	for n := 2; n <= limit; n++ {
+	for n := 0; n < limit-1; n++ {
 		if mapNumberSequences[n] {
-			primeFactors = append(primeFactors, n)
+			primeFactors = append(primeFactors, n+2)
 		}
 	}
 
