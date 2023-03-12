@@ -16,7 +16,7 @@ public static class PalindromeProducts
 
         if (isDescending) range = range.Reverse();
 
-        var firstPalindromeMatch = range.Where(IsPalindrome).Where(number => number.DivisorsInRange(minFactor, maxFactor).Count() > 0).FirstOrDefault(-1);
+        var firstPalindromeMatch = range.Where(number => IsPalindrome(number) && number.DivisorsInRange(minFactor, maxFactor).Count() > 0).FirstOrDefault(-1);
 
         if (firstPalindromeMatch == -1) throw new ArgumentException();
 
