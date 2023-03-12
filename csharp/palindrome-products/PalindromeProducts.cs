@@ -25,7 +25,7 @@ public static class PalindromeProducts
 
     public static IEnumerable<(int i, int j)> DivisorsInRange(this int number, int lowerRange, int upperRange)
     { 
-        foreach (var (i, j) in GeneratePairs(lowerRange, upperRange))
+        foreach (var (i, j) in GeneratePairs(number, lowerRange, upperRange))
         {
             if ((i * j) == number)  yield return (i, j);
         }
@@ -38,14 +38,24 @@ public static class PalindromeProducts
         return numberFormatted == new String(numberFormatted.Reverse().ToArray());
     }
 
-    private static IEnumerable<(int, int)> GeneratePairs(int minFactor, int maxFactor)
+    private static IEnumerable<(int, int)> GeneratePairs(int number, int minFactor, int maxFactor)
     {
+        var products = new HashSet<(int, int)>();
+
         for (int i = minFactor; i <= maxFactor; i++)
         {
-            for (int j = i; j <= maxFactor; j++)
+            var remainder = number % i;
+            var division = number / i;
+
+            if (remainder == 0 && minFactor <= division && division <= maxFactor)
             {
-                yield return (i, j);
+                if (i < division)
+                    products.Add((i, division));
+                else
+                    products.Add((division, i));
             }
         }
+
+        return products.AsEnumerable();
     }
 }
