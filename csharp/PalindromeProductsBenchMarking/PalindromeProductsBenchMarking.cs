@@ -27,16 +27,16 @@ namespace PalindromeProductsBenchMarking
             PalindromeProducts.Largest(100, 999);
         }
 
-        [Benchmark]
-        public void MeasureLargestBetweenSquareRangeV1()
-        {
-           PalindromeProducts.LargestVariationBetweenSquareRangeV1(100, 999);
-        }
+        //[Benchmark]
+        //public void MeasureLargestBetweenSquareRangeV1()
+        //{
+        //   PalindromeProducts.LargestVariationBetweenSquareRangeV1(100, 999);
+        //}
 
-        [Benchmark]
-        public void MeasureLargestBetweenSquareRangeV2()
-        {
-            PalindromeProducts.LargestVariationBetweenSquareRangeV2(100, 999);
-        }
+        //[Benchmark]
+        //public void MeasureLargestBetweenSquareRangeV2()
+        //{
+        //    PalindromeProducts.LargestVariationBetweenSquareRangeV2(100, 999);
+        //}
     }
 }
