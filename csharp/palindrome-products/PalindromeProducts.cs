@@ -33,9 +33,21 @@ public static class PalindromeProducts
 
     private static bool IsPalindrome(int number)
     {
-        var numberFormatted = number.ToString();
+        //var numberFormatted = number.ToString();
 
-        return numberFormatted == new String(numberFormatted.Reverse().ToArray());
+        //return numberFormatted == new String(numberFormatted.Reverse().ToArray());
+
+        int a = 0;
+        int c = number;
+
+        while(number > 0)
+        {
+            var r = number % 10;
+            number = number / 10;
+            a = 10 * a + r;
+        }
+
+        return a == c;
     }
 
     private static IEnumerable<(int, int)> GeneratePairs(int number, int minFactor, int maxFactor)
