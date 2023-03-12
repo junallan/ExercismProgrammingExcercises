@@ -6,6 +6,19 @@ import (
 )
 
 func IsPangram(input string) bool {
+	alphabet := "abcdefghijklmnopqrstuvwxyz"
+	inputLower := strings.ToLower(input)
+
+	for _, char := range alphabet {
+		if !strings.ContainsRune(inputLower, char) {
+			return false
+		}
+	}
+
+	return true
+}
+
+func IsPangramSortAndCountLettersVariation(input string) bool {
 	parsedInputToSortedOrder := strings.Split(strings.ToLower(input), "")
 
 	alphabet := "abcdefghijklmnopqrstuvwxyz"
