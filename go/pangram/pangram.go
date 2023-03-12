@@ -23,18 +23,18 @@ func IsPangram(input string) bool {
 	return alphabetMask == inputMask
 }
 
-// func IsPangramStringRuneComparisonVariation(input string) bool {
-// 	alphabet := "abcdefghijklmnopqrstuvwxyz"
-// 	inputLower := strings.ToLower(input)
+func IsPangramStringRuneComparisonVariation(input string) bool {
+	alphabet := "abcdefghijklmnopqrstuvwxyz"
+	inputLower := strings.ToLower(input)
 
-// 	for _, char := range alphabet {
-// 		if !strings.ContainsRune(inputLower, char) {
-// 			return false
-// 		}
-// 	}
+	for _, char := range alphabet {
+		if !strings.ContainsRune(inputLower, char) {
+			return false
+		}
+	}
 
-// 	return true
-// }
+	return true
+}
 
 func IsPangramSortAndCountLettersVariation(input string) bool {
 	parsedInputToSortedOrder := strings.Split(strings.ToLower(input), "")
