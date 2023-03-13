@@ -33,21 +33,46 @@ public static class PalindromeProducts
 
     private static bool IsPalindrome(int number)
     {
-        //var numberFormatted = number.ToString();
+        //String method for palindrome check
+        var numberFormatted = number.ToString();
 
-        //return numberFormatted == new String(numberFormatted.Reverse().ToArray());
+        return numberFormatted == new String(numberFormatted.Reverse().ToArray());
+        ///////////////////////////////
 
-        int a = 0;
-        int c = number;
+        //Math method for palindrome check
+        //int a = 0;
+        //int c = number;
 
-        while(number > 0)
-        {
-            var r = number % 10;
-            number = number / 10;
-            a = 10 * a + r;
-        }
+        //while(number > 0)
+        //{
+        //    var r = number % 10;
+        //    number = number / 10;
+        //    a = 10 * a + r;
+        //}
 
-        return a == c;
+        //return a == c;
+        //////////////////////////
+
+
+        //var stackedNumber = new Stack<int>();
+
+        //var tempNumber = number;
+
+        //while(tempNumber > 0)
+        //{
+        //    var remainder = tempNumber % 10;
+        //    tempNumber = tempNumber / 10;
+
+        //    stackedNumber.Push(remainder);
+        //}
+
+        //foreach(var digit in number.ToString().Reverse())
+        //{
+        //    var convertedDigit = digit - '0';
+        //    if (convertedDigit != stackedNumber.Pop()) return false;
+        //}
+
+        //return true;
     }
 
     private static IEnumerable<(int, int)> GeneratePairs(int number, int minFactor, int maxFactor)
