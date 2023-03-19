@@ -65,20 +65,17 @@ func (l *List) Shift() (interface{}, error) {
 		return nil, errors.New("cannot shift on empty list")
 	}
 
-	if l.first == l.last {
-		value := l.first.Value
+	value := l.first.Value
 
+	if l.first == l.last {
 		l.first = nil
 		l.last = nil
-
-		return value, nil
+	} else {
+		l.first = l.first.next
+		l.first.prev = nil
 	}
 
-	firstNode := l.first
-	l.first = l.first.next
-	l.first.prev = nil
-
-	return firstNode.Value, nil
+	return value, nil
 }
 
 func (l *List) Pop() (interface{}, error) {
@@ -90,12 +87,10 @@ func (l *List) Pop() (interface{}, error) {
 
 	if l.first == l.last {
 		l.first, l.last = nil, nil
-
-		return value, nil
+	} else {
+		l.last = l.last.prev
+		l.last.next = nil
 	}
-
-	l.last = l.last.prev
-	l.last.next = nil
 
 	return value, nil
 }
