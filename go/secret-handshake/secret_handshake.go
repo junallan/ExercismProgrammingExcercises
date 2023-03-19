@@ -4,12 +4,12 @@ func Handshake(code uint) []string {
 	secretCodes := []string{}
 	var result uint
 
-	for i := 0; i < 5; i++ {
-		var maskedCheck uint = 1 << i
+	for actionCodeIndex := 0; actionCodeIndex < 5; actionCodeIndex++ {
+		var maskedCheck uint = 1 << actionCodeIndex
 		result = maskedCheck & code
 
 		if result == maskedCheck {
-			switch i {
+			switch actionCodeIndex {
 			case 0:
 				secretCodes = append(secretCodes, "wink")
 			case 1:
