@@ -27,18 +27,18 @@ func TestReverse(t *testing.T) {
 	}
 }
 
-// func TestPushPop(t *testing.T) {
-// 	for _, tc := range pushPopTestCases {
-// 		t.Run(tc.name, func(t *testing.T) {
-// 			actual := NewList(tc.in...)
-// 			for _, ac := range tc.actions {
-// 				ac(t, actual)
-// 			}
+func TestPushPop(t *testing.T) {
+	for _, tc := range pushPopTestCases {
+		t.Run(tc.name, func(t *testing.T) {
+			actual := NewList(tc.in...)
+			for _, ac := range tc.actions {
+				ac(t, actual)
+			}
 
-// 			checkDoublyLinkedList(t, actual, tc.expected)
-// 		})
-// 	}
-// }
+			checkDoublyLinkedList(t, actual, tc.expected)
+		})
+	}
+}
 
 // checkDoublyLinkedList checks that the linked list is constructed correctly.
 func checkDoublyLinkedList(t *testing.T, ll *List, expected []interface{}) {

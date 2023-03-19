@@ -1,5 +1,7 @@
 package linkedlist
 
+import "errors"
+
 // Define List and Node types here.
 // Note: The tests expect Node type to include an exported field with name Value to pass.
 type List struct {
@@ -15,7 +17,6 @@ type Node struct {
 
 func NewList(args ...interface{}) *List {
 	list := &List{}
-	// items := List{head: Node{value: 1}, tail: Node{value: 2}}
 
 	for _, item := range args {
 		list.Push(item)
@@ -33,7 +34,16 @@ func (n *Node) Prev() *Node {
 }
 
 func (l *List) Unshift(v interface{}) {
-	panic("Please implement the Unshift function")
+	node := &Node{Value: v}
+
+	if l.first == nil {
+		l.first = node
+		l.last = node
+	} else {
+		l.first.prev = node
+		node.next = l.first
+		l.first = node
+	}
 }
 
 func (l *List) Push(v interface{}) {
@@ -51,11 +61,43 @@ func (l *List) Push(v interface{}) {
 }
 
 func (l *List) Shift() (interface{}, error) {
-	panic("Please implement the Shift function")
+	if l.first == nil {
+		return nil, errors.New("cannot shift on empty list")
+	}
+
+	if l.first == l.last {
+		value := l.first.Value
+
+		l.first = nil
+		l.last = nil
+
+		return value, nil
+	}
+
+	firstNode := l.first
+	l.first = l.first.next
+	l.first.prev = nil
+
+	return firstNode.Value, nil
 }
 
 func (l *List) Pop() (interface{}, error) {
-	panic("Please implement the Pop function")
+	if l.last == nil {
+		return nil, errors.New("cannot pop on empty list")
+	}
+
+	value := l.last.Value
+
+	if l.first == l.last {
+		l.first, l.last = nil, nil
+
+		return value, nil
+	}
+
+	l.last = l.last.prev
+	l.last.next = nil
+
+	return value, nil
 }
 
 func (l *List) Reverse() {
