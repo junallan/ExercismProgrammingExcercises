@@ -56,7 +56,9 @@ public class Deque<T>
         var oldFirstNode = elements.FirstNode;
         elements.FirstNode = newNode;
 
-        if(oldFirstNode != null)
+        if (oldFirstNode == null)
+            elements.LastNode = elements.FirstNode;
+        else
         {
             elements.FirstNode.NextNode = oldFirstNode;
             oldFirstNode.PreviousNode = elements.FirstNode;
