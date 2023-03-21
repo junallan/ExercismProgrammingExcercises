@@ -12,7 +12,7 @@ public class DequeTests
         Assert.Equal(10, deque.Pop());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Push_and_shift_are_first_in_first_out_order()
     {
         var deque = new Deque<int>();

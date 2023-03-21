@@ -57,6 +57,17 @@ public class Deque<T>
 
     public T Shift()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        var value = elements.FirstNode.Value;
+
+        if (elements.FirstNode == elements.LastNode)
+        {
+            elements.FirstNode = null;
+            elements.LastNode = null;
+        }
+        else
+            elements.FirstNode = elements.FirstNode.NextNode; 
+
+        return value;
+
     }
 }
