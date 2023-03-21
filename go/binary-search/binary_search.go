@@ -7,22 +7,14 @@ func SearchInts(list []int, key int) int {
 		return 0
 	}
 
-	currentStartSearchIndex := listLength / 2
-	currentEndSearchIndex := listLength - 1
-
-	for currentStartSearchIndex <= currentEndSearchIndex {
-		if key == list[currentStartSearchIndex] {
-			return currentStartSearchIndex
-		} else if key < list[currentStartSearchIndex] {
-			currentEndSearchIndex = currentStartSearchIndex - 1
-			currentStartSearchIndex /= 2
+	for currentStartSearchIndex, currentEndSearchIndex := 0, len(list); currentStartSearchIndex != currentEndSearchIndex; {
+		mid := (currentEndSearchIndex + currentStartSearchIndex) / 2
+		if key == list[mid] {
+			return mid
+		} else if key < list[mid] {
+			currentEndSearchIndex = mid
 		} else {
-			middleOfTopHalfIndexSpot := (currentEndSearchIndex - currentStartSearchIndex) / 2
-
-			if middleOfTopHalfIndexSpot == 0 {
-				middleOfTopHalfIndexSpot++
-			}
-			currentStartSearchIndex += middleOfTopHalfIndexSpot
+			currentStartSearchIndex = mid + 1
 		}
 	}
 
