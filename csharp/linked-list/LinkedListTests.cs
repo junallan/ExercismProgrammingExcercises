@@ -22,7 +22,7 @@ public class DequeTests
         Assert.Equal(20, deque.Shift());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Unshift_and_shift_are_last_in_first_out_order()
     {
         var deque = new Deque<int>();

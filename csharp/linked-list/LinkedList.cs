@@ -52,7 +52,15 @@ public class Deque<T>
 
     public void Unshift(T value)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        var newNode = new Node<T> { Value = value };
+        var oldFirstNode = elements.FirstNode;
+        elements.FirstNode = newNode;
+
+        if(oldFirstNode != null)
+        {
+            elements.FirstNode.NextNode = oldFirstNode;
+            oldFirstNode.PreviousNode = elements.FirstNode;
+        }
     }
 
     public T Shift()
