@@ -2,82 +2,78 @@ using System;
 
 public class Deque<T>
 {
-    public class NodeList<T>
-    {
-        public Node<T> FirstNode { get; set; }
-        public Node<T> LastNode { get; set; }
-    }
+private Node FirstNode { get; set; }
+private Node LastNode { get; set; }
+    
 
-    public class Node<T>
+    public class Node
     {
         public T Value { get; set; }
-        public Node<T> PreviousNode { get; set; }
-        public Node<T> NextNode { get; set; }
+        public Node PreviousNode { get; set; }
+        public Node NextNode { get; set; }
     }
 
-    private NodeList<T> elements = new NodeList<T>();
-
+    
     public void Push(T value)
     {
-        var newNode = new Node<T> { Value = value };
+        var newNode = new Node { Value = value };
 
-        if (elements.FirstNode == null)
+        if (FirstNode == null)
         {
-            elements.FirstNode = newNode;
-            elements.LastNode = elements.FirstNode;
+            FirstNode = newNode;
+            LastNode = FirstNode;
         }
         else
         {
-            var oldLastNode = elements.LastNode;
-            elements.LastNode = newNode;
-            elements.LastNode.PreviousNode = oldLastNode;
-            oldLastNode.NextNode = elements.LastNode;
+            var oldLastNode = LastNode;
+            LastNode = newNode;
+            LastNode.PreviousNode = oldLastNode;
+            oldLastNode.NextNode = LastNode;
         }
     }
 
     public T Pop()
     {
-        var value = elements.LastNode.Value;
+        var value = LastNode.Value;
 
-        if (elements.FirstNode == elements.LastNode)
+        if (FirstNode == LastNode)
         {
-            elements.FirstNode = null;
-            elements.LastNode = null;
+            FirstNode = null;
+            LastNode = null;
         }
         else
-            elements.LastNode = elements.LastNode.PreviousNode;
+            LastNode = LastNode.PreviousNode;
 
         return value;
     }
 
     public void Unshift(T value)
     {
-        var newNode = new Node<T> { Value = value };
-        var oldFirstNode = elements.FirstNode;
-        elements.FirstNode = newNode;
+        var newNode = new Node { Value = value };
+        var oldFirstNode = FirstNode;
+        FirstNode = newNode;
 
         if (oldFirstNode == null)
-            elements.LastNode = elements.FirstNode;
+            LastNode = FirstNode;
         else
         {
-            elements.FirstNode.NextNode = oldFirstNode;
-            oldFirstNode.PreviousNode = elements.FirstNode;
+            FirstNode.NextNode = oldFirstNode;
+            oldFirstNode.PreviousNode = FirstNode;
         }
     }
 
     public T Shift()
     {
-        var value = elements.FirstNode.Value;
+        var value = FirstNode.Value;
 
-        if (elements.FirstNode == elements.LastNode)
+        if (FirstNode == LastNode)
         {
-            elements.FirstNode = null;
-            elements.LastNode = null;
+            FirstNode = null;
+            LastNode = null;
         }
         else
-            elements.FirstNode = elements.FirstNode.NextNode; 
+            FirstNode = FirstNode.NextNode; 
 
         return value;
-
     }
 }
