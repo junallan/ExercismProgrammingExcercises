@@ -1,27 +1,38 @@
 package secret
 
 func Handshake(code uint) []string {
+	const (
+		ReverseCode = 4
+	)
+
 	secretCodes := []string{}
-	actionCodes := []string{"wink", "double blink", "close your eyes", "jump"}
 
 	var result uint
 	var maskedCheck uint
 
-	for codeIndex, item := range actionCodes {
-		maskedCheck = 1 << uint(codeIndex)
+	maskedCheck = 1 << uint(ReverseCode)
+	result = maskedCheck & code
+	isReverseCodes := result == maskedCheck
+
+	actionCodes := []string{"wink", "double blink", "close your eyes", "jump"}
+
+	codeLastIndex := len(actionCodes) - 1
+
+	for codeIndex := 0; codeIndex <= codeLastIndex; codeIndex++ {
+		var index int
+
+		if isReverseCodes {
+			index = codeLastIndex - codeIndex
+		} else {
+			index = codeIndex
+		}
+
+		maskedCheck = 1 << uint(index)
+
 		result = maskedCheck & code
 
 		if result == maskedCheck {
-			secretCodes = append(secretCodes, item)
-		}
-	}
-
-	maskedCheck = 1 << uint(4)
-	result = maskedCheck & code
-
-	if result == maskedCheck {
-		for i, j := 0, len(secretCodes)-1; i < j; i, j = i+1, j-1 {
-			secretCodes[i], secretCodes[j] = secretCodes[j], secretCodes[i]
+			secretCodes = append(secretCodes, actionCodes[index])
 		}
 	}
 
