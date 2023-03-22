@@ -15,20 +15,10 @@ public class Deque<T>
     
     public void Push(T value)
     {
-        var newNode = new Node { Value = value };
-
-        if (firstNode == null)
-        {
-            firstNode = newNode;
-            lastNode = firstNode;
-        }
-        else
-        {
-            var oldLastNode = lastNode;
-            lastNode = newNode;
-            lastNode.PreviousNode = oldLastNode;
-            oldLastNode.NextNode = lastNode;
-        }
+        var newNode = new Node { Value = value, PreviousNode = lastNode };
+        if (lastNode != null) lastNode.NextNode = newNode;
+        lastNode = newNode;
+        firstNode ??= lastNode;
     }
 
     public T Pop()
