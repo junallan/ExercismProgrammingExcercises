@@ -1,20 +1,20 @@
 using System;
 
-public class Node<T>
-{
-    public T Value { get; set; }
-    public Node<T> PreviousNode { get; set; }
-    public Node<T> NextNode { get; set; }
-}
-
-public class NodeList<T>
-{
-    public Node<T> FirstNode { get; set; }
-    public Node<T> LastNode { get; set; }
-}
-
 public class Deque<T>
 {
+    public class NodeList<T>
+    {
+        public Node<T> FirstNode { get; set; }
+        public Node<T> LastNode { get; set; }
+    }
+
+    public class Node<T>
+    {
+        public T Value { get; set; }
+        public Node<T> PreviousNode { get; set; }
+        public Node<T> NextNode { get; set; }
+    }
+
     private NodeList<T> elements = new NodeList<T>();
 
     public void Push(T value)
