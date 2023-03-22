@@ -5,7 +5,7 @@ public class Deque<T>
     private Node firstNode;
     private Node lastNode;
     
-    public class Node
+    private class Node
     {
         public T Value { get; set; }
         public Node PreviousNode { get; set; }
