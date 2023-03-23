@@ -38,7 +38,7 @@ public class Deque<T>
         var newNode = new Node { Value = value, NextNode = firstNode };
         
         if (firstNode == null) lastNode = newNode;
-        else newNode.NextNode.PreviousNode = newNode;
+        else firstNode.PreviousNode = newNode;
         
         firstNode = newNode;
     }
