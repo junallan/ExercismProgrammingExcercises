@@ -16,8 +16,11 @@ public class Deque<T>
     public void Push(T value)
     {
         var newNode = new Node { Value = value, PreviousNode = lastNode };
+
         if (lastNode != null) lastNode.NextNode = newNode;
+
         lastNode = newNode;
+
         firstNode ??= lastNode;
     }
 
@@ -38,17 +41,12 @@ public class Deque<T>
 
     public void Unshift(T value)
     {
-        var newNode = new Node { Value = value };
-        var oldFirstNode = firstNode;
+        var newNode = new Node { Value = value, NextNode = firstNode };
+        
+        if (firstNode == null) lastNode = newNode;
+        else newNode.NextNode.PreviousNode = newNode;
+        
         firstNode = newNode;
-
-        if (oldFirstNode == null)
-            lastNode = firstNode;
-        else
-        {
-            firstNode.NextNode = oldFirstNode;
-            oldFirstNode.PreviousNode = firstNode;
-        }
     }
 
     public T Shift()
