@@ -12,7 +12,6 @@ public class Deque<T>
         public Node NextNode { get; set; }
     }
 
-    
     public void Push(T value)
     {
         var newNode = new Node { Value = value, PreviousNode = lastNode };
