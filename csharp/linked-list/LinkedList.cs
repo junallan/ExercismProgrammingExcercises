@@ -28,13 +28,15 @@ public class Deque<T>
     {
         var value = lastNode.Value;
 
-        if (firstNode == lastNode)
-        {
-            firstNode = null;
-            lastNode = null;
-        }
-        else
-            lastNode = lastNode.PreviousNode;
+        (firstNode, lastNode) = firstNode == lastNode ? (null, null) : (firstNode, lastNode.PreviousNode);
+
+        //if (firstNode == lastNode)
+        //{
+        //    firstNode = null;
+        //    lastNode = null;
+        //}
+        //else
+        //    lastNode = lastNode.PreviousNode;
 
         return value;
     }
