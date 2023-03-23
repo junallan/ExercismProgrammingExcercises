@@ -30,14 +30,6 @@ public class Deque<T>
 
         (firstNode, lastNode) = firstNode == lastNode ? (null, null) : (firstNode, lastNode.PreviousNode);
 
-        //if (firstNode == lastNode)
-        //{
-        //    firstNode = null;
-        //    lastNode = null;
-        //}
-        //else
-        //    lastNode = lastNode.PreviousNode;
-
         return value;
     }
 
@@ -55,13 +47,7 @@ public class Deque<T>
     {
         var value = firstNode.Value;
 
-        if (firstNode == lastNode)
-        {
-            firstNode = null;
-            lastNode = null;
-        }
-        else
-            firstNode = firstNode.NextNode; 
+        (firstNode, lastNode) = firstNode == lastNode ? (null, null) : (firstNode.NextNode, lastNode);
 
         return value;
     }
