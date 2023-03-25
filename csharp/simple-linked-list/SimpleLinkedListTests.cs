@@ -10,7 +10,7 @@ public class SimpleLinkedListTests
         Assert.Equal(1, list.Value);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Single_item_list_has_no_next_item()
     {
         var list = new SimpleLinkedList<int>(1);

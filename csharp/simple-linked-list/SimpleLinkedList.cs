@@ -6,6 +6,7 @@ using System.Linq;
 public class SimpleLinkedList<T> : IEnumerable<T>
 {
     private T _value;
+    private SimpleLinkedList<T> _nextNode;
 
     public SimpleLinkedList(T value)
     {
@@ -29,7 +30,7 @@ public class SimpleLinkedList<T> : IEnumerable<T>
     { 
         get
         {
-            throw new NotImplementedException("You need to implement this function.");
+            return _nextNode;
         } 
     }
 
