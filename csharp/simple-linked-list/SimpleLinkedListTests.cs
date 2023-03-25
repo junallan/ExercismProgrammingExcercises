@@ -24,21 +24,21 @@ public class SimpleLinkedListTests
         Assert.Equal(2, list.Value);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Two_item_list_second_value()
     {
         var list = new SimpleLinkedList<int>(2).Add(1);
         Assert.Equal(1, list.Next.Value);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Two_item_list_second_item_has_no_next()
     {
         var list = new SimpleLinkedList<int>(2).Add(1);
         Assert.Null(list.Next.Next);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Implements_enumerable()
     {
         var values = new SimpleLinkedList<int>(2).Add(1);

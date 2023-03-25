@@ -49,6 +49,13 @@ public class SimpleLinkedList<T> : IEnumerable<T>
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        var currentNode = this;
+
+        do
+        {
+            yield return currentNode.Value;
+            currentNode = currentNode._nextNode;
+
+        } while (currentNode != null);
     }
 }
