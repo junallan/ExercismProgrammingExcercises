@@ -17,7 +17,7 @@ public class SimpleLinkedListTests
         Assert.Null(list.Next);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Two_item_list_first_value()
     {
         var list = new SimpleLinkedList<int>(2).Add(1);

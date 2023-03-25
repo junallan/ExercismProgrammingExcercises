@@ -36,7 +36,10 @@ public class SimpleLinkedList<T> : IEnumerable<T>
 
     public SimpleLinkedList<T> Add(T value)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        var newNode = new SimpleLinkedList<T>(value);
+        _nextNode = newNode;
+
+        return this;
     }
 
     public IEnumerator<T> GetEnumerator()
