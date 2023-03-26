@@ -49,9 +49,7 @@ public class SimpleLinkedList<T> : IEnumerable<T>
 
     public SimpleLinkedList<T> Add(T value)
     {
-
-        var newNode = new SimpleLinkedList<T>(value);
-        _nextNode = newNode;
+        _nextNode = new SimpleLinkedList<T>(value);
 
         return this;
     }
