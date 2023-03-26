@@ -13,19 +13,19 @@ type Node struct {
 	Value int
 }
 
-var list List
+//var list List
 
 func New(elements []int) *List {
-	list := &List{}
+	l := &List{}
 	for _, item := range elements {
-		list.Push(item)
+		l.Push(item)
 	}
 
-	return list
+	return l
 }
 
 func (l *List) Size() int {
-	return list.count
+	return l.count
 	// var itemCount int = 0
 	// currentNode := list.first
 
@@ -39,29 +39,29 @@ func (l *List) Size() int {
 
 func (l *List) Push(element int) {
 	newNode := &Node{Value: element}
-	currentNode := list.first
+	currentNode := l.first
 
 	if currentNode == nil {
-		list.first = newNode
-		list.last = newNode
-		list.count = 1
+		l.first = newNode
+		l.last = newNode
+		l.count = 1
 	} else {
-		oldLastNode := list.last
-		list.last = newNode
-		oldLastNode.next = list.last
-		list.count += 1
+		oldLastNode := l.last
+		l.last = newNode
+		oldLastNode.next = l.last
+		l.count += 1
 	}
 
 }
 
 func (l *List) Pop() (int, error) {
-	currentNode := list.first
+	currentNode := l.first
 
 	if currentNode == nil {
 		return -1, errors.New("cannot pop on empty list")
 	}
 
-	currentNodeNext := list.first.next
+	currentNodeNext := l.first.next
 
 	for currentNodeNext != nil {
 		currentNode = currentNodeNext
@@ -69,7 +69,7 @@ func (l *List) Pop() (int, error) {
 	}
 
 	lastValue := currentNode.Value
-	list.count -= 1
+	l.count -= 1
 	currentNode = nil
 
 	return lastValue, nil
