@@ -45,7 +45,7 @@ public class SimpleLinkedListTests
         Assert.Equal(new[] { 2, 1 }, values);
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void From_enumerable()
     {
         var list = new SimpleLinkedList<int>(new[] { 11, 7, 5, 3, 2 });

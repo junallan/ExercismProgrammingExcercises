@@ -15,7 +15,26 @@ public class SimpleLinkedList<T> : IEnumerable<T>
 
     public SimpleLinkedList(IEnumerable<T> values)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        var numberOfValues = values.Count();
+
+        if (numberOfValues > 0)
+        {
+            _value = values.ElementAt(0);
+
+            if (numberOfValues == 1) return;
+
+
+            var currentNode = this;
+
+            currentNode.Add(values.ElementAt(1));
+            currentNode = _nextNode;
+
+            for (int i = 2; i < values.Count(); i++)
+            {
+                currentNode.Add(values.ElementAt(i));
+                currentNode = currentNode.Next;
+            }
+        }
     }
 
     public T Value 
@@ -36,6 +55,7 @@ public class SimpleLinkedList<T> : IEnumerable<T>
 
     public SimpleLinkedList<T> Add(T value)
     {
+
         var newNode = new SimpleLinkedList<T>(value);
         _nextNode = newNode;
 
