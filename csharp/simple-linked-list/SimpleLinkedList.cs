@@ -31,21 +31,9 @@ public class SimpleLinkedList<T> : IEnumerable<T>
         }
     }
 
-    public T Value 
-    { 
-        get
-        {
-            return _value;
-        } 
-    }
+    public T Value => _value;
 
-    public SimpleLinkedList<T> Next
-    { 
-        get
-        {
-            return _nextNode;
-        } 
-    }
+    public SimpleLinkedList<T> Next => _nextNode;
 
     public SimpleLinkedList<T> Add(T value)
     {
@@ -56,11 +44,6 @@ public class SimpleLinkedList<T> : IEnumerable<T>
 
     public IEnumerator<T> GetEnumerator()
     {
-        throw new NotImplementedException("You need to implement this function.");
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
         var currentNode = this;
 
         do
@@ -70,4 +53,6 @@ public class SimpleLinkedList<T> : IEnumerable<T>
 
         } while (currentNode != null);
     }
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();   
 }
