@@ -23,13 +23,9 @@ public class SimpleLinkedList<T> : IEnumerable<T>
 
             if (numberOfValues == 1) return;
 
-
             var currentNode = this;
 
-            currentNode.Add(values.ElementAt(1));
-            currentNode = _nextNode;
-
-            for (int i = 2; i < values.Count(); i++)
+            for (int i = 1; i < values.Count(); i++)
             {
                 currentNode.Add(values.ElementAt(i));
                 currentNode = currentNode.Next;
