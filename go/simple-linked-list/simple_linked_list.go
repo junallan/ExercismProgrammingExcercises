@@ -61,22 +61,48 @@ func (l *List) Pop() (int, error) {
 		return -1, errors.New("cannot pop on empty list")
 	}
 
-	currentNodeNext := l.first.next
+	value := l.last.Value
 
-	for currentNodeNext != nil {
-		currentNode = currentNodeNext
-		currentNodeNext = currentNode.next
+	if l.count == 1 {
+		l.first = nil
+		l.last = nil
+		l.count = 0
+	} else if l.count == 2 {
+		l.last = l.first
+		l.count = 1
 	}
 
-	lastValue := currentNode.Value
-	l.count -= 1
-	currentNode = nil
+	numberOfNodesTraversed := 1
 
-	return lastValue, nil
+	for currentNode != nil {
+		currentNode = currentNode.next
+		numberOfNodesTraversed += 1
+
+		if numberOfNodesTraversed == (l.count - 1) {
+			currentNode.next = nil
+			l.last = currentNode
+			l.count -= 1
+		}
+	}
+
+	return value, nil
 }
 
 func (l *List) Array() []int {
-	panic("Please implement the Array function")
+	elements := []int{}
+
+	currentNode := l.first
+
+	if currentNode == nil {
+		return elements
+	}
+
+	for currentNode != nil {
+		elements = append(elements, currentNode.Value)
+		currentNode = currentNode.next
+	}
+
+	return elements
 }
 
 func (l *List) Reverse() *List {
