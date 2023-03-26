@@ -1,12 +1,16 @@
 package linkedlist
 
+import "errors"
+
 type List struct {
 	first *Node
+	last  *Node
+	count int
 }
 
 type Node struct {
 	next  *Node
-	Value interface{}
+	Value int
 }
 
 var list List
@@ -21,38 +25,54 @@ func New(elements []int) *List {
 }
 
 func (l *List) Size() int {
-	currentNode := list.first
+	return list.count
+	// var itemCount int = 0
+	// currentNode := list.first
 
-	var itemCount int = 0
+	// for currentNode != nil {
+	// 	itemCount++
+	// 	currentNode = currentNode.next
+	// }
 
-	for currentNode != nil {
-		itemCount++
-		currentNode = currentNode.next
-	}
-
-	return itemCount
+	// return itemCount
 }
 
 func (l *List) Push(element int) {
-	if list.first == nil {
-		list.first = &Node{Value: element}
+	newNode := &Node{Value: element}
+	currentNode := list.first
+
+	if currentNode == nil {
+		list.first = newNode
+		list.last = newNode
+		list.count = 1
 	} else {
-		currentNode := list.first
-		currentNodeNext := list.first.next
-
-		for currentNodeNext != nil {
-			currentNode = currentNodeNext
-			currentNodeNext = currentNode.next
-		}
-
-		currentNodeNext = &Node{Value: element}
-		currentNode.next = currentNodeNext
+		oldLastNode := list.last
+		list.last = newNode
+		oldLastNode.next = list.last
+		list.count += 1
 	}
 
 }
 
 func (l *List) Pop() (int, error) {
-	panic("Please implement the Pop function")
+	currentNode := list.first
+
+	if currentNode == nil {
+		return -1, errors.New("cannot pop on empty list")
+	}
+
+	currentNodeNext := list.first.next
+
+	for currentNodeNext != nil {
+		currentNode = currentNodeNext
+		currentNodeNext = currentNode.next
+	}
+
+	lastValue := currentNode.Value
+	list.count -= 1
+	currentNode = nil
+
+	return lastValue, nil
 }
 
 func (l *List) Array() []int {
