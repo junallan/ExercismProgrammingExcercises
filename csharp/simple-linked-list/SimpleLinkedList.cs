@@ -21,8 +21,6 @@ public class SimpleLinkedList<T> : IEnumerable<T>
         {
             _value = values.ElementAt(0);
 
-            if (numberOfValues == 1) return;
-
             var currentNode = this;
 
             for (int i = 1; i < values.Count(); i++)
