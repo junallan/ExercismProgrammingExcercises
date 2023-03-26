@@ -13,16 +13,24 @@ var list List
 
 func New(elements []int) *List {
 	list := &List{}
+	for _, item := range elements {
+		list.Push(item)
+	}
 
 	return list
 }
 
 func (l *List) Size() int {
-	if l.first == nil {
-		return 0
-	} else {
-		return -1
+	currentNode := list.first
+
+	var itemCount int = 0
+
+	for currentNode != nil {
+		itemCount++
+		currentNode = currentNode.next
 	}
+
+	return itemCount
 }
 
 func (l *List) Push(element int) {
