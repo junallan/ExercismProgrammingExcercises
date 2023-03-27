@@ -79,10 +79,6 @@ func (l *List) Array() []int {
 
 	currentNode := l.first
 
-	if currentNode == nil {
-		return elements
-	}
-
 	for currentNode != nil {
 		elements = append(elements, currentNode.Value)
 		currentNode = currentNode.next
