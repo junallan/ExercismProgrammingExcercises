@@ -39,7 +39,6 @@ func (l *List) Push(element int) {
 		oldLastNode.next = l.last
 		l.count += 1
 	}
-
 }
 
 func (l *List) Pop() (int, error) {
