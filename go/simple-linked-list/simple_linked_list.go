@@ -84,19 +84,12 @@ func (l *List) Array() []int {
 
 func (l *List) Reverse() *List {
 	reversedList := &List{}
-	nodeStack := []*Node{}
+	elements := l.Array()
 
-	currentNode := l.first
-
-	for currentNode != nil {
-		nodeStack = append(nodeStack, currentNode)
-		currentNode = currentNode.next
-	}
-
-	indexOfLastNode := len(nodeStack) - 1
+	indexOfLastNode := len(elements) - 1
 
 	for index := indexOfLastNode; 0 <= index; index-- {
-		reversedList.Push(nodeStack[index].Value)
+		reversedList.Push(elements[index])
 	}
 
 	return reversedList
