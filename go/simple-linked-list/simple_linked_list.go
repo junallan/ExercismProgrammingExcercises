@@ -50,26 +50,21 @@ func (l *List) Pop() (int, error) {
 
 	value := l.last.Value
 
-	if l.count == 1 {
-		l.first, l.last = nil, nil
-		l.count = 0
-	} else if l.count == 2 {
-		l.last = l.first
-		l.count = 1
-	}
-
-	numberOfNodesTraversed := 1
+	numberOfNodesTraversed := 0
 
 	for currentNode != nil {
-		currentNode = currentNode.next
+
 		numberOfNodesTraversed += 1
 
 		if numberOfNodesTraversed == (l.count - 1) {
 			currentNode.next = nil
 			l.last = currentNode
-			l.count -= 1
 		}
+
+		currentNode = currentNode.next
 	}
+
+	l.count -= 1
 
 	return value, nil
 }
