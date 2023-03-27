@@ -30,14 +30,14 @@ func (l *List) Push(element int) {
 	newNode := &Node{Value: element}
 	currentNode := l.first
 
+	l.count += 1
+
 	if currentNode == nil {
 		l.first, l.last = newNode, newNode
-		l.count = 1
 	} else {
 		oldLastNode := l.last
 		l.last = newNode
 		oldLastNode.next = l.last
-		l.count += 1
 	}
 }
 
