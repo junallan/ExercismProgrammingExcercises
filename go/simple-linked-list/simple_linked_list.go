@@ -13,8 +13,6 @@ type Node struct {
 	Value int
 }
 
-//var list List
-
 func New(elements []int) *List {
 	l := &List{}
 	for _, item := range elements {
@@ -26,15 +24,6 @@ func New(elements []int) *List {
 
 func (l *List) Size() int {
 	return l.count
-	// var itemCount int = 0
-	// currentNode := list.first
-
-	// for currentNode != nil {
-	// 	itemCount++
-	// 	currentNode = currentNode.next
-	// }
-
-	// return itemCount
 }
 
 func (l *List) Push(element int) {
@@ -42,8 +31,7 @@ func (l *List) Push(element int) {
 	currentNode := l.first
 
 	if currentNode == nil {
-		l.first = newNode
-		l.last = newNode
+		l.first, l.last = newNode, newNode
 		l.count = 1
 	} else {
 		oldLastNode := l.last
@@ -64,8 +52,7 @@ func (l *List) Pop() (int, error) {
 	value := l.last.Value
 
 	if l.count == 1 {
-		l.first = nil
-		l.last = nil
+		l.first, l.last = nil, nil
 		l.count = 0
 	} else if l.count == 2 {
 		l.last = l.first
@@ -106,5 +93,21 @@ func (l *List) Array() []int {
 }
 
 func (l *List) Reverse() *List {
-	panic("Please implement the Reverse function")
+	reversedList := &List{}
+	nodeStack := []*Node{}
+
+	currentNode := l.first
+
+	for currentNode != nil {
+		nodeStack = append(nodeStack, currentNode)
+		currentNode = currentNode.next
+	}
+
+	indexOfLastNode := len(nodeStack) - 1
+
+	for index := indexOfLastNode; 0 <= index; index-- {
+		reversedList.Push(nodeStack[index].Value)
+	}
+
+	return reversedList
 }
