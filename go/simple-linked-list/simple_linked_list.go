@@ -42,29 +42,26 @@ func (l *List) Push(element int) {
 }
 
 func (l *List) Pop() (int, error) {
-	currentNode := l.first
-
-	if currentNode == nil {
+	if l.count == 0 {
 		return -1, errors.New("cannot pop on empty list")
 	}
 
+	var prevNode *Node
 	value := l.last.Value
+	currentNode := l.first
 
-	numberOfNodesTraversed := 0
-
-	for currentNode != nil {
-
-		numberOfNodesTraversed += 1
-
-		if numberOfNodesTraversed == (l.count - 1) {
-			currentNode.next = nil
-			l.last = currentNode
-		}
-
-		currentNode = currentNode.next
+	for currentNode != nil && currentNode.next != nil {
+		prevNode, currentNode = currentNode, currentNode.next
 	}
 
 	l.count -= 1
+	currentNode = nil
+
+	if prevNode != nil {
+		prevNode.next = nil
+	}
+
+	l.last = prevNode
 
 	return value, nil
 }
