@@ -22,10 +22,9 @@ public class SimpleLinkedList<T> : IEnumerable<T>
             _value = values.ElementAt(0);
 
             var currentNode = this;
-
-            for (int i = 1; i < values.Count(); i++)
+            foreach(var item in values.Skip(1))
             {
-                currentNode.Add(values.ElementAt(i));
+                currentNode.Add(item);
                 currentNode = currentNode.Next;
             }
         }
