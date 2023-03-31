@@ -15,9 +15,7 @@ public class SimpleLinkedList<T> : IEnumerable<T>
 
     public SimpleLinkedList(IEnumerable<T> values)
     {
-        var numberOfValues = values.Count();
-
-        if (numberOfValues > 0)
+        if (values.Any())
         {
             _value = values.ElementAt(0);
 
