@@ -5,7 +5,7 @@ using System.Linq;
 
 public class SimpleLinkedList<T> : IEnumerable<T>
 {
-    private T _value;
+    private T _value; 
     private SimpleLinkedList<T> _nextNode;
 
     public SimpleLinkedList(T value)
@@ -34,7 +34,16 @@ public class SimpleLinkedList<T> : IEnumerable<T>
 
     public SimpleLinkedList<T> Add(T value)
     {
-        _nextNode = new SimpleLinkedList<T>(value);
+        var currentNode = this;
+        SimpleLinkedList<T> lastNode = null;
+        
+        while(currentNode != null)
+        {
+            lastNode = currentNode;
+            currentNode = currentNode.Next;
+        }
+
+        lastNode._nextNode = new SimpleLinkedList<T>(value);
 
         return this;
     }
