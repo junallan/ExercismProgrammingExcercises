@@ -3,6 +3,9 @@
 TEMPERATURE_THRESHOLD = 800
 NEUTRONS_THRESHOLD = 500
 TEMPERATURE_AND_NEURONS_THRESHOLD = 500_000
+HIGH_POWER_EFFICIENCY = 0.8
+MID_POWER_EFFICIENCY = 0.6
+LOW_POWER_EFFICIENCY = 0.3
 
 def is_criticality_balanced(temperature, neutrons_emitted):
     """Verify criticality is balanced.
@@ -46,11 +49,11 @@ def reactor_efficiency(voltage, current, theoretical_max_power):
 
     power_efficiency = generated_power / theoretical_max_power
 
-    if power_efficiency >= 0.8:
+    if power_efficiency >= HIGH_POWER_EFFICIENCY:
         return 'green'
-    elif power_efficiency >= 0.6:
+    elif power_efficiency >= MID_POWER_EFFICIENCY:
         return 'orange'
-    elif power_efficiency >= 0.3:
+    elif power_efficiency >= LOW_POWER_EFFICIENCY:
         return 'red'
     else:
         return 'black'
