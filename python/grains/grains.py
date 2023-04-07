@@ -11,9 +11,9 @@ def square(number):
 
 
 def total():
-    total = 0
+    number_of_grains = 0
 
-    for i in range(TOTAL_SQUARES_ON_BOARD):
-        total += square(i+1)
+    for number in range(1, TOTAL_SQUARES_ON_BOARD+1):
+        number_of_grains += square(number)
     
-    return total
+    return number_of_grains
