@@ -6,6 +6,9 @@ def square(number):
     
     return 1 << (number-1)
 
+    #Exponent method
+    #return 2 ** (number-1)
+
     #Recursive method
     # if number == 1:
     #     return 1
@@ -14,9 +17,15 @@ def square(number):
 
 
 def total():
-    number_of_grains = 0
+    return (1 << TOTAL_SQUARES_ON_BOARD) - 1 
 
-    for number in range(1, TOTAL_SQUARES_ON_BOARD+1):
-        number_of_grains += square(number)
+    #Exponent method
+    #return 2 ** TOTAL_SQUARES_ON_BOARD - 1
+
+    #Looping method
+    #number_of_grains = 0
+
+    # for number in range(1, TOTAL_SQUARES_ON_BOARD+1):
+    #     number_of_grains += square(number)
     
-    return number_of_grains
+    #return number_of_grains
