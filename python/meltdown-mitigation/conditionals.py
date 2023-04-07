@@ -47,9 +47,7 @@ def reactor_efficiency(voltage, current, theoretical_max_power):
     where generated power = voltage * current
     """
 
-    generated_power = voltage * current
-
-    power_efficiency = generated_power / theoretical_max_power
+    power_efficiency = (voltage * current) / theoretical_max_power
 
     if power_efficiency >= HIGH_POWER_EFFICIENCY:
         return 'green'
@@ -72,13 +70,13 @@ def fail_safe(temperature, neutrons_produced_per_second, threshold):
     2. 'NORMAL' -> `temperature * neutrons per second` +/- 10% of `threshold`
     3. 'DANGER' -> `temperature * neutrons per second` is not in the above-stated ranges
     """
-    productionRate = temperature * neutrons_produced_per_second
-    productionRatePercentage = productionRate / threshold
+    productionRatePercentage = (temperature * neutrons_produced_per_second) / threshold
 
     if productionRatePercentage < LOWERBOUND_SAFETY_THRESHOLD:
         return 'LOW'
-    elif (LOWERBOUND_SAFETY_THRESHOLD <= productionRatePercentage 
-          and productionRatePercentage <= UPPERBOUND_SAFETY_THRESHOLD):
+    elif (LOWERBOUND_SAFETY_THRESHOLD 
+          <= productionRatePercentage 
+          <= UPPERBOUND_SAFETY_THRESHOLD):
         return 'NORMAL'
     else:
         return 'DANGER'
