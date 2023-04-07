@@ -6,6 +6,8 @@ TEMPERATURE_AND_NEURONS_THRESHOLD = 500_000
 HIGH_POWER_EFFICIENCY = 0.8
 MID_POWER_EFFICIENCY = 0.6
 LOW_POWER_EFFICIENCY = 0.3
+LOWERBOUND_SAFETY_THRESHOLD = 0.9
+UPPERBOUND_SAFETY_THRESHOLD = 1.1
 
 def is_criticality_balanced(temperature, neutrons_emitted):
     """Verify criticality is balanced.
@@ -70,5 +72,14 @@ def fail_safe(temperature, neutrons_produced_per_second, threshold):
     2. 'NORMAL' -> `temperature * neutrons per second` +/- 10% of `threshold`
     3. 'DANGER' -> `temperature * neutrons per second` is not in the above-stated ranges
     """
+    productionRate = temperature * neutrons_produced_per_second
+    productionRatePercentage = productionRate / threshold
 
-    pass
+    if productionRatePercentage < LOWERBOUND_SAFETY_THRESHOLD:
+        return 'LOW'
+    elif (LOWERBOUND_SAFETY_THRESHOLD <= productionRatePercentage 
+          and productionRatePercentage <= UPPERBOUND_SAFETY_THRESHOLD):
+        return 'NORMAL'
+    else:
+        return 'DANGER'
+        
