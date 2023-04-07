@@ -4,10 +4,13 @@ def square(number):
     if number < 1 or TOTAL_SQUARES_ON_BOARD < number:
         raise ValueError("square must be between 1 and 64")
     
-    if number == 1:
-        return 1
-    else:
-        return 2 * square(number-1)
+    return 1 << (number-1)
+
+    #Recursive method
+    # if number == 1:
+    #     return 1
+    # else:
+    #     return 2 * square(number-1)
 
 
 def total():
