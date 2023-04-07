@@ -31,7 +31,7 @@ def lose(power_pellet_active, touching_ghost):
     :return: bool - has the player lost the game?
     """
 
-    pass
+    return not power_pellet_active and touching_ghost
 
 
 def win(has_eaten_all_dots, power_pellet_active, touching_ghost):
