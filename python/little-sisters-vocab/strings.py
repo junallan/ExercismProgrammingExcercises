@@ -26,8 +26,22 @@ def make_word_groups(vocab_words):
     produces the following string: 'en :: enclose :: enjoy :: enlighten'.
     """
 
-    pass
 
+    if not bool(vocab_words):
+        return ""
+    
+    word_groups = vocab_words[0]
+    #print (word_groups)
+    vocab_words_except_prefix = vocab_words[1:]
+
+    if not bool(vocab_words_except_prefix):
+        return word_groups
+
+    for index, word in enumerate(vocab_words_except_prefix):
+        #print (index)
+        word_groups += " :: " + vocab_words[0] + vocab_words[index+1]
+
+    return word_groups
 
 def remove_suffix_ness(word):
     """Remove the suffix from the word while keeping spelling in mind.
