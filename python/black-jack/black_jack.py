@@ -37,12 +37,10 @@ def higher_card(card_one, card_two):
 
     values = returning_two_values(card_one, card_two)
 
-    if values[0] > values[1]:
-        return card_one
-    elif values[0] < values[1]:
-        return card_two
-    else:
-        return card_one, card_two  
+    if(values[0] == values[1]):
+        return card_one, card_two
+
+    return card_one if values[0] > values[1] else card_two
 
 
 def value_of_ace(card_one, card_two):
@@ -61,11 +59,7 @@ def value_of_ace(card_one, card_two):
 
     values = returning_two_values(card_one, card_two)
 
-    if (values[0] + values[1]) <= 10:
-        return 11
-    else: 
-        return 1
-
+    return 11 if (values[0] + values[1]) <= 10 else 1
 
 
 def is_blackjack(card_one, card_two):
