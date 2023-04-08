@@ -26,19 +26,16 @@ def make_word_groups(vocab_words):
     produces the following string: 'en :: enclose :: enjoy :: enlighten'.
     """
 
-
     if not bool(vocab_words):
         return ""
     
     word_groups = vocab_words[0]
-    #print (word_groups)
     vocab_words_except_prefix = vocab_words[1:]
 
     if not bool(vocab_words_except_prefix):
         return word_groups
 
     for index, word in enumerate(vocab_words_except_prefix):
-        #print (index)
         word_groups += " :: " + vocab_words[0] + vocab_words[index+1]
 
     return word_groups
@@ -52,7 +49,15 @@ def remove_suffix_ness(word):
     For example: "heaviness" becomes "heavy", but "sadness" becomes "sad".
     """
 
-    pass
+    word = word.rstrip("ness")
+
+    if(word.endswith('a') or word.endswith('e') or word.endswith('i')
+       or word.endswith('o') or word.endswith('u')):
+        return word[:-1] + 'y'
+
+    return word        
+
+
 
 
 def adjective_to_verb(sentence, index):
