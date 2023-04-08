@@ -83,13 +83,11 @@ def is_blackjack(card_one, card_two):
     value_of_card_one = value_of_card(card_one)
     value_of_card_two = value_of_card(card_two)
 
-    if (value_of_card_one + value_of_card_two) == 21:
-        return True
-    elif ((card_one == 'A' and value_of_card_two == 10) or
+    if ((card_one == 'A' and value_of_card_two == 10) or
           (card_two == 'A' and value_of_card_one == 10)):
         return True
-    else:
-        return False
+    
+    return (value_of_card_one + value_of_card_two) == 21
     
 
 
@@ -100,8 +98,12 @@ def can_split_pairs(card_one, card_two):
     :return: bool - can the hand be split into two pairs? (i.e. cards are of the same value).
     """
 
-    pass
-
+    if ((card_one == 'J' or card_one == 'Q' or card_one == 'K') 
+        and
+        (card_two == 'J' or card_two == 'Q' or card_two == 'K')):
+        return True
+    
+    return card_one == card_two
 
 def can_double_down(card_one, card_two):
     """Determine if a blackjack player can place a double down bet.
