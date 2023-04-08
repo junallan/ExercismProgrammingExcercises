@@ -53,7 +53,14 @@ def approx_average_is_average(hand):
     :return: bool - does one of the approximate averages equal the `true average`?
     """
 
-    pass
+    first = hand[0]
+    last = hand[-1]
+
+    average_of_first_and_last = card_average([first, last])
+    median_item = hand[len(hand) // 2]
+    avearge_of_all = card_average(hand)
+    
+    return avearge_of_all == average_of_first_and_last or avearge_of_all  == median_item
 
 
 def average_even_is_average_odd(hand):
