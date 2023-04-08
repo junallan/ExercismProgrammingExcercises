@@ -77,7 +77,6 @@ def is_blackjack(card_one, card_two):
         return True
     
     return (values[0] + values[1]) == 21
-    
 
 
 def can_split_pairs(card_one, card_two):
