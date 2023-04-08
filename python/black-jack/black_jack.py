@@ -34,12 +34,12 @@ def higher_card(card_one, card_two):
     2.  'A' (ace card) = 1
     3.  '2' - '10' = numerical value.
     """
-    value_of_card_one = value_of_card(card_one)
-    value_of_card_two = value_of_card(card_two)
 
-    if value_of_card_one > value_of_card_two:
+    values = returning_two_values(card_one, card_two)
+
+    if values[0] > values[1]:
         return card_one
-    elif value_of_card_one < value_of_card_two:
+    elif values[0] < values[1]:
         return card_two
     else:
         return card_one, card_two  
@@ -59,10 +59,9 @@ def value_of_ace(card_one, card_two):
     if card_one == 'A' or card_two == 'A':
         return 1
 
-    value_of_card_one = value_of_card(card_one)
-    value_of_card_two = value_of_card(card_two)
+    values = returning_two_values(card_one, card_two)
 
-    if (value_of_card_one + value_of_card_two) <= 10:
+    if (values[0] + values[1]) <= 10:
         return 11
     else: 
         return 1
@@ -80,14 +79,13 @@ def is_blackjack(card_one, card_two):
     3.  '2' - '10' = numerical value.
     """
 
-    value_of_card_one = value_of_card(card_one)
-    value_of_card_two = value_of_card(card_two)
-
-    if ((card_one == 'A' and value_of_card_two == 10) or
-          (card_two == 'A' and value_of_card_one == 10)):
+    values = returning_two_values(card_one, card_two)
+    
+    if ((card_one == 'A' and values[1] == 10) or
+          (card_two == 'A' and values[0] == 10)):
         return True
     
-    return (value_of_card_one + value_of_card_two) == 21
+    return (values[0] + values[1]) == 21
     
 
 
@@ -105,6 +103,7 @@ def can_split_pairs(card_one, card_two):
     
     return card_one == card_two
 
+
 def can_double_down(card_one, card_two):
     """Determine if a blackjack player can place a double down bet.
 
@@ -113,3 +112,7 @@ def can_double_down(card_one, card_two):
     """
 
     return 9 <= (value_of_card(card_one) + value_of_card(card_two)) <= 11
+
+
+def returning_two_values(value_one, value_two):
+    return value_of_card(value_one), value_of_card(value_two)
