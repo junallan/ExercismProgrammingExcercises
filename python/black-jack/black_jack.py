@@ -15,13 +15,10 @@ def value_of_card(card):
     2.  'A' (ace card) = 1
     3.  '2' - '10' = numerical value.
     """
-
-    if card == 'J' or card == 'Q' or card == 'K':
-        return 10
-    elif card == 'A':
-        return 1
-    else:
+    if card.isdigit():
         return int(card)
+
+    return 1 if card == 'A' else 10
 
 
 def higher_card(card_one, card_two):
@@ -37,7 +34,7 @@ def higher_card(card_one, card_two):
 
     values = returning_two_values(card_one, card_two)
 
-    if(values[0] == values[1]):
+    if values[0] == values[1]:
         return card_one, card_two
 
     return card_one if values[0] > values[1] else card_two
@@ -90,9 +87,7 @@ def can_split_pairs(card_one, card_two):
     :return: bool - can the hand be split into two pairs? (i.e. cards are of the same value).
     """
 
-    if ((card_one == 'J' or card_one == 'Q' or card_one == 'K') 
-        and
-        (card_two == 'J' or card_two == 'Q' or card_two == 'K')):
+    if card_one in ('J','Q','K') and card_two in ('J','Q','K') :
         return True
     
     return card_one == card_two
