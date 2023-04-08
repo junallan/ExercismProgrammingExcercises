@@ -40,6 +40,7 @@ def make_word_groups(vocab_words):
 
     return word_groups
 
+
 def remove_suffix_ness(word):
     """Remove the suffix from the word while keeping spelling in mind.
 
@@ -56,6 +57,7 @@ def remove_suffix_ness(word):
         return word[:-1] + "y"
     
     return word        
+
 
 def adjective_to_verb(sentence, index):
     """Change the adjective within the sentence to a verb.
