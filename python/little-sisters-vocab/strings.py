@@ -29,16 +29,9 @@ def make_word_groups(vocab_words):
     if not bool(vocab_words):
         return ""
     
-    word_groups = vocab_words[0]
-    vocab_words_except_prefix = vocab_words[1:]
+    joiner = " :: " + vocab_words[0]
 
-    if not bool(vocab_words_except_prefix):
-        return word_groups
-
-    for word in vocab_words_except_prefix:
-        word_groups += " :: " + vocab_words[0] + word
-
-    return word_groups
+    return joiner.join(vocab_words)
 
 
 def remove_suffix_ness(word):
