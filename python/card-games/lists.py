@@ -56,11 +56,9 @@ def approx_average_is_average(hand):
     first = hand[0]
     last = hand[-1]
 
-    average_of_first_and_last = card_average([first, last])
-    median_item = hand[len(hand) // 2]
-    avearge_of_all = card_average(hand)
+    average_of_all = card_average(hand)
 
-    return avearge_of_all == average_of_first_and_last or avearge_of_all  == median_item
+    return average_of_all == card_average([first, last]) or average_of_all  == hand[len(hand) // 2]
 
 
 def average_even_is_average_odd(hand):
@@ -80,4 +78,7 @@ def maybe_double_last(hand):
     :return: list - hand with Jacks (if present) value doubled.
     """
 
-    pass
+    if hand[-1] == 11:
+        hand[-1] = 22
+    
+    return hand
