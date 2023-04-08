@@ -35,8 +35,8 @@ def make_word_groups(vocab_words):
     if not bool(vocab_words_except_prefix):
         return word_groups
 
-    for index, word in enumerate(vocab_words_except_prefix):
-        word_groups += " :: " + vocab_words[0] + vocab_words[index+1]
+    for word in vocab_words_except_prefix:
+        word_groups += " :: " + vocab_words[0] + word
 
     return word_groups
 
@@ -51,14 +51,11 @@ def remove_suffix_ness(word):
 
     word = word.rstrip("ness")
 
-    if(word.endswith('a') or word.endswith('e') or word.endswith('i')
-       or word.endswith('o') or word.endswith('u')):
-        return word[:-1] + 'y'
-
+    if (word.endswith("a") or word.endswith("e") or word.endswith("i")
+        or word.endswith("o") or word.endswith("u")):
+        return word[:-1] + "y"
+    
     return word        
-
-
-
 
 def adjective_to_verb(sentence, index):
     """Change the adjective within the sentence to a verb.
@@ -73,4 +70,3 @@ def adjective_to_verb(sentence, index):
                 .split()[index]
                 .rstrip(".") 
                 + "en")
-
