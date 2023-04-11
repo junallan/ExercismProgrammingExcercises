@@ -17,7 +17,7 @@ def add_me_to_the_queue(express_queue, normal_queue, ticket_type, person_name):
         return express_queue
     else:
         normal_queue.append(person_name)
-        
+
         return normal_queue
 
 
@@ -29,7 +29,7 @@ def find_my_friend(queue, friend_name):
     :return: int - index at which the friends name was found.
     """
 
-    pass
+    return queue.index(friend_name)
 
 
 def add_me_with_my_friends(queue, index, person_name):
