@@ -55,7 +55,7 @@ def remove_the_mean_person(queue, person_name):
     """
 
     queue.remove(person_name)
-    
+
     return queue
 
 
@@ -67,7 +67,7 @@ def how_many_namefellows(queue, person_name):
     :return: int - the number of times the name appears in the queue.
     """
 
-    pass
+    return queue.count(person_name)
 
 
 def remove_the_last_person(queue):
