@@ -1,6 +1,6 @@
-import string
-
 """Functions to help edit essay homework using string manipulation."""
+
+import string
 
 
 def capitalize_title(title):
