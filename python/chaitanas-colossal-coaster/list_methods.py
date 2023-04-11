@@ -15,10 +15,10 @@ def add_me_to_the_queue(express_queue, normal_queue, ticket_type, person_name):
         express_queue.append(person_name)
 
         return express_queue
-    else:
-        normal_queue.append(person_name)
+    
+    normal_queue.append(person_name)
 
-        return normal_queue
+    return normal_queue
 
 
 def find_my_friend(queue, friend_name):
@@ -77,7 +77,7 @@ def remove_the_last_person(queue):
     :return: str - name that has been removed from the end of the queue.
     """
 
-    return (last_element_removed := queue.pop())
+    return queue.pop()
 
 
 def sorted_names(queue):
@@ -87,4 +87,4 @@ def sorted_names(queue):
     :return: list - copy of the queue in alphabetical order.
     """
 
-    return (ordered_queue := sorted(queue))
+    return sorted(queue)
