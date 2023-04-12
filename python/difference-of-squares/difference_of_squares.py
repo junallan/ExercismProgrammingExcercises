@@ -8,7 +8,12 @@ def square_of_sum(number):
 
 
 def sum_of_squares(number):
-    pass
+    sum = 0
+
+    for i in range(number):
+        sum += (i+1) ** 2
+
+    return sum
 
 
 def difference_of_squares(number):
