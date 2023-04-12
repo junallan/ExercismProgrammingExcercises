@@ -17,4 +17,4 @@ def sum_of_squares(number):
 
 
 def difference_of_squares(number):
-    pass
+    return square_of_sum(number) - sum_of_squares(number)
