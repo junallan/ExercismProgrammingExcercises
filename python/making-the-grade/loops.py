@@ -52,8 +52,8 @@ def letter_grades(highest: int) -> list:
     grade_range = (highest - FAILING_THRESHOLD) // 4
     grade_boundaries = [FAILING_THRESHOLD + 1]
 
-    for i in range(3):
-        grade_boundaries.append((FAILING_THRESHOLD + 1) + grade_range * (i + 1))
+    for index in range(3):
+        grade_boundaries.append((FAILING_THRESHOLD + 1) + grade_range * (index + 1))
 
     return grade_boundaries
 
@@ -68,8 +68,8 @@ def student_ranking(student_scores: list, student_names: list) -> list:
 
     rankings = []
 
-    for i, (name, score) in enumerate(zip(student_names, student_scores)):
-        rankings.append(f"{i + 1}. {name}: {score}")
+    for index, (name, score) in enumerate(zip(student_names, student_scores)):
+        rankings.append(f"{index + 1}. {name}: {score}")
     
     return rankings
 
