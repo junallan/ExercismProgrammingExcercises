@@ -53,7 +53,7 @@ def letter_grades(highest: int) -> list:
     grade_boundaries = [FAILING_THRESHOLD + 1]
 
     for i in range(3):
-        grade_boundaries = grade_boundaries + [(FAILING_THRESHOLD + 1) + grade_range * (i + 1)]
+        grade_boundaries.append((FAILING_THRESHOLD + 1) + grade_range * (i + 1))
 
     return grade_boundaries
 
