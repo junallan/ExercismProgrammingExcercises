@@ -1,5 +1,6 @@
 """Functions for organizing and calculating student exam scores."""
 
+FAILING_THRESHOLD = 40
 
 def round_scores(student_scores: list) -> list:
     """Round all provided student scores.
@@ -21,7 +22,7 @@ def count_failed_students(student_scores: list) -> int:
     :return: int - count of student scores at or below 40.
     """
 
-    return len([score for score in student_scores if score <= 40])
+    return len([score for score in student_scores if score <= FAILING_THRESHOLD])
 
 
 def above_threshold(student_scores: list, threshold:int) -> list:
@@ -35,7 +36,7 @@ def above_threshold(student_scores: list, threshold:int) -> list:
     return [score for score in student_scores if score >= threshold]
 
 
-def letter_grades(highest):
+def letter_grades(highest: int) -> list:
     """Create a list of grade thresholds based on the provided highest grade.
 
     :param highest: int - value of highest exam score.
@@ -48,8 +49,13 @@ def letter_grades(highest):
             71 <= "B" <= 85
             86 <= "A" <= 100
     """
+    grade_range = (highest - FAILING_THRESHOLD) // 4
+    grade_boundaries = [FAILING_THRESHOLD + 1]
 
-    pass
+    for i in range(3):
+        grade_boundaries = grade_boundaries + [(FAILING_THRESHOLD + 1) + grade_range * (i + 1)]
+
+    return grade_boundaries
 
 
 def student_ranking(student_scores, student_names):
