@@ -24,7 +24,7 @@ def count_failed_students(student_scores: list) -> int:
     return len([score for score in student_scores if score <= 40])
 
 
-def above_threshold(student_scores, threshold):
+def above_threshold(student_scores: list, threshold:int) -> list:
     """Determine how many of the provided student scores were 'the best' based on the provided threshold.
 
     :param student_scores: list - of integer scores.
@@ -32,7 +32,7 @@ def above_threshold(student_scores, threshold):
     :return: list - of integer scores that are at or above the "best" threshold.
     """
 
-    pass
+    return [score for score in student_scores if score >= threshold]
 
 
 def letter_grades(highest):
