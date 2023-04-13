@@ -9,8 +9,8 @@ def private_key(p: int) -> int:
     return random_number
 
 
-def public_key(p, g, private):
-    pass
+def public_key(p: int, g: int, private: int) -> int:
+    return g ** private % p
 
 
 def secret(p, public, private):
