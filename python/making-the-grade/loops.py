@@ -14,14 +14,14 @@ def round_scores(student_scores: list) -> list:
     return student_scores
 
 
-def count_failed_students(student_scores):
+def count_failed_students(student_scores: list) -> int:
     """Count the number of failing students out of the group provided.
 
     :param student_scores: list - containing int student scores.
     :return: int - count of student scores at or below 40.
     """
 
-    pass
+    return len([score for score in student_scores if score <= 40])
 
 
 def above_threshold(student_scores, threshold):
