@@ -14,7 +14,7 @@ def public_key(p: int, g: int, private: int) -> int:
 
 
 def secret(p: int, public: int, private: int) -> int:
-    return  public ** private % p
+    return public ** private % p
 
 
 def is_prime(n: int) -> bool:
