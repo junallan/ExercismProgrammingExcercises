@@ -1,6 +1,7 @@
 """Functions for organizing and calculating student exam scores."""
 
 FAILING_THRESHOLD = 40
+PASSING_GRADES_COUNT = 4
 
 def round_scores(student_scores: list) -> list:
     """Round all provided student scores.
@@ -46,13 +47,10 @@ def letter_grades(highest: int) -> list:
             71 <= "B" <= 85
             86 <= "A" <= 100
     """
-    grade_range = (highest - FAILING_THRESHOLD) // 4
-    grade_boundaries = [FAILING_THRESHOLD + 1]
+    grade_range = (highest - FAILING_THRESHOLD) // PASSING_GRADES_COUNT
 
-    for index in range(3):
-        grade_boundaries.append((FAILING_THRESHOLD + 1) + grade_range * (index + 1))
-
-    return grade_boundaries
+    return ([(FAILING_THRESHOLD + 1) + grade_range * index 
+             for index in range(PASSING_GRADES_COUNT)])
 
 
 def student_ranking(student_scores: list, student_names: list) -> list:
