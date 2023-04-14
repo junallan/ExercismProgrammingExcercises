@@ -77,5 +77,5 @@ def perfect_score(student_info: list) -> list:
     :return: list - first `[<student name>, 100]` or `[]` if no student score of 100 is found.
     """
 
-    return next(iter(filter(lambda x: x[1] == 100, student_info)),[])
+    return next(iter([name_score for name_score in student_info if name_score[1] == 100]),[])
 
