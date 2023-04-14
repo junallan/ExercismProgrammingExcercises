@@ -1,11 +1,12 @@
 import random
 
 def private_key(p: int) -> int:
-    random_number = random.randint(2, p-1)
-
-    while not is_prime(random_number):
+    while True:
         random_number = random.randint(2, p-1)
-
+        
+        if is_prime(random_number):
+            break;
+            
     return random_number
 
 
