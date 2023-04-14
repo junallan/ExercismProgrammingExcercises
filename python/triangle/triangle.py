@@ -9,14 +9,15 @@ def isosceles(sides: list) -> bool:
     if has_0_side(sides):
         return False
     
-    distinct_side_count = len(set(sides))
-
-    return (1 <= distinct_side_count <= 2) and is_triangle(sides)
+    return (1 <= len(set(sides)) <= 2) and is_triangle(sides)
 
 
 def scalene(sides: list) -> bool:
-    pass
-
+    if has_0_side(sides):
+        return False
+    
+    return len(set(sides)) == 3 and is_triangle(sides)
+    
 
 def has_0_side(sides: list) -> bool:
     return 0 in sides
