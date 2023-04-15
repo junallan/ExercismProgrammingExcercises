@@ -73,4 +73,3 @@ def perfect_score(student_info: list) -> list:
     """
 
     return next(iter([name_score for name_score in student_info if name_score[1] == 100]),[])
-
