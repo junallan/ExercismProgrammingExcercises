@@ -1,22 +1,13 @@
-def equilateral(sides: list) -> bool:
-    if has_0_side(sides):
-        return False
-    
-    return sides[0] == sides[1] == sides[2]
+def equilateral(sides: list) -> bool: 
+    return not has_0_side(sides) and sides[0] == sides[1] == sides[2]
 
 
-def isosceles(sides: list) -> bool:
-    if has_0_side(sides):
-        return False
-    
-    return (1 <= len(set(sides)) <= 2) and is_triangle(sides)
+def isosceles(sides: list) -> bool: 
+    return not has_0_side(sides) and (1 <= len(set(sides)) <= 2) and is_triangle(sides)
 
 
-def scalene(sides: list) -> bool:
-    if has_0_side(sides):
-        return False
-    
-    return len(set(sides)) == 3 and is_triangle(sides)
+def scalene(sides: list) -> bool:  
+    return not has_0_side(sides) and len(set(sides)) == 3 and is_triangle(sides)
     
 
 def has_0_side(sides: list) -> bool:
@@ -24,13 +15,6 @@ def has_0_side(sides: list) -> bool:
 
 
 def is_triangle(sides: list) -> bool:
-    return (two_sides_greater_than_one(sides[0], sides[1], sides[2]) 
-            and two_sides_greater_than_one(sides[0], sides[2], sides[1])
-            and two_sides_greater_than_one(sides[1], sides[2], sides[0]))
-
-
-def two_sides_greater_than_one(
-        side1: int | float, 
-        side2: int | float, 
-        side3: int | float ) -> bool:
-    return side1 + side2 >= side3
+    return ((sides[0] + sides[1] >= sides[2]) 
+            and (sides[0] + sides[2] >= sides[1])
+            and (sides[1] + sides[2] >= sides[0]))
