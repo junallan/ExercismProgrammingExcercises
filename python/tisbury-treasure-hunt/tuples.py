@@ -22,7 +22,7 @@ def convert_coordinate(coordinate: str) -> tuple:
     return (coordinate[0], coordinate[1])
 
 
-def compare_records(azara_record: tuple, rui_record: tuple) -> bool:
+def compare_records(azara_record: tuple[str, str], rui_record: tuple[str, tuple[str, str], str]) -> bool:
     """Compare two record types and determine if their coordinates match.
 
     :param azara_record: tuple - a (treasure, coordinate) pair.
