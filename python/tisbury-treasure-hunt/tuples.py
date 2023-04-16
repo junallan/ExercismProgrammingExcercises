@@ -12,14 +12,14 @@ def get_coordinate(record: tuple) -> str:
     #return [coordinate for (treasure, coordinate) in record]
 
 
-def convert_coordinate(coordinate):
+def convert_coordinate(coordinate: str) -> tuple:
     """Split the given coordinate into tuple containing its individual components.
 
     :param coordinate: str - a string map coordinate
     :return: tuple - the string coordinate split into its individual components.
     """
 
-    pass
+    return (coordinate[0], coordinate[1])
 
 
 def compare_records(azara_record, rui_record):
