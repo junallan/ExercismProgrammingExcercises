@@ -7,11 +7,27 @@ def largest_product(series: str, size: int) -> int:
     if not series.isdigit():
         raise ValueError("digits input must only contain digits");
 
+    start_index = 0
+    end_index = size - 1
+    stop_index = len(series) - 1
+    largest_product = 0
 
-    if len(series) == size:
-        digits = [int(number) for number in series] 
+    while end_index <= stop_index:
+        digits = [int(number) for number in series[start_index:end_index+1]]
         product = functools.reduce(lambda d1, d2: d1 * d2, digits)
 
-        return product
+        if product > largest_product:
+            largest_product = product
+        
+        start_index += 1
+        end_index += 1
 
-    pass
+    return largest_product
+    
+    # if len(series) == size:
+    #     digits = [int(number) for number in series] 
+    #     product = functools.reduce(lambda d1, d2: d1 * d2, digits)
+
+    #     return product
+
+    #pass
