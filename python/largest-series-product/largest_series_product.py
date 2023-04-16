@@ -20,7 +20,7 @@ def largest_product(series: str, size: int) -> int:
     largest_product = 0
 
     while end_index < series_length:
-        digits = [int(number) for number in series[start_index:end_index+1]]
+        digits = map(lambda number: int(number), series[start_index:end_index+1])
         product = functools.reduce(lambda d1, d2: d1 * d2, digits)
 
         if product > largest_product:
