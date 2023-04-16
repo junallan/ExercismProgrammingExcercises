@@ -18,8 +18,7 @@ def largest_product(series: str, size: int) -> int:
     largest_product = 0
 
     for digits in sliding_window(series, size):
-        digits_as_int = map(lambda number: int(number), digits)
-        product = functools.reduce(lambda d1, d2: d1 * d2, digits_as_int)
+        product = functools.reduce(lambda d1, d2: d1 * d2, map(int, digits))
 
         if product > largest_product:
             largest_product = product
