@@ -15,18 +15,17 @@ def largest_product(series: str, size: int) -> int:
     if not series.isdigit():
         raise ValueError("digits input must only contain digits");
  
-    start_index = 0
-    end_index = size - 1
     largest_product = 0
 
-    while end_index < series_length:
-        digits = map(lambda number: int(number), series[start_index:end_index+1])
-        product = functools.reduce(lambda d1, d2: d1 * d2, digits)
+    for digits in sliding_window(series, size):
+        digits_as_int = map(lambda number: int(number), digits)
+        product = functools.reduce(lambda d1, d2: d1 * d2, digits_as_int)
 
         if product > largest_product:
             largest_product = product
-        
-        start_index += 1
-        end_index += 1
 
     return largest_product
+
+def sliding_window(seq: str, size: int) -> list[str]:
+    for start_index in range(len(seq) - size + 1):
+        yield seq[start_index: start_index + size] 
