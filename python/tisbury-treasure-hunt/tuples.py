@@ -18,7 +18,7 @@ def convert_coordinate(coordinate: str) -> tuple[str,str]:
     :return: tuple - the string coordinate split into its individual components.
     """
 
-    return (coordinate[0], coordinate[1])
+    return tuple(coordinate)
 
 
 def compare_records(
