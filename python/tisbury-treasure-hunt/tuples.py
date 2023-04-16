@@ -30,7 +30,7 @@ def compare_records(azara_record, rui_record):
     :return: bool - do the coordinates match?
     """
 
-    pass
+    return azara_record[1] == rui_record[1][0] + rui_record[1][1]
 
 
 def create_record(azara_record, rui_record):
