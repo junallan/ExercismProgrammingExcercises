@@ -65,4 +65,5 @@ def clean_up(
     (see HINTS.md for an example).
     """
 
-    return "".join(f"('{item[0]}', '{item[2]}', {item[3]}, '{item[4]}')\n" for item in combined_record_group)
+    return ("".join(f"('{item[0]}', '{item[2]}', {item[3]}, '{item[4]}')\n" 
+                    for item in combined_record_group))
