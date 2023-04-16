@@ -1,6 +1,9 @@
 import functools
 
 def largest_product(series: str, size: int) -> int:
+    if size < 0:
+        raise ValueError("span must not be negative")
+    
     if len(series) < size:
         raise ValueError("span must be smaller than string length")
     
