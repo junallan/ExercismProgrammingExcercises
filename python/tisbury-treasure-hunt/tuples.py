@@ -9,7 +9,6 @@ def get_coordinate(record: tuple[str, str]) -> str:
     """
 
     return record[1]
-    #return [coordinate for (treasure, coordinate) in record]
 
 
 def convert_coordinate(coordinate: str) -> tuple[str,str]:
@@ -22,7 +21,10 @@ def convert_coordinate(coordinate: str) -> tuple[str,str]:
     return (coordinate[0], coordinate[1])
 
 
-def compare_records(azara_record: tuple[str, str], rui_record: tuple[str, tuple[str, str], str]) -> bool:
+def compare_records(
+        azara_record: tuple[str, str], 
+        rui_record: tuple[str, tuple[str, str], str]
+    ) -> bool:
     """Compare two record types and determine if their coordinates match.
 
     :param azara_record: tuple - a (treasure, coordinate) pair.
@@ -36,7 +38,7 @@ def compare_records(azara_record: tuple[str, str], rui_record: tuple[str, tuple[
 def create_record(
         azara_record: tuple[str, str], 
         rui_record: tuple[str, tuple[str, str], str]
-        ) -> tuple[str, str, str, tuple[str, str], str]:
+    ) -> tuple[str, str, str, tuple[str, str], str]:
     """Combine the two record types (if possible) and create a combined record group.
 
     :param azara_record: tuple - a (treasure, coordinate) pair.
@@ -50,7 +52,9 @@ def create_record(
         return "not a match"
 
 
-def clean_up(combined_record_group):
+def clean_up(
+        combined_record_group: tuple[tuple[str, str, str, tuple[str, str], str]]
+    ) -> str:
     """Clean up a combined record group into a multi-line string of single records.
 
     :param combined_record_group: tuple - everything from both participants.
@@ -61,4 +65,4 @@ def clean_up(combined_record_group):
     (see HINTS.md for an example).
     """
 
-    pass
+    return "".join([f"('{item[0]}', '{item[2]}', {item[3]}, '{item[4]}')\n" for item in combined_record_group])
