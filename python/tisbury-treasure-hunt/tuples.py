@@ -1,7 +1,7 @@
 """Functions to help Azara and Rui locate pirate treasure."""
 
 
-def get_coordinate(record: tuple) -> str:
+def get_coordinate(record: tuple[str, str]) -> str:
     """Return coordinate value from a tuple containing the treasure name, and treasure coordinate.
 
     :param record: tuple - with a (treasure, coordinate) pair.
@@ -12,7 +12,7 @@ def get_coordinate(record: tuple) -> str:
     #return [coordinate for (treasure, coordinate) in record]
 
 
-def convert_coordinate(coordinate: str) -> tuple:
+def convert_coordinate(coordinate: str) -> tuple[str,str]:
     """Split the given coordinate into tuple containing its individual components.
 
     :param coordinate: str - a string map coordinate
