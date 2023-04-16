@@ -33,7 +33,10 @@ def compare_records(azara_record: tuple[str, str], rui_record: tuple[str, tuple[
     return azara_record[1] == rui_record[1][0] + rui_record[1][1]
 
 
-def create_record(azara_record, rui_record):
+def create_record(
+        azara_record: tuple[str, str], 
+        rui_record: tuple[str, tuple[str, str], str]
+        ) -> tuple[str, str, str, tuple[str, str], str]:
     """Combine the two record types (if possible) and create a combined record group.
 
     :param azara_record: tuple - a (treasure, coordinate) pair.
@@ -41,7 +44,10 @@ def create_record(azara_record, rui_record):
     :return: tuple or str - the combined record (if compatible), or the string "not a match" (if incompatible).
     """
 
-    pass
+    if compare_records(azara_record, rui_record):
+        return azara_record + rui_record
+    else:
+        return "not a match"
 
 
 def clean_up(combined_record_group):
