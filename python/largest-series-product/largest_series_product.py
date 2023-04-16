@@ -18,10 +18,9 @@ def largest_product(series: str, size: int) -> int:
 
     start_index = 0
     end_index = size - 1
-    stop_index = series_length - 1
     largest_product = 0
 
-    while end_index <= stop_index:
+    while end_index < series_length:
         digits = [int(number) for number in series[start_index:end_index+1]]
         product = functools.reduce(lambda d1, d2: d1 * d2, digits)
 
