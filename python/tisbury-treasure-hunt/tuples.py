@@ -48,8 +48,8 @@ def create_record(
 
     if compare_records(azara_record, rui_record):
         return azara_record + rui_record
-    else:
-        return "not a match"
+    
+    return "not a match"
 
 
 def clean_up(
