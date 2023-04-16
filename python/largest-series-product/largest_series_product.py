@@ -15,7 +15,6 @@ def largest_product(series: str, size: int) -> int:
     if not series.isdigit():
         raise ValueError("digits input must only contain digits");
  
-
     start_index = 0
     end_index = size - 1
     largest_product = 0
