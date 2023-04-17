@@ -42,7 +42,7 @@ def score(dice, category):
         if len(distinct_dices) > 2:
             return 0
         if len(distinct_dices) == 1:
-            return distinct_dices[0] * 5
+            return distinct_dices[0] * 4
         else:
             count_first_number = dice.count(distinct_dices[0])
             count_second_number = dice.count(distinct_dices[1])
