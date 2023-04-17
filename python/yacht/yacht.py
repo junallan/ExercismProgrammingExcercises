@@ -8,7 +8,7 @@ FOURS = 4
 FIVES = 5
 SIXES = 6
 FULL_HOUSE = 7
-FOUR_OF_A_KIND = None
+FOUR_OF_A_KIND = 8
 LITTLE_STRAIGHT = None
 BIG_STRAIGHT = None
 CHOICE = None
@@ -34,6 +34,21 @@ def score(dice, category):
             if ((count_first_number == 3 and count_second_number == 2) or
                 (count_first_number == 2 and count_second_number == 3)):
                 return sum(dice)
+            else:
+                return 0
+    elif category == FOUR_OF_A_KIND:
+        distinct_dices = list(set(dice))
+
+        if len(distinct_dices) > 2:
+            return 0
+        else:
+            count_first_number = dice.count(distinct_dices[0])
+            count_second_number = dice.count(distinct_dices[1])
+
+            if count_first_number >= 4:
+                return distinct_dices[0] * count_first_number
+            elif count_second_number >= 4:
+                return distinct_dices[1] * count_second_number
             else:
                 return 0
     pass
