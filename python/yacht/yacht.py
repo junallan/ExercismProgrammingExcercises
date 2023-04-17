@@ -71,4 +71,5 @@ def score(dice, category):
             return BIG_STRAIGHT
         else:
             return 0    
-    pass
+    else:
+        return sum(dice)
