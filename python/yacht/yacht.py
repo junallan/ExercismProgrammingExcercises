@@ -9,9 +9,9 @@ FIVES = 5
 SIXES = 6
 FULL_HOUSE = 7
 FOUR_OF_A_KIND = 8
-LITTLE_STRAIGHT = 30
-BIG_STRAIGHT = 30
-CHOICE = 9
+LITTLE_STRAIGHT = 9
+BIG_STRAIGHT = 10
+CHOICE = 11
 
 
 def score(dice, category):
@@ -59,7 +59,7 @@ def score(dice, category):
         if len(distinct_dices) != 5:
             return 0
         elif max(dice) == 5:
-            return LITTLE_STRAIGHT
+            return 30
         else:
             return 0
     elif category == BIG_STRAIGHT:
@@ -68,7 +68,7 @@ def score(dice, category):
         if len(distinct_dices) != 5:
             return 0
         elif max(dice) == 6:
-            return BIG_STRAIGHT
+            return 30
         else:
             return 0    
     else:
