@@ -10,8 +10,8 @@ SIXES = 6
 FULL_HOUSE = 7
 FOUR_OF_A_KIND = 8
 LITTLE_STRAIGHT = 30
-BIG_STRAIGHT = 10
-CHOICE = 11
+BIG_STRAIGHT = 30
+CHOICE = 9
 
 
 def score(dice, category):
@@ -62,4 +62,13 @@ def score(dice, category):
             return LITTLE_STRAIGHT
         else:
             return 0
+    elif category == BIG_STRAIGHT:
+        distinct_dices = list(set(dice))
+
+        if len(distinct_dices) != 5:
+            return 0
+        elif max(dice) == 6:
+            return BIG_STRAIGHT
+        else:
+            return 0    
     pass
