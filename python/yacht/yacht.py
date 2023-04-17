@@ -58,7 +58,7 @@ def score(dice, category):
 
         if len(distinct_dices) != 5:
             return 0
-        elif max(dice) == 5:
+        elif min(dice) == 1 and max(dice) == 5:
             return 30
         else:
             return 0
@@ -67,7 +67,7 @@ def score(dice, category):
 
         if len(distinct_dices) != 5:
             return 0
-        elif max(dice) == 6:
+        elif min(dice) == 2 and max(dice) == 6:
             return 30
         else:
             return 0    
