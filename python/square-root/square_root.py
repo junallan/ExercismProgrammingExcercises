@@ -5,7 +5,7 @@ def square_root(number: int) -> int:
     number_guess = number // 2
 
     # Babylonian method to find square root
-    while pow(number_guess, 2) != number:
+    while number_guess * number_guess != number:
         number_guess = (number_guess + (number // number_guess)) / 2
 
     return number_guess
