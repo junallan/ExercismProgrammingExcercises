@@ -14,7 +14,7 @@ BIG_STRAIGHT = 10
 CHOICE = 11
 
 
-def score(dice, category):
+def score(dice: list, category: int) -> int:
     if category == YACHT:
         if all(d == dice[0] for d in dice):
             return YACHT
