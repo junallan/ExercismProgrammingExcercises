@@ -1,5 +1,4 @@
-from functools import reduce
-from operator import mul
+import math
 
 def largest_product(series: str, size: int) -> int:
     if size < 0:
@@ -16,8 +15,8 @@ def largest_product(series: str, size: int) -> int:
     if not series.isdigit():
         raise ValueError("digits input must only contain digits");
  
-    return  max(([reduce(mul, map(int, digits)) 
-                  for digits in sliding_window(series, size)]))
+    return  max(math.prod(map(int, digits)) 
+                for digits in sliding_window(series, size))
 
 
 def sliding_window(seq: str, size: int) -> list[str]:
