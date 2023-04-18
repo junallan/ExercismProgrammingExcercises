@@ -44,7 +44,7 @@ def decrement_items(inventory: dict[str,int], items: list[str]) -> dict[str,int]
     return inventory
 
 
-def remove_item(inventory, item):
+def remove_item(inventory: dict[str,int], item: str):
     """Remove item from inventory if it matches `item` string.
 
     :param inventory: dict - inventory dictionary.
@@ -52,7 +52,9 @@ def remove_item(inventory, item):
     :return: dict - updated inventory with item removed. Current inventory if item does not match.
     """
 
-    pass
+    inventory.pop(item)
+
+    return inventory
 
 
 def list_inventory(inventory):
