@@ -30,7 +30,7 @@ def add_items(inventory: dict[str,int], items: list[str]) -> dict[str,int]:
     return inventory
 
 
-def decrement_items(inventory, items):
+def decrement_items(inventory: dict[str,int], items: list[str]) -> dict[str,int]:
     """Decrement items in inventory using elements from the `items` list.
 
     :param inventory: dict - inventory dictionary.
@@ -38,7 +38,10 @@ def decrement_items(inventory, items):
     :return: dict - updated inventory with items decremented.
     """
 
-    pass
+    for element in items:
+        inventory[element] = inventory[element] - 1 if element else 0
+
+    return inventory
 
 
 def remove_item(inventory, item):
