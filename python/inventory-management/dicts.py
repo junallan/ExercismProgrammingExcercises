@@ -16,7 +16,7 @@ def create_inventory(items: list[str]) -> dict[str,int]:
     return inventory
 
 
-def add_items(inventory, items):
+def add_items(inventory: dict[str,int], items: list[str]) -> dict[str,int]:
     """Add or increment items in inventory using elements from the items `list`.
 
     :param inventory: dict - dictionary of existing inventory.
@@ -24,7 +24,10 @@ def add_items(inventory, items):
     :return: dict - the inventory updated with the new items.
     """
 
-    pass
+    for element in items:
+        inventory[element] = inventory[element] + 1 if element in inventory else 1
+
+    return inventory
 
 
 def decrement_items(inventory, items):
