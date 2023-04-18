@@ -51,8 +51,8 @@ def remove_item(inventory: dict[str,int], item: str) -> dict[str,int]:
     :param item: str - item to remove from the inventory.
     :return: dict - updated inventory with item removed. Current inventory if item does not match.
     """
-
-    inventory.pop(item)
+    if item in inventory:
+        inventory.pop(item)
 
     return inventory
 
