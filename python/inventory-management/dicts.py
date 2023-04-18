@@ -44,7 +44,7 @@ def decrement_items(inventory: dict[str,int], items: list[str]) -> dict[str,int]
     return inventory
 
 
-def remove_item(inventory: dict[str,int], item: str):
+def remove_item(inventory: dict[str,int], item: str) -> dict[str,int]:
     """Remove item from inventory if it matches `item` string.
 
     :param inventory: dict - inventory dictionary.
@@ -57,11 +57,17 @@ def remove_item(inventory: dict[str,int], item: str):
     return inventory
 
 
-def list_inventory(inventory):
+def list_inventory(inventory: dict[str,int]) -> list[tuple[str,int]]:
     """Create a list containing all (item_name, item_count) pairs in inventory.
 
     :param inventory: dict - an inventory dictionary.
     :return: list of tuples - list of key, value pairs from the inventory dictionary.
     """
 
-    pass
+    elements = []
+
+    for item in inventory:
+        if(inventory[item] > 0):
+            elements.append((item, inventory[item]))
+
+    return elements
