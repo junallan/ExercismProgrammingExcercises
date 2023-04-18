@@ -39,7 +39,7 @@ def decrement_items(inventory: dict[str,int], items: list[str]) -> dict[str,int]
     """
 
     for element in items:
-        inventory[element] = inventory[element] - 1 if element else 0
+        inventory[element] = inventory[element] - 1 if element and inventory[element] != 0 else 0
 
     return inventory
 
@@ -51,6 +51,7 @@ def remove_item(inventory: dict[str,int], item: str) -> dict[str,int]:
     :param item: str - item to remove from the inventory.
     :return: dict - updated inventory with item removed. Current inventory if item does not match.
     """
+
     if item in inventory:
         inventory.pop(item)
 
