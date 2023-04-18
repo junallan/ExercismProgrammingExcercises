@@ -65,10 +65,7 @@ def list_inventory(inventory: dict[str,int]) -> list[tuple[str,int]]:
     :return: list of tuples - list of key, value pairs from the inventory dictionary.
     """
 
-    elements = []
-
-    for item in inventory:
-        if(inventory[item] > 0):
-            elements.append((item, inventory[item]))
-
-    return elements
+    return sorted(
+            list(
+                    { (item,inventory[item]) for item in inventory if inventory[item] > 0 }
+                ))
