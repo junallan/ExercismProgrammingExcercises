@@ -58,7 +58,7 @@ def BIG_STRAIGHT(dice: list[int]) -> int:
         return 30
     else:
         return 0   
-CHOICE = 11
+CHOICE = lambda dice: sum(dice)
 
 
 def score(dice: list, category:Callable[[List[int]], int]) -> int:
