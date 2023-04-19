@@ -54,7 +54,6 @@ def remove_item(inventory: dict[str,int], item: str) -> dict[str,int]:
     :param item: str - item to remove from the inventory.
     :return: dict - updated inventory with item removed. Current inventory if item does not match.
     """
-
     if item in inventory:
         inventory.pop(item)
 
@@ -67,7 +66,6 @@ def list_inventory(inventory: dict[str,int]) -> list[tuple[str,int]]:
     :param inventory: dict - an inventory dictionary.
     :return: list of tuples - list of key, value pairs from the inventory dictionary.
     """
-
     list = []
 
     for item in inventory:
