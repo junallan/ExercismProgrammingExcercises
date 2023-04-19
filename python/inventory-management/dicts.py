@@ -29,7 +29,9 @@ def add_items(inventory: dict[str,int], items: list[str]) -> dict[str,int]:
 
 def add_inventory(inventory: dict[str,int], items: list[str]):
     for element in items:
-        inventory[element] = inventory[element] + 1 if element in inventory else 1
+        count = inventory.setdefault(element, 0)
+        inventory[element] = count + 1
+#        inventory[element] = inventory[element] + 1 if element in inventory else 1
 
 def decrement_items(inventory: dict[str,int], items: list[str]) -> dict[str,int]:
     """Decrement items in inventory using elements from the `items` list.
