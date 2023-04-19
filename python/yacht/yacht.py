@@ -40,7 +40,15 @@ def FOUR_OF_A_KIND(dice: list[int]) -> int:
             return distinct_dices[1] * count_second_number
         else:
             return 0
-LITTLE_STRAIGHT = 9
+def LITTLE_STRAIGHT(dice: list[int]) -> int:
+    distinct_dices = list(set(dice))
+
+    if len(distinct_dices) != 5:
+        return 0
+    elif min(dice) == 1 and max(dice) == 5:
+        return 30
+    else:
+        return 0
 BIG_STRAIGHT = 10
 CHOICE = 11
 
