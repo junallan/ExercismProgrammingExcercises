@@ -10,8 +10,7 @@ def create_inventory(items: list[str]) -> dict[str,int]:
     
     inventory = {}
 
-    for element in items:
-        inventory[element] = inventory[element] + 1 if element in inventory else 1
+    add_inventory(inventory, items)
 
     return inventory
 
@@ -24,11 +23,13 @@ def add_items(inventory: dict[str,int], items: list[str]) -> dict[str,int]:
     :return: dict - the inventory updated with the new items.
     """
 
-    for element in items:
-        inventory[element] = inventory[element] + 1 if element in inventory else 1
+    add_inventory(inventory, items)
 
     return inventory
 
+def add_inventory(inventory: dict[str,int], items: list[str]):
+    for element in items:
+        inventory[element] = inventory[element] + 1 if element in inventory else 1
 
 def decrement_items(inventory: dict[str,int], items: list[str]) -> dict[str,int]:
     """Decrement items in inventory using elements from the `items` list.
