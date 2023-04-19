@@ -4,7 +4,7 @@ from typing import Callable, List
 # Change the values as you see fit.
 YACHT = lambda dice: 50 if all(d == dice[0] for d in dice) else 0
 ONES = lambda dice: dice.count(1)
-TWOS = 2
+TWOS = lambda dice: dice.count(2) * 2
 THREES = 3
 FOURS = 4
 FIVES = 5
