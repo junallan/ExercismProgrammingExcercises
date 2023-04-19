@@ -5,7 +5,7 @@ from typing import Callable, List
 YACHT = lambda dice: 50 if all(d == dice[0] for d in dice) else 0
 ONES = lambda dice: dice.count(1)
 TWOS = lambda dice: dice.count(2) * 2
-THREES = 3
+THREES = lambda dice: dice.count(3) * 3
 FOURS = 4
 FIVES = 5
 SIXES = 6
