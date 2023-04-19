@@ -41,7 +41,7 @@ def decrement_items(inventory: dict[str,int], items: list[str]) -> dict[str,int]
     """
 
     for element in items:
-        if element and inventory[element] != 0: 
+        if element and inventory[element]: 
             inventory[element] = inventory[element] - 1
 
     return inventory
@@ -71,7 +71,7 @@ def list_inventory(inventory: dict[str,int]) -> list[tuple[str,int]]:
     list = []
 
     for item in inventory:
-        if inventory[item] > 0:
+        if inventory[item]:
             list.append((item, inventory[item]))
 
     return list
