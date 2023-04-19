@@ -1,4 +1,4 @@
-import math
+from math import prod
 
 def largest_product(series: str, size: int) -> int:
     if size < 0:
@@ -15,8 +15,10 @@ def largest_product(series: str, size: int) -> int:
     if not series.isdigit():
         raise ValueError("digits input must only contain digits");
  
-    return  max(math.prod(map(int, digits)) 
-                for digits in sliding_window(series, size))
+    return max(
+        prod(map(int, digits)) 
+        for digits in sliding_window(series, size)
+    )
 
 
 def sliding_window(seq: str, size: int) -> list[str]:
