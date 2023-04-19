@@ -3,7 +3,7 @@ from typing import Callable, List
 # Score categories.
 # Change the values as you see fit.
 YACHT = lambda dice: 50 if all(d == dice[0] for d in dice) else 0
-ONES = 1
+ONES = lambda dice: dice.count(1)
 TWOS = 2
 THREES = 3
 FOURS = 4
