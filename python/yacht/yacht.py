@@ -49,67 +49,21 @@ def LITTLE_STRAIGHT(dice: list[int]) -> int:
         return 30
     else:
         return 0
-BIG_STRAIGHT = 10
+def BIG_STRAIGHT(dice: list[int]) -> int:
+    distinct_dices = list(set(dice))
+
+    if len(distinct_dices) != 5:
+        return 0
+    elif min(dice) == 2 and max(dice) == 6:
+        return 30
+    else:
+        return 0   
 CHOICE = 11
 
 
 def score(dice: list, category:Callable[[List[int]], int]) -> int:
     return category(dice)
-    # if category == YACHT:
-    #     # if all(d == dice[0] for d in dice):
-    #     #     return YACHT
-    #     # else:
-    #     #     return 0
-    # elif ONES <= category <= SIXES:
-    #     return dice.count(category) * category     
-    # elif category == FULL_HOUSE:
-    #     distinct_dices = list(set(dice))
-
-    #     if len(distinct_dices) != 2:
-    #         return 0
-    #     else:
-    #         count_first_number = dice.count(distinct_dices[0])
-    #         count_second_number = dice.count(distinct_dices[1])
-
-    #         if ((count_first_number == 3 and count_second_number == 2) or
-    #             (count_first_number == 2 and count_second_number == 3)):
-    #             return sum(dice)
-    #         else:
-    #             return 0
-    # elif category == FOUR_OF_A_KIND:
-    #     distinct_dices = list(set(dice))
-
-    #     if len(distinct_dices) > 2:
-    #         return 0
-    #     if len(distinct_dices) == 1:
-    #         return distinct_dices[0] * 4
-    #     else:
-    #         count_first_number = dice.count(distinct_dices[0])
-    #         count_second_number = dice.count(distinct_dices[1])
-
-    #         if count_first_number == 4:
-    #             return distinct_dices[0] * count_first_number
-    #         elif count_second_number == 4:
-    #             return distinct_dices[1] * count_second_number
-    #         else:
-    #             return 0
-    # elif category == LITTLE_STRAIGHT:
-    #     distinct_dices = list(set(dice))
-
-    #     if len(distinct_dices) != 5:
-    #         return 0
-    #     elif min(dice) == 1 and max(dice) == 5:
-    #         return 30
-    #     else:
-    #         return 0
-    # elif category == BIG_STRAIGHT:
-    #     distinct_dices = list(set(dice))
-
-    #     if len(distinct_dices) != 5:
-    #         return 0
-    #     elif min(dice) == 2 and max(dice) == 6:
-    #         return 30
-    #     else:
-    #         return 0    
+   
+    
     # else:
     #     return sum(dice)
