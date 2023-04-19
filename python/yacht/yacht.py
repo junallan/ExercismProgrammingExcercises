@@ -9,7 +9,20 @@ THREES = lambda dice: dice.count(3) * 3
 FOURS = lambda dice: dice.count(4) * 4
 FIVES = lambda dice: dice.count(5) * 5
 SIXES = lambda dice: dice.count(6) * 6
-FULL_HOUSE = 7
+def FULL_HOUSE(dice): 
+    distinct_dices = list(set(dice))
+
+    if len(distinct_dices) != 2:
+        return 0
+    
+    count_first_number = dice.count(distinct_dices[0])
+    count_second_number = dice.count(distinct_dices[1])
+
+    if ((count_first_number == 3 and count_second_number == 2) or
+        (count_first_number == 2 and count_second_number == 3)):
+        return sum(dice)
+    else:
+        return 0
 FOUR_OF_A_KIND = 8
 LITTLE_STRAIGHT = 9
 BIG_STRAIGHT = 10
