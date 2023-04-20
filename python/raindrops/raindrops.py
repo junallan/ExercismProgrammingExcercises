@@ -1,4 +1,4 @@
-def convert(number):
+def convert(number: int) -> str:
     raindrops = {3: "Pling", 5: "Plang", 7: "Plong"}
     sounds = ([raindrops[factor] 
         if not number % factor 
