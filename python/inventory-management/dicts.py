@@ -34,7 +34,7 @@ def decrement_items(inventory: dict[str, int], items: list[str]) -> dict[str, in
     """
 
     for element in items:
-        if element and inventory[element]: 
+        if inventory[element]: 
             inventory[element] -= 1
 
     return inventory
