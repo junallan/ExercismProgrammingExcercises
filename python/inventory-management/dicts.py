@@ -20,8 +20,7 @@ def add_items(inventory: dict[str, int], items: list[str]) -> dict[str, int]:
     """
 
     for element in items:
-        count = inventory.get(element, 0)
-        inventory[element] = count + 1
+        inventory[element] = inventory.get(element, 0) + 1
 
     return inventory
 
