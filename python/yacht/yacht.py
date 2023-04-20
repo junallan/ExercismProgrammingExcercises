@@ -8,20 +8,11 @@ THREES = lambda dice: count(dice, 3)
 FOURS = lambda dice: count(dice, 4)
 FIVES = lambda dice: count(dice, 5)
 SIXES = lambda dice: count(dice, 6)
-def FULL_HOUSE(dice: list[int]) -> int: 
-    distinct_dices = list(set(dice))
+FULL_HOUSE = (lambda dice: sum(dice) 
+    if len(distinct_numbers := set(dice)) == 2 
+        and dice.count(distinct_numbers.pop()) in [2,3] 
+    else 0)
 
-    if len(distinct_dices) != 2:
-        return 0
-    
-    count_first_number = dice.count(distinct_dices[0])
-    count_second_number = dice.count(distinct_dices[1])
-
-    if ((count_first_number == 3 and count_second_number == 2) or
-        (count_first_number == 2 and count_second_number == 3)):
-        return sum(dice)
-    else:
-        return 0
 def FOUR_OF_A_KIND(dice: list[int]) -> int:
     number_that_repeats_most = max(dice, key = lambda d: dice.count(d))
     count_of_most_repeated_number = dice.count(number_that_repeats_most)
