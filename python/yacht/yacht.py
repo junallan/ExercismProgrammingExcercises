@@ -23,23 +23,11 @@ def FULL_HOUSE(dice: list[int]) -> int:
     else:
         return 0
 def FOUR_OF_A_KIND(dice: list[int]) -> int:
-    distinct_dices = list(set(dice))
-
-    if len(distinct_dices) > 2:
-        return 0
-    
-    if len(distinct_dices) == 1:
-        return distinct_dices[0] * 4
-    else:
-        count_first_number = dice.count(distinct_dices[0])
-        count_second_number = dice.count(distinct_dices[1])
-
-        if count_first_number == 4:
-            return distinct_dices[0] * count_first_number
-        elif count_second_number == 4:
-            return distinct_dices[1] * count_second_number
-        else:
-            return 0
+    number_that_repeats_most = max(dice, key = lambda d: dice.count(d))
+    count_of_most_repeated_number = dice.count(number_that_repeats_most)
+ 
+    return (number_that_repeats_most * 4 
+        if count_of_most_repeated_number >= 4 else 0)
 LITTLE_STRAIGHT = lambda dice: straight(dice, 1, 5)
 BIG_STRAIGHT = lambda dice: straight(dice, 2, 6)
 CHOICE = lambda dice: sum(dice)
