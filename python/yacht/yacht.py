@@ -30,7 +30,7 @@ def FOUR_OF_A_KIND(dice: list[int]) -> int:
         if count_of_most_repeated_number >= 4 else 0)
 LITTLE_STRAIGHT = lambda dice: straight(dice, 1, 5)
 BIG_STRAIGHT = lambda dice: straight(dice, 2, 6)
-CHOICE = lambda dice: sum(dice)
+CHOICE = sum
 
 def score(dice: list, category:Callable[[List[int]], int]) -> int:
     return category(dice)
