@@ -40,30 +40,19 @@ def FOUR_OF_A_KIND(dice: list[int]) -> int:
             return distinct_dices[1] * count_second_number
         else:
             return 0
-def LITTLE_STRAIGHT(dice: list[int]) -> int:
-    distinct_dices = list(set(dice))
-
-    if len(distinct_dices) != 5:
-        return 0
-    elif min(dice) == 1 and max(dice) == 5:
-        return 30
-    else:
-        return 0
-def BIG_STRAIGHT(dice: list[int]) -> int:
-    distinct_dices = list(set(dice))
-
-    if len(distinct_dices) != 5:
-        return 0
-    elif min(dice) == 2 and max(dice) == 6:
-        return 30
-    else:
-        return 0   
+LITTLE_STRAIGHT = lambda dice: straight(dice, 1, 5)
+BIG_STRAIGHT = lambda dice: straight(dice, 2, 6)
 CHOICE = lambda dice: sum(dice)
-
 
 def score(dice: list, category:Callable[[List[int]], int]) -> int:
     return category(dice)
-   
-    
-    # else:
-    #     return sum(dice)
+
+def straight(dice: list[int], min_number: int, max_number: int) -> int:
+    distinct_dices = list(set(dice))
+
+    if len(distinct_dices) != 5:
+        return 0
+    elif min(dice) == min_number and max(dice) == max_number:
+        return 30
+    else:
+        return 0 
