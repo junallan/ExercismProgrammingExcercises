@@ -7,7 +7,6 @@ def create_inventory(items: list[str]) -> dict[str, int]:
     :param items: list - list of items to create an inventory from.
     :return: dict - the inventory dictionary.
     """
-    
     return add_items({}, items)
 
 
@@ -18,7 +17,6 @@ def add_items(inventory: dict[str, int], items: list[str]) -> dict[str, int]:
     :param items: list - list of items to update the inventory with.
     :return: dict - the inventory updated with the new items.
     """
-
     for element in items:
         inventory[element] = inventory.get(element, 0) + 1
 
@@ -32,7 +30,6 @@ def decrement_items(inventory: dict[str, int], items: list[str]) -> dict[str, in
     :param items: list - list of items to decrement from the inventory.
     :return: dict - updated inventory with items decremented.
     """
-
     for element in items:
         if inventory[element]: 
             inventory[element] -= 1
@@ -59,5 +56,4 @@ def list_inventory(inventory: dict[str, int]) -> list[tuple[str, int]]:
     :param inventory: dict - an inventory dictionary.
     :return: list of tuples - list of key, value pairs from the inventory dictionary.
     """
-
     return [(item, inventory[item]) for item in inventory if inventory[item]]
