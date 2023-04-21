@@ -1,8 +1,8 @@
-#import re
+import string
 
 def count_words(sentence: str) -> dict[str, int]:
-    #words = re.split(r'[^\w\']+', sentence)
-    words = sentence.split()
+    translator = str.maketrans("", "", string.punctuation)
+    words = sentence.translate(translator).split()
     word_counts = {}
 
     for w in words:
