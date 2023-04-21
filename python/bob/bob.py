@@ -4,11 +4,14 @@ def response(hey_bob: str) -> str:
     
     if is_yelling and is_asking_a_question:
         return "Calm down, I know what I'm doing!"
-    elif is_yelling:
+    
+    if is_yelling:
         return "Whoa, chill out!"
-    elif is_asking_a_question:
+    
+    if is_asking_a_question:
         return "Sure."
-    elif hey_bob.isspace() or not hey_bob:
+    
+    if hey_bob.isspace() or not hey_bob:
         return "Fine. Be that way!"
-    else:
-        return "Whatever."
+    
+    return "Whatever."
