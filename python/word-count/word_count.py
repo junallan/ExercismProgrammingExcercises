@@ -3,8 +3,8 @@ import string
 
 def count_words(sentence: str) -> dict[str, int]:
     word_counts = {}
-    delimeters = string.punctuation.replace("'", "") + " "
-    words = [w.replace("\n", "").replace("\t", "").strip(string.punctuation).lower() for w in re.split(f"[{delimeters}]+", sentence) if not w.isspace() and w]
+    delimeters = string.punctuation.replace("'", "") + "\n\t "
+    words = [w.strip(string.punctuation).lower() for w in re.split(f"[{delimeters}]+", sentence) if not w.isspace() and w]
 #    print("words " + words)
     for w in words:
         if w in word_counts:
