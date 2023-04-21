@@ -1,6 +1,7 @@
 import re
 import string
 
+
 def count_words(sentence: str) -> dict[str, int]:
     word_counts = {}
     delimeters = string.punctuation.replace("'", "") + "\n\t "
