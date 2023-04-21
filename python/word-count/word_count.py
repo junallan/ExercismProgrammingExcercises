@@ -2,7 +2,7 @@ import string
 
 def count_words(sentence: str) -> dict[str, int]:
     translator = str.maketrans("", "", string.punctuation)
-    words = sentence.translate(translator).split()
+    words = sentence.translate(translator).lower().split()
     word_counts = {}
 
     for w in words:
