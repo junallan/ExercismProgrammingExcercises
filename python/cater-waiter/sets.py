@@ -98,7 +98,7 @@ def compile_ingredients(dishes: list[Set[str]]) -> Set[str]:
     return set().union(*dishes)
 
 
-def separate_appetizers(dishes, appetizers):
+def separate_appetizers(dishes: list[str], appetizers: list[str]) -> list[str]:
     """Determine which `dishes` are designated `appetizers` and remove them.
 
     :param dishes: list - of dish names.
@@ -109,7 +109,7 @@ def separate_appetizers(dishes, appetizers):
     Either list could contain duplicates and may require de-duping.
     """
 
-    pass
+    return list(set(dishes).difference(appetizers))
 
 
 def singleton_ingredients(dishes, intersection):
