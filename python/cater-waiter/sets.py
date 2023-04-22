@@ -1,15 +1,14 @@
 """Functions for compiling dishes and ingredients for a catering company."""
 
 
-from sets_categories_data import (VEGAN,
-                                  VEGETARIAN,
+from typing import Tuple, Set
+
+from sets_categories_data import (VEGETARIAN,
                                   KETO,
                                   PALEO,
                                   OMNIVORE,
                                   ALCOHOLS,
                                   SPECIAL_INGREDIENTS)
-
-from typing import Tuple, Set
 
 
 def clean_ingredients(dish_name: str, dish_ingredients: list[str]) -> Tuple[str, Set[str]]:
@@ -40,8 +39,8 @@ def check_drinks(drink_name: str, drink_ingredients: list[str]) -> str:
 
     if any(ingredient.lower() in ALCOHOLS for ingredient in drink_ingredients):
         return f"{drink_name} Cocktail"
-    else:
-        return f"{drink_name} Mocktail"
+    
+    return f"{drink_name} Mocktail"
 
 
 def categorize_dish(dish_name: str, dish_ingredients: list[str]) -> str:
