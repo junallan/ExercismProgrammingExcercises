@@ -86,7 +86,7 @@ def tag_special_ingredients(dish: Tuple[str, list[str]]) -> Tuple[str, set[str]]
     return dish[0], set(dish[1]).intersection(SPECIAL_INGREDIENTS)
 
 
-def compile_ingredients(dishes):
+def compile_ingredients(dishes: list[Set[str]]) -> Set[str]:
     """Create a master list of ingredients.
 
     :param dishes: list - of dish ingredient sets.
@@ -95,7 +95,7 @@ def compile_ingredients(dishes):
     This function should return a `set` of all ingredients from all listed dishes.
     """
 
-    pass
+    return set().union(*dishes)
 
 
 def separate_appetizers(dishes, appetizers):
