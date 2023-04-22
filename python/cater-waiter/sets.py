@@ -71,12 +71,8 @@ def categorize_dish(dish_name: str, dish_ingredients: list[str]) -> str:
 
     return f"{dish_name}: VEGAN"
 
-    # if any(ingredient.lower() in VEGAN for ingredient in dish_ingredients):
-    #     return f"{dish_name}: VEGAN"
 
-
-
-def tag_special_ingredients(dish):
+def tag_special_ingredients(dish: Tuple[str, list[str]]) -> Tuple[str, set[str]]:
     """Compare `dish` ingredients to `SPECIAL_INGREDIENTS`.
 
     :param dish: tuple - of (dish name, list of dish ingredients).
@@ -87,7 +83,7 @@ def tag_special_ingredients(dish):
     SPECIAL_INGREDIENTS constant imported from `sets_categories_data.py`.
     """
 
-    pass
+    return dish[0], set(dish[1]).intersection(SPECIAL_INGREDIENTS)
 
 
 def compile_ingredients(dishes):
