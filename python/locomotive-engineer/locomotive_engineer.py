@@ -54,10 +54,10 @@ def extend_route_information(route: dict[str, str], more_route_information: dict
     return {**route, **more_route_information}
 
 
-def fix_wagon_depot(wagons_rows):
+def fix_wagon_depot(wagons_rows: list[list[Tuple[int, str]]]) -> list[list[Tuple[int, str]]]:
     """Fix the list of rows of wagons.
 
     :param wagons_rows: list[list[tuple]] - the list of rows of wagons.
     :return: list[list[tuple]] - list of rows of wagons.
     """
-    pass
+    return [list(row) for row in zip(*wagons_rows)]
