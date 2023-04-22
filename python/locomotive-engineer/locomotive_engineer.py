@@ -13,15 +13,17 @@ def get_list_of_wagons(*wagons: list[Tuple[int]]) -> list[Tuple[int]]:
     return list(wagons)
 
 
-def fix_list_of_wagons(each_wagons_id, missing_wagons):
+def fix_list_of_wagons(
+        each_wagons_id: list[int], missing_wagons: list[int]) -> list[int]:
     """Fix the list of wagons.
 
     :parm each_wagons_id: list - the list of wagons.
     :parm missing_wagons: list - the list of missing wagons.
     :return: list - list of wagons.
     """
-    pass
+    first_wagon_id, second_wagon_id, third_wagon_id, *rest_of_wagon_ids = each_wagons_id
 
+    return [third_wagon_id] + missing_wagons + rest_of_wagon_ids + [first_wagon_id, second_wagon_id]
 
 def add_missing_stops():
     """Add missing stops to route dict.
