@@ -33,15 +33,16 @@ def add_missing_stops(route: dict[str, str], **stops: str) -> dict[str, str | li
     :param: arbitrary number of stops.
     :return: dict - updated route dictionary.
     """
+    stops_combined = {}
     for _, value in stops.items():
-        if "stops" in route:
-            update_stops = route["stops"]
+        if "stops" in stops_combined:
+            update_stops = stops_combined["stops"]
             update_stops.append(value)
-            route["stops"] = update_stops
+            stops_combined["stops"] = update_stops
         else:
-            route["stops"] = [value]
+            stops_combined["stops"] = [value]
     
-    return route
+    return {**route,**stops_combined}
 
 
 def extend_route_information(route: dict[str, str], more_route_information: dict[str, str]) -> dict[str, str]:
