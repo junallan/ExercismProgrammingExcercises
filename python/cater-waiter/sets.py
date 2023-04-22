@@ -44,7 +44,7 @@ def check_drinks(drink_name: str, drink_ingredients: list[str]) -> str:
         return f"{drink_name} Mocktail"
 
 
-def categorize_dish(dish_name, dish_ingredients):
+def categorize_dish(dish_name: str, dish_ingredients: list[str]) -> str:
     """Categorize `dish_name` based on `dish_ingredients`.
 
     :param dish_name: str - dish to be categorized.
@@ -57,7 +57,23 @@ def categorize_dish(dish_name, dish_ingredients):
 
     """
 
-    pass
+    if set(dish_ingredients).issubset(OMNIVORE):
+        return f"{dish_name}: OMNIVORE"
+
+    if set(dish_ingredients).issubset(KETO):
+        return f"{dish_name}: KETO"
+ 
+    if set(dish_ingredients).issubset(PALEO):
+        return f"{dish_name}: PALEO"
+
+    if set(dish_ingredients).issubset(VEGETARIAN):
+        return f"{dish_name}: VEGETARIAN"
+
+    return f"{dish_name}: VEGAN"
+
+    # if any(ingredient.lower() in VEGAN for ingredient in dish_ingredients):
+    #     return f"{dish_name}: VEGAN"
+
 
 
 def tag_special_ingredients(dish):
