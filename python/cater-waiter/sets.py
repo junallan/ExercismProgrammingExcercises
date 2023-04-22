@@ -26,7 +26,7 @@ def clean_ingredients(dish_name: str, dish_ingredients: list[str]) -> Tuple[str,
     return dish_name, set(dish_ingredients)
 
 
-def check_drinks(drink_name, drink_ingredients):
+def check_drinks(drink_name: str, drink_ingredients: list[str]) -> str:
     """Append "Cocktail" (alcohol)  or "Mocktail" (no alcohol) to `drink_name`, based on `drink_ingredients`.
 
     :param drink_name: str - name of the drink.
@@ -38,7 +38,10 @@ def check_drinks(drink_name, drink_ingredients):
 
     """
 
-    pass
+    if any(ingredient.lower() in ALCOHOLS for ingredient in drink_ingredients):
+        return f"{drink_name} Cocktail"
+    else:
+        return f"{drink_name} Mocktail"
 
 
 def categorize_dish(dish_name, dish_ingredients):
