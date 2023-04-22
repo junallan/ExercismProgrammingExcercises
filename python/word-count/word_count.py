@@ -1,18 +1,9 @@
 import re
-import string
+from collections import Counter
 
 
 def count_words(sentence: str) -> dict[str, int]:
-    word_counts = {}
-    delimeters = string.punctuation.replace("'", "") + "\n\t "
-    words = [w.strip(string.punctuation).lower() 
-        for w in re.split(f"[{delimeters}]+", sentence) 
-        if not w.isspace() and w != "'" and w]
+    words = re.findall("[a-z0-9]+(?:'[a-z]+)?", sentence.lower())
+    word_counts = Counter(words)
 
-    for w in words:
-        if w in word_counts:
-            word_counts[w] += 1
-        else:
-            word_counts[w] = 1
-
-    return word_counts
+    return {item: count for item, count in word_counts.most_common()}
