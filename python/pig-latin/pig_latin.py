@@ -4,12 +4,8 @@ from re import match
 def translate(text: str) -> str:
     if not text: return ""
 
-    sentence = ""
+    return " ".join(translate_word(word) for word in text.split())  
 
-    for word in text.split():
-        sentence += " " + translate_word(word)
-
-    return sentence.strip()    
 
 def translate_word(word: str) -> str:
     if word[0] == "y" and not get_constant_cluster(word[1:]): 
