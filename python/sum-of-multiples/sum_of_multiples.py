@@ -1,11 +1,14 @@
 def sum_of_multiples(limit: int, multiples: list[int]) -> int:
-    if not multiples: return 0
+    return sum({num for num in range(limit) 
+        for factor in multiples 
+        if factor != 0 and num % factor == 0})
 
-    multiples_tracked = set()
+    #if not multiples: return 0
 
-    for num in multiples:
-        if num != 0:
-            multiples_tracked.update(range(num, limit, num))
+    # multiples_tracked = set()
 
-    return sum(multiples_tracked)
+    # for num in multiples:
+    #     if num != 0:
+    #         multiples_tracked.update(range(num, limit, num))
 
+    #return sum(multiples_tracked)  
