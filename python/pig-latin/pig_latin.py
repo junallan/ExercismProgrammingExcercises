@@ -27,9 +27,4 @@ def translate_word(word: str) -> str:
 
 
 def get_constant_cluster(text: str) -> str:
-    matching = match(r'^[^aeiouy]+', text)
-
-    if matching:
-        return matching.group(0)
-    else:
-        return ""
+    return matching.group() if (matching:= match(r'^[^aeiouy]+', text)) else ""
