@@ -6,17 +6,19 @@ def translate(text: str) -> str:
 
     first_character = text[0]
 
-    if first_character in "aeiou":
+    if first_character in "aeiouy":
         return f"{text}ay"
 
     if len(text) >= 2 and text[1:3] == "qu":
-            return f"{text.replace(text[0:3], '', 1)}{text[0:3]}ay"
+        return f"{text.replace(text[0:3], '', 1)}{text[0:3]}ay"
 
     if (beginning_constants:= get_constant_cluster(text)):
+  #      if beginning_constants.endswith("y"):
         return f"{text.replace(beginning_constants, '', 1)}{beginning_constants}ay"
 
+
 def get_constant_cluster(text: str) -> str:
-    matching = match(r'^[^aeiou]+', text)
+    matching = match(r'^[^aeiouy]+', text)
 
     if matching:
         return matching.group(0)
