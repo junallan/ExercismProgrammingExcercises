@@ -4,22 +4,30 @@ from re import match
 def translate(text: str) -> str:
     if not text: return ""
 
-    if text[0] == "y" and not get_constant_cluster(text[1:]): 
-        return f"{text.replace(text[0], '')}{text[0]}ay"
+    sentence = ""
 
-    beginning_constants = get_constant_cluster(text)
+    for word in text.split():
+        sentence += " " + translate_word(word)
 
-    if not beginning_constants or text.startswith("xr") or text.startswith("yt"): 
-        return f"{text}ay"
+    return sentence.strip()    
+
+def translate_word(word: str) -> str:
+    if word[0] == "y" and not get_constant_cluster(word[1:]): 
+        return f"{word.replace(word[0], '')}{word[0]}ay"
+
+    beginning_constants = get_constant_cluster(word)
+
+    if not beginning_constants or word.startswith("xr") or word.startswith("yt"): 
+        return f"{word}ay"
     
-    if text.startswith("qu"):
-        return f"{text.replace('qu', '')}quay"
+    if word.startswith("qu"):
+        return f"{word.replace('qu', '')}quay"
     
-    if len(text) >= 3 and text[1:3] == "qu":
-        return f"{text.replace(text[0:3], '', 1)}{text[0:3]}ay"
+    if len(word) >= 3 and word[1:3] == "qu":
+        return f"{word.replace(word[0:3], '', 1)}{word[0:3]}ay"
 
     if beginning_constants:
-        return f"{text.replace(beginning_constants, '', 1)}{beginning_constants}ay"
+        return f"{word.replace(beginning_constants, '', 1)}{beginning_constants}ay"
 
 
 def get_constant_cluster(text: str) -> str:
