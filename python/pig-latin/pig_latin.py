@@ -4,16 +4,14 @@ from re import match
 def translate(text: str) -> str:
     if not text: return ""
 
-    first_character = text[0]
+    beginning_constants = get_constant_cluster(text)
 
-    if first_character in "aeiouy":
-        return f"{text}ay"
-
+    if not beginning_constants: return f"{text}ay"
+    
     if len(text) >= 2 and text[1:3] == "qu":
         return f"{text.replace(text[0:3], '', 1)}{text[0:3]}ay"
 
-    if (beginning_constants:= get_constant_cluster(text)):
-  #      if beginning_constants.endswith("y"):
+    if beginning_constants:
         return f"{text.replace(beginning_constants, '', 1)}{beginning_constants}ay"
 
 
