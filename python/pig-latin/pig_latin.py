@@ -9,6 +9,9 @@ def translate(text: str) -> str:
     if first_character in "aeiou":
         return f"{text}ay"
 
+    if len(text) >= 2 and text[1:3] == "qu":
+            return f"{text.replace(text[0:3], '', 1)}{text[0:3]}ay"
+
     if (beginning_constants:= get_constant_cluster(text)):
         return f"{text.replace(beginning_constants, '', 1)}{beginning_constants}ay"
 
