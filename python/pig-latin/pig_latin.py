@@ -4,6 +4,9 @@ from re import match
 def translate(text: str) -> str:
     if not text: return ""
 
+    if text[0] == "y" and not get_constant_cluster(text[1:]): 
+        return f"{text.replace(text[0], '')}{text[0]}ay"
+
     beginning_constants = get_constant_cluster(text)
 
     if not beginning_constants: return f"{text}ay"
