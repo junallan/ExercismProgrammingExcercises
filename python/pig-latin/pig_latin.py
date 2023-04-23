@@ -9,7 +9,8 @@ def translate(text: str) -> str:
 
     beginning_constants = get_constant_cluster(text)
 
-    if not beginning_constants: return f"{text}ay"
+    if not beginning_constants or text.startswith("xr") or text.startswith("yt"): 
+        return f"{text}ay"
     
     if text.startswith("qu"):
         return f"{text.replace('qu', '')}quay"
