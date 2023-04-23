@@ -3,7 +3,8 @@
 
 from typing import Tuple, Set
 
-from sets_categories_data import (VEGETARIAN,
+from sets_categories_data import (VEGAN,
+                                  VEGETARIAN,
                                   KETO,
                                   PALEO,
                                   OMNIVORE,
@@ -37,10 +38,7 @@ def check_drinks(drink_name: str, drink_ingredients: list[str]) -> str:
 
     """
 
-    if any(ingredient.lower() in ALCOHOLS for ingredient in drink_ingredients):
-        return f"{drink_name} Cocktail"
-    
-    return f"{drink_name} Mocktail"
+    return f"{drink_name} Mocktail" if set(drink_ingredients).isdisjoint(ALCOHOLS) else f"{drink_name} Cocktail"
 
 
 def categorize_dish(dish_name: str, dish_ingredients: list[str]) -> str:
@@ -56,19 +54,13 @@ def categorize_dish(dish_name: str, dish_ingredients: list[str]) -> str:
 
     """
 
-    if set(dish_ingredients).issubset(OMNIVORE):
-        return f"{dish_name}: OMNIVORE"
+    distinct_dish_incredients = set(dish_ingredients)
 
-    if set(dish_ingredients).issubset(KETO):
-        return f"{dish_name}: KETO"
- 
-    if set(dish_ingredients).issubset(PALEO):
-        return f"{dish_name}: PALEO"
-
-    if set(dish_ingredients).issubset(VEGETARIAN):
-        return f"{dish_name}: VEGETARIAN"
-
-    return f"{dish_name}: VEGAN"
+    for category_name, category in [("VEGAN", VEGAN), ("VEGETARIAN", VEGETARIAN), 
+                                    ("PALEO", PALEO), ("KETO", KETO), 
+                                    ("OMNIVORE", OMNIVORE)]:
+        if distinct_dish_incredients.issubset(category):
+            return f"{dish_name}: {category_name}"
 
 
 def tag_special_ingredients(dish: Tuple[str, list[str]]) -> Tuple[str, set[str]]:
