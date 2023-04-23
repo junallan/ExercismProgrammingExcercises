@@ -62,6 +62,9 @@ def categorize_dish(dish_name: str, dish_ingredients: list[str]) -> str:
         if distinct_dish_incredients.issubset(category):
             return f"{dish_name}: {category_name}"
 
+    raise ValueError("Could not specify category for dish based on incredients")    
+    
+
 
 def tag_special_ingredients(dish: Tuple[str, list[str]]) -> Tuple[str, set[str]]:
     """Compare `dish` ingredients to `SPECIAL_INGREDIENTS`.
