@@ -11,7 +11,10 @@ def translate(text: str) -> str:
 
     if not beginning_constants: return f"{text}ay"
     
-    if len(text) >= 2 and text[1:3] == "qu":
+    if text.startswith("qu"):
+        return f"{text.replace('qu', '')}quay"
+    
+    if len(text) >= 3 and text[1:3] == "qu":
         return f"{text.replace(text[0:3], '', 1)}{text[0:3]}ay"
 
     if beginning_constants:
