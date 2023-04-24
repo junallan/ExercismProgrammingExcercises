@@ -1,6 +1,3 @@
-import sys
-
-
 def saddle_points(matrix: list[list[int]]) -> list[dict[str, int]]:
     number_of_rows = len(matrix)
 
@@ -14,12 +11,12 @@ def saddle_points(matrix: list[list[int]]) -> list[dict[str, int]]:
     matching_saddle_points = []
 
     for row_index in range(number_of_rows):
-        max_columns = max_column_indexes(matrix[row_index])
+        max_columns = indexes_of(matrix[row_index], max(matrix[row_index]))
 
         for column_index in max_columns:
             column = [matrix[row][column_index] for row in range(number_of_rows)]    
 
-            min_rows = min_row_indexes(column)
+            min_rows = indexes_of(column, min(column))
 
             if row_index in min_rows and column_index in max_columns:
                 matching_saddle_points.append({"row": row_index + 1, "column": column_index + 1})
@@ -27,13 +24,5 @@ def saddle_points(matrix: list[list[int]]) -> list[dict[str, int]]:
     return matching_saddle_points
 
 
-def max_column_indexes(row: list[int]) -> list[int]:
-    current_max_value = max(row)
-    indexes_of_max_columns = [i for i, value in enumerate(row) if value == current_max_value]
-    return indexes_of_max_columns    
-
-
-def min_row_indexes(column: list[int]) -> list[int]:
-    current_min_value = min(column)
-    indexes_of_min_rows = [i for i, value in enumerate(column) if value == current_min_value]
-    return indexes_of_min_rows    
+def indexes_of(elements: list[int], value_to_match: int) -> list[int]:
+    return [index for index, value in enumerate(elements) if value == value_to_match]
