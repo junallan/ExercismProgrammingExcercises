@@ -16,14 +16,13 @@ def translate_word(word: str) -> str:
     if not beginning_constants or word.startswith("xr") or word.startswith("yt"): 
         return f"{word}ay"
     
-    if word.startswith("qu"):
-        return f"{word[2:]}quay"
-    
-    if len(word) >= 3 and word[1:3] == "qu":
-        return f"{word[3:]}{word[0:3]}ay"
-
     if beginning_constants:
-        return f"{word[len(beginning_constants):]}{beginning_constants}ay"
+        length_beginning_constants = len(beginning_constants)
+        word_split_index = length_beginning_constants
+        if word[length_beginning_constants] == "u" and word[length_beginning_constants-1] == "q":
+            word_split_index += 1
+    
+        return f"{word[word_split_index:]}{word[:word_split_index]}ay"
 
 
 def get_constant_cluster(text: str) -> str:
