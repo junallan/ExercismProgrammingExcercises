@@ -8,14 +8,11 @@ def translate(text: str) -> str:
 
 
 def translate_word(word: str) -> str:
-    if word[0] == "y" and not get_constant_cluster(word[1:]): 
-        return f"{word[1:]}{word[0]}ay"
-
-    beginning_constants = get_constant_cluster(word)
-
-    if not beginning_constants or word.startswith("xr") or word.startswith("yt"): 
+    if word[0] in "aeiou" or word.startswith("xr") or word.startswith("yt"): 
         return f"{word}ay"
-    
+
+    beginning_constants = "y" if word[0] == "y" else "" + get_constant_cluster(word)
+
     if beginning_constants:
         length_beginning_constants = len(beginning_constants)
         word_split_index = length_beginning_constants
