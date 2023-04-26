@@ -1,8 +1,7 @@
-def saddle_points(matrix: list[list[int]]) -> list[dict[str, int]]:
+def saddle_points(matrix: list[list[int]]) -> list[dict[str, int]]:  
+    if not matrix: return []
+    
     number_of_rows = len(matrix)
-
-    if number_of_rows == 0: return []
-
     row_items_length = list(map(len, matrix))
 
     if not all(length == len(matrix[0]) for length in row_items_length):
