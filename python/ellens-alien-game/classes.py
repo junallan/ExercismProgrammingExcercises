@@ -2,10 +2,13 @@
 
 
 class Alien:
+    total_aliens_created = 0
+
     def __init__(self, x_coordinate: int, y_coordinate: int):
         self.x_coordinate = x_coordinate
         self.y_coordinate = y_coordinate
         self.health = 3
+        Alien.total_aliens_created += 1
 
     # hit(): Decrement Alien health by one point.
     def hit(self):

@@ -96,44 +96,44 @@ class ClassesTest(unittest.TestCase):
 
         self.assertIsNone(alien.collision_detection(Alien(7, 2)), msg=error)
 
-    # # Test class variables are identical across instances
-    # @pytest.mark.task(taskno=6)
-    # def test_alien_class_variable(self):
-    #     alien_one = Alien(0, 2)
-    #     alien_two = Alien(-6, -1)
-    #     Alien.total_aliens_created = -2
+    # Test class variables are identical across instances
+    @pytest.mark.task(taskno=6)
+    def test_alien_class_variable(self):
+        alien_one = Alien(0, 2)
+        alien_two = Alien(-6, -1)
+        Alien.total_aliens_created = -2
 
-    #     error_one = "Expected the total_aliens_created variable to be identical."
-    #     error_two = "Expected the health variable to be identical."
+        error_one = "Expected the total_aliens_created variable to be identical."
+        error_two = "Expected the health variable to be identical."
 
-    #     self.assertEqual(alien_two.total_aliens_created, alien_one.total_aliens_created, msg=error_one)
-    #     self.assertEqual(alien_two.health, alien_one.health, msg=error_two)
+        self.assertEqual(alien_two.total_aliens_created, alien_one.total_aliens_created, msg=error_one)
+        self.assertEqual(alien_two.health, alien_one.health, msg=error_two)
 
-    # # Test total_aliens_created increments upon object instantiation
-    # @pytest.mark.task(taskno=6)
-    # def test_alien_total_aliens_created(self):
-    #     Alien.total_aliens_created = 0
-    #     aliens = [Alien(-2, 6)]
-    #     error = ("Expected total_aliens_created to equal 1. Instead "
-    #              f"it equals: {aliens[0].total_aliens_created}.")
+    # Test total_aliens_created increments upon object instantiation
+    @pytest.mark.task(taskno=6)
+    def test_alien_total_aliens_created(self):
+        Alien.total_aliens_created = 0
+        aliens = [Alien(-2, 6)]
+        error = ("Expected total_aliens_created to equal 1. Instead "
+                 f"it equals: {aliens[0].total_aliens_created}.")
 
-    #     self.assertEqual(1, aliens[0].total_aliens_created, msg=error)
+        self.assertEqual(1, aliens[0].total_aliens_created, msg=error)
 
-    #     aliens.append(Alien(3, 5))
-    #     aliens.append(Alien(-5, -5))
+        aliens.append(Alien(3, 5))
+        aliens.append(Alien(-5, -5))
 
-    #     def error_text(alien, variable):
-    #         return (
-    #             "Expected all total_aliens_created variables to be "
-    #             "equal to number of alien instances (i.e. 3).  Alien "
-    #             f"number {alien}'s total_aliens_created variable "
-    #             f"is equal to {variable}.")
+        def error_text(alien, variable):
+            return (
+                "Expected all total_aliens_created variables to be "
+                "equal to number of alien instances (i.e. 3).  Alien "
+                f"number {alien}'s total_aliens_created variable "
+                f"is equal to {variable}.")
 
-    #     tac_list = [alien.total_aliens_created for alien in aliens]
+        tac_list = [alien.total_aliens_created for alien in aliens]
 
-    #     self.assertEqual(3, tac_list[0], msg=error_text(1, tac_list[0]))
-    #     self.assertEqual(3, tac_list[1], msg=error_text(2, tac_list[1]))
-    #     self.assertEqual(3, tac_list[2], msg=error_text(3, tac_list[2]))
+        self.assertEqual(3, tac_list[0], msg=error_text(1, tac_list[0]))
+        self.assertEqual(3, tac_list[1], msg=error_text(2, tac_list[1]))
+        self.assertEqual(3, tac_list[2], msg=error_text(3, tac_list[2]))
 
     # # Test that the user knows how to create objects themselves
     # @pytest.mark.task(taskno=7)
