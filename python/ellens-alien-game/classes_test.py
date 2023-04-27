@@ -78,16 +78,16 @@ class ClassesTest(unittest.TestCase):
             else:
                 self.assertFalse(alien.is_alive(), msg=dead_error)
 
-    # @pytest.mark.task(taskno=4)
-    # def test_alien_teleport_method(self):
-    #     alien = Alien(0, 0)
-    #     alien.teleport(-1, -4)
+    @pytest.mark.task(taskno=4)
+    def test_alien_teleport_method(self):
+        alien = Alien(0, 0)
+        alien.teleport(-1, -4)
 
-    #     error = (
-    #         "Expected alien to be at position (-1, -4) but "
-    #         f"instead found it in position {(alien.x_coordinate, alien.y_coordinate)}.")
+        error = (
+            "Expected alien to be at position (-1, -4) but "
+            f"instead found it in position {(alien.x_coordinate, alien.y_coordinate)}.")
 
-    #     self.assertEqual((-1, -4), (alien.x_coordinate, alien.y_coordinate), msg=error)
+        self.assertEqual((-1, -4), (alien.x_coordinate, alien.y_coordinate), msg=error)
 
     # @pytest.mark.task(taskno=5)
     # def test_alien_collision_detection_method(self):
