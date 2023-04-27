@@ -89,12 +89,12 @@ class ClassesTest(unittest.TestCase):
 
         self.assertEqual((-1, -4), (alien.x_coordinate, alien.y_coordinate), msg=error)
 
-    # @pytest.mark.task(taskno=5)
-    # def test_alien_collision_detection_method(self):
-    #     alien = Alien(7, 3)
-    #     error = "Expected collision_detection method to not be implemented."
+    @pytest.mark.task(taskno=5)
+    def test_alien_collision_detection_method(self):
+        alien = Alien(7, 3)
+        error = "Expected collision_detection method to not be implemented."
 
-    #     self.assertIsNone(alien.collision_detection(Alien(7, 2)), msg=error)
+        self.assertIsNone(alien.collision_detection(Alien(7, 2)), msg=error)
 
     # # Test class variables are identical across instances
     # @pytest.mark.task(taskno=6)
