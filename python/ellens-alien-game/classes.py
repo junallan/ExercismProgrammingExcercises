@@ -1,6 +1,9 @@
 """Solution to Ellen's Alien Game exercise."""
 
 
+from typing import List
+
+
 class Alien:
     total_aliens_created = 0
 
@@ -30,4 +33,5 @@ class Alien:
         pass
 
 
-#TODO:  create the new_aliens_collection() function below to call your Alien class with a list of coordinates.
+def new_aliens_collection(coordinates: List[tuple[int,int]]) -> List[Alien]:
+    return [Alien(coord[0], coord[1]) for coord in coordinates]

@@ -2,11 +2,11 @@ import unittest
 import pytest
 
 
-# try:
-#     from classes import new_aliens_collection
-# except ImportError as err:
-#     raise ImportError("We tried to import the new_aliens_collection() function, "
-#                       "but could not find it. Did you remember to create it?") from err
+try:
+    from classes import new_aliens_collection
+except ImportError as err:
+    raise ImportError("We tried to import the new_aliens_collection() function, "
+                      "but could not find it. Did you remember to create it?") from err
 
 try:
     from classes import Alien
@@ -135,18 +135,18 @@ class ClassesTest(unittest.TestCase):
         self.assertEqual(3, tac_list[1], msg=error_text(2, tac_list[1]))
         self.assertEqual(3, tac_list[2], msg=error_text(3, tac_list[2]))
 
-    # # Test that the user knows how to create objects themselves
-    # @pytest.mark.task(taskno=7)
-    # def test_new_aliens_collection(self):
-    #     position_data = [(-2, 6), (1, 5), (-4, -3)]
-    #     obj_list = new_aliens_collection(position_data)
-    #     obj_error = "new_aliens_collection must return a list of Alien objects."
+    # Test that the user knows how to create objects themselves
+    @pytest.mark.task(taskno=7)
+    def test_new_aliens_collection(self):
+        position_data = [(-2, 6), (1, 5), (-4, -3)]
+        obj_list = new_aliens_collection(position_data)
+        obj_error = "new_aliens_collection must return a list of Alien objects."
 
-    #     for obj, position in zip(obj_list, position_data):
-    #         self.assertIsInstance(obj, Alien, msg=obj_error)
+        for obj, position in zip(obj_list, position_data):
+            self.assertIsInstance(obj, Alien, msg=obj_error)
 
-    #         pos_error = (
-    #             f"Expected object to be at position {position} but "
-    #             f"instead found it initialized to position {(obj.x_coordinate, obj.y_coordinate)}.")
+            pos_error = (
+                f"Expected object to be at position {position} but "
+                f"instead found it initialized to position {(obj.x_coordinate, obj.y_coordinate)}.")
 
-    #         self.assertEqual(position, (obj.x_coordinate, obj.y_coordinate), msg=pos_error)
+            self.assertEqual(position, (obj.x_coordinate, obj.y_coordinate), msg=pos_error)
