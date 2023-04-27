@@ -43,4 +43,4 @@ class Alien:
 
 
 def new_aliens_collection(coordinates: List[tuple[int,int]]) -> List[Alien]:
-    return [Alien(coord[0], coord[1]) for coord in coordinates]
+    return [Alien(x_coord, y_coord) for x_coord, y_coord in coordinates]
