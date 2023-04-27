@@ -11,7 +11,10 @@ class Alien:
     def hit(self):
         self.health -= 1
 
+
     # is_alive(): Return a boolean for if Alien is alive (if health is > 0).
+    def is_alive(self):
+        return self.health > 0
     # teleport(new_x_coordinate, new_y_coordinate): Move Alien object to new coordinates.
     # collision_detection(other): Implementation TBD.
     #"""

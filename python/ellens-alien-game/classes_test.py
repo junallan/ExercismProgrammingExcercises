@@ -65,18 +65,18 @@ class ClassesTest(unittest.TestCase):
                 self.assertIn(alien.health, result, msg=error)
 
 
-    # @pytest.mark.task(taskno=3)
-    # def test_alien_is_alive_method(self):
-    #     alien = Alien(0, 1)
-    #     alive_error = "Alien is dead while health is greater than 0."
-    #     dead_error = "Alien is alive while health is less than or equal to 0."
+    @pytest.mark.task(taskno=3)
+    def test_alien_is_alive_method(self):
+        alien = Alien(0, 1)
+        alive_error = "Alien is dead while health is greater than 0."
+        dead_error = "Alien is alive while health is less than or equal to 0."
 
-    #     for _ in range(5):
-    #         alien.hit()
-    #         if alien.health > 0:
-    #             self.assertTrue(alien.is_alive(), msg=alive_error)
-    #         else:
-    #             self.assertFalse(alien.is_alive(), msg=dead_error)
+        for _ in range(5):
+            alien.hit()
+            if alien.health > 0:
+                self.assertTrue(alien.is_alive(), msg=alive_error)
+            else:
+                self.assertFalse(alien.is_alive(), msg=dead_error)
 
     # @pytest.mark.task(taskno=4)
     # def test_alien_teleport_method(self):
