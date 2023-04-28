@@ -15,11 +15,10 @@ public static class FoodChain
         // Store lookup of common sentence chunks
         var sentenceChunks = new List<string>
         {
-            "I know an old lady who swallowed a",
-            "It wriggled and jiggled and tickled inside her.",
-            "She swallowed the",
-            "to catch the",
-            "I don't know why she swallowed the",
+            "I know an old lady who swallowed a {animal1}.\n",
+            "It wriggled and jiggled and tickled inside her.\n" +
+            "She swallowed the {animal2} to catch the {animal1}.\n",
+            "I don't know why she swallowed the {animal1}. Perhaps she'll die.",
         };
 
         // Store lookup of common animal words
@@ -29,34 +28,30 @@ public static class FoodChain
             "spider"
         };
 
-        for (var index=0; index < verseNumber; index++)
-        {
-            song.Append($"{sentenceChunks[index]} {animals[index]}.\n");
-         
-        }
-
-        song.Append($"{sentenceChunks[sentenceChunks.Count-1]} {animals[0]}. ");
-        song.Append("Perhaps she'll die.");
-
-        return song.ToString();
-
         // Find pattern and loop through assembling song with sentence
         // chunks and animal words
+        for (var index=verseNumber-1; 0 <= index; index--)
+        {
+            if(index == 0)
+            {
+                song.Insert(0, sentenceChunks[index]
+                .Replace("{animal1}", animals[verseNumber-1]));
+            }
+            else
+            {
+                song.Insert(0, sentenceChunks[index]
+                .Replace("{animal2}", animals[index])
+                .Replace("{animal1}", (0 <= index - 1)
+                                    ? animals[index-1]
+                                    : animals[index]));
+            }
 
+        }
 
-        //var firstPhrase = "I know an old lady who swallowed a";
-        ////var lastTwoSentences = 
-        //var animals = new List<string>() { "fly" };
+        song.Append(sentenceChunks[sentenceChunks.Count-1]
+                .Replace("{animal1}", animals[0]));
 
-        //var song = new StringBuilder();
-
-        //for(var i=0; i< verseNumber; i++)
-        //{
-        //    song.Append($"I know an old lady who swallowed a {animals[i]}.\n");
-        //    song.Append($"I don't know why she swallowed the {animals[i]}. ");
-        //    song.Append("Perhaps she'll die.");
-
-        //}
+        return song.ToString();
 
 
         //   "I know an old lady who swallowed a spider.\n" +
