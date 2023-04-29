@@ -77,7 +77,7 @@ public class GrepTests : IDisposable
         Assert.Equal(expected, Grep.Match(pattern, flags, files));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void One_file_several_matches_print_line_numbers_flag()
     {
         var pattern = "may";
@@ -90,7 +90,7 @@ public class GrepTests : IDisposable
         Assert.Equal(expected, Grep.Match(pattern, flags, files));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void One_file_several_matches_match_entire_lines_flag()
     {
         var pattern = "may";
@@ -100,7 +100,7 @@ public class GrepTests : IDisposable
         Assert.Equal(expected, Grep.Match(pattern, flags, files));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void One_file_several_matches_case_insensitive_flag()
     {
         var pattern = "ACHILLES";
@@ -112,7 +112,7 @@ public class GrepTests : IDisposable
         Assert.Equal(expected, Grep.Match(pattern, flags, files));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void One_file_several_matches_inverted_flag()
     {
         var pattern = "Of";

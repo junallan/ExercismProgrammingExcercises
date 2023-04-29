@@ -11,7 +11,7 @@ public static class Grep
 
         foreach(var fileName in files)
         {
-            var fileContents = File.ReadAllText(fileName).Split("\n");
+            var fileContents = File.ReadAllText(fileName).Split("\n").Where(x => x != string.Empty).ToArray();
 
             for (int lineNumber = 1; lineNumber <= fileContents.Length; lineNumber++)
             {
@@ -19,12 +19,30 @@ public static class Grep
 
                 var matchOptions = flags.Split().AsEnumerable();
 
-                var isMatch =
-                     matchOptions.Contains("-i")
-                     ? lineContent.ToLower().Contains(pattern.ToLower())
-                     : matchOptions.Contains("-x")
-                     ? lineContent == pattern
-                     : lineContent.Contains(pattern);
+                var isMatch = false;
+                var isCaseInsensitiveMatch = false;
+                var isWholeLineMatch = false;
+                var isInvertedMatch = false;
+
+                foreach(var option in matchOptions)
+                {
+                    if (option.Contains("-i"))
+                        isCaseInsensitiveMatch = true;
+                    else if (option.Contains("-x"))
+                        isWholeLineMatch = true;
+                    else if (option.Contains("-v"))
+                        isInvertedMatch = true;
+                }
+
+                if (isCaseInsensitiveMatch && lineContent.ToLower().Contains(pattern.ToLower()))
+                    isMatch = true;
+                else if (isWholeLineMatch && lineContent == pattern)
+                    isMatch = true;
+                else if(!(isCaseInsensitiveMatch || isWholeLineMatch))
+                    isMatch = lineContent.Contains(pattern);
+
+                if (isInvertedMatch)
+                    isMatch = !isMatch;
 
                if (!isMatch) continue;
 
