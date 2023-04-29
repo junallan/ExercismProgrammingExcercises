@@ -26,6 +26,10 @@ public static class Grep
                         if (lineContent.ToLower().Contains(pattern.ToLower()))
                             result.Append(lineContent);
                         break;
+                    case "-l":
+                        if (lineContent.Contains(pattern))
+                            result.Append(fileName);
+                        break;
                     default:
                         if (lineContent.Contains(pattern))
                             result.Append(lineContent);
