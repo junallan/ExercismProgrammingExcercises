@@ -52,6 +52,20 @@ public static class FoodChain
         return $"{introLyric}{uniqueAnimalLyric}{swallowedToCatchLyric}{outroLyric}";
     }
 
+
+    public static string Recite(int startVerse, int endVerse)
+    {
+        var songVerses = new StringBuilder(Recite(startVerse));
+
+        for(int currentVerse=startVerse+1; currentVerse<=endVerse; currentVerse++)
+        {
+            songVerses.Append($"\n\n{Recite(currentVerse)}");
+        }
+
+        return songVerses.ToString();
+    }
+
+
     private static StringBuilder SwallowedToCatchLyrics(int verseNumber, string spiderLyric)
     {
         var swallowedToCatchLyric = new StringBuilder();
@@ -64,17 +78,5 @@ public static class FoodChain
         }
 
         return swallowedToCatchLyric;
-    }
-
-    public static string Recite(int startVerse, int endVerse)
-    {
-        var songVerses = new StringBuilder(Recite(startVerse));
-
-        for(int currentVerse=startVerse+1; currentVerse<=endVerse; currentVerse++)
-        {
-            songVerses.Append($"\n\n{Recite(currentVerse)}");
-        }
-
-        return songVerses.ToString();
     }
 }
