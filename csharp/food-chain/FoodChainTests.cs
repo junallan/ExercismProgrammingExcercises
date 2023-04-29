@@ -34,7 +34,7 @@ public class FoodChainTests
         Assert.Equal(expected, FoodChain.Recite(3));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Cat()
     {
         var expected = 
@@ -47,7 +47,7 @@ public class FoodChainTests
         Assert.Equal(expected, FoodChain.Recite(4));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Dog()
     {
         var expected = 
@@ -61,7 +61,7 @@ public class FoodChainTests
         Assert.Equal(expected, FoodChain.Recite(5));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Goat()
     {
         var expected = 
@@ -76,7 +76,7 @@ public class FoodChainTests
         Assert.Equal(expected, FoodChain.Recite(6));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Cow()
     {
         var expected = 
