@@ -1,55 +1,106 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 public static class FoodChain
 {
-    public static readonly string Horse = "horse";
-    public static readonly string Spider = "spider";
-    public static readonly List<string> Animals = new List<string>
+    private static readonly List<IAnimal> Animals = new List<IAnimal>
     {
-            "fly",
-            Spider,
-            "bird",
-            "cat",
-            "dog",
-            "goat",
-            "cow",
-            Horse
+        new Fly(),
+        new Spider(),
+        new Bird(),
+        new Cat(),
+        new Dog(),
+        new Goat(),
+        new Cow(),
+        new Horse()
     };
 
-    public static string Recite(int verseNumber)
+    private interface IAnimal
     {
+
+        public string Name { get; }
+        public string UniquePhrase { get; }
+        public int VerseNumber { get; }
+    }
+
+    private struct Fly : IAnimal
+    {
+        public string Name => "fly";
+        public string UniquePhrase => string.Empty;
+        public int VerseNumber => 1;
+    }
+
+    private struct Spider : IAnimal
+    {
+        public string Name => "spider";
+        public string UniquePhrase => string.Empty;
+        public int VerseNumber => 2;
+    }
+
+    private struct Bird : IAnimal
+    {
+        public string Name => "bird";
+        public string UniquePhrase => "How absurd to swallow a bird!\n";
+        public int VerseNumber => 3;
+    }
+
+    private struct Cat : IAnimal
+    {
+        public string Name => "cat";
+        public string UniquePhrase => "Imagine that, to swallow a cat!\n";
+        public int VerseNumber => 4;
+    }
+
+    private struct Dog : IAnimal
+    {
+        public string Name => "dog";
+        public string UniquePhrase => "What a hog, to swallow a dog!\n";
+        public int VerseNumber => 5;
+    }
+
+    private struct Goat : IAnimal
+    {
+        public string Name => "goat";
+        public string UniquePhrase => "Just opened her throat and swallowed a goat!\n";
+        public int VerseNumber => 6;
+    }
+
+    private struct Cow : IAnimal
+    {
+        public string Name => "cow";
+        public string UniquePhrase => "I don't know how she swallowed a cow!\n";
+        public int VerseNumber => 7;
+    }
+
+    private struct Horse : IAnimal
+    {
+        public string Name => "horse";
+        public string UniquePhrase => "She's dead, of course!";
+        public int VerseNumber => 8;
+    }
+
+    public static string Recite(int verseNumber)
+    {    
         var currentAnimal = Animals[verseNumber - 1];
-
-        // Verse construction consisting of beginning lyrics, unique second lyric,
-        // common lyrics in between, and ending lyrics
-        var introLyric = $"I know an old lady who swallowed a {currentAnimal}.\n";
+        var introLyric = $"I know an old lady who swallowed a {currentAnimal.Name}.\n";
         var outroLyric =
-            currentAnimal == Horse
+            currentAnimal.GetType() == typeof(Horse)
             ? "She's dead, of course!"
-            : $"I don't know why she swallowed the {Animals[0]}. Perhaps she'll die.";
+            : $"I don't know why she swallowed the {Animals[0].Name}. Perhaps she'll die.";
 
-        // Just and intro and outro for initial and ending verse, nothing in between
-        if (verseNumber == 1 || currentAnimal == Horse)
-            return $"{introLyric}{outroLyric}";
-
-        var spiderLyric = $"{(currentAnimal == Spider ? "It" : "that")} " +
-            $"wriggled and jiggled and tickled inside her.\n";
-
-        var uniqueAnimalLyric = currentAnimal switch
+        if (currentAnimal.GetType() == typeof(Fly) || currentAnimal.GetType() == typeof(Horse))
         {
-            "bird" => "How absurd to swallow a bird!\n",
-            "cat" => "Imagine that, to swallow a cat!\n",
-            "dog" => "What a hog, to swallow a dog!\n",
-            "goat" => "Just opened her throat and swallowed a goat!\n",
-            "cow" => "I don't know how she swallowed a cow!\n",
-            _ => spiderLyric,
-        };
+            return $"{introLyric}{outroLyric}";
+        }
 
-        // Common pattern for swallowed to catch lyric
+        var spiderLyric = $"{(currentAnimal.GetType() == typeof(Spider) ? "It" : "that")} " +
+            $"wriggled and jiggled and tickled inside her.\n";
+        
         var swallowedToCatchLyric = SwallowedToCatchLyrics(verseNumber, spiderLyric);
 
-        return $"{introLyric}{uniqueAnimalLyric}{swallowedToCatchLyric}{outroLyric}";
+        return $"{introLyric}{(currentAnimal.GetType() == typeof(Spider)
+            ? spiderLyric : currentAnimal.UniquePhrase)}{swallowedToCatchLyric}{outroLyric}";
     }
 
 
@@ -73,8 +124,8 @@ public static class FoodChain
         for (var index = verseNumber - 1; 1 <= index; index--)
         {
             var animalCatched = Animals[index - 1];
-            var catchedEndPhrase = $"{animalCatched}{(animalCatched == Spider ? $" {spiderLyric}" : ".\n")}";
-            swallowedToCatchLyric.Append($"She swallowed the {Animals[index]} to catch the {catchedEndPhrase}");
+            var catchedEndPhrase = $"{animalCatched.Name}{(animalCatched.GetType() == typeof(Spider) ? $" {spiderLyric}" : ".\n")}";
+            swallowedToCatchLyric.Append($"She swallowed the {Animals[index].Name} to catch the {catchedEndPhrase}");
         }
 
         return swallowedToCatchLyric;
