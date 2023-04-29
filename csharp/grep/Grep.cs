@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,19 +12,7 @@ public static class Grep
 
         var matchOptions = flags.Split().AsEnumerable();
 
-        var isCaseInsensitiveMatch = false;
-        var isWholeLineMatch = false;
-        var isInvertedMatch = false;
-
-        foreach (var option in matchOptions)
-        {
-            if (option.Contains("-i"))
-                isCaseInsensitiveMatch = true;
-            else if (option.Contains("-x"))
-                isWholeLineMatch = true;
-            else if (option.Contains("-v"))
-                isInvertedMatch = true;
-        }
+        var match = MatchOption(matchOptions);
 
         foreach (var fileName in files)
         {
@@ -38,14 +27,14 @@ public static class Grep
 
                 var lineContent = fileContents[lineNumber - 1];
 
-                if (isCaseInsensitiveMatch && lineContent.ToLower().Contains(pattern.ToLower()))
+                if (match.IsCaseInsensitiveMatch && lineContent.ToLower().Contains(pattern.ToLower()))
                     isMatch = true;
-                else if (isWholeLineMatch && lineContent == pattern)
+                else if (match.IsWholeLineMatch && lineContent == pattern)
                     isMatch = true;
-                else if(!(isCaseInsensitiveMatch || isWholeLineMatch))
+                else if(!(match.IsCaseInsensitiveMatch || match.IsWholeLineMatch))
                     isMatch = lineContent.Contains(pattern);
 
-                if (isInvertedMatch)
+                if (match.IsInvertedMatch)
                     isMatch = !isMatch;
 
                 if (!isMatch) continue;
@@ -74,4 +63,24 @@ public static class Grep
 
         return result.ToString();
     }
+
+
+    private static (bool IsCaseInsensitiveMatch, bool IsWholeLineMatch, bool IsInvertedMatch) MatchOption(IEnumerable<string> matchOptions)
+    {
+        var isCaseInsensitiveMatch = false;
+        var isWholeLineMatch = false;
+        var isInvertedMatch = false;
+
+        foreach (var option in matchOptions)
+        {
+            if (option.Contains("-i"))
+                isCaseInsensitiveMatch = true;
+            else if (option.Contains("-x"))
+                isWholeLineMatch = true;
+            else if (option.Contains("-v"))
+                isInvertedMatch = true;
+        }
+        return (isCaseInsensitiveMatch, isWholeLineMatch, isInvertedMatch);
+    }
+
 }
