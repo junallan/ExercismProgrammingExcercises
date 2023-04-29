@@ -44,19 +44,26 @@ public static class Grep
                 if (isInvertedMatch)
                     isMatch = !isMatch;
 
-               if (!isMatch) continue;
+                if (!isMatch) continue;
 
-               if (result.Length > 0) result.Append("\n");
+                if (result.Length > 0) result.Append("\n");
 
-               if (matchOptions.Contains("-l"))
+                if (matchOptions.Contains("-l"))
+                {
                     result.Append(fileName);
-               else
-                    if (matchOptions.Contains("-n"))
-                        result.Append($"{lineNumber}:{lineContent}");
-                    else
-                    {
-                        result.Append($"{(files.Count() > 1 ? $"{fileName}:" : string.Empty)}{lineContent}");
-                    }
+
+                    if (files.Count() > 1)
+                        break;
+
+                    continue;
+                }
+
+                if (files.Count() > 1) result.Append($"{fileName}:");
+
+                if (matchOptions.Contains("-n"))
+                    result.Append($"{lineNumber}:{lineContent}");
+                else
+                    result.Append(lineContent);
             }
                 
         }
