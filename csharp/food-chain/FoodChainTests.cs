@@ -101,7 +101,7 @@ public class FoodChainTests
         Assert.Equal(expected, FoodChain.Recite(8));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Multiple_verses()
     {
         var expected = 
@@ -121,7 +121,7 @@ public class FoodChainTests
         Assert.Equal(expected, FoodChain.Recite(1, 3));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Full_song()
     {
         var expected = 
