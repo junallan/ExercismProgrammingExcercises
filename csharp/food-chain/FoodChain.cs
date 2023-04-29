@@ -24,14 +24,15 @@ public static class FoodChain
             "cat",
             "dog",
             "goat",
-            "cow"
+            "cow",
+            "horse"
         };
 
         // Store lookup of common sentence chunks
         var introVerse = $"I know an old lady who swallowed a {animals[verseNumber - 1]}.\n";
-        var outroVerse = $"I don't know why she swallowed the {animals[0]}. Perhaps she'll die.";
+        var outroVerse = animals[verseNumber - 1] == "horse" ? "She's dead, of course!" : $"I don't know why she swallowed the {animals[0]}. Perhaps she'll die.";
 
-        if (verseNumber == 1) return $"{introVerse}{outroVerse}";
+        if (verseNumber == 1 || animals[verseNumber - 1] == "horse") return $"{introVerse}{outroVerse}";
 
         var spiderSubVerse = $"{(animals[verseNumber - 1] == "spider" ? "It" : "that")} " +
             $"wriggled and jiggled and tickled inside her.\n";
