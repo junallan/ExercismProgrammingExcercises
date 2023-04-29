@@ -9,30 +9,34 @@ public static class Grep
     {
         var result = new StringBuilder();
 
-        foreach(var fileName in files)
+        var matchOptions = flags.Split().AsEnumerable();
+
+        var isCaseInsensitiveMatch = false;
+        var isWholeLineMatch = false;
+        var isInvertedMatch = false;
+
+        foreach (var option in matchOptions)
         {
-            var fileContents = File.ReadAllText(fileName).Split("\n").Where(x => x != string.Empty).ToArray();
+            if (option.Contains("-i"))
+                isCaseInsensitiveMatch = true;
+            else if (option.Contains("-x"))
+                isWholeLineMatch = true;
+            else if (option.Contains("-v"))
+                isInvertedMatch = true;
+        }
+
+        foreach (var fileName in files)
+        {
+            var fileContents = File.ReadAllText(fileName)
+                .Split("\n")
+                .Where(x => x != string.Empty)
+                .ToArray();
 
             for (int lineNumber = 1; lineNumber <= fileContents.Length; lineNumber++)
             {
-                var lineContent = fileContents[lineNumber - 1];
-
-                var matchOptions = flags.Split().AsEnumerable();
-
                 var isMatch = false;
-                var isCaseInsensitiveMatch = false;
-                var isWholeLineMatch = false;
-                var isInvertedMatch = false;
 
-                foreach(var option in matchOptions)
-                {
-                    if (option.Contains("-i"))
-                        isCaseInsensitiveMatch = true;
-                    else if (option.Contains("-x"))
-                        isWholeLineMatch = true;
-                    else if (option.Contains("-v"))
-                        isInvertedMatch = true;
-                }
+                var lineContent = fileContents[lineNumber - 1];
 
                 if (isCaseInsensitiveMatch && lineContent.ToLower().Contains(pattern.ToLower()))
                     isMatch = true;
