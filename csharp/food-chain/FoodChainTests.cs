@@ -22,7 +22,7 @@ public class FoodChainTests
         Assert.Equal(expected, FoodChain.Recite(2));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Bird()
     {
         var expected = 
