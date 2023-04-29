@@ -18,71 +18,63 @@ public static class FoodChain
 
     private interface IAnimal
     {
-
         public string Name { get; }
         public string UniquePhrase { get; }
-        public int VerseNumber { get; }
     }
 
     private struct Fly : IAnimal
     {
         public string Name => "fly";
         public string UniquePhrase => string.Empty;
-        public int VerseNumber => 1;
     }
 
     private struct Spider : IAnimal
     {
         public string Name => "spider";
         public string UniquePhrase => string.Empty;
-        public int VerseNumber => 2;
     }
 
     private struct Bird : IAnimal
     {
         public string Name => "bird";
         public string UniquePhrase => "How absurd to swallow a bird!\n";
-        public int VerseNumber => 3;
     }
 
     private struct Cat : IAnimal
     {
         public string Name => "cat";
         public string UniquePhrase => "Imagine that, to swallow a cat!\n";
-        public int VerseNumber => 4;
     }
 
     private struct Dog : IAnimal
     {
         public string Name => "dog";
         public string UniquePhrase => "What a hog, to swallow a dog!\n";
-        public int VerseNumber => 5;
     }
 
     private struct Goat : IAnimal
     {
         public string Name => "goat";
         public string UniquePhrase => "Just opened her throat and swallowed a goat!\n";
-        public int VerseNumber => 6;
     }
 
     private struct Cow : IAnimal
     {
         public string Name => "cow";
         public string UniquePhrase => "I don't know how she swallowed a cow!\n";
-        public int VerseNumber => 7;
     }
 
     private struct Horse : IAnimal
     {
         public string Name => "horse";
         public string UniquePhrase => "She's dead, of course!";
-        public int VerseNumber => 8;
     }
+
 
     public static string Recite(int verseNumber)
     {    
         var currentAnimal = Animals[verseNumber - 1];
+
         var introLyric = $"I know an old lady who swallowed a {currentAnimal.Name}.\n";
         var outroLyric =
             currentAnimal.GetType() == typeof(Horse)
@@ -90,10 +82,8 @@ public static class FoodChain
             : $"I don't know why she swallowed the {Animals[0].Name}. Perhaps she'll die.";
 
         if (currentAnimal.GetType() == typeof(Fly) || currentAnimal.GetType() == typeof(Horse))
-        {
             return $"{introLyric}{outroLyric}";
-        }
-
+    
         var spiderLyric = $"{(currentAnimal.GetType() == typeof(Spider) ? "It" : "that")} " +
             $"wriggled and jiggled and tickled inside her.\n";
         
