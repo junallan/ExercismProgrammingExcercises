@@ -15,11 +15,11 @@ public static class Grep
 
             for (int lineNumber = 1; lineNumber <= fileContents.Length; lineNumber++)
             {
-               var lineContent = fileContents[lineNumber - 1];
+                var lineContent = fileContents[lineNumber - 1];
 
-               var matchOptions = flags.Split().AsEnumerable();
+                var matchOptions = flags.Split().AsEnumerable();
 
-               var isMatch =
+                var isMatch =
                      matchOptions.Contains("-i")
                      ? lineContent.ToLower().Contains(pattern.ToLower())
                      : matchOptions.Contains("-x")
@@ -27,7 +27,9 @@ public static class Grep
                      : lineContent.Contains(pattern);
 
                if (!isMatch) continue;
-       
+
+               if (result.Length > 0) result.Append("\n");
+
                if (matchOptions.Contains("-l"))
                     result.Append(fileName);
                else

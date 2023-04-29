@@ -64,7 +64,7 @@ public class GrepTests : IDisposable
         Assert.Equal(expected, Grep.Match(pattern, flags, files));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void One_file_several_matches_no_flags()
     {
         var pattern = "may";
