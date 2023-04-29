@@ -14,14 +14,23 @@ public static class Grep
 
             for (int lineNumber = 1; lineNumber <= fileContents.Length; lineNumber++)
             {
-                var lineContent = fileContents[lineNumber - 1];
-                var content = flags switch
+               var lineContent = fileContents[lineNumber - 1];
+          
+               switch (flags)
                 {
-                    "-n" => $"{lineNumber}:{lineContent}",
-                    _ => lineContent
-                };
-
-                if (fileContents[lineNumber - 1].Contains(pattern)) result.Append(content);
+                    case "-n":
+                        if (lineContent.Contains(pattern))
+                            result.Append($"{lineNumber}:{lineContent}");
+                        break;
+                    case "-i":
+                        if (lineContent.ToLower().Contains(pattern.ToLower()))
+                            result.Append(lineContent);
+                        break;
+                    default:
+                        if (lineContent.Contains(pattern))
+                            result.Append(lineContent);
+                        break;
+                }
             }
                 
         }
