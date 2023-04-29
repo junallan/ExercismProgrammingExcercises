@@ -14,7 +14,7 @@ public class GrepTests : IDisposable
         Assert.Equal(expected, Grep.Match(pattern, flags, files));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void One_file_one_match_print_line_numbers_flag()
     {
         var pattern = "Forbidden";
