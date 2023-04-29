@@ -5,12 +5,8 @@ public static class FoodChain
 {
     public static readonly string Horse = "horse";
     public static readonly string Spider = "spider";
-
-    public static string Recite(int verseNumber)
+    public static readonly List<string> Animals = new List<string>
     {
-        // Animals in the song
-        var animals = new List<string>
-        {
             "fly",
             Spider,
             "bird",
@@ -19,9 +15,11 @@ public static class FoodChain
             "goat",
             "cow",
             Horse
-        };
+    };
 
-        var currentAnimal = animals[verseNumber - 1];
+    public static string Recite(int verseNumber)
+    {
+        var currentAnimal = Animals[verseNumber - 1];
 
         // Verse construction consisting of beginning lyrics, unique second lyric,
         // common lyrics in between, and ending lyrics
@@ -29,7 +27,7 @@ public static class FoodChain
         var outroLyric =
             currentAnimal == Horse
             ? "She's dead, of course!"
-            : $"I don't know why she swallowed the {animals[0]}. Perhaps she'll die.";
+            : $"I don't know why she swallowed the {Animals[0]}. Perhaps she'll die.";
 
         // Just and intro and outro for initial and ending verse, nothing in between
         if (verseNumber == 1 || currentAnimal == Horse)
@@ -49,18 +47,24 @@ public static class FoodChain
         };
 
         // Common pattern for swallowed to catch lyric
-        var swallowedToCatchLyric = new StringBuilder();
-
-        for (var index=verseNumber - 1; 1 <= index; index--)
-        {
-            var animalCatched = animals[index - 1];
-            var catchedEndPhrase = $"{animalCatched}{(animalCatched == Spider ? $" {spiderLyric}" : ".\n" )}";
-            swallowedToCatchLyric.Append($"She swallowed the {animals[index]} to catch the {catchedEndPhrase}");
-        }
+        var swallowedToCatchLyric = SwallowedToCatchLyrics(verseNumber, spiderLyric);
 
         return $"{introLyric}{uniqueAnimalLyric}{swallowedToCatchLyric}{outroLyric}";
     }
 
+    private static StringBuilder SwallowedToCatchLyrics(int verseNumber, string spiderLyric)
+    {
+        var swallowedToCatchLyric = new StringBuilder();
+
+        for (var index = verseNumber - 1; 1 <= index; index--)
+        {
+            var animalCatched = Animals[index - 1];
+            var catchedEndPhrase = $"{animalCatched}{(animalCatched == Spider ? $" {spiderLyric}" : ".\n")}";
+            swallowedToCatchLyric.Append($"She swallowed the {Animals[index]} to catch the {catchedEndPhrase}");
+        }
+
+        return swallowedToCatchLyric;
+    }
 
     public static string Recite(int startVerse, int endVerse)
     {
