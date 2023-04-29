@@ -44,7 +44,7 @@ public class GrepTests : IDisposable
         Assert.Equal(expected, Grep.Match(pattern, flags, files));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void One_file_one_match_match_entire_lines_flag()
     {
         var pattern = "With loss of Eden, till one greater Man";

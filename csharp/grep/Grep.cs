@@ -30,6 +30,10 @@ public static class Grep
                         if (lineContent.Contains(pattern))
                             result.Append(fileName);
                         break;
+                    case "-x":
+                        if (lineContent == pattern)
+                            result.Append(lineContent);
+                        break;
                     default:
                         if (lineContent.Contains(pattern))
                             result.Append(lineContent);
