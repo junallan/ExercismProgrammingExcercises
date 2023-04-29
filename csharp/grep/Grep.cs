@@ -54,7 +54,9 @@ public static class Grep
                     if (matchOptions.Contains("-n"))
                         result.Append($"{lineNumber}:{lineContent}");
                     else
-                        result.Append(lineContent);
+                    {
+                        result.Append($"{(files.Count() > 1 ? $"{fileName}:" : string.Empty)}{lineContent}");
+                    }
             }
                 
         }

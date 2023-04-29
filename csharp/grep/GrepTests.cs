@@ -127,7 +127,7 @@ public class GrepTests : IDisposable
         Assert.Equal(expected, Grep.Match(pattern, flags, files));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void One_file_no_matches_various_flags()
     {
         var pattern = "Gandalf";
@@ -137,7 +137,7 @@ public class GrepTests : IDisposable
         Assert.Equal(expected, Grep.Match(pattern, flags, files));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void One_file_one_match_file_flag_takes_precedence_over_line_flag()
     {
         var pattern = "ten";
@@ -147,7 +147,7 @@ public class GrepTests : IDisposable
         Assert.Equal(expected, Grep.Match(pattern, flags, files));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void One_file_several_matches_inverted_and_match_entire_lines_flags()
     {
         var pattern = "Illustrious into Ades premature,";
@@ -165,7 +165,7 @@ public class GrepTests : IDisposable
         Assert.Equal(expected, Grep.Match(pattern, flags, files));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Multiple_files_one_match_no_flags()
     {
         var pattern = "Agamemnon";
@@ -175,7 +175,7 @@ public class GrepTests : IDisposable
         Assert.Equal(expected, Grep.Match(pattern, flags, files));
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Multiple_files_several_matches_no_flags()
     {
         var pattern = "may";
