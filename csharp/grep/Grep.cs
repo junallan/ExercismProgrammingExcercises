@@ -40,13 +40,13 @@ public static class Grep
         var fileContents = File.ReadAllText(fileName)
                         .Split("\n")
                         .Where(x => x != string.Empty)
-                        .ToArray();
+                        .AsEnumerable();
 
-        for (int lineNumber = 1; lineNumber <= fileContents.Length; lineNumber++)
+        for (int lineNumber = 1; lineNumber <= fileContents.Count(); lineNumber++)
         {
             var isMatch = false;
 
-            var lineContent = fileContents[lineNumber - 1];
+            var lineContent = fileContents.ElementAt(lineNumber - 1);
 
             if (match.IsCaseInsensitiveMatch && lineContent.ToLower().Contains(pattern.ToLower()))
                 isMatch = true;
