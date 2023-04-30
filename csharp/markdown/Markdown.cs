@@ -97,13 +97,6 @@ public static class Markdown
             result += lineResult;
         }
 
-        if (list)
-        {
-            return $"{result}</ul>";
-        }
-        else
-        {
-            return result;
-        }
+        return list ? $"{result}</ul>" : result;
     }
 }
