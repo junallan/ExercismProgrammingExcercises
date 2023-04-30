@@ -99,7 +99,7 @@ public static class Markdown
 
         if (list)
         {
-            return result + "</ul>";
+            return $"{result}</ul>";
         }
         else
         {
