@@ -64,14 +64,7 @@ public static class Markdown
 
             inListAfter = true;
 
-            if (list)
-            {
-                return innerHtml;
-            }
-            else
-            {
-                return $"<ul>{innerHtml}";
-            }
+            return list ? innerHtml : $"<ul>{innerHtml}";
         }
 
         inListAfter = list;
