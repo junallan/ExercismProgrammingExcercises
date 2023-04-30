@@ -5,7 +5,7 @@ public static class Markdown
 {
     private static string Wrap(string text, string tag) => $"<{tag}>{text}</{tag}>";
 
-    private static bool IsTag(string text, string tag) => text.StartsWith("<" + tag + ">");
+    private static bool IsTag(string text, string tag) => text.StartsWith($"<{tag}>");
 
     private static string Parse(string markdown, string delimiter, string tag)
     {
