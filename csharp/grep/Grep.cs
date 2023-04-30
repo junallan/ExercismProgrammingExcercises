@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 
 public static class Grep
@@ -33,6 +34,33 @@ public static class Grep
         public bool CaseInSensitiveMatch => (options & (int)Flags.I) > 0;
         public bool EntireLineMatch => (options & (int)Flags.X) > 0;
         public bool InvertMatch => (options & (int)Flags.V) > 0;
+    }
+
+ 
+    private class MatchEvaluation
+    {
+        private readonly Options options;
+
+        public MatchEvaluation(Options options)
+        {
+            this.options = options;
+        }
+
+        public bool IsMatched(string pattern, string content)
+        {
+            var matched = false;
+
+            if (options.CaseInSensitiveMatch && content.ToLower().Contains(pattern.ToLower()))
+                matched = true;
+            else if (options.EntireLineMatch && content == pattern)
+                matched = true;
+            else if (!options.CaseInSensitiveMatch && !options.EntireLineMatch)
+                matched = content.Contains(pattern);
+
+            if (options.InvertMatch) matched = !matched;
+
+            return matched;
+        }
     }
 
 
@@ -67,22 +95,13 @@ public static class Grep
                         .Where(x => x != string.Empty)
                         .AsEnumerable();
 
+        var matchEvaluation = new MatchEvaluation(optionsSelected);
+
         for (int lineNumber = 1; lineNumber <= fileContents.Count(); lineNumber++)
         {
-            var isMatch = false;
-
             var lineContent = fileContents.ElementAt(lineNumber - 1);
 
-            if (optionsSelected.CaseInSensitiveMatch && lineContent.ToLower().Contains(pattern.ToLower()))
-                isMatch = true;
-            else if (optionsSelected.EntireLineMatch && lineContent == pattern)
-                isMatch = true;
-            else if (!optionsSelected.CaseInSensitiveMatch && !optionsSelected.EntireLineMatch)
-                isMatch = lineContent.Contains(pattern);
-
-            if (optionsSelected.InvertMatch) isMatch = !isMatch;
-
-            if (!isMatch) continue;
+            if (!matchEvaluation.IsMatched(pattern, lineContent)) continue;
 
             if (result.Length > 0) result.Append("\n");
 
