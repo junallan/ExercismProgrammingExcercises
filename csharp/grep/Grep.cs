@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
+using static System.Net.WebRequestMethods;
 
 public static class Grep
 {
@@ -90,7 +91,7 @@ public static class Grep
     {
         var result = new StringBuilder();
 
-        var fileContents = File.ReadAllText(fileName)
+        var fileContents = System.IO.File.ReadAllText(fileName)
                         .Split("\n")
                         .Where(x => x != string.Empty)
                         .AsEnumerable();
@@ -103,26 +104,34 @@ public static class Grep
 
             if (!matchEvaluation.IsMatched(pattern, lineContent)) continue;
 
+            var content = AddMatchingContent(optionsSelected, fileName, files.Count() > 1, lineContent, lineNumber);
+
             if (result.Length > 0) result.Append("\n");
 
-            if (optionsSelected.FileNames)
-            {
-                result.Append(fileName);
+            if (!content.LookAtNextLine) return content.MatchedResult;
 
-                if (files.Count() > 1)
-                    break;
-
-                continue;
-            }
-
-            if (files.Count() > 1) result.Append($"{fileName}:");
-
-            if (optionsSelected.LineNumbers)
-                result.Append($"{lineNumber}:{lineContent}");
-            else
-                result.Append(lineContent);
+            result.Append(content.MatchedResult);
         }
 
         return result.ToString();
+    }
+
+
+    private static (bool LookAtNextLine, string MatchedResult) AddMatchingContent(
+        Options optionsSelected, string fileName, bool multipleFiles, string lineContent, int lineNumber)
+    {
+        if (optionsSelected.FileNames)
+        {
+            if (multipleFiles) return (false, fileName);
+
+            return (true, fileName);
+        }
+  
+        var fileNameContent = multipleFiles ? $"{fileName}:" : string.Empty;
+
+        if (optionsSelected.LineNumbers)
+            return (true, $"{fileNameContent}{lineNumber}:{lineContent}");
+
+        return (true, $"{fileNameContent}{lineContent}");
     }
 }
