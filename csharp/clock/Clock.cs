@@ -2,14 +2,17 @@ using System;
 
 public class Clock
 {
+    public const int HoursInADay = 24;
+    public const int MinutesInADay = 60;
+
     public int Hours { get; set; }
     public int Minutes { get; set; }
     public Clock(int hours, int minutes)
     {
         Hours = hours;
-        Minutes = minutes % 60;
-        Hours += minutes / 60;
-        Hours %= 24;
+        Minutes = minutes % MinutesInADay;
+        Hours += minutes / MinutesInADay;
+        Hours %= HoursInADay;
     }
 
     public override string ToString()
