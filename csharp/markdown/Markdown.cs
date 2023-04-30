@@ -9,8 +9,8 @@ public static class Markdown
 
     private static string Parse(string markdown, string delimiter, string tag)
     {
-        var pattern = delimiter + "(.+)" + delimiter;
-        var replacement = "<" + tag + ">$1</" + tag + ">";
+        var pattern = $"{delimiter}(.+){delimiter}";
+        var replacement = $"<{tag}>$1</{tag}>";
         return Regex.Replace(markdown, pattern, replacement);
     }
 
