@@ -47,13 +47,13 @@ public static class Markdown
             return null;
         }
 
-        var headerTag = "h" + count;
+        var headerTag = $"h{count}";
         var headerHtml = Wrap(markdown.Substring(count + 1), headerTag);
 
         if (list)
         {
             inListAfter = false;
-            return "</ul>" + headerHtml;
+            return $"</ul>{headerHtml}";
         }
         else
         {
