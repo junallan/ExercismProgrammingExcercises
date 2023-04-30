@@ -6,8 +6,10 @@ public class Clock
     public int Minutes { get; set; }
     public Clock(int hours, int minutes)
     {
-        Hours = hours % 24;
-        Minutes = minutes;
+        Hours = hours;
+        Minutes = minutes % 60;
+        Hours += minutes / 60;
+        Hours %= 24;
     }
 
     public override string ToString()
