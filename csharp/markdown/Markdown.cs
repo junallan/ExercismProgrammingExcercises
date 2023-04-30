@@ -73,15 +73,15 @@ public static class Markdown
 
     private static string ParseParagraph(string markdown, bool list, out bool inListAfter)
     {
+        inListAfter = false;
+
         if (!list)
         {
-            inListAfter = false;
             return ParseText(markdown, false);
         }
         else
         {
-            inListAfter = false;
-            return "</ul>" + ParseText(markdown, false);
+            return $"</ul>{ParseText(markdown, false)}";
         }
     }
 
