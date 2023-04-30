@@ -7,7 +7,7 @@ using System.Text;
 
 public static class Grep
 {
-    public static class OptionTranslation
+    private static class OptionTranslation
     {
         [Flags]
         public enum Options
