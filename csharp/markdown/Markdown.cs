@@ -62,15 +62,15 @@ public static class Markdown
         {
             var innerHtml = Wrap(ParseText(markdown.Substring(2), true), "li");
 
+            inListAfter = true;
+
             if (list)
             {
-                inListAfter = true;
                 return innerHtml;
             }
             else
             {
-                inListAfter = true;
-                return "<ul>" + innerHtml;
+                return $"<ul>{innerHtml}";
             }
         }
 
