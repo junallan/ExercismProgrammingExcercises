@@ -9,7 +9,7 @@ public class Clock
     public int Minutes { get; set; }
     public Clock(int hours, int minutes)
     {
-        Hours = hours;
+        Hours = hours >= 0 ? hours : HoursInADay + (hours % HoursInADay);
         Minutes = minutes % MinutesInADay;
         Hours += minutes / MinutesInADay;
         Hours %= HoursInADay;
