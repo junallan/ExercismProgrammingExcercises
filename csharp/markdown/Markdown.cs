@@ -75,14 +75,7 @@ public static class Markdown
     {
         inListAfter = false;
 
-        if (!list)
-        {
-            return ParseText(markdown, false);
-        }
-        else
-        {
-            return $"</ul>{ParseText(markdown, false)}";
-        }
+        return list ? $"</ul>{ParseText(markdown, false)}" : ParseText(markdown, false);
     }
 
     private static string ParseLine(string markdown, bool list, out bool inListAfter)
