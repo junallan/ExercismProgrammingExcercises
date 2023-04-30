@@ -22,14 +22,7 @@ public static class Markdown
     {
         var parsedText = Parse_(Parse__((markdown)));
 
-        if (list)
-        {
-            return parsedText;
-        }
-        else
-        {
-            return Wrap(parsedText, "p");
-        }
+        return list ? parsedText : Wrap(parsedText, "p");
     }
 
     private static string ParseHeader(string markdown, bool list, out bool inListAfter)
