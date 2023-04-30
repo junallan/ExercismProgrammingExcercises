@@ -16,21 +16,21 @@ public class ClockTests
         Assert.Equal("11:09", sut.ToString());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Midnight_is_zero_hours()
     {
         var sut = new Clock(24, 0);
         Assert.Equal("00:00", sut.ToString());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Hour_rolls_over()
     {
         var sut = new Clock(25, 0);
         Assert.Equal("01:00", sut.ToString());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Hour_rolls_over_continuously()
     {
         var sut = new Clock(100, 0);

@@ -6,7 +6,7 @@ public class Clock
     public int Minutes { get; set; }
     public Clock(int hours, int minutes)
     {
-        Hours = hours;
+        Hours = hours % 24;
         Minutes = minutes;
     }
 
