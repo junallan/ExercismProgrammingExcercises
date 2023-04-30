@@ -7,48 +7,39 @@ using System.Text;
 
 public static class Grep
 {
-    private static class OptionTranslation
+    private class Options
     {
         [Flags]
-        public enum Options
+        public enum Flags
         {
-            LineNumbers = 1,//-n
-            FileNames = 2,//-l
-            CaseInsensitiveMatch = 4, //-i
-            InvertProgramMatch = 8,//-v
-            EntireLineMatch = 16//-x
+            N = 1, // line numbers
+            L = 2, // filenames
+            I = 4, // case insensitive match
+            V = 8, // invert match
+            X = 16 // entire line match
         }
-        private static readonly Dictionary<string, Options> FlagsToOptions= new Dictionary<string, Options>
+
+        private readonly int options;
+
+        public Options(string flags)
         {
-            { "-n", Options.LineNumbers },
-            { "-l", Options.FileNames },
-            { "-i", Options.CaseInsensitiveMatch },
-            { "-v", Options.InvertProgramMatch },
-            { "-x", Options.EntireLineMatch }
-        };
-
-        public static int GetOptions(string flags)
-        {
-            var optionsSelected = 0;
-
-            if (string.IsNullOrEmpty(flags)) return optionsSelected;
-
-            var matchOptions = flags.Split().AsEnumerable();
-
-            foreach (var option in matchOptions)
-            {
-                optionsSelected |= (int)FlagsToOptions[option];
-            }
-
-            return optionsSelected;
+            options = flags.ToArray().Where(o => o != '-' && o != ' ')
+                .Select(o => Enum.Parse<Flags>(o.ToString().Substring(0, 1).AsSpan(), true))
+                .Aggregate(0, (acc, x) => acc |= (int)x);
         }
+
+        public bool LineNumbers => (options & (int)Flags.N) > 0;
+        public bool FileNames => (options & (int)Flags.L) > 0;
+        public bool CaseInSensitiveMatch => (options & (int)Flags.I) > 0;
+        public bool EntireLineMatch => (options & (int)Flags.X) > 0;
+        public bool InvertMatch => (options & (int)Flags.V) > 0;
     }
 
 
     public static string Match(string pattern, string flags, string[] files)
     {
         var result = new StringBuilder();
-        var optionsSelected = OptionTranslation.GetOptions(flags);
+        var optionsSelected = new Options(flags);
 
         foreach (var fileName in files)
         {
@@ -67,7 +58,7 @@ public static class Grep
 
 
     private static string FileMatch(
-        string pattern, string fileName, string[] files, int optionsSelected)
+        string pattern, string fileName, string[] files, Options optionsSelected)
     {
         var result = new StringBuilder();
 
@@ -82,24 +73,20 @@ public static class Grep
 
             var lineContent = fileContents.ElementAt(lineNumber - 1);
 
-            if ((optionsSelected & (int)OptionTranslation.Options.CaseInsensitiveMatch) > 0
-                && lineContent.ToLower().Contains(pattern.ToLower()))
+            if (optionsSelected.CaseInSensitiveMatch && lineContent.ToLower().Contains(pattern.ToLower()))
                 isMatch = true;
-            else if ((optionsSelected & (int)OptionTranslation.Options.EntireLineMatch) > 0
-                && lineContent == pattern)
+            else if (optionsSelected.EntireLineMatch && lineContent == pattern)
                 isMatch = true;
-            else if (!((optionsSelected &
-                ((int)OptionTranslation.Options.CaseInsensitiveMatch | (int)OptionTranslation.Options.EntireLineMatch)) > 0))
+            else if (!optionsSelected.CaseInSensitiveMatch && !optionsSelected.EntireLineMatch)
                 isMatch = lineContent.Contains(pattern);
 
-            if ((optionsSelected & (int)OptionTranslation.Options.InvertProgramMatch) > 0)
-                isMatch = !isMatch;
+            if (optionsSelected.InvertMatch) isMatch = !isMatch;
 
             if (!isMatch) continue;
 
             if (result.Length > 0) result.Append("\n");
 
-            if ((optionsSelected & (int)OptionTranslation.Options.FileNames) > 0)
+            if (optionsSelected.FileNames)
             {
                 result.Append(fileName);
 
@@ -111,7 +98,7 @@ public static class Grep
 
             if (files.Count() > 1) result.Append($"{fileName}:");
 
-            if ((optionsSelected & (int)OptionTranslation.Options.LineNumbers) > 0)
+            if (optionsSelected.LineNumbers)
                 result.Append($"{lineNumber}:{lineContent}");
             else
                 result.Append(lineContent);
