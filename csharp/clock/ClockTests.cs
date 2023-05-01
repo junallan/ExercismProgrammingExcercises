@@ -121,7 +121,7 @@ public class ClockTests
         Assert.Equal("16:40", sut.ToString());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void Negative_sixty_minutes_is_previous_hour()
     {
         var sut = new Clock(2, -60);
