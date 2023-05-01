@@ -18,7 +18,8 @@ public class Clock
 
         if (minutes < (MinutesInAnHour * -1))
         {
-            Hours = HoursInADay  + (hours +  (int)Math.Round((decimal)minutes / MinutesInAnHour, MidpointRounding.AwayFromZero));
+            //Hours = HoursInADay  + (hours + ((int)Math.Round((decimal)minutes / MinutesInAnHour, MidpointRounding.AwayFromZero)) % HoursInADay);
+            Hours = HoursInADay + (hours + ((minutes / MinutesInAnHour) - 1) % HoursInADay);
         }
         else
         {
