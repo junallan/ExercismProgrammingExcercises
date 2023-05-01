@@ -12,8 +12,18 @@ public class Clock
     public Clock(int hours, int minutes)
     {
         TotalMinutes = (hours >= 0 ? hours : HoursInADay + (hours % HoursInADay)) * MinutesInAnHour + minutes;
-        Hours = (TotalMinutes / MinutesInAnHour) % HoursInADay;
-        Minutes = (minutes >= 0 ? minutes : MinutesInAnHour + minutes) % MinutesInAnHour;
+        Minutes = (minutes >= 0 ? minutes : MinutesInAnHour + (minutes % MinutesInAnHour)) % MinutesInAnHour;
+
+        //var rollOverHours = 0;
+
+        if (minutes < (MinutesInAnHour * -1))
+        {
+            Hours = HoursInADay  + (hours +  (int)Math.Round((decimal)minutes / MinutesInAnHour, MidpointRounding.AwayFromZero));
+        }
+        else
+        {
+            Hours = (TotalMinutes / MinutesInAnHour) % HoursInADay;
+        }
     }
 
     public override string ToString()
