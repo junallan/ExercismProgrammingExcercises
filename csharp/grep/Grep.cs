@@ -17,20 +17,20 @@ public static class Grep
             X = 16 // entire line match
         }
 
-        private readonly int options;
+        private readonly Flags options;
 
         public Options(string flags)
         {
-            options = flags.ToArray().Where(o => o != '-' && o != ' ')
-                .Select(o => Enum.Parse<Flags>(o.ToString().Substring(0, 1).AsSpan(), true))
+            options = (Flags)flags.ToArray().Where(o => o != '-' && o != ' ')
+                .Select(o => Enum.Parse<Flags>(o.ToString(), true))
                 .Aggregate(0, (acc, x) => acc |= (int)x);
         }
 
-        public bool LineNumbers => (options & (int)Flags.N) > 0;
-        public bool FileNames => (options & (int)Flags.L) > 0;
-        public bool CaseInSensitiveMatch => (options & (int)Flags.I) > 0;
-        public bool EntireLineMatch => (options & (int)Flags.X) > 0;
-        public bool InvertMatch => (options & (int)Flags.V) > 0;
+        public bool LineNumbers => (options & Flags.N) > 0;
+        public bool FileNames => (options & Flags.L) > 0;
+        public bool CaseInSensitiveMatch => (options & Flags.I) > 0;
+        public bool EntireLineMatch => (options & Flags.X) > 0;
+        public bool InvertMatch => (options & Flags.V) > 0;
     }
 
  
