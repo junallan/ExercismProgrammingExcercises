@@ -17,7 +17,7 @@ public class Clock
         {
             Hours = HoursInADay + (hours + ((minutes / MinutesInAnHour) - 1) % HoursInADay);
 
-            if (Hours < 0) Hours = HoursInADay + Hours;
+            while (Hours < 0) Hours = HoursInADay + Hours;
         }
         else
         {
