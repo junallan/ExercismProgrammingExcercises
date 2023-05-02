@@ -12,19 +12,19 @@ public class Clock
     public Clock(int hours, int minutes)
     {
         TotalMinutes = (hours >= 0 ? hours : HoursInADay + (hours % HoursInADay)) * MinutesInAnHour + minutes;
-        Minutes = (minutes >= 0 ? minutes : MinutesInAnHour + (minutes % MinutesInAnHour)) % MinutesInAnHour;
-
-        //var rollOverHours = 0;
 
         if (minutes < (MinutesInAnHour * -1))
         {
-            //Hours = HoursInADay  + (hours + ((int)Math.Round((decimal)minutes / MinutesInAnHour, MidpointRounding.AwayFromZero)) % HoursInADay);
             Hours = HoursInADay + (hours + ((minutes / MinutesInAnHour) - 1) % HoursInADay);
+
+            if (Hours < 0) Hours = HoursInADay + Hours;
         }
         else
         {
             Hours = (TotalMinutes / MinutesInAnHour) % HoursInADay;
         }
+
+        Minutes = (minutes >= 0 ? minutes : MinutesInAnHour + (minutes % MinutesInAnHour)) % MinutesInAnHour;
     }
 
     public override string ToString()
