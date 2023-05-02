@@ -17,8 +17,10 @@ public class Clock
             * MinutesInAnHour + minutes;
 
         if (minutes >= -MinutesInAnHour)
+        {
             _hours = (totalMinutes / MinutesInAnHour) % HoursInADay;
-        else    
+        }
+        else
         {
             _hours =
                 HoursInADay
@@ -31,6 +33,8 @@ public class Clock
             ? minutes
             : MinutesInAnHour + (minutes % MinutesInAnHour))
             % MinutesInAnHour;
+
+        if (minutes < 0 && hours == 0) _hours = HoursInADay - 1;
     }
 
 
@@ -39,7 +43,18 @@ public class Clock
 
 
     public Clock Add(int minutesToAdd) => new Clock(_hours, _minutes + minutesToAdd);
-    
 
-    public Clock Subtract(int minutesToSubtract) => new Clock(_hours, _minutes - minutesToSubtract);
+
+    public Clock Subtract(int minutesToSubtract)
+    {
+        var hoursToSubtract = 0;
+
+        if (minutesToSubtract > MinutesInAnHour)
+        {
+            hoursToSubtract = minutesToSubtract / MinutesInAnHour;
+            minutesToSubtract = minutesToSubtract % MinutesInAnHour;
+        }
+
+        return new Clock(_hours - hoursToSubtract, _minutes - minutesToSubtract);
+    }
 }
