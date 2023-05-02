@@ -1,6 +1,6 @@
 using System;
 
-public class Clock
+public class Clock : IEquatable<Clock>
 {
     public const int HoursInADay = 24;
     public const int MinutesInAnHour = 60;
@@ -23,8 +23,8 @@ public class Clock
         else
         {
             _hours =
-                HoursInADay
-                + (hours + ((minutes / MinutesInAnHour) - 1) % HoursInADay);
+                (HoursInADay
+                + (hours + ((minutes / MinutesInAnHour) - 1) % HoursInADay)) % HoursInADay;
 
             while (_hours < 0) _hours = HoursInADay + _hours;
         }
@@ -57,4 +57,6 @@ public class Clock
 
         return new Clock(_hours - hoursToSubtract, _minutes - minutesToSubtract);
     }
+
+    public bool Equals(Clock other) => this._hours == other._hours && this._minutes == other._minutes;
 }
