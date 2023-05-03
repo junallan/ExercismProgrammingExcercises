@@ -1,3 +1,4 @@
+using BenchmarkDotNet.Running;
 using Xunit;
 
 public class MarkdownTests
