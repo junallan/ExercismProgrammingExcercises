@@ -3,7 +3,6 @@ using System;
 public class Clock : IEquatable<Clock>
 {
     private const int MinutesInADay = 1440;
-    private const int HoursInADay = 24;
     private const int MinutesInAnHour = 60;
     private const string PaddingFormatOf2 = "D2";
 
