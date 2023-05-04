@@ -116,12 +116,7 @@ public static class Grep
     private static (bool LookAtNextLine, string MatchedResult) AddMatchingContent(
         Options optionsSelected, string fileName, bool multipleFiles, string lineContent, int lineNumber)
     {
-        if (optionsSelected.FileNames)
-        {
-            if (multipleFiles) return (false, fileName);
-
-            return (true, fileName);
-        }
+        if (optionsSelected.FileNames) return (!multipleFiles, fileName);
   
         var fileNameContent = multipleFiles ? $"{fileName}:" : string.Empty;
 
