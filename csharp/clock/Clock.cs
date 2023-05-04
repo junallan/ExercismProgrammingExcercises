@@ -2,8 +2,9 @@ using System;
 
 public class Clock : IEquatable<Clock>
 {
-    public const int HoursInADay = 24;
-    public const int MinutesInAnHour = 60;
+    private const int HoursInADay = 24;
+    private const int MinutesInAnHour = 60;
+    private const string PaddingFormatOf2 = "D2";
 
     private int _hours;
     private int _minutes;
@@ -40,7 +41,7 @@ public class Clock : IEquatable<Clock>
 
 
     public override string ToString()
-        => $"{_hours.ToString().PadLeft(2, '0')}:{_minutes.ToString().PadLeft(2, '0')}";
+        => $"{_hours.ToString(PaddingFormatOf2)}:{_minutes.ToString(PaddingFormatOf2)}";
 
 
     public Clock Add(int minutesToAdd) => new Clock(_hours, _minutes + minutesToAdd);
