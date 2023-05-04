@@ -2,65 +2,38 @@ using System;
 
 public class Clock : IEquatable<Clock>
 {
+    private const int MinutesInADay = 1440;
     private const int HoursInADay = 24;
     private const int MinutesInAnHour = 60;
     private const string PaddingFormatOf2 = "D2";
 
-    private int _hours;
     private int _minutes;
     
 
     public Clock(int hours, int minutes)
     {
-        var totalMinutes = (hours >= 0
-            ? hours
-            : HoursInADay + (hours % HoursInADay))
-            * MinutesInAnHour + minutes;
-
-        if (minutes >= -MinutesInAnHour)
-        {
-            _hours = (totalMinutes / MinutesInAnHour) % HoursInADay;
-        }
-        else
-        {
-            _hours =
-                (HoursInADay
-                + (hours + ((minutes / MinutesInAnHour) - 1) % HoursInADay))
-                % HoursInADay;
-
-            while (_hours < 0) _hours = HoursInADay + _hours;
-        }
-   
-        _minutes = (minutes >= 0
-            ? minutes
-            : MinutesInAnHour + (minutes % MinutesInAnHour))
-            % MinutesInAnHour;
-
-        if (minutes < 0 && hours == 0) _hours = HoursInADay - 1;
+        _minutes = Normalize(hours * MinutesInAnHour + minutes);
     }
 
 
     public override string ToString()
-        => $"{_hours.ToString(PaddingFormatOf2)}:{_minutes.ToString(PaddingFormatOf2)}";
+        => $"{(_minutes / MinutesInAnHour).ToString(PaddingFormatOf2)}" +
+        $":{(_minutes % MinutesInAnHour).ToString(PaddingFormatOf2)}";
 
 
-    public Clock Add(int minutesToAdd) => new Clock(_hours, _minutes + minutesToAdd);
+    public Clock Add(int minutesToAdd)
+        => new (0, _minutes + minutesToAdd);
 
 
     public Clock Subtract(int minutesToSubtract)
-    {
-        var hoursToSubtract = 0;
-
-        if (minutesToSubtract > MinutesInAnHour)
-        {
-            hoursToSubtract = minutesToSubtract / MinutesInAnHour;
-            minutesToSubtract = minutesToSubtract % MinutesInAnHour;
-        }
-
-        return new Clock(_hours - hoursToSubtract, _minutes - minutesToSubtract);
-    }
+        => new (0, (_minutes - minutesToSubtract));
+    
 
     public bool Equals(Clock other)
-        => this._hours == other._hours
-        && this._minutes == other._minutes;
+        => this._minutes == other._minutes;
+
+    private static int Normalize(int minutes) =>
+        minutes < 0 ?
+        MinutesInADay + (minutes % MinutesInADay)
+        : minutes % MinutesInADay;
 }
