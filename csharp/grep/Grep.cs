@@ -94,9 +94,11 @@ public static class Grep
 
         var matchEvaluation = new MatchEvaluation(optionsSelected);
 
-        for (int lineNumber = 1; lineNumber <= fileContents.Count(); lineNumber++)
+        var lineNumber = 0;
+
+        foreach (var lineContent in fileContents)
         {
-            var lineContent = fileContents.ElementAt(lineNumber - 1);
+            ++lineNumber;
 
             if (!matchEvaluation.IsMatched(pattern, lineContent)) continue;
 
