@@ -27,13 +27,13 @@ pending :-
     test(duplicated_non_letter_character, condition(true)) :-
       isogram("Hjelmqvist-Gryb-Zock-Pfund-Wax").
 
-    test(name_that_is_an_isogram, condition(pending)) :-
+    test(name_that_is_an_isogram, condition(true)) :-
       isogram("Emily Jung Schwartzkopf").
 
-    test(duplicated_character_in_the_middle, [fail, condition(pending)]) :-
+    test(duplicated_character_in_the_middle, [fail, condition(true)]) :-
       isogram("accentor").
 
-    test(largest_pure_letter_characters_isogram, condition(pending)) :-
+    test(largest_pure_letter_characters_isogram, condition(true)) :-
       isogram("AbcdEfghIjkLMNopQrStUvWxyZ.").
 
 :- end_tests(isogram).
