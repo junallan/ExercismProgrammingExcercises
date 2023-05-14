@@ -21,10 +21,10 @@ pending :-
     test(duplicated_character_in_mixed_case, [fail, condition(true)]) :-
       isogram("Alphabet").
 
-    test(hypothetical_isogrammic_word_with_hyphen, condition(pending)) :-
+    test(hypothetical_isogrammic_word_with_hyphen, condition(true)) :-
       isogram("thumbscrew-japingly").
 
-    test(duplicated_non_letter_character, condition(pending)) :-
+    test(duplicated_non_letter_character, condition(true)) :-
       isogram("Hjelmqvist-Gryb-Zock-Pfund-Wax").
 
     test(name_that_is_an_isogram, condition(pending)) :-
