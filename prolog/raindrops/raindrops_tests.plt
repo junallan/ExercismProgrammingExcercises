@@ -10,7 +10,7 @@ pending :-
         convert(1, Sounds),
         Sounds == "1".
 
-    test(the_sound_for_3_is_pling, condition(pending)) :-
+    test(the_sound_for_3_is_pling, condition(true)) :-
         convert(3, Sounds),
         Sounds == "Pling".
 

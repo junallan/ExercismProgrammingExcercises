@@ -8,7 +8,8 @@ convert(N, Sounds) :-
         number_codes(N, Codes),
         string_codes(Sounds, Codes)
         ;
-        Sounds = PlingPlangPlongSound
+        atom_chars(PlingPlangPlongSound, SoundsAtom),
+        string_chars(Sounds, SoundsAtom)
     ).
 
 pling_sound(N,Sound) :- 
