@@ -13,7 +13,7 @@ pending :-
         space_age("Earth", 1000000000, Age),
         float_eq(Age, 3169).
 
-    test(mercury, condition(pending)) :-
+    test(mercury, condition(true)) :-
         space_age("Mercury", 2134835688, Age),
         float_eq(Age, 28088).
 
