@@ -25,11 +25,11 @@ pending :-
         space_age("Mars", 2329871239, Age),
         float_eq(Age, 3925).
 
-    test(jupiter, condition(pending)) :-
+    test(jupiter, condition(true)) :-
         space_age("Jupiter", 901876382, Age),
         float_eq(Age, 241).
 
-    test(saturn, condition(pending)) :-
+    test(saturn, condition(true)) :-
         space_age("Saturn", 3000000000, Age),
         float_eq(Age, 323).
     
