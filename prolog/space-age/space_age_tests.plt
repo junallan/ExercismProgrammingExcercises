@@ -37,7 +37,7 @@ pending :-
         space_age("Uranus", 3210123456, Age),
         float_eq(Age, 121).
 
-    test(neptune, condition(pending)) :-
+    test(neptune, condition(true)) :-
         space_age("Neptune", 8210123456, Age),
         float_eq(Age, 158).
 
