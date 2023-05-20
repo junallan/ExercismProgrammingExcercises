@@ -1,11 +1,15 @@
 space_age(Planet, AgeSec, Years):-
-    planet_seconds_per_earth_year(Planet, SecondsFactor),
-    Years is AgeSec / SecondsFactor.
+    earth_seconds(EarthSec),
+    orbital_period(Planet, OrbitalPeriod),
+    Years is AgeSec / (EarthSec * OrbitalPeriod).
 
-planet_seconds_per_earth_year("Earth", 31557600).
-planet_seconds_per_earth_year("Mercury", 7600543.82).
-planet_seconds_per_earth_year("Venus", 19414149.05).
-planet_seconds_per_earth_year("Mars", 59354032.69).
+earth_seconds(31557600).
+
+orbital_period("Earth", 1).
+orbital_period("Mercury", 0.2408467).
+orbital_period("Venus", 0.61519726).
+orbital_period("Mars", 1.8808158).
+orbital_period("Jupiter", 11.862615).
 
 
 
