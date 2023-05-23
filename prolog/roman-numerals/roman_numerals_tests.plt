@@ -10,11 +10,11 @@ test(number_1_is_i, condition(true)) :-
     convert(1, Numeral),
     Numeral == "I".
 
-test(number_2_is_ii, condition(pending)) :-
+test(number_2_is_ii, condition(true)) :-
     convert(2, Numeral),
     Numeral == "II".
 
-test(number_3_is_iii, condition(pending)) :-
+test(number_3_is_iii, condition(true)) :-
     convert(3, Numeral),
     Numeral == "III".
 
