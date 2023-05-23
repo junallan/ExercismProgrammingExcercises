@@ -30,23 +30,23 @@ test(number_6_is_vi, condition(true)) :-
     convert(6, Numeral),
     Numeral == "VI".
 
-test(number_9_is_ix, condition(pending)) :-
+test(number_9_is_ix, condition(true)) :-
     convert(9, Numeral),
     Numeral == "IX".
 
-test(number_16_is_xvi, condition(pending)) :-
+test(number_16_is_xvi, condition(true)) :-
     convert(16, Numeral),
     Numeral == "XVI".
 
-test(number_27_is_xxvii, condition(pending)) :-
+test(number_27_is_xxvii, condition(true)) :-
     convert(27, Numeral),
     Numeral == "XXVII".
 
-test(number_48_is_xlviii, condition(pending)) :-
+test(number_48_is_xlviii, condition(true)) :-
     convert(48, Numeral),
     Numeral == "XLVIII".
 
-test(number_49_is_xlix, condition(pending)) :-
+test(number_49_is_xlix, condition(true)) :-
     convert(49, Numeral),
     Numeral == "XLIX".
 

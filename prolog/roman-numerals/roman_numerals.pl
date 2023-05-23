@@ -18,3 +18,19 @@ roman_letter_value(N, Result) :-
     M is N - 5,
     roman_letter_value(M, Rest),
     string_concat("V", Rest, Result).
+
+roman_letter_value(9, "IX").
+
+roman_letter_value(N, Result) :-
+    N > 9,
+    N < 40,
+    M is N - 10,
+    roman_letter_value(M, Rest),
+    string_concat("X", Rest, Result).
+
+roman_letter_value(N, Result) :-
+    N >= 40,
+    N < 50,
+    M is N - 40,
+    roman_letter_value(M, Rest),
+    string_concat("XL", Rest, Result).
