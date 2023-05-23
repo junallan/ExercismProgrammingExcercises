@@ -78,11 +78,11 @@ test(number_402_is_cdii, condition(true)) :-
     convert(402, Numeral),
     Numeral == "CDII".
 
-test(number_575_is_dlxxv, condition(pending)) :-
+test(number_575_is_dlxxv, condition(true)) :-
     convert(575, Numeral),
     Numeral == "DLXXV".
 
-test(number_666_is_dclxvi, condition(pending)) :-
+test(number_666_is_dclxvi, condition(true)) :-
     convert(666, Numeral),
     Numeral == "DCLXVI".
 
