@@ -9,3 +9,5 @@ roman_letter_value(N, Result) :-
     M is N - 1,
     roman_letter_value(M, Rest),
     string_concat("I", Rest, Result).
+
+roman_letter_value(4, "IV").
