@@ -86,7 +86,7 @@ test(number_666_is_dclxvi, condition(true)) :-
     convert(666, Numeral),
     Numeral == "DCLXVI".
 
-test(number_911_is_cmxi, condition(pending)) :-
+test(number_911_is_cmxi, condition(true)) :-
     convert(911, Numeral),
     Numeral == "CMXI".
 

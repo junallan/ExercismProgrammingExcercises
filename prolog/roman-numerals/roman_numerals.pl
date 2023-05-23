@@ -68,4 +68,11 @@ roman_letter_value(N, Result) :-
     N < 900,
     M is N - 500,
     roman_letter_value(M, Rest),
-    string_concat("D", Rest, Result).        
+    string_concat("D", Rest, Result).       
+
+roman_letter_value(N, Result) :-
+    N >= 900,
+    N < 1000,
+    M is N - 900,
+    roman_letter_value(M, Rest),
+    string_concat("CM", Rest, Result).        
