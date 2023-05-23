@@ -41,3 +41,17 @@ roman_letter_value(N, Result) :-
     M is N - 50,
     roman_letter_value(M, Rest),
     string_concat("L", Rest, Result).
+
+roman_letter_value(N, Result) :-
+    N >= 90,
+    N < 100,
+    M is N - 90,
+    roman_letter_value(M, Rest),
+    string_concat("XC", Rest, Result).   
+
+roman_letter_value(N, Result) :-
+    N >= 100,
+    N < 400,
+    M is N - 100,
+    roman_letter_value(M, Rest),
+    string_concat("C", Rest, Result).     
