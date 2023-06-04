@@ -2,14 +2,13 @@ convert(N, Sounds) :-
     pling_sound(N, PlingSound),
     plang_sound(N, PlangSound),
     plong_sound(N, PlongSound),
-    atom_concat(PlingSound, PlangSound, PlingPlangSound),
-    atom_concat(PlingPlangSound, PlongSound, PlingPlangPlongSound),
-    (atom_length(PlingPlangPlongSound, 0) -> 
+    string_concat(PlingSound, PlangSound, PlingPlangSound),
+    string_concat(PlingPlangSound, PlongSound, PlingPlangPlongSound),
+    (string_length(PlingPlangPlongSound, 0) -> 
         number_codes(N, Codes),
         string_codes(Sounds, Codes)
         ;
-        atom_chars(PlingPlangPlongSound, SoundsAtom),
-        string_chars(Sounds, SoundsAtom)
+        string_chars(Sounds, PlingPlangPlongSound)
     ).
 
 pling_sound(N,"Pling") :- S is N mod 3, S=:=0.
