@@ -21,6 +21,3 @@ plang_sound(_, "").
 
 plong_sound(N, "Plong") :- S is N mod 7, S =:= 0.
 plong_sound(_, "").
-
-
-
