@@ -1,4 +1,5 @@
 convert(N, Sounds) :-
+    integer(N),
     pling_sound(N, PlingSound),
     plang_sound(N, PlangSound),
     plong_sound(N, PlongSound),
@@ -8,7 +9,7 @@ convert(N, Sounds) :-
         string_codes(Sounds, Codes)
     ;
         Sounds = PlingPlangPlongSound
-    ).
+    ),!.
 
 concat_sound(Sound, Acc, Result) :- string_concat(Acc, Sound, Result).
 
