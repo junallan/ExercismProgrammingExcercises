@@ -12,25 +12,11 @@ convert(N, Sounds) :-
         string_chars(Sounds, SoundsAtom)
     ).
 
-pling_sound(N,Sound) :- 
-    S is N mod 3,
-    (S=:=0 ->
-        Sound = "Pling"
-    ;
-        Sound = "").
-
-plang_sound(N,Sound) :- 
-    S is N mod 5,
-    (S=:=0 ->
-        Sound = "Plang"
-    ;
-        Sound = "").
-
-plong_sound(N,Sound) :- 
-    S is N mod 7,
-    (S=:=0 ->
-        Sound = "Plong"
-    ;
-        Sound = "").
+pling_sound(N,"Pling") :- S is N mod 3, S=:=0.
+pling_sound(_, "").
+plang_sound(N,"Plang") :- S is N mod 5, S=:=0.
+plang_sound(_,"").
+plong_sound(N,"Plong") :- S is N mod 7, S=:=0.
+plong_sound(_,"").
 
 
