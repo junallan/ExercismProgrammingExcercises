@@ -4,7 +4,8 @@ isogram(Word) :-
     isogram_chars(LowercaseCharactersInWord).
 
 isogram_chars([]).
+isogram_chars([' ']).
+isogram_chars([-]).
 isogram_chars([E|Ls]) :-
-    \+ char_type(E, alpha) ;
-    \+ member(E, Ls),
+    \+ (char_type(E, alpha), member(E, Ls)),
     isogram_chars(Ls).
