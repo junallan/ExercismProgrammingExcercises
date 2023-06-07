@@ -1,4 +1,7 @@
 space_age(Planet, AgeSec, Years):-
+    nonvar(Planet),
+    number(AgeSec),
+    AgeSec >= 0,
     earth_seconds(EarthSec),
     orbital_period(Planet, OrbitalPeriod),
     Years is AgeSec / (EarthSec * OrbitalPeriod).
