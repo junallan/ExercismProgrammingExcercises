@@ -4,7 +4,3 @@ abbreviate(Sentence, Acronym) :-
     convlist(nth0(0), CharsList, FirstChars),
     atomics_to_string(FirstChars,'',CharsAsAString),
     string_upper(CharsAsAString, Acronym).
-
-empty(List) :- List = [].
-
-    
