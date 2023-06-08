@@ -6,6 +6,9 @@
 
 (ns lucians-luscious-lasagna)
 
+(def ^:const COOK_TIME_PER_LAYER 2)
+
+
 (def expected-time 40)
 
 (defn remaining-time
@@ -18,7 +21,7 @@
   "Takes the number of layers added to the lasagna,
    and returns how many minutes you spent preparing the lasagna"
   [num-layers]
-  )
+  (* num-layers COOK_TIME_PER_LAYER))
 
 (defn total-time
   "Takes the number of layers of lasagna and the actual time in minutes it has been in the oven.
