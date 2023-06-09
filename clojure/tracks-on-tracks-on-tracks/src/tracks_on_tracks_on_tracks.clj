@@ -30,10 +30,10 @@
   Java and JavaScript, then finally returns a count of the total number
   of languages."
   []
-  (let [emptyList (new-list)
-        clojureList (add-language emptyList "Clojure")
-        clojureAndLispList (add-language clojureList "Lisp")
-        clojureRemovedList (remove-language clojureAndLispList)
-        javaAndClojureList (add-language clojureRemovedList "Java")
-        javaScriptJavaAndClojureList (add-language javaAndClojureList "JavaScript")]
-   (count-languages javaScriptJavaAndClojureList)))
+  (-> (new-list)
+      (add-language "Clojure")
+      (add-language "Lisp")
+      (remove-language)
+      (add-language "Java")
+      (add-language "JavaScript")
+      (count-languages)))
