@@ -1,6 +1,6 @@
 space_age(Planet, AgeSec, Years):-
     nonvar(Planet),
-    number(AgeSec),
+    nonvar(AgeSec),
     AgeSec >= 0,
     earth_seconds(EarthSec),
     orbital_period(Planet, OrbitalPeriod),
