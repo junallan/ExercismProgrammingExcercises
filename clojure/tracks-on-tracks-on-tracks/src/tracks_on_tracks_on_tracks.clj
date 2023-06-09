@@ -8,7 +8,7 @@
 (defn add-language
   "Adds a language to the list."
   [lang-list lang]
-  )
+  (cons lang lang-list))
 
 (defn first-language
   "Returns the first language on the list."
