@@ -13,7 +13,7 @@
 (defn first-language
   "Returns the first language on the list."
   [lang-list]
-  )
+  (first lang-list))
 
 (defn remove-language
   "Removes the first language added to the list."
