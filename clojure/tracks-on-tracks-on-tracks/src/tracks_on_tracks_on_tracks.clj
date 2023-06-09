@@ -18,7 +18,7 @@
 (defn remove-language
   "Removes the first language added to the list."
   [lang-list]
-  )
+  (next lang-list))
 
 (defn count-languages
   "Returns the total number of languages on the list."
