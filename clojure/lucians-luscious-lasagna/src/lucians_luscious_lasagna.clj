@@ -6,7 +6,7 @@
 
 (ns lucians-luscious-lasagna)
 
-(def ^:const COOK_TIME_PER_LAYER 2)
+(def ^:private ^:const COOK_TIME_PER_LAYER 2)
 
 
 (def expected-time 40)
