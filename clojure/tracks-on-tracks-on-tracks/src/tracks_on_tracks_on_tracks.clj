@@ -23,7 +23,7 @@
 (defn count-languages
   "Returns the total number of languages on the list."
   [lang-list]
-  )
+  (count lang-list))
 
 (defn learning-list
   "Creates an empty list, adds Clojure and Lisp, removes Lisp, adds
