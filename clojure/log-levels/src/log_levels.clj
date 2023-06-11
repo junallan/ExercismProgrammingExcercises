@@ -8,6 +8,9 @@
   (and (string-starts-with? s "[INFO]:") (string-starts-with? s "[WARNING]:") (string-starts-with? s "[ERROR]:"))
 )
 
+(defn remove-start-end-chars [s]
+  (subs s 1 (dec (count s))))
+
 (defn message
   "Takes a string representing a log line
    and returns its message with whitespace trimmed."
@@ -19,11 +22,11 @@
   "Takes a string representing a log line
    and returns its level in lower-case."
   [s]
-  (cond
-    (string-starts-with? s "[INFO]:") "info"
-    (string-starts-with? s "[WARNING]:") "warning"
-    (string-starts-with? s "[ERROR]:") "error")
-  )
+  (let [pattern #"^\[(INFO|WARNING|ERROR)]"
+        matcher (re-matcher pattern s)]
+    (if (.find matcher)
+      (str/lower-case (remove-start-end-chars (.group matcher)))
+      nil)))
 
 (defn reformat
   "Takes a string representing a log line and formats it
