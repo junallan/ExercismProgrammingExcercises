@@ -1,32 +1,22 @@
-(ns log-levels
-  (:require [clojure.string :as str]))
 
-(defn string-starts-with? [s prefix]
-  (str/starts-with? s prefix))
+(ns log-levels (:require [clojure.string :refer (lower-case trim)]))
 
-(defn contains-log-level-line? [s]
-  (and (string-starts-with? s "[INFO]:") (string-starts-with? s "[WARNING]:") (string-starts-with? s "[ERROR]:"))
-)
-
-(defn remove-start-end-chars [s]
-  (subs s 1 (dec (count s))))
+(defn- parse [line part]
+  (let [mitch (re-matcher #"\[(?<lvl>[A-Z]+)\]:\s+(?<msg>.+)\s*" line)]
+    (when (.matches mitch)
+      (.group mitch part))))
 
 (defn message
   "Takes a string representing a log line
    and returns its message with whitespace trimmed."
   [s]
-  (let [split-result (str/split s #":")]
-    (str/trim (nth split-result 1))))
+  (trim (parse s "msg")))
 
 (defn log-level
   "Takes a string representing a log line
    and returns its level in lower-case."
   [s]
-  (let [pattern #"^\[(INFO|WARNING|ERROR)]"
-        matcher (re-matcher pattern s)]
-    (if (.find matcher)
-      (str/lower-case (remove-start-end-chars (.group matcher)))
-      nil)))
+  (lower-case (parse s "lvl")))
 
 (defn reformat
   "Takes a string representing a log line and formats it
