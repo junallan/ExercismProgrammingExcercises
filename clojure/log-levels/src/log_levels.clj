@@ -19,6 +19,10 @@
   "Takes a string representing a log line
    and returns its level in lower-case."
   [s]
+  (cond
+    (string-starts-with? s "[INFO]:") "info"
+    (string-starts-with? s "[WARNING]:") "warning"
+    (string-starts-with? s "[ERROR]:") "error")
   )
 
 (defn reformat
