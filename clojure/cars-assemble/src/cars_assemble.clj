@@ -12,12 +12,14 @@
   "Returns the assembly line's production rate per hour,
    taking into account its success rate"
   [speed]
-  (let [rate (* speed
-               (cond (> speed 9) (* CARS_PRODUCED_PER_HOUR 0.77)
-                     (> speed 8) (* CARS_PRODUCED_PER_HOUR 0.8)
-                     (> speed 4) (* CARS_PRODUCED_PER_HOUR 0.9)
-                     (> speed 0) CARS_PRODUCED_PER_HOUR
-                     :else 0))]
+  (let [rate 
+    (* speed
+      (cond 
+        (> speed 9) (* CARS_PRODUCED_PER_HOUR 0.77)
+        (> speed 8) (* CARS_PRODUCED_PER_HOUR 0.8)
+        (> speed 4) (* CARS_PRODUCED_PER_HOUR 0.9)
+        (> speed 0) CARS_PRODUCED_PER_HOUR
+        :else 0))]
     (round-to-decimal-places rate 1)))
 
 (defn working-items
