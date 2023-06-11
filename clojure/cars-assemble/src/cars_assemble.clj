@@ -1,7 +1,7 @@
 (ns cars-assemble)
 
-(def ^:private CARS_PRODUCED_PER_HOUR 221.0)
-(def ^:private MINUTES_PER_HOUR 60)
+(def ^:private cars_produced_per_hour 221.0)
+(def ^:private minutes_per_hour 60)
 
 (defn round-to-decimal-places
   [num places]
@@ -10,7 +10,7 @@
 
 (defn success_rate
   [speed]
-  (* CARS_PRODUCED_PER_HOUR
+  (* cars_produced_per_hour
     (cond 
         (> speed 9) 0.77
         (> speed 8) 0.8
@@ -31,4 +31,4 @@
 (defn working-items
   "Calculates how many working cars are produced per minute"
   [speed]
-  (int (/ (production-rate speed) MINUTES_PER_HOUR)))
+  (int (/ (production-rate speed) minutes_per_hour)))
