@@ -1,6 +1,7 @@
 (ns cars-assemble)
 
 (def CARS_PRODUCED_PER_HOUR 221.0)
+(def MINUTES_PER_HOUR 60)
 
 (defn production-rate
   "Returns the assembly line's production rate per hour,
@@ -16,4 +17,4 @@
 (defn working-items
   "Calculates how many working cars are produced per minute"
   [speed]
-  )
+  (int (/ (production-rate speed) MINUTES_PER_HOUR)))
