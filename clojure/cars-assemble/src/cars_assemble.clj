@@ -11,7 +11,7 @@
         (> speed 8) (* (* 0.8 CARS_PRODUCED_PER_HOUR) speed)
         (> speed 4) (* (* 0.9 CARS_PRODUCED_PER_HOUR) speed)
         (> speed 0) (* CARS_PRODUCED_PER_HOUR speed)
-        :else 0) 
+        :else 0.0) 
   )
 
 (defn working-items
