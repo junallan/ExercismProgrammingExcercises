@@ -29,4 +29,5 @@
   "Takes a string representing a log line and formats it
    with the message first and the log level in parentheses."
   [s]
+  (str (message s) " (" (log-level s) ")")
   )
