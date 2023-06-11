@@ -1,7 +1,7 @@
 (ns cars-assemble)
 
-(def CARS_PRODUCED_PER_HOUR 221.0)
-(def MINUTES_PER_HOUR 60)
+(def ^:private CARS_PRODUCED_PER_HOUR 221.0)
+(def ^:private MINUTES_PER_HOUR 60)
 
 (defn round-to-decimal-places
   [num places]
