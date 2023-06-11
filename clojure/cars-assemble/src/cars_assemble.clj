@@ -10,12 +10,14 @@
 
 (defn success_rate
   [speed]
-  (cond 
-        (> speed 9) (* CARS_PRODUCED_PER_HOUR 0.77)
-        (> speed 8) (* CARS_PRODUCED_PER_HOUR 0.8)
-        (> speed 4) (* CARS_PRODUCED_PER_HOUR 0.9)
-        (> speed 0) CARS_PRODUCED_PER_HOUR
-        :else 0))
+  (* CARS_PRODUCED_PER_HOUR
+    (cond 
+        (> speed 9) 0.77
+        (> speed 8) 0.8
+        (> speed 4) 0.9
+        (> speed 0) 1
+        :else 0)
+  ))
 
 (defn production-rate
   "Returns the assembly line's production rate per hour,
