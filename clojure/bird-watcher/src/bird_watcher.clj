@@ -18,7 +18,7 @@
   (some #(= % 0) birds))
 
 (defn n-days-count [birds n]
-  )
+  (reduce + (subvec birds 0 n)))
 
 (defn busy-days [birds]
   )
