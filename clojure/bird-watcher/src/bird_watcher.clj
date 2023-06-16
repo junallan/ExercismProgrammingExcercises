@@ -21,7 +21,7 @@
   (reduce + (subvec birds 0 n)))
 
 (defn busy-days [birds]
-  )
+  (count (filter #(> % 4) birds)))
 
 (defn odd-week? [birds]
   )
