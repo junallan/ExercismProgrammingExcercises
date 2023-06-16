@@ -15,7 +15,7 @@
      birds)))
 
 (defn day-without-birds? [birds]
-  )
+  (some #(= % 0) birds))
 
 (defn n-days-count [birds n]
   )
