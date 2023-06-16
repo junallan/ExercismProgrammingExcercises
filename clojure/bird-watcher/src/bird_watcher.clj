@@ -4,10 +4,15 @@
   [0 2 5 3 7 8 4])
 
 (defn today [birds]
-  (get birds (dec (count birds))))
-
+  (if (empty? birds)
+    nil
+    (get birds (dec (count birds)))))
+  
 (defn inc-bird [birds]
-  )
+  (let [last-bird (today birds)]
+   (if last-bird
+     (assoc birds (dec (count birds)) (inc last-bird))
+     birds)))
 
 (defn day-without-birds? [birds]
   )
