@@ -4,7 +4,7 @@
   [0 2 5 3 7 8 4])
 
 (defn today [birds]
-  )
+  (get birds (dec (count birds))))
 
 (defn inc-bird [birds]
   )
