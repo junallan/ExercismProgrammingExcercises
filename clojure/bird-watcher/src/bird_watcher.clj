@@ -24,4 +24,4 @@
   (count (filter #(> % 4) birds)))
 
 (defn odd-week? [birds]
-  (and (= birds [1 0 1 0 1 0 1]) ([0 1 0 1 0 1 0])))
+  (or (= birds [1 0 1 0 1 0 1]) (= birds [0 1 0 1 0 1 0])))
