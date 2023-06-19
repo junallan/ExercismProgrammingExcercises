@@ -13,7 +13,7 @@
      birds)))
 
 (defn day-without-birds? [birds]
-  (boolean (some zero? birds)))
+  (true? (some zero? birds)))
 
 (defn n-days-count [birds n]
   (reduce + (subvec birds 0 n)))
