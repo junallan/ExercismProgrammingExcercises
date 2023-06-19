@@ -4,9 +4,7 @@
   [0 2 5 3 7 8 4])
 
 (defn today [birds]
-  (if (empty? birds)
-    nil
-    (get birds (dec (count birds)))))
+  (peek birds))
   
 (defn inc-bird [birds]
   (let [last-bird (today birds)]
