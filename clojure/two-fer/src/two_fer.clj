@@ -1,7 +1,5 @@
 (ns two-fer)
 
-(defn two-fer 
-  ([]
-   (two-fer "you"))
-  ([name] 
+(defn two-fer [& [name]]
+  (let [name (if (nil? name) "you" name)]
    (str "One for " name ", one for me.")))
