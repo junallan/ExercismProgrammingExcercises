@@ -12,14 +12,15 @@
   (let [numbers ["0" "1" "2" "3" "4" "5" "6" "7" "8" "9"]]
     (rand-nth numbers)))    
 
+(defn make-name []
+  (concatenate-strings (random-letter) (random-letter) (random-number) (random-number) (random-number)))
+
 (defn robot [] ;; <- arglist goes here
+  (atom (make-name)))
+
+(defn robot-name [bot] ;; <- arglist goes here
+  @bot)
+
+(defn reset-name [bot] ;; <- arglist goes here
   ;; your code goes here
 )
-
-(defn robot-name [robot] ;; <- arglist goes here
-      (concatenate-strings random-letter random-letter random-number random-number random-number))
-
-(defn reset-name [robot] ;; <- arglist goes here
-  ;; your code goes here
-)
-
