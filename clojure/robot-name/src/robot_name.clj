@@ -7,12 +7,11 @@
   (let [letters "ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
     (rand-nth letters)))
 
-(defn random-number []
-  (let [numbers ["0" "1" "2" "3" "4" "5" "6" "7" "8" "9"]]
-    (rand-nth numbers)))    
-
 (defn make-name []
-  (concatenate-strings (random-letter) (random-letter) (random-number) (random-number) (random-number)))
+  (concatenate-strings 
+    (random-letter) 
+    (random-letter) 
+    (format "%03d" (rand-int 1000))))
 
 (defn robot [] 
   (atom (make-name)))
