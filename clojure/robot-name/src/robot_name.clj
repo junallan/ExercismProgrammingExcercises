@@ -15,12 +15,12 @@
 (defn make-name []
   (concatenate-strings (random-letter) (random-letter) (random-number) (random-number) (random-number)))
 
-(defn robot [] ;; <- arglist goes here
+(defn robot [] 
   (atom (make-name)))
 
-(defn robot-name [bot] ;; <- arglist goes here
+(defn robot-name [bot] 
   @bot)
 
-(defn reset-name [bot] ;; <- arglist goes here
-  ;; your code goes here
+(defn reset-name [bot] 
+  (reset! bot (make-name))
 )
