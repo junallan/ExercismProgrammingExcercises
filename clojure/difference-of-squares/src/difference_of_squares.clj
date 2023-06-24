@@ -4,11 +4,15 @@
   (* num num))
 
 (defn sum-of-squares [num] 
-  (loop [n num
-         acc 0]
-    (if (<= n 0)
-      acc
-      (recur (dec n) (+ acc (* n n))))))
+  (->> (range 1 (inc num))
+    (map #(* % %))
+    (reduce +)))
+
+  ;; (loop [n num
+  ;;        acc 0]
+  ;;   (if (<= n 0)
+  ;;     acc
+  ;;     (recur (dec n) (+ acc (* n n))))))
 
 ;; (defn sum-of-squares [num] 
 ;;   (if (<= num 0)
