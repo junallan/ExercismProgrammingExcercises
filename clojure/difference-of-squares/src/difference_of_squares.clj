@@ -3,10 +3,6 @@
 (defn square [num]
   (* num num))
 
-(defn difference [] ;; <- arglist goes here
-  ;; your code goes here
-)
-
 (defn sum-of-squares [num] 
   (loop [n num
          acc 0]
@@ -22,3 +18,7 @@
 (defn square-of-sum [num]
   (let [sum (reduce + (range 1 (inc num)))]
   (square sum)))
+
+(defn difference [num]
+  (- (square-of-sum num) (sum-of-squares num)))
+
