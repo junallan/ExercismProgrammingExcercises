@@ -20,5 +20,4 @@
   @bot)
 
 (defn reset-name [bot] 
-  (reset! bot (make-name))
-)
+  (reset! bot (make-name)))
