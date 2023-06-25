@@ -4,7 +4,8 @@
   (* num num))
 
 (defn sum-of-squares [num] 
-  (/ (* (* num (num + 1))) (+ (* 2 num) 1)) 6)
+  (/ (* num (inc num) (inc (* 2 num))) 6))
+
   ;; (->> (range 1 (inc num))
   ;;   (map #(* % %))
   ;;   (reduce +)))
