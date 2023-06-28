@@ -16,5 +16,7 @@
   [s]
   (-> s
       (str/replace #"\p{Cc}" "CTRL")
+      (str/replace #"\d" "")
+      (str/replace #"[α-ω]" "")
       (kebab-to-camel)
       (str/replace " " "_")))
