@@ -8,7 +8,7 @@
 (defn can-spy?
   "Returns true if the kidnappers can be spied upon, false otherwise."
   [knight-awake? archer-awake? prisoner-awake?]
-  )
+  (or (or knight-awake? archer-awake?) prisoner-awake?))
 
 (defn can-signal-prisoner?
   "Returns true if the prisoner can be signalled, false otherwise."
