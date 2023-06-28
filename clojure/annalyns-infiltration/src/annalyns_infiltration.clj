@@ -13,7 +13,7 @@
 (defn can-signal-prisoner?
   "Returns true if the prisoner can be signalled, false otherwise."
   [archer-awake? prisoner-awake?]
-  )
+  (and (not archer-awake?) prisoner-awake?))
 
 (defn can-free-prisoner?
   "Returns true if prisoner can be freed, false otherwise."
