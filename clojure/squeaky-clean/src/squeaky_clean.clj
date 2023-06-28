@@ -2,6 +2,8 @@
   (:require [clojure.string :as str]))
 
 (defn clean
-  "TODO: add docstring"
+  "Replaces spaces with underscores and control characters with 'CTRL' in the input string."
   [s]
-  (str/replace s " " "_"))
+  (-> s
+      (str/replace #"\p{Cc}" "CTRL")
+      (str/replace " " "_")))
