@@ -24,5 +24,4 @@
       (str/replace #"\p{InEmoticons}" "")
       (str/replace #"\d" "")
       (str/replace #"[α-ω]" "")
-      (kebab-to-camel)
       (str/replace " " "_")))
