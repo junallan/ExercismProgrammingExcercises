@@ -2,8 +2,8 @@
 
 (require '[clojure.string :as str])
 
-(defn eliminate-whitespace [string]
-  (str/replace string #"\s" ""))
+(defn only-bracket-chars [string]
+  (str/replace string #"[^{}()\[\]]" ""))
 
 (defn validate-brackets [string, stack]
   (if (empty? string)
@@ -21,7 +21,7 @@
         ))))
 
 (defn valid? [string]
-  (validate-brackets (eliminate-whitespace string) [])
+  (validate-brackets (only-bracket-chars string) [])
 )
 
 
