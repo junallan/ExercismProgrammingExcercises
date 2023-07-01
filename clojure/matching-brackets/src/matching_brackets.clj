@@ -1,5 +1,10 @@
 (ns matching-brackets)
 
+(require '[clojure.string :as str])
+
+(defn eliminate-whitespace [string]
+  (str/replace string #"\s" ""))
+
 (defn validate-brackets [string, stack]
   (if (empty? string)
     (if (empty? stack)
@@ -16,7 +21,7 @@
         ))))
 
 (defn valid? [string]
-  (validate-brackets string [])
+  (validate-brackets (eliminate-whitespace string) [])
 )
 
 
