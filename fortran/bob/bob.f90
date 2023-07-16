@@ -3,30 +3,20 @@ module bob
 contains
 
   function hey(statement)
-    character(100) :: hey
+    character(len=100) :: hey
     character(len=*), intent(in) :: statement
     logical :: is_lowercase_found
     logical :: is_uppercase_found
     logical :: is_yelling
     logical :: ends_with_question_mark
-    integer :: i
 
-    is_lowercase_found = .FALSE.
-    is_uppercase_found = .FALSE.
+    is_lowercase_found = check_lowercase(statement)
+    is_uppercase_found = check_uppercase(statement)
     
     if (LEN_TRIM(statement) == 0) then
       hey = "Fine. Be that way!"
       return
     end if
-
-    do i = 1, len_trim(statement)
-      if (ichar(statement(i:i)) >= ichar('a') .and. ichar(statement(i:i)) <= ichar('z')) then
-          is_lowercase_found = .TRUE.
-          exit   ! Exit the loop if a lowercase letter is found
-      else if (ichar(statement(i:i)) >= ichar('A') .and. ichar(statement(i:i)) <= ichar('Z')) then
-          is_uppercase_found = .TRUE.
-      end if
-    end do
 
     is_yelling = (.NOT. is_lowercase_found) .and. is_uppercase_found
 
@@ -43,4 +33,31 @@ contains
     end if
   end function hey
 
+  function check_lowercase(str) result(is_lowercase)
+    character(len=*), intent(in) :: str
+    logical :: is_lowercase
+    integer :: i
+
+    is_lowercase = .FALSE.
+    do i = 1, len_trim(str)
+      if (ichar(str(i:i)) >= ichar('a') .and. ichar(str(i:i)) <= ichar('z')) then
+        is_lowercase = .TRUE.
+        exit
+      end if
+    end do
+  end function check_lowercase
+
+  function check_uppercase(str) result(is_uppercase)
+    character(len=*), intent(in) :: str
+    logical :: is_uppercase
+    integer :: i
+
+    is_uppercase = .FALSE.
+    do i = 1, len_trim(str)
+      if (ichar(str(i:i)) >= ichar('A') .and. ichar(str(i:i)) <= ichar('Z')) then
+        is_uppercase = .TRUE.
+        exit
+      end if
+    end do
+  end function check_uppercase
 end module bob
