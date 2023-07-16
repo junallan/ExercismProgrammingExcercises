@@ -10,9 +10,17 @@ contains
     logical :: is_yelling
     logical :: ends_with_question_mark
     integer :: i
+    logical :: is_empty
 
     is_lowercase_found = .FALSE.
     is_uppercase_found = .FALSE.
+    
+    is_empty = LEN_TRIM(statement) == 0
+
+    if (is_empty) then
+      hey = "Fine. Be that way!"
+      return
+    end if
 
     do i = 1, len_trim(statement)
       if (ichar(statement(i:i)) >= ichar('a') .and. ichar(statement(i:i)) <= ichar('z')) then
