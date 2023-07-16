@@ -10,14 +10,11 @@ contains
     logical :: is_yelling
     logical :: ends_with_question_mark
     integer :: i
-    logical :: is_empty
 
     is_lowercase_found = .FALSE.
     is_uppercase_found = .FALSE.
     
-    is_empty = LEN_TRIM(statement) == 0
-
-    if (is_empty) then
+    if (LEN_TRIM(statement) == 0) then
       hey = "Fine. Be that way!"
       return
     end if
