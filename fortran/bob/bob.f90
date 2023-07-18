@@ -21,7 +21,7 @@ contains
     is_lowercase_found = check_character_range(statement, 'a', 'z')
     is_uppercase_found = check_character_range(statement, 'A', 'Z')
 
-    is_yelling = (.NOT. is_lowercase_found) .AND. is_uppercase_found
+    is_yelling = .NOT. is_lowercase_found .AND. is_uppercase_found
 
     ends_with_question_mark = statement_len > 0 .AND. statement(statement_len:statement_len) == '?'
 
