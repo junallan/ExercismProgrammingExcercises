@@ -34,21 +34,24 @@ contains
     else
       hey = "Whatever."
     end if
-  end function hey
 
-  function check_character_range(str, lower_char, upper_char) result(is_found)
-    character(len=*), intent(in) :: str
-    character(len=1), intent(in) :: lower_char, upper_char
-    logical :: is_found
-    integer :: i
+    contains 
+    
+    function check_character_range(str, lower_char, upper_char) result(is_found)
+      character(len=*), intent(in) :: str
+      character(len=1), intent(in) :: lower_char, upper_char
+      logical :: is_found
+      integer :: i
 
-    is_found = .FALSE.
-    do i = 1, len_trim(str)
-      if (ichar(str(i:i)) >= ichar(lower_char) .AND. ichar(str(i:i)) <= ichar(upper_char)) then
-        is_found = .TRUE.
-        exit
-      end if
-    end do
-  end function check_character_range
+      is_found = .FALSE.
+      do i = 1, len_trim(str)
+        if (ichar(str(i:i)) >= ichar(lower_char) .AND. ichar(str(i:i)) <= ichar(upper_char)) then
+          is_found = .TRUE.
+          exit
+        end if
+      end do
+    end function 
 
-end module bob
+  end function
+
+end module
