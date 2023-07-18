@@ -9,8 +9,11 @@ contains
     logical :: is_uppercase_found
     logical :: is_yelling
     logical :: ends_with_question_mark
+    integer :: statement_len
 
-    if (LEN_TRIM(statement) == 0) then
+    statement_len = LEN_TRIM(statement)
+
+    if (statement_len == 0) then
       hey = "Fine. Be that way!"
       return
     end if
@@ -20,7 +23,7 @@ contains
 
     is_yelling = (.NOT. is_lowercase_found) .AND. is_uppercase_found
 
-    ends_with_question_mark = LEN_TRIM(statement) > 0 .AND. statement(LEN_TRIM(statement):LEN_TRIM(statement)) == '?'
+    ends_with_question_mark = statement_len > 0 .AND. statement(statement_len:statement_len) == '?'
 
     if (ends_with_question_mark .AND. is_yelling) then
       hey = "Calm down, I know what I'm doing!"
