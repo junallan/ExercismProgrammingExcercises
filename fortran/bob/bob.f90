@@ -23,7 +23,7 @@ contains
 
     is_yelling = .NOT. is_lowercase_found .AND. is_uppercase_found
 
-    ends_with_question_mark = statement_len > 0 .AND. statement(statement_len:statement_len) == '?'
+    ends_with_question_mark = statement(statement_len:statement_len) == '?'
 
     if (ends_with_question_mark .AND. is_yelling) then
       hey = "Calm down, I know what I'm doing!"
