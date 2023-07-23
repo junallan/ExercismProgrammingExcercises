@@ -1,0 +1,1 @@
+/opt/homebrew/bin/gfortran -std=f2008 -W -Wall -Wextra -pedantic -fbacktrace -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk "CMakeFiles/reverse-string.dir/reverse_string.f90.o" "CMakeFiles/reverse-string.dir/reverse_string_test.f90.o" -o reverse-string  testlib/libTesterMain.a 
