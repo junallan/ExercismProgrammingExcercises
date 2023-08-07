@@ -5,12 +5,12 @@ export class Anagram {
 
   constructor(input: string) {
     this._input = input;
-    this._sortedInput = this.sortString(input);
+    this._sortedInput = this.sortLowerCaseString(input);
     this._inputLength = this._input.length;
   }
 
-  private sortString(str: string): string {
-    return str.split("").sort().join("");
+  private sortLowerCaseString(str: string): string {
+    return str.split("").sort().join("").toLowerCase();
   }
 
   public matches(...potentials: string[]): string[] {   
@@ -19,7 +19,7 @@ export class Anagram {
     return potentials.filter(p =>
       this._input !== p &&
       this._inputLength === p.length &&
-      this._sortedInput == this.sortString(p)
+      this._sortedInput == this.sortLowerCaseString(p)
     );
 
     // potentials.forEach(p => {

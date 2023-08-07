@@ -8,28 +8,28 @@ describe('Anagram', () => {
     expect(matches).toEqual([])
   })
 
-  xit('detects two anagrams', () => {
+  it('detects two anagrams', () => {
     const subject = new Anagram('solemn')
     const matches = subject.matches('lemons', 'cherry', 'melons')
 
     expect(matches).toEqual(['lemons', 'melons'])
   })
 
-  xit('does not detect anagram subsets', () => {
+  it('does not detect anagram subsets', () => {
     const subject = new Anagram('good')
     const matches = subject.matches('dog', 'goody')
 
     expect(matches).toEqual([])
   })
 
-  xit('detects anagram', () => {
+  it('detects anagram', () => {
     const subject = new Anagram('listen')
     const matches = subject.matches('enlists', 'google', 'inlets', 'banana')
 
     expect(matches).toEqual(['inlets'])
   })
 
-  xit('detects three anagrams', () => {
+  it('detects three anagrams', () => {
     const subject = new Anagram('allergy')
     const matches = subject.matches(
       'gallery',
@@ -43,7 +43,7 @@ describe('Anagram', () => {
     expect(matches).toEqual(['gallery', 'regally', 'largely'])
   })
 
-  xit('detects multiple anagrams with different case', () => {
+  it('detects multiple anagrams with different case', () => {
     const subject = new Anagram('nose')
     const matches = subject.matches('Eons', 'ONES')
 
