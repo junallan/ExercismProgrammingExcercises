@@ -50,14 +50,14 @@ describe('Anagram', () => {
     expect(matches).toEqual(['Eons', 'ONES'])
   })
 
-  xit('does not detect non-anagrams with identical checksum', () => {
+  it('does not detect non-anagrams with identical checksum', () => {
     const subject = new Anagram('mass')
     const matches = subject.matches('last')
 
     expect(matches).toEqual([])
   })
 
-  xit('detects anagrams case-insensitively', () => {
+  it('detects anagrams case-insensitively', () => {
     const subject = new Anagram('Orchestra')
     const matches = subject.matches('cashregister', 'Carthorse', 'radishes')
 

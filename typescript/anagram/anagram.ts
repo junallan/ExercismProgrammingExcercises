@@ -1,42 +1,20 @@
 export class Anagram {
-  private readonly _input: string = "";
-  private readonly _sortedInput: string = "";
-  private readonly _inputLength: number = 0;
+  private readonly _input: string;
+  private readonly _sortedInput: string;
 
   constructor(input: string) {
-    this._input = input;
-    this._sortedInput = this.sortLowerCaseString(input);
-    this._inputLength = this._input.length;
+    this._input = input.toLowerCase();
+    this._sortedInput = this.sortString(this._input);
   }
 
-  private sortLowerCaseString(str: string): string {
-    return str.split("").sort().join("").toLowerCase();
+  private sortString(str: string): string {
+    return str.split('').sort().join('');
   }
 
   public matches(...potentials: string[]): string[] {   
-    const anagramMatches: string[] = [];
-
     return potentials.filter(p =>
-      this._input !== p &&
-      this._inputLength === p.length &&
-      this._sortedInput == this.sortLowerCaseString(p)
+      this._input !== p.toLowerCase() &&
+      this._sortedInput == this.sortString(p.toLowerCase())
     );
-
-    // potentials.forEach(p => {
-    //   if (this._input === p) { return; }
-    //   if (this._inputLength !== p.length) { return; }
-  
-    //   const sortedPotential = p.split("")
-    //     .sort()
-    //     .join("");
-
-    //   if (this._sortedInput !== sortedPotential) { return; }
-
-    //   anagramMatches.push(p);
-
-    //   console.log(sortedPotential);
-    // });
-
-    // return anagramMatches;
   }
 }
