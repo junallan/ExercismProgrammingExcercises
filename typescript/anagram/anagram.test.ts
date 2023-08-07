@@ -64,42 +64,42 @@ describe('Anagram', () => {
     expect(matches).toEqual(['Carthorse'])
   })
 
-  xit('detects anagrams using case-insensitive subject', () => {
+  it('detects anagrams using case-insensitive subject', () => {
     const subject = new Anagram('Orchestra')
     const matches = subject.matches('cashregister', 'carthorse', 'radishes')
 
     expect(matches).toEqual(['carthorse'])
   })
 
-  xit('detects anagrams using case-insensitive possible matches', () => {
+  it('detects anagrams using case-insensitive possible matches', () => {
     const subject = new Anagram('orchestra')
     const matches = subject.matches('cashregister', 'Carthorse', 'radishes')
 
     expect(matches).toEqual(['Carthorse'])
   })
 
-  xit('does not detect an anagram if the original word is repeated', () => {
+  it('does not detect an anagram if the original word is repeated', () => {
     const subject = new Anagram('go')
     const matches = subject.matches('go Go GO')
 
     expect(matches).toEqual([])
   })
 
-  xit('anagrams must use all letters exactly once', () => {
+  it('anagrams must use all letters exactly once', () => {
     const subject = new Anagram('tapper')
     const matches = subject.matches('patter')
 
     expect(matches).toEqual([])
   })
 
-  xit('words are not anagrams of themselves', () => {
+  it('words are not anagrams of themselves', () => {
     const subject = new Anagram('BANANA')
     const matches = subject.matches('BANANA')
 
     expect(matches).toEqual([])
   })
 
-  xit('words are not anagrams of themselves even if letter case is partially different', () => {
+  it('words are not anagrams of themselves even if letter case is partially different', () => {
     const subject = new Anagram('BANANA')
     const matches = subject.matches('Banana')
 
@@ -113,21 +113,21 @@ describe('Anagram', () => {
     expect(matches).toEqual([])
   })
 
-  xit('words other than themselves can be anagrams', () => {
+  it('words other than themselves can be anagrams', () => {
     const subject = new Anagram('LISTEN')
     const matches = subject.matches('LISTEN', 'Silent')
 
     expect(matches).toEqual(['Silent'])
   })
 
-  xit('matches() accepts string arguments', () => {
+  it('matches() accepts string arguments', () => {
     const subject = new Anagram('ant')
     const matches = subject.matches('stand', 'tan', 'at')
 
     expect(matches).toEqual(['tan'])
   })
 
-  xit('matches() accepts single string argument', () => {
+  it('matches() accepts single string argument', () => {
     const subject = new Anagram('ant')
     const matches = subject.matches('tan')
 
