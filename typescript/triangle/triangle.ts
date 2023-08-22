@@ -5,27 +5,20 @@ export class Triangle {
     this.sides = sides;
   }
 
-  get isEquilateral() {
-    return this.sides.length === 3 
-      && this.sides[0] !== 0
-      && this.sides.every(s => s == this.sides[0]);
+  get isEquilateral() : boolean {
+    const [a, b, c] = this.sides;
+    return a !== 0 && a === b && b === c;
   }
 
-  get isIsosceles() {
-    if (this.sides.length !== 3 || this,this.sides.includes(0)) return false;
-    if (this.isEquilateral) return true;
-
-    if(!isTriangle(this.sides[0], this.sides[1], this.sides[2])) return false;
-
-    return this.sides[0] === this.sides[1] 
-      || this.sides[0] === this.sides[2]
-      || this.sides[1] === this.sides[2];
+  get isIsosceles() : boolean {
+    if (this.sides.length !== 3 || this.sides.includes(0)) return false;
+    return isTriangle(this.sides[0], this.sides[1], this.sides[2]) 
+      && (this.sides[0] === this.sides[1] || this.sides[1] === this.sides[2] || this.sides[0] === this.sides[2]);
   }
 
-  get isScalene() {
-    if (this.sides.length !== 3 || this,this.sides.includes(0)) return false;
-    if (this.isEquilateral || this.isIsosceles) return false;
-    return isTriangle(this.sides[0], this.sides[1], this.sides[2]);
+  get isScalene() : boolean {
+    if (this.sides.length !== 3 || this.sides.includes(0)) return false;
+    return isTriangle(this.sides[0], this.sides[1], this.sides[2]) && !this.isEquilateral && !this.isIsosceles;
   }
 }
 
@@ -34,6 +27,3 @@ function isTriangle(a: number, b: number, c: number) :boolean {
     && ((b + c) >= a)
     && ((a + c) >= b);
 }
-
-
-
