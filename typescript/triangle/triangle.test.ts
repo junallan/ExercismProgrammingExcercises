@@ -29,37 +29,37 @@ describe('Triangle', () => {
   })
 
   describe('isosceles triangle', () => {
-    xit('last two sides are equal', () => {
+    it('last two sides are equal', () => {
       const triangle = new Triangle(3, 4, 4)
       expect(triangle.isIsosceles).toBe(true)
     })
 
-    xit('first two sides are equal', () => {
+    it('first two sides are equal', () => {
       const triangle = new Triangle(4, 4, 3)
       expect(triangle.isIsosceles).toBe(true)
     })
 
-    xit('first and last sides are equal', () => {
+    it('first and last sides are equal', () => {
       const triangle = new Triangle(4, 3, 4)
       expect(triangle.isIsosceles).toBe(true)
     })
 
-    xit('equilateral triangles are also isosceles', () => {
+    it('equilateral triangles are also isosceles', () => {
       const triangle = new Triangle(4, 4, 4)
       expect(triangle.isIsosceles).toBe(true)
     })
 
-    xit('no sides are equal', () => {
+    it('no sides are equal', () => {
       const triangle = new Triangle(2, 3, 4)
       expect(triangle.isIsosceles).toBe(false)
     })
 
-    xit('first triangle inequality violation', () => {
+    it('first triangle inequality violation', () => {
       const triangle = new Triangle(1, 1, 3)
       expect(triangle.isIsosceles).toBe(false)
     })
 
-    xit('second triangle inequality violation', () => {
+    it('second triangle inequality violation', () => {
       const triangle = new Triangle(1, 3, 1)
       expect(triangle.isIsosceles).toBe(false)
     })
