@@ -12,31 +12,20 @@ export class Triangle {
   }
 
   get isIsosceles() {
-    if (this.sides.length !== 3) return false;
-    if (this,this.sides.includes(0)) return false;
+    if (this.sides.length !== 3 || this,this.sides.includes(0)) return false;
     if (this.isEquilateral) return true;
 
     const elementCounts = getElementCounts(this.sides);
-    if (elementCounts.size == 3) return false;
 
-    const keysIterator = elementCounts.keys();
+    if (elementCounts.size !== 2) return false;
 
-    const firstLengthKey = keysIterator.next().value;
-    const firstLengthCount = elementCounts.get(firstLengthKey);
-    const secondLengthKey = keysIterator.next().value;
-    const secondLengthCount = elementCounts.get(secondLengthKey);
+    const [firstLengthCount, secondLengthCount] = elementCounts.values();
+    const [firstLengthKey, secondLengthKey] = elementCounts.keys();
 
-    if (firstLengthCount == 2 && secondLengthCount == 1) { 
-      return ((firstLengthKey + firstLengthKey) > secondLengthKey) 
-        && ((firstLengthKey + secondLengthKey) > firstLengthKey);
-    }
-
-    if (firstLengthCount == 1 && secondLengthCount == 2) { 
-      return ((secondLengthKey + secondLengthKey) > firstLengthKey)
-        && ((firstLengthKey + secondLengthKey) > secondLengthKey);
-    }
-
-    return false;
+    return (
+      (firstLengthCount === 2 && (firstLengthKey + firstLengthKey) > secondLengthKey) ||
+      (secondLengthCount === 2 && (secondLengthKey + secondLengthKey) > firstLengthKey)
+    );
   }
 
   get isScalene() {
