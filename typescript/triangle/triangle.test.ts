@@ -64,49 +64,49 @@ describe('Triangle', () => {
       expect(triangle.isIsosceles).toBe(false)
     })
 
-    xit('third triangle inequality violation', () => {
+    it('third triangle inequality violation', () => {
       const triangle = new Triangle(3, 1, 1)
       expect(triangle.isIsosceles).toBe(false)
     })
 
-    xit('sides may be floats', () => {
+    it('sides may be floats', () => {
       const triangle = new Triangle(0.5, 0.4, 0.5)
       expect(triangle.isIsosceles).toBe(true)
     })
   })
 
   describe('scalene triangle', () => {
-    xit('no sides are equal', () => {
+    it('no sides are equal', () => {
       const triangle = new Triangle(5, 4, 6)
       expect(triangle.isScalene).toBe(true)
     })
 
-    xit('all sides are equal', () => {
+    it('all sides are equal', () => {
       const triangle = new Triangle(4, 4, 4)
       expect(triangle.isScalene).toBe(false)
     })
 
-    xit('first and second sides are equal', () => {
+    it('first and second sides are equal', () => {
       const triangle = new Triangle(4, 4, 3)
       expect(triangle.isScalene).toBe(false)
     })
 
-    xit('first and third sides are equal', () => {
+    it('first and third sides are equal', () => {
       const triangle = new Triangle(3, 4, 3)
       expect(triangle.isScalene).toBe(false)
     })
 
-    xit('second and third sides are equal', () => {
+    it('second and third sides are equal', () => {
       const triangle = new Triangle(4, 3, 3)
       expect(triangle.isScalene).toBe(false)
     })
 
-    xit('may not violate triangle inequality', () => {
+    it('may not violate triangle inequality', () => {
       const triangle = new Triangle(7, 3, 2)
       expect(triangle.isScalene).toBe(false)
     })
 
-    xit('sides may be floats', () => {
+    it('sides may be floats', () => {
       const triangle = new Triangle(0.5, 0.4, 0.6)
       expect(triangle.isScalene).toBe(true)
     })

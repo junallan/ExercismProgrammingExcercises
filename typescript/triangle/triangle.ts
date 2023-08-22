@@ -23,7 +23,9 @@ export class Triangle {
   }
 
   get isScalene() {
-    throw new Error('Remove this statement and implement this function')
+    if (this.sides.length !== 3 || this,this.sides.includes(0)) return false;
+    if (this.isEquilateral || this.isIsosceles) return false;
+    return isTriangle(this.sides[0], this.sides[1], this.sides[2]);
   }
 }
 
