@@ -7,22 +7,22 @@ describe('Triangle', () => {
       expect(triangle.isEquilateral).toBe(true)
     })
 
-    xit('any side is unequal', () => {
+    it('any side is unequal', () => {
       const triangle = new Triangle(2, 3, 2)
       expect(triangle.isEquilateral).toBe(false)
     })
 
-    xit('no sides are equal', () => {
+    it('no sides are equal', () => {
       const triangle = new Triangle(5, 4, 6)
       expect(triangle.isEquilateral).toBe(false)
     })
 
-    xit('all zero sides is not a triangle', () => {
+    it('all zero sides is not a triangle', () => {
       const triangle = new Triangle(0, 0, 0)
       expect(triangle.isEquilateral).toBe(false)
     })
 
-    xit('sides may be floats', () => {
+    it('sides may be floats', () => {
       const triangle = new Triangle(0.5, 0.5, 0.5)
       expect(triangle.isEquilateral).toBe(true)
     })

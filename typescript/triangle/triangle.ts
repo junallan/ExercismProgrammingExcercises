@@ -1,12 +1,14 @@
 export class Triangle {
-  private _sides: number[];
+  private sides: number[];
 
   constructor(...sides: number[]) {
-    this._sides = sides;
+    this.sides = sides;
   }
 
   get isEquilateral() {
-    throw new Error('Remove this statement and implement this function')
+    return this.sides.length === 3 
+      && this.sides[0] !== 0
+      && this.sides.every(s => s == this.sides[0]);
   }
 
   get isIsosceles() {
