@@ -14,7 +14,7 @@ export class Anagram {
   public matches(...potentials: string[]): string[] {   
     return potentials.filter(p =>
       this._input !== p.toLowerCase() &&
-      this._sortedInput == this.sortString(p.toLowerCase())
+      this._sortedInput === this.sortString(p.toLowerCase())
     );
   }
 }
